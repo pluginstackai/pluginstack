@@ -1,0 +1,31 @@
+{
+  "slug": "cursor-rules",
+  "name": "Cursor Rules",
+  "category": "Rules & Prompts",
+  "tags": [
+    "cursor",
+    "rules"
+  ],
+  "url": "https://cursor.com/docs/context/rules",
+  "maker": "Cursor",
+  "what": "Cursor's rules feature gives the Agent persistent instructions. Project rules are .mdc files in .cursor/rules, and there are also User Rules, Team Rules and plain AGENTS.md files.",
+  "who": "Cursor users who are tired of repeating the same instructions every chat.",
+  "setup": [
+    {
+      "text": "Type /create-rule in Cursor's Agent chat and describe the rule, or add one from Customize → Rules → Add Rule."
+    },
+    {
+      "text": "Rules are saved as .mdc files in .cursor/rules (plain .md files there are ignored). Commit them to git. Example rule:",
+      "code": "---\nglobs: src/components/**/*.tsx\nalwaysApply: false\n---\n\n- Use named exports, not default exports",
+      "language": "markdown"
+    },
+    {
+      "text": "Pick how each applies: Always Apply, Apply Intelligently (by description), Apply to Specific Files (globs), or Apply Manually (@-mention). Keep each under ~500 lines."
+    }
+  ],
+  "prompts": [
+    "/create-rule Use named exports and Tailwind for all components in src/components.",
+    "Following our project rules, create a new API route for user settings.",
+    "Write an AGENTS.md for this repo based on package.json and the folder structure."
+  ]
+}

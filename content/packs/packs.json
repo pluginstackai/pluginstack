@@ -1,0 +1,54 @@
+[
+  {
+    "slug": "nextjs-cursorrules",
+    "name": "Next.js + Tailwind Cursor Rules Pack",
+    "price": 9,
+    "desc": "Cursor project rules (.mdc) for App Router, server components, Tailwind conventions and testing.",
+    "items": [
+      "8 rule files",
+      "Folder structure guide",
+      "Setup README"
+    ]
+  },
+  {
+    "slug": "vibe-coder-starter",
+    "name": "Vibe Coder Starter Prompts",
+    "price": 5,
+    "desc": "50 prompts for planning, building, debugging and shipping with an AI agent.",
+    "items": [
+      "50 prompts",
+      "Debugging checklist"
+    ]
+  },
+  {
+    "slug": "agent-builder-pack",
+    "name": "Agent Builder Rules + Prompts",
+    "price": 15,
+    "desc": "Rules and prompt templates for building MCP servers and agent workflows.",
+    "items": [
+      "Rules for Claude Code & Cursor",
+      "MCP server scaffolding prompts",
+      "Eval prompt templates"
+    ]
+  },
+  {
+    "slug": "game-dev-pack",
+    "name": "Indie Game Dev Prompt Pack",
+    "price": 12,
+    "desc": "Prompts and rules for building browser games with AI (Phaser, Three.js).",
+    "items": [
+      "Rules for game loops & state",
+      "30 prompts"
+    ]
+  },
+  {
+    "slug": "mega-bundle",
+    "name": "Everything Bundle",
+    "price": 20,
+    "desc": "All current packs, plus future updates.",
+    "items": [
+      "All packs",
+      "Future updates"
+    ]
+  }
+]

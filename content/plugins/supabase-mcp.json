@@ -1,0 +1,33 @@
+{
+  "slug": "supabase-mcp",
+  "name": "Supabase MCP Server",
+  "category": "MCP Servers",
+  "tags": [
+    "database",
+    "backend"
+  ],
+  "url": "https://github.com/supabase-community/supabase-mcp",
+  "maker": "Supabase",
+  "what": "Supabase's MCP server that connects AI assistants to your Supabase projects so they can manage tables, fetch config and query data.",
+  "who": "Vibe coders building apps on Supabase who want the agent to handle the database side.",
+  "setup": [
+    {
+      "text": "Read Supabase's MCP security best practices first. Connecting an LLM to a database carries real risks."
+    },
+    {
+      "text": "Add the remote server. Your client will prompt you to log in to Supabase; pick the organization that has your project.",
+      "code": "{\n  \"mcpServers\": {\n    \"supabase\": {\n      \"type\": \"http\",\n      \"url\": \"https://mcp.supabase.com/mcp\"\n    }\n  }\n}",
+      "language": "json"
+    },
+    {
+      "text": "Optionally scope it with URL options. With the local Supabase CLI, the server is at http://localhost:54321/mcp (fewer tools).",
+      "code": "https://mcp.supabase.com/mcp?project_ref=<ref>&read_only=true",
+      "language": "text"
+    }
+  ],
+  "prompts": [
+    "Create a 'profiles' table linked to auth users with a username column.",
+    "List the tables in my project and describe how they relate.",
+    "Write and run a query that counts signups per day this week."
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "slug": "linear-mcp",
+  "name": "Linear MCP",
+  "category": "MCP Servers",
+  "tags": [
+    "issues",
+    "project-management"
+  ],
+  "url": "https://linear.app/docs/mcp",
+  "maker": "Linear",
+  "what": "Linear's official MCP server for finding, creating and updating issues, projects and comments from your AI tool.",
+  "who": "Teams and solo builders tracking work in Linear.",
+  "setup": [
+    {
+      "text": "Use the endpoint https://mcp.linear.app/mcp (Streamable HTTP)."
+    },
+    {
+      "text": "In Claude Code, add it, then run /mcp to sign in:",
+      "code": "claude mcp add --transport http linear-server https://mcp.linear.app/mcp",
+      "language": "bash"
+    },
+    {
+      "text": "For clients that need stdio:",
+      "code": "{\n  \"mcpServers\": {\n    \"linear\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"mcp-remote\",\n        \"https://mcp.linear.app/mcp\"\n      ]\n    }\n  }\n}",
+      "language": "json"
+    }
+  ],
+  "prompts": [
+    "Show my assigned issues for this cycle sorted by priority.",
+    "Create a bug issue for the login redirect problem.",
+    "Add a comment to issue ENG-123 with what I just fixed."
+  ]
+}

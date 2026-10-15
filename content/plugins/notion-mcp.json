@@ -1,0 +1,33 @@
+{
+  "slug": "notion-mcp",
+  "name": "Notion MCP",
+  "category": "MCP Servers",
+  "tags": [
+    "docs",
+    "productivity"
+  ],
+  "url": "https://developers.notion.com/docs/get-started-with-mcp",
+  "maker": "Notion",
+  "what": "Notion's hosted MCP server that lets AI tools search, read, create and update pages and databases you have access to in your Notion workspace.",
+  "who": "Anyone keeping specs, notes or task lists in Notion who wants the AI to use them.",
+  "setup": [
+    {
+      "text": "Add the remote server. Claude Code (then run /mcp):",
+      "code": "claude mcp add --transport http notion https://mcp.notion.com/mcp",
+      "language": "bash"
+    },
+    {
+      "text": "Complete the OAuth flow to connect your workspace. Workspace members only; guests can't connect."
+    },
+    {
+      "text": "If your client only supports local servers:",
+      "code": "{\n  \"mcpServers\": {\n    \"notion\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"mcp-remote\",\n        \"https://mcp.notion.com/mcp\"\n      ]\n    }\n  }\n}",
+      "language": "json"
+    }
+  ],
+  "prompts": [
+    "Find my product spec page and turn it into a task list.",
+    "Create a Notion page summarizing today's changes.",
+    "Search my workspace for notes about pricing."
+  ]
+}

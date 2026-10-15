@@ -1,0 +1,37 @@
+{
+  "slug": "playwright-mcp",
+  "name": "Playwright MCP",
+  "category": "MCP Servers",
+  "tags": [
+    "browser",
+    "testing",
+    "automation"
+  ],
+  "url": "https://github.com/microsoft/playwright-mcp",
+  "maker": "Microsoft",
+  "what": "Microsoft's MCP server that gives an AI agent a real browser via Playwright. It works from the page's structured accessibility snapshot instead of screenshots, so no vision model is needed.",
+  "who": "Vibe coders and QA folks who want the agent to test their web app or automate web tasks.",
+  "setup": [
+    {
+      "text": "Install Node.js 18 or newer."
+    },
+    {
+      "text": "Add to your MCP client config:",
+      "code": "{\n  \"mcpServers\": {\n    \"playwright\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"@playwright/mcp@latest\"\n      ]\n    }\n  }\n}",
+      "language": "json"
+    },
+    {
+      "text": "Or via CLI: Claude Code / Codex:",
+      "code": "claude mcp add playwright npx @playwright/mcp@latest\ncodex mcp add playwright npx \"@playwright/mcp@latest\"",
+      "language": "bash"
+    },
+    {
+      "text": "Optional flags include --headless, --isolated (in-memory profile) and --browser (chrome, firefox, webkit, msedge)."
+    }
+  ],
+  "prompts": [
+    "Open localhost:3000, sign up with a test email and tell me if anything breaks.",
+    "Go to my pricing page and check every link works.",
+    "Fill out the contact form on my site and report the confirmation message."
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "slug": "aider",
+  "name": "Aider",
+  "category": "Coding Agents",
+  "tags": [
+    "cli",
+    "git",
+    "open-source"
+  ],
+  "url": "https://aider.chat",
+  "maker": "Aider",
+  "what": "Open-source AI pair programming in your terminal. It edits code in your local git repo and works with many LLMs (Claude, DeepSeek, OpenAI models and more).",
+  "who": "Terminal fans who want git-tracked AI edits and a choice of models.",
+  "setup": [
+    {
+      "text": "Install aider (Python 3.8–3.13):",
+      "code": "python -m pip install aider-install\naider-install",
+      "language": "bash"
+    },
+    {
+      "text": "Or use the one-liner installer (macOS/Linux):",
+      "code": "curl -LsSf https://aider.chat/install.sh | sh",
+      "language": "bash"
+    },
+    {
+      "text": "cd into your project."
+    },
+    {
+      "text": "Run aider with your model and key, for example:",
+      "code": "aider --model sonnet --api-key anthropic=<key>",
+      "language": "bash"
+    }
+  ],
+  "prompts": [
+    "Add input validation to the signup form.",
+    "/add src/api.py then: add retry logic to the HTTP calls.",
+    "Write a README section explaining how to run this project."
+  ]
+}

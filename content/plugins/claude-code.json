@@ -1,0 +1,43 @@
+{
+  "slug": "claude-code",
+  "name": "Claude Code",
+  "category": "Coding Agents",
+  "tags": [
+    "cli",
+    "agent"
+  ],
+  "url": "https://code.claude.com/docs/en/overview",
+  "maker": "Anthropic",
+  "what": "Anthropic's agentic coding tool. It reads your codebase, edits files, runs commands, works with git and connects to MCP servers. It runs in the terminal, with VS Code/JetBrains extensions, a desktop app and a web version too.",
+  "who": "Developers and vibe coders who want an agent that works across their whole project. Requires a Claude Pro, Max, Team, Enterprise or Console account (or a supported cloud provider).",
+  "setup": [
+    {
+      "text": "Install (macOS/Linux/WSL):",
+      "code": "curl -fsSL https://claude.ai/install.sh | bash",
+      "language": "bash"
+    },
+    {
+      "text": "Windows PowerShell:",
+      "code": "irm https://claude.ai/install.ps1 | iex",
+      "language": "powershell"
+    },
+    {
+      "text": "Homebrew and npm (needs Node 22+) also work:",
+      "code": "brew install --cask claude-code\n# or\nnpm install -g @anthropic-ai/claude-code",
+      "language": "bash"
+    },
+    {
+      "text": "cd into your project and run:",
+      "code": "claude",
+      "language": "bash"
+    },
+    {
+      "text": "Log in with your Claude account on first run. Add a CLAUDE.md file to give it project instructions."
+    }
+  ],
+  "prompts": [
+    "Explain how this project is structured and where the auth logic lives.",
+    "Write tests for the auth module, run them, and fix any failures.",
+    "Commit my changes with a descriptive message."
+  ]
+}

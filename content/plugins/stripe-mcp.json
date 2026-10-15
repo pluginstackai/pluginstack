@@ -1,0 +1,35 @@
+{
+  "slug": "stripe-mcp",
+  "name": "Stripe MCP Server",
+  "category": "MCP Servers",
+  "tags": [
+    "payments",
+    "api"
+  ],
+  "url": "https://docs.stripe.com/mcp",
+  "maker": "Stripe",
+  "what": "Stripe's MCP server that lets AI agents work with the Stripe API (customers, products, prices, invoices, subscriptions and more) and search Stripe's docs and support articles.",
+  "who": "Builders adding payments to an app, or managing customers and products with an agent.",
+  "setup": [
+    {
+      "text": "Recommended: install the Stripe CLI and run agent setup. It detects your agents and configures the MCP server plus Stripe's skills.",
+      "code": "npm install -g @stripe/cli@latest\nstripe agent setup",
+      "language": "bash"
+    },
+    {
+      "text": "Manual: add the remote server https://mcp.stripe.com. Claude Code (then /mcp to sign in with OAuth):",
+      "code": "claude mcp add --transport http stripe https://mcp.stripe.com/",
+      "language": "bash"
+    },
+    {
+      "text": "For clients without OAuth, use an agent API key as a Bearer token. From Dec 2026, plain secret/restricted keys stop working. Try it in a sandbox first; refunds and payouts require human confirmation.",
+      "code": "{\n  \"stripe\": {\n    \"url\": \"https://mcp.stripe.com\",\n    \"headers\": {\n      \"Authorization\": \"Bearer {{AGENT_API_KEY}}\"\n    }\n  }\n}",
+      "language": "json"
+    }
+  ],
+  "prompts": [
+    "Create a sandbox product 'Pro Plan' with a $9/month price.",
+    "How do I handle a failed subscription payment webhook?",
+    "List my most recent customers in the sandbox."
+  ]
+}

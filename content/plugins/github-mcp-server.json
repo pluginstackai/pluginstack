@@ -1,0 +1,36 @@
+{
+  "slug": "github-mcp-server",
+  "name": "GitHub MCP Server",
+  "category": "MCP Servers",
+  "tags": [
+    "git",
+    "code",
+    "issues"
+  ],
+  "url": "https://github.com/github/github-mcp-server",
+  "maker": "GitHub",
+  "what": "Official MCP server from GitHub that lets AI tools read repositories and code, manage issues and pull requests, check GitHub Actions runs and review security findings, all through natural language.",
+  "who": "Developers who want their AI assistant to read code, triage issues or open PRs without leaving the chat.",
+  "setup": [
+    {
+      "text": "Easiest: in an MCP host with remote-server support (VS Code 1.101+, Claude Desktop, Cursor, Windsurf, etc.), add the HTTP server and sign in with OAuth (or send a GitHub PAT as a Bearer header). VS Code config:",
+      "code": "{\n  \"servers\": {\n    \"github\": {\n      \"type\": \"http\",\n      \"url\": \"https://api.githubcopilot.com/mcp/\"\n    }\n  }\n}",
+      "language": "json"
+    },
+    {
+      "text": "Or run it locally with Docker (Docker must be running):",
+      "code": "docker run -i --rm -e GITHUB_PERSONAL_ACCESS_TOKEN ghcr.io/github/github-mcp-server",
+      "language": "bash"
+    },
+    {
+      "text": "Optionally limit what the agent can do with toolsets or turn on read-only mode (or GITHUB_READ_ONLY=1):",
+      "code": "github-mcp-server --toolsets repos,issues,pull_requests\ngithub-mcp-server --read-only",
+      "language": "bash"
+    }
+  ],
+  "prompts": [
+    "List the open issues labeled 'bug' in my repo and group them by area.",
+    "Summarize what changed in pull request #42 and flag anything risky.",
+    "Why did the latest GitHub Actions run on main fail? Show me the failing job's logs."
+  ]
+}

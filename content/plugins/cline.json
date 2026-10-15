@@ -1,0 +1,32 @@
+{
+  "slug": "cline",
+  "name": "Cline",
+  "category": "Editor Extensions",
+  "tags": [
+    "vscode",
+    "agent",
+    "open-source"
+  ],
+  "url": "https://github.com/cline/cline",
+  "maker": "Cline",
+  "what": "Open-source coding agent for VS Code (also JetBrains, a CLI and a desktop app). It edits files across your project, runs terminal commands and uses a browser, with Plan/Act modes and approval for every change unless you turn on auto-approve.",
+  "who": "Developers who want an open-source agent that works with many model providers, including local models via Ollama or LM Studio.",
+  "setup": [
+    {
+      "text": "Install 'Cline' from the VS Code Marketplace (or JetBrains Marketplace), or install the CLI:",
+      "code": "npm i -g cline",
+      "language": "bash"
+    },
+    {
+      "text": "Open Cline and choose a provider/model (Anthropic, OpenAI, Gemini, OpenRouter, Ollama, etc.), adding your API key."
+    },
+    {
+      "text": "Describe your task in Plan mode, then switch to Act mode and approve each edit or command."
+    }
+  ],
+  "prompts": [
+    "Build a simple todo app in this folder using React and Vite.",
+    "Read the error in my terminal and fix it.",
+    "Add an MCP server to Cline that can query my Postgres database."
+  ]
+}

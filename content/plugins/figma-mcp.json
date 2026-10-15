@@ -1,0 +1,36 @@
+{
+  "slug": "figma-mcp",
+  "name": "Figma MCP Server",
+  "category": "MCP Servers",
+  "tags": [
+    "design",
+    "frontend"
+  ],
+  "url": "https://developers.figma.com/docs/figma-mcp-server/",
+  "maker": "Figma",
+  "what": "Brings design context from your Figma files into AI coding tools so they can generate code that matches your designs.",
+  "who": "Designers and frontend devs turning Figma frames into real UI.",
+  "setup": [
+    {
+      "text": "Add the remote server to a supported client (Cursor, VS Code, Claude Code, Codex and others). Cursor config:",
+      "code": "{\n  \"mcpServers\": {\n    \"figma\": {\n      \"url\": \"https://mcp.figma.com/mcp\"\n    }\n  }\n}",
+      "language": "json"
+    },
+    {
+      "text": "Claude Code:",
+      "code": "claude mcp add --transport http figma https://mcp.figma.com/mcp",
+      "language": "bash"
+    },
+    {
+      "text": "Sign in through Figma's OAuth flow."
+    },
+    {
+      "text": "Copy a link to a frame or layer in Figma and paste it into your prompt."
+    }
+  ],
+  "prompts": [
+    "Implement this Figma frame as a React component with Tailwind: <link>",
+    "List the colors and text styles used in this design.",
+    "Compare my current page with this Figma frame and fix differences."
+  ]
+}

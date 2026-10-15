@@ -1,0 +1,31 @@
+{
+  "slug": "filesystem-mcp",
+  "name": "Filesystem MCP Server",
+  "category": "MCP Servers",
+  "tags": [
+    "files",
+    "local"
+  ],
+  "url": "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem",
+  "maker": "Model Context Protocol",
+  "what": "Reference MCP server that lets an AI read, write, edit, move and search files and directories, restricted to the folders you allow.",
+  "who": "People who want Claude Desktop or another chat app to work with files on their computer.",
+  "setup": [
+    {
+      "text": "Install Node.js."
+    },
+    {
+      "text": "Add the server, listing as many allowed folders as you need. On Windows, launch it through cmd /c npx.",
+      "code": "{\n  \"mcpServers\": {\n    \"filesystem\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"@modelcontextprotocol/server-filesystem\",\n        \"/path/to/allowed/folder\"\n      ]\n    }\n  }\n}",
+      "language": "json"
+    },
+    {
+      "text": "Only list folders you're happy for the AI to access. If your client supports MCP Roots, it can set the allowed folders for you. Restart the client afterwards."
+    }
+  ],
+  "prompts": [
+    "Find every markdown file in my notes folder that mentions 'invoice'.",
+    "Show me a directory tree of my project folder, excluding node_modules.",
+    "Read my README and suggest a clearer intro, then preview the edit before applying it."
+  ]
+}

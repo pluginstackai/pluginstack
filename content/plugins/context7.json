@@ -1,0 +1,33 @@
+{
+  "slug": "context7",
+  "name": "Context7",
+  "category": "MCP Servers",
+  "tags": [
+    "docs",
+    "coding"
+  ],
+  "url": "https://github.com/upstash/context7",
+  "maker": "Upstash",
+  "what": "Pulls up-to-date, version-specific library documentation and code examples into your prompt, so the AI stops relying on outdated training data or made-up APIs.",
+  "who": "Anyone coding with AI on fast-moving frameworks (Next.js, React, Supabase, etc.).",
+  "setup": [
+    {
+      "text": "Quickest (needs Node.js 22.13+). It signs you in with OAuth, creates an API key and configures Cursor, Claude Code or OpenCode (--cursor / --claude / --opencode):",
+      "code": "npx ctx7 setup",
+      "language": "bash"
+    },
+    {
+      "text": "Manual: add the remote MCP server and pass your API key as a Bearer header. Free keys are at context7.com/dashboard.",
+      "code": "{\n  \"mcpServers\": {\n    \"context7\": {\n      \"url\": \"https://mcp.context7.com/mcp\",\n      \"headers\": {\n        \"Authorization\": \"Bearer YOUR_API_KEY\"\n      }\n    }\n  }\n}",
+      "language": "json"
+    },
+    {
+      "text": "Add 'use context7' to a prompt (or add a rule telling your agent to always use it) to pull in fresh docs."
+    }
+  ],
+  "prompts": [
+    "Create a Next.js proxy that checks for a valid JWT in cookies and redirects unauthenticated users to /login. use context7",
+    "Show me the Supabase auth API for email/password sign-up. use context7",
+    "Implement basic authentication with Supabase. use library /supabase/supabase for API and docs."
+  ]
+}
