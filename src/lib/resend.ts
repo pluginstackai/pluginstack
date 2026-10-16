@@ -1,7 +1,7 @@
 // Server-only helpers for Resend (https://resend.com/docs/api-reference). Uses Segments (formerly Audiences).
 const API = 'https://api.resend.com';
 export const BUSINESS_EMAIL = process.env.BUSINESS_EMAIL || 'pluginstackai@gmail.com';
-export const FROM = process.env.RESEND_FROM || 'PluginStack <onboarding@resend.dev>';
+export const FROM = process.env.RESEND_FROM || 'PluginStack <hello@pluginstackai.com>';
 const key = () => process.env.RESEND_API_KEY;
 
 async function call(path: string, init: RequestInit = {}) {
