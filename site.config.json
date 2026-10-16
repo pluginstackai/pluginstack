@@ -1,7 +1,7 @@
 {
   "name": "PluginStack",
   "tagline": "The best AI plugins, MCP servers and agent tools, explained in plain words.",
-  "url": "https://pluginstack.example.com",
+  "url": "https://pluginstack.vercel.app",
   "newsletterTitle": "New plugins worth trying, weekly",
   "sponsor": { "label": "Your tool here", "text": "Reach builders into AI agents & vibe coding.", "href": "/sponsor" }
 }
