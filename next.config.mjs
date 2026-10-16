@@ -1,2 +1,3 @@
 /** @type {import('next').NextConfig} */
-export default { output: 'export', images: { unoptimized: true }, trailingSlash: true };
+// No `output: 'export'`: Vercel runs /api/* as serverless functions; all pages remain statically generated.
+export default { images: { unoptimized: true }, trailingSlash: true };
