@@ -8,8 +8,8 @@
     "performance"
   ],
   "url": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
-  "maker": "Google Chrome DevTools team",
-  "what": "Lets a coding agent control and inspect a live Chrome browser through Chrome DevTools. It can record performance traces, read network requests and console messages (with source-mapped stack traces) and automate pages with Puppeteer. A CLI is included for use without MCP. Apache-2.0.",
+  "maker": "Google (Chrome DevTools)",
+  "what": "Lets a coding agent control and inspect a live Chrome browser through Chrome DevTools (Google now calls it \"Chrome DevTools for agents\"; the package is chrome-devtools-mcp). It can record performance traces, read network requests and console messages (with source-mapped stack traces) and automate pages with Puppeteer. A CLI is included for use without MCP. Apache-2.0.",
   "who": "Web developers who want the agent to debug a page or check its performance in a real Chrome.",
   "setup": [
     {
@@ -24,7 +24,7 @@
       "text": "For basic browser tasks only, add \"--slim\" (and \"--headless\") to the args."
     },
     {
-      "text": "Google collects usage statistics by default; add \"--no-usage-statistics\" to opt out. Performance tools may send trace URLs to the CrUX API; \"--no-performance-crux\" turns that off."
+      "text": "Google collects usage statistics by default; add \"--no-usage-statistics\" to opt out. Performance tools may send trace URLs to the CrUX API; \"--no-performance-crux\" turns that off. The agent can see everything in that browser, so don't use it with sensitive logged-in sessions."
     },
     {
       "text": "Test it with the README's first prompt:",

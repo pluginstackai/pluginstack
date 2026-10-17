@@ -8,8 +8,8 @@
     "gamedev"
   ],
   "url": "https://github.com/hi-godot/godot-ai",
-  "maker": "hi-godot",
-  "what": "An MCP server and Godot editor plugin that connects Claude Code, Codex, Cursor, VS Code and other MCP clients to a live Godot editor. Its tools let the AI build scenes, edit nodes and scripts, wire signals and set up UI, materials, animation, particles and cameras. GDScript is fully supported; C# is text-only. MIT licensed.",
+  "maker": "hi-godot (community project)",
+  "what": "An MCP server and Godot editor plugin that connects Claude Code, Codex, Cursor, VS Code and other MCP clients to a live Godot editor. Its tools let the AI build scenes, edit nodes and scripts, wire signals and set up UI, materials, animation, particles and cameras. GDScript is fully supported; C# is text-only. A community project from the makers of MCP for Unity, not affiliated with the Godot Foundation. MIT licensed.",
   "who": "Godot 4.7+ developers who want an AI assistant that can work inside the editor, not just edit files.",
   "setup": [
     {
@@ -20,6 +20,9 @@
     },
     {
       "text": "In the Godot AI dock, press Configure next to your MCP client (or Configure all), then restart the client if needed."
+    },
+    {
+      "text": "It sends anonymous usage telemetry (no code, scene contents or file names). Set GODOT_AI_DISABLE_TELEMETRY=true to opt out."
     }
   ],
   "prompts": [

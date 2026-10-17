@@ -26,6 +26,9 @@
       "text": "Or add it to your MCP config by hand; an OAuth window opens on first use:",
       "code": "{\n  \"mcpServers\": {\n    \"Neon\": {\n      \"type\": \"http\",\n      \"url\": \"https://mcp.neon.tech/mcp\"\n    }\n  }\n}",
       "language": "json"
+    },
+    {
+      "text": "To limit what the agent can do, uncheck Allow writes on the OAuth page, or use https://mcp.neon.tech/mcp?readonly=true."
     }
   ],
   "prompts": [

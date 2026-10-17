@@ -8,8 +8,8 @@
     "self-hosted"
   ],
   "url": "https://github.com/stackblitz-labs/bolt.diy",
-  "maker": "StackBlitz Labs community",
-  "what": "The open-source version of Bolt: an AI workspace where you prompt, run, edit and deploy full-stack web apps in the browser. You choose the LLM for each prompt from 22+ providers, including local models through Ollama or LM Studio. MIT licensed; the WebContainers API it uses has separate commercial terms for enterprise use.",
+  "maker": "stackblitz-labs (community project)",
+  "what": "A community-run, open-source fork of StackBlitz's Bolt.new: an AI workspace where you prompt, run, edit and deploy full-stack web apps in the browser. You choose the LLM for each prompt from 22+ providers, including local models through Ollama or LM Studio. The README says it is now in maintenance mode (bug fixes and dependency updates, no new features planned). MIT licensed; the WebContainers API it uses has separate commercial terms for enterprise use.",
   "who": "Vibe coders who want a Bolt-style app builder they run themselves, with their own API keys or local models.",
   "setup": [
     {

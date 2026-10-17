@@ -9,8 +9,8 @@
   ],
   "url": "https://ai-sdk.dev",
   "maker": "Vercel",
-  "what": "Vercel's provider-agnostic TypeScript toolkit for building AI apps and agents, with UI hooks for Next.js, React, Svelte, Vue and Angular. One API covers OpenAI, Anthropic, Google and many more providers, either through Vercel AI Gateway (the default) or each provider's own package. Apache-2.0.",
-  "who": "Web developers adding chat, streaming or agent features to a JavaScript or TypeScript app.",
+  "what": "Vercel's provider-agnostic TypeScript toolkit for building AI apps and agents. It works with Next.js, React, Svelte, Vue, Angular and Node.js, and its UI hooks cover React, Svelte and Vue. One API covers OpenAI, Anthropic, Google and many more providers, either through Vercel AI Gateway (the default) or each provider's own package. Apache-2.0.",
+  "who": "Web developers adding chat, streaming or agent features to a JavaScript or TypeScript app. The SDK is free; AI Gateway is a pay-as-you-go Vercel service with a limited free tier, or you can use your own provider keys through the provider packages.",
   "setup": [
     {
       "text": "Needs Node.js 22+. Install:",

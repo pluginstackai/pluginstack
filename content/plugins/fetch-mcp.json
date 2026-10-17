@@ -8,7 +8,7 @@
   ],
   "url": "https://github.com/modelcontextprotocol/servers/tree/main/src/fetch",
   "maker": "Model Context Protocol",
-  "what": "One of the official MCP reference servers. It gives the agent a single fetch tool that downloads a web page and converts the HTML to markdown, and it can read long pages in chunks. By default it refuses private and loopback addresses.",
+  "what": "One of the official MCP reference servers. It gives the agent a single fetch tool that downloads a web page and converts the HTML to markdown, and it can read long pages in chunks. By default it refuses private and loopback addresses and follows robots.txt for requests the model makes.",
   "who": "Anyone who wants their agent to read a docs page, changelog or article by URL without a full browser.",
   "setup": [
     {

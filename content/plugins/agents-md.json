@@ -8,8 +8,8 @@
     "coding-agents"
   ],
   "url": "https://agents.md",
-  "maker": "AGENTS.md (open format)",
-  "what": "A simple open format for giving coding agents project instructions: one AGENTS.md markdown file in your repo with setup commands, test steps and code style. The agents.md site lists many tools that read it, including Codex, Cursor, goose, OpenCode, Aider, Zed, Kilo Code and GitHub Copilot's coding agent.",
+  "maker": "Agentic AI Foundation (Linux Foundation)",
+  "what": "A simple open format for giving coding agents project instructions: one AGENTS.md markdown file in your repo with setup commands, test steps and code style. It is now stewarded by the Agentic AI Foundation under the Linux Foundation, and the agents.md site lists many tools that read it, including Codex, Cursor, goose, OpenCode, Aider, Zed, Kilo Code and GitHub Copilot's coding agent. The site and repo are MIT licensed.",
   "who": "Anyone who uses more than one coding agent and wants a single instructions file they all understand.",
   "setup": [
     {

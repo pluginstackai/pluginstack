@@ -1,3 +1,19 @@
+# Second audit of the 2026-10-17 additions — 2026-10-17
+Re-checked all 29 entries from commit fa4e84b against their official repos/docs (archive status, latest commits/releases, LICENSE file, README install steps, npm/PyPI package names and install-script URLs). All repos are the canonical ones (old names such as block/goose, All-Hands-AI/OpenHands, jlowin/fastmcp, sst/opencode and ahujasid/blender-mcp redirect to the listed repos).
+- trellis-2: REMOVED. No code commits since Jan 2026 (only CI/policy commits since) and no releases, so it doesn't meet the "actively maintained" bar used for the other entries (same reason Hunyuan3D was left out).
+- opencode: install steps were ambiguous. opencode.ai/install and brew anomalyco/tap/opencode give OpenCode 1; opencode.ai/v2/install and npm @opencode/cli give OpenCode 2. Both are now labeled, with the migration note.
+- vercel-ai-sdk: UI hooks are for React, Svelte and Vue (not Angular); noted that AI Gateway is a paid pay-as-you-go service with a limited free tier.
+- bolt-diy: described as a community fork of Bolt.new (not "the" open-source Bolt); added the README's maintenance-mode note.
+- blender-mcp: added the default anonymous telemetry and how to turn it off, the optional paid Premium generation, and the safe-mode flag.
+- dyad: Linux builds exist; noted the optional paid Pro/Max plans.
+- crewai, godot-ai: added default telemetry and opt-out; noted the optional paid CrewAI AMP; Godot AI marked as a community project, not affiliated with the Godot Foundation.
+- pydantic-ai: needs Python 3.11+ (PyPI requires-python).
+- chrome-devtools-mcp: noted the new official name "Chrome DevTools for agents" and the browser-data warning.
+- agents-md: now stewarded by the Agentic AI Foundation (Linux Foundation).
+- unity-mcp: maintained by Aura, which also sells a separate paid product; openhands: Agent Canvas is labeled beta, Cloud/Enterprise are paid.
+- cloudflare-mcp: the recommended API server lives in cloudflare/mcp. brave-search-mcp: added place search. fetch-mcp: follows robots.txt. kilo-code: "no markup" attributed to Kilo. neon-mcp: added read-only mode. agent-skills: spec now at agentskills.io.
+- No changes needed: codex-cli, exa-mcp, fastmcp, firecrawl-mcp, goose, langgraph, mastra, mcp-inspector, openai-agents-sdk, sequential-thinking-mcp.
+
 # Content additions — 2026-10-17
 Added 29 listings. Each was checked against its official repo/docs on 2026-10-17 (exists, not archived, commits in the last 6 months, license, install steps taken from the README/docs). No star counts or usage stats are quoted.
 New categories: MCP Dev Tools, Agent Frameworks, Vibe Coding, Game Dev.

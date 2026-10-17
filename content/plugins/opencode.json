@@ -13,17 +13,17 @@
   "who": "Terminal users who want an open-source agent and the freedom to pick their own model provider.",
   "setup": [
     {
-      "text": "Install with the script:",
-      "code": "curl -fsSL https://opencode.ai/install | bash",
+      "text": "OpenCode 2 (what opencode.ai/download offers now):",
+      "code": "curl -fsSL https://opencode.ai/v2/install | bash\n# or\nnpm install -g @opencode/cli",
       "language": "bash"
     },
     {
-      "text": "Or with Homebrew (the OpenCode tap is updated most often):",
-      "code": "brew install anomalyco/tap/opencode",
+      "text": "OpenCode 1 (the install the GitHub README still shows):",
+      "code": "curl -fsSL https://opencode.ai/install | bash\n# or\nbrew install anomalyco/tap/opencode",
       "language": "bash"
     },
     {
-      "text": "OpenCode 1 and OpenCode 2 both use the opencode command and can't be installed side by side; check opencode.ai/docs for which version a given install method gives you."
+      "text": "Both versions use the opencode command and aren't installed side by side by default; the V2 installer replaces a V1 binary. If you're moving from V1, read opencode.ai/v2/docs/migrate-v1 first (V1 plugins don't run in V2)."
     },
     {
       "text": "cd into your project, run opencode, and add API keys for the providers you want to use.",

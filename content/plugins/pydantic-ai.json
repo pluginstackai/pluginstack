@@ -13,7 +13,7 @@
   "who": "Python developers who like type hints and want validated, structured outputs from their agents.",
   "setup": [
     {
-      "text": "Install:",
+      "text": "Needs Python 3.11 or newer. Install:",
       "code": "uv add pydantic-ai",
       "language": "bash"
     },

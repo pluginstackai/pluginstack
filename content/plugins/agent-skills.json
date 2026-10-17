@@ -9,8 +9,8 @@
   ],
   "url": "https://github.com/anthropics/skills",
   "maker": "Anthropic",
-  "what": "Anthropic's public repository of Agent Skills: folders with a SKILL.md file (plus optional scripts and resources) that Claude loads when a task needs them. It includes example skills, the document skills behind Claude's file creation, a template and the Agent Skills spec. Many skills are Apache-2.0; the document skills are source-available, not open source.",
-  "who": "Claude Code and Claude.ai users who want ready-made skills, or a starting point to write their own.",
+  "what": "Anthropic's public repository of Agent Skills: folders with a SKILL.md file (plus optional scripts and resources) that Claude loads when a task needs them. It includes example skills, the document skills behind Claude's file creation, a skill template and a copy of the Agent Skills spec (the open standard lives at agentskills.io). Many skills are Apache-2.0; the document skills are source-available, not open source.",
+  "who": "Claude Code and Claude.ai users who want ready-made skills, or a starting point to write their own. Anthropic says the example skills are already available on paid Claude.ai plans.",
   "setup": [
     {
       "text": "In Claude Code, add the repo as a plugin marketplace:",

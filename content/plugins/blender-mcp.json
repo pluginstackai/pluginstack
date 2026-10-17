@@ -9,8 +9,8 @@
   ],
   "url": "https://github.com/ahujasid/mcp-for-blender",
   "maker": "ahujasid (community project)",
-  "what": "A community plugin (formerly blender-mcp) that connects Blender to any LLM through MCP. A Blender add-on runs a local socket server and the MCP server sends it commands, so the AI can create and edit objects, materials and scenes. Third-party, not made by Blender. MIT licensed.",
-  "who": "Game artists and indie devs who want to block out 3D scenes or props by prompting.",
+  "what": "A community plugin (formerly blender-mcp) that connects Blender to any LLM through MCP. A Blender add-on runs a local socket server and the MCP server sends it commands, so the AI can create and edit objects, materials and scenes, and pull in assets from Poly Haven, Sketchfab and Poly Pizza. Third-party, not made by or affiliated with Blender. MIT licensed.",
+  "who": "Game artists and indie devs who want to block out 3D scenes or props by prompting. The plugin is free; built-in AI 3D model generation without your own API keys is an optional paid Premium feature.",
   "setup": [
     {
       "text": "One-command setup on macOS/Linux (installs uv if needed, configures your MCP clients and the Blender add-on):",
@@ -28,7 +28,10 @@
       "language": "bash"
     },
     {
-      "text": "Fully quit and reopen your AI app, then open Blender. The add-on can run Python code inside Blender, so save your work first."
+      "text": "Fully quit and reopen your AI app, then open Blender. By default the AI can run any Python code inside Blender, so save your work first (setting BLENDER_MCP_SAFE_MODE=1 blocks risky scripts)."
+    },
+    {
+      "text": "Privacy: a minimal anonymous usage record (tool name, success, timing, versions, OS) is sent by default; prompts, code and scene data are only collected if you opt in. To turn telemetry off completely, set DISABLE_TELEMETRY=true in the server's env."
     }
   ],
   "prompts": [
