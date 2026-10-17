@@ -6,5 +6,6 @@
   "contactEmail": "pluginstackai@gmail.com",
   "owner": "Kyle, Colorado, USA",
   "mailingAddress": "",
+  "emailSendingEnabled": false,
   "sponsor": { "label": "Your tool here", "text": "Reach builders into AI agents & vibe coding.", "href": "/sponsor", "paid": false }
 }

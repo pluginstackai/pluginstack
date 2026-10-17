@@ -1,5 +1,10 @@
 // Server-only helpers for Resend (https://resend.com/docs/api-reference). Uses Segments (formerly Audiences).
+import site from '../../site.config.json';
 const API = 'https://api.resend.com';
+/** Kill switch for ALL marketing email to subscribers (welcome emails, newsletters, offers).
+ *  Paused until a physical mailing address is set (CAN-SPAM). To re-enable: set "mailingAddress"
+ *  and "emailSendingEnabled": true in site.config.json, then deploy. Signups are still collected. */
+export const EMAIL_SENDING_ENABLED = (site as any).emailSendingEnabled === true;
 export const BUSINESS_EMAIL = process.env.BUSINESS_EMAIL || 'pluginstackai@gmail.com';
 export const FROM = process.env.RESEND_FROM || 'PluginStack <news@pluginstackai.com>';
 const key = () => process.env.RESEND_API_KEY;
@@ -20,6 +25,11 @@ export async function addToSegment(email: string, segmentId: string) {
 export async function sendEmail(to: string, subject: string, text: string, replyTo?: string, html?: string, headers?: Record<string, string>) {
   const r = await call('/emails', { method: 'POST', body: JSON.stringify({ from: FROM, to: [to], subject, text, ...(html ? { html } : {}), ...(replyTo ? { reply_to: replyTo } : {}), ...(headers ? { headers } : {}) }) });
   return r.ok ? { ok: true, id: r.body?.id } : { ok: false, status: r.status, error: r.body?.name || r.body?.message };
+}
+/** Use for any email to subscribers. No-op (nothing sent) while EMAIL_SENDING_ENABLED is false. */
+export async function sendMarketingEmail(...args: Parameters<typeof sendEmail>) {
+  if (!EMAIL_SENDING_ENABLED) return { ok: true, skipped: true, status: undefined, error: undefined };
+  return sendEmail(...args);
 }
 /** Mark a contact unsubscribed (global contact flag, applies to all segments/broadcasts). */
 export async function setUnsubscribed(email: string) {

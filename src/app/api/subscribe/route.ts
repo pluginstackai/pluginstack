@@ -1,6 +1,6 @@
 import { WELCOME_SUBJECT, welcomeText, welcomeHtml } from '../../../lib/welcome-email';
 import { unsubscribeUrl } from '../../../lib/unsubscribe';
-import { addToSegment, sendEmail, hasKey, isEmail, rateLimited, clientIp, clean, json, UNAVAILABLE, BUSINESS_EMAIL } from '../../../lib/resend';
+import { addToSegment, sendEmail, sendMarketingEmail, EMAIL_SENDING_ENABLED, hasKey, isEmail, rateLimited, clientIp, clean, json, UNAVAILABLE, BUSINESS_EMAIL } from '../../../lib/resend';
 export const dynamic = 'force-dynamic';
 const SEGMENTS = { newsletter: 'RESEND_AUDIENCE_NEWSLETTER', waitlist: 'RESEND_AUDIENCE_WAITLIST' } as const;
 
@@ -19,10 +19,11 @@ export async function POST(req: Request) {
     const note = clean(data.note);
     await sendEmail(BUSINESS_EMAIL, `[PluginStack] New Get-unstuck waitlist signup: ${email}`, `Email: ${email}\nWhat's broken: ${note || '(not given)'}`, email);
   }
-  if (list === 'newsletter') {
+  // Welcome email is marketing email: paused via site.config.json "emailSendingEnabled" (see lib/resend.ts).
+  if (list === 'newsletter' && EMAIL_SENDING_ENABLED) {
     try {
       const unsub = unsubscribeUrl(email);
-      const w = await sendEmail(email, WELCOME_SUBJECT, welcomeText(unsub), 'news@pluginstackai.com', welcomeHtml(unsub),
+      const w = await sendMarketingEmail(email, WELCOME_SUBJECT, welcomeText(unsub), 'news@pluginstackai.com', welcomeHtml(unsub),
         { 'List-Unsubscribe': `<${unsub}>, <mailto:pluginstackai@gmail.com?subject=unsubscribe>`, 'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click' });
       if (!w.ok) console.error('[subscribe] welcome email failed', w.status, w.error);
     } catch (e) { console.error('[subscribe] welcome email error', e); }
