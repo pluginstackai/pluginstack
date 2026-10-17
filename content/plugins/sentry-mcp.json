@@ -20,8 +20,8 @@
       "language": "bash"
     },
     {
-      "text": "Self-hosted Sentry: run it locally instead. Note: the AI-powered search tools need an LLM provider key.",
-      "code": "npx @sentry/mcp-server@latest --access-token=<token> --host=<your-host>",
+      "text": "Or run it locally with an access token. Only add --host=<your-host> (hostname only) if you use self-hosted Sentry. Note: the AI-powered search tools need an LLM provider key.",
+      "code": "npx @sentry/mcp-server@latest --access-token=<token>",
       "language": "bash"
     }
   ],

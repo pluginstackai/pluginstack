@@ -8,7 +8,7 @@
   ],
   "url": "https://developers.figma.com/docs/figma-mcp-server/",
   "maker": "Figma",
-  "what": "Brings design context from your Figma files into AI coding tools so they can generate code that matches your designs.",
+  "what": "Brings design context from your Figma files into AI coding tools so they can generate code that matches your designs. The remote server can also write to the canvas (in beta), creating and editing content in your Figma files.",
   "who": "Designers and frontend devs turning Figma frames into real UI.",
   "setup": [
     {
@@ -26,6 +26,9 @@
     },
     {
       "text": "Copy a link to a frame or layer in Figma and paste it into your prompt."
+    },
+    {
+      "text": "Writing to the canvas is in beta and needs edit access to the file. Test on a duplicate file first."
     }
   ],
   "prompts": [

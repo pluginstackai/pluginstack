@@ -3,5 +3,8 @@
   "tagline": "The best AI plugins, MCP servers and agent tools, explained in plain words.",
   "url": "https://www.pluginstackai.com",
   "newsletterTitle": "New plugins worth trying, weekly",
-  "sponsor": { "label": "Your tool here", "text": "Reach builders into AI agents & vibe coding.", "href": "/sponsor" }
+  "contactEmail": "pluginstackai@gmail.com",
+  "owner": "Kyle, Colorado, USA",
+  "mailingAddress": "",
+  "sponsor": { "label": "Your tool here", "text": "Reach builders into AI agents & vibe coding.", "href": "/sponsor", "paid": false }
 }

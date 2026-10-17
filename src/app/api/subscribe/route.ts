@@ -1,4 +1,5 @@
-import { WELCOME_SUBJECT, WELCOME_TEXT, WELCOME_HTML } from '../../../lib/welcome-email';
+import { WELCOME_SUBJECT, welcomeText, welcomeHtml } from '../../../lib/welcome-email';
+import { unsubscribeUrl } from '../../../lib/unsubscribe';
 import { addToSegment, sendEmail, hasKey, isEmail, rateLimited, clientIp, clean, json, UNAVAILABLE, BUSINESS_EMAIL } from '../../../lib/resend';
 export const dynamic = 'force-dynamic';
 const SEGMENTS = { newsletter: 'RESEND_AUDIENCE_NEWSLETTER', waitlist: 'RESEND_AUDIENCE_WAITLIST' } as const;
@@ -20,7 +21,9 @@ export async function POST(req: Request) {
   }
   if (list === 'newsletter') {
     try {
-      const w = await sendEmail(email, WELCOME_SUBJECT, WELCOME_TEXT, 'news@pluginstackai.com', WELCOME_HTML);
+      const unsub = unsubscribeUrl(email);
+      const w = await sendEmail(email, WELCOME_SUBJECT, welcomeText(unsub), 'news@pluginstackai.com', welcomeHtml(unsub),
+        { 'List-Unsubscribe': `<${unsub}>, <mailto:pluginstackai@gmail.com?subject=unsubscribe>`, 'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click' });
       if (!w.ok) console.error('[subscribe] welcome email failed', w.status, w.error);
     } catch (e) { console.error('[subscribe] welcome email error', e); }
   }

@@ -22,7 +22,7 @@
       "language": "bash"
     },
     {
-      "text": "For clients without OAuth, use an agent API key as a Bearer token. From Dec 2026, plain secret/restricted keys stop working. Try it in a sandbox first; refunds and payouts require human confirmation.",
+      "text": "For clients without OAuth, use an agent API key as a Bearer token. Legacy keys: from December 2026, Stripe MCP stops accepting full-access secret keys and restricted keys without the Agent tag, so migrate to agent API keys or OAuth by November 30, 2026. Try it in a sandbox first; refunds and payouts require human confirmation.",
       "code": "{\n  \"stripe\": {\n    \"url\": \"https://mcp.stripe.com\",\n    \"headers\": {\n      \"Authorization\": \"Bearer {{AGENT_API_KEY}}\"\n    }\n  }\n}",
       "language": "json"
     }

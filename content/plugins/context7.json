@@ -12,12 +12,12 @@
   "who": "Anyone coding with AI on fast-moving frameworks (Next.js, React, Supabase, etc.).",
   "setup": [
     {
-      "text": "Quickest (needs Node.js 22.13+). It signs you in with OAuth, creates an API key and configures Cursor, Claude Code or OpenCode (--cursor / --claude / --opencode):",
+      "text": "Quickest (needs Node.js 22.13+). It signs you in with OAuth, creates an API key and sets up Cursor, Claude Code or OpenCode (--cursor / --claude / --opencode). You can choose CLI + Skills mode or MCP mode:",
       "code": "npx ctx7 setup",
       "language": "bash"
     },
     {
-      "text": "Manual: add the remote MCP server and pass your API key as a Bearer header. Free keys are at context7.com/dashboard.",
+      "text": "Manual: add the remote MCP server. An API key is recommended (not required) for higher rate limits; pass it as a Bearer header. Free keys are at context7.com/dashboard.",
       "code": "{\n  \"mcpServers\": {\n    \"context7\": {\n      \"url\": \"https://mcp.context7.com/mcp\",\n      \"headers\": {\n        \"Authorization\": \"Bearer YOUR_API_KEY\"\n      }\n    }\n  }\n}",
       "language": "json"
     },

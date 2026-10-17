@@ -1,6 +1,13 @@
 'use client';
 import { useState } from 'react';
+import Link from 'next/link';
 // Posts to /api/subscribe (newsletter, waitlist) or /api/sponsor. Hidden "website" field is a bot honeypot.
+// Point-of-collection notice: what this form is for, who we are, and how to opt out.
+const NOTICE = {
+  newsletter: 'Weekly email with new AI tools, plus occasional offers on our packs. Unsubscribe anytime. From PluginStack (pluginstackai@gmail.com).',
+  waitlist: "Joins the Get unstuck waitlist: we'll email you when the app rescue service opens. We only use your note to understand the problem. Not a newsletter signup.",
+  sponsor: 'Sends your email and company to PluginStack so we can reply about sponsorship. Not a newsletter signup.',
+} as const;
 export default function EmailForm({ list, cta = 'Subscribe', extra }: { list: 'newsletter' | 'waitlist' | 'sponsor'; cta?: string; extra?: string }) {
   const [state, setState] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
   const [msg, setMsg] = useState('');
@@ -22,5 +29,6 @@ export default function EmailForm({ list, cta = 'Subscribe', extra }: { list: 'n
         <label>Website <input name="website" tabIndex={-1} autoComplete="off" /></label></div>
       <button className="btn disabled:opacity-60" disabled={state === 'sending'}>{state === 'sending' ? 'Sending…' : cta}</button>
       {state === 'error' && <p role="alert" className="text-sm text-coral-dark dark:text-coral sm:basis-full">{msg}</p>}
+      <p className="text-xs text-slate-600 dark:text-slate-400 sm:basis-full">{NOTICE[list]} <Link href="/privacy/" className="underline underline-offset-2">Privacy policy</Link>.</p>
     </form>);
 }

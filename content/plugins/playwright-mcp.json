@@ -27,6 +27,9 @@
     },
     {
       "text": "Optional flags include --headless, --isolated (in-memory profile) and --browser (chrome, firefox, webkit, msedge)."
+    },
+    {
+      "text": "Using a coding agent? Microsoft notes that Playwright CLI + Skills (github.com/microsoft/playwright-cli) can be more token-efficient than the MCP server."
     }
   ],
   "prompts": [

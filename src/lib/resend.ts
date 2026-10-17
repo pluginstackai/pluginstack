@@ -17,9 +17,18 @@ export async function addToSegment(email: string, segmentId: string) {
   const s = await call(`/contacts/${encodeURIComponent(email)}/segments/${segmentId}`, { method: 'POST' });
   return s.ok ? { ok: true } : { ok: false, status: s.status, error: s.body?.name || s.body?.message || 'segment_add_failed' };
 }
-export async function sendEmail(to: string, subject: string, text: string, replyTo?: string, html?: string) {
-  const r = await call('/emails', { method: 'POST', body: JSON.stringify({ from: FROM, to: [to], subject, text, ...(html ? { html } : {}), ...(replyTo ? { reply_to: replyTo } : {}) }) });
+export async function sendEmail(to: string, subject: string, text: string, replyTo?: string, html?: string, headers?: Record<string, string>) {
+  const r = await call('/emails', { method: 'POST', body: JSON.stringify({ from: FROM, to: [to], subject, text, ...(html ? { html } : {}), ...(replyTo ? { reply_to: replyTo } : {}), ...(headers ? { headers } : {}) }) });
   return r.ok ? { ok: true, id: r.body?.id } : { ok: false, status: r.status, error: r.body?.name || r.body?.message };
+}
+/** Mark a contact unsubscribed (global contact flag, applies to all segments/broadcasts). */
+export async function setUnsubscribed(email: string) {
+  const r = await call(`/contacts/${encodeURIComponent(email)}`, { method: 'PATCH', body: JSON.stringify({ unsubscribed: true }) });
+  if (r.ok || r.status !== 404) return r.ok ? { ok: true } : { ok: false, status: r.status, error: r.body?.name || r.body?.message };
+  // Fallback: legacy audience-scoped contact path.
+  const aud = process.env.RESEND_AUDIENCE_NEWSLETTER || '892fe45f-4dd8-430b-90dd-a6223d352d0d';
+  const a = await call(`/audiences/${aud}/contacts/${encodeURIComponent(email)}`, { method: 'PATCH', body: JSON.stringify({ unsubscribed: true }) });
+  return a.ok || a.status === 404 ? { ok: true } : { ok: false, status: a.status, error: a.body?.name || a.body?.message };
 }
 export const hasKey = () => !!key();
 
