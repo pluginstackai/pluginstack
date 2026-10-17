@@ -17,8 +17,8 @@ export async function addToSegment(email: string, segmentId: string) {
   const s = await call(`/contacts/${encodeURIComponent(email)}/segments/${segmentId}`, { method: 'POST' });
   return s.ok ? { ok: true } : { ok: false, status: s.status, error: s.body?.name || s.body?.message || 'segment_add_failed' };
 }
-export async function sendEmail(to: string, subject: string, text: string, replyTo?: string) {
-  const r = await call('/emails', { method: 'POST', body: JSON.stringify({ from: FROM, to: [to], subject, text, ...(replyTo ? { reply_to: replyTo } : {}) }) });
+export async function sendEmail(to: string, subject: string, text: string, replyTo?: string, html?: string) {
+  const r = await call('/emails', { method: 'POST', body: JSON.stringify({ from: FROM, to: [to], subject, text, ...(html ? { html } : {}), ...(replyTo ? { reply_to: replyTo } : {}) }) });
   return r.ok ? { ok: true, id: r.body?.id } : { ok: false, status: r.status, error: r.body?.name || r.body?.message };
 }
 export const hasKey = () => !!key();

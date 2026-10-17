@@ -1,3 +1,4 @@
+import { WELCOME_SUBJECT, WELCOME_TEXT, WELCOME_HTML } from '../../../lib/welcome-email';
 import { addToSegment, sendEmail, hasKey, isEmail, rateLimited, clientIp, clean, json, UNAVAILABLE, BUSINESS_EMAIL } from '../../../lib/resend';
 export const dynamic = 'force-dynamic';
 const SEGMENTS = { newsletter: 'RESEND_AUDIENCE_NEWSLETTER', waitlist: 'RESEND_AUDIENCE_WAITLIST' } as const;
@@ -16,6 +17,12 @@ export async function POST(req: Request) {
   if (list === 'waitlist') {
     const note = clean(data.note);
     await sendEmail(BUSINESS_EMAIL, `[PluginStack] New Get-unstuck waitlist signup: ${email}`, `Email: ${email}\nWhat's broken: ${note || '(not given)'}`, email);
+  }
+  if (list === 'newsletter') {
+    try {
+      const w = await sendEmail(email, WELCOME_SUBJECT, WELCOME_TEXT, 'news@pluginstackai.com', WELCOME_HTML);
+      if (!w.ok) console.error('[subscribe] welcome email failed', w.status, w.error);
+    } catch (e) { console.error('[subscribe] welcome email error', e); }
   }
   return json({ ok: true, message: list === 'waitlist' ? "You're on the waitlist. We'll be in touch!" : "You're subscribed. Thanks!" });
 }
