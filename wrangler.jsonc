@@ -1,0 +1,15 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Cloudflare Workers (free plan) via @opennextjs/cloudflare. Build: `npm run deploy` (or `npm run upload`).
+  "name": "pluginstack",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-10-01",
+  // nodejs_compat: Node APIs (crypto HMAC for unsubscribe tokens, Buffer). global_fetch_strictly_public: outbound fetch to Resend.
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": { "directory": ".open-next/assets", "binding": "ASSETS" },
+  "services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "pluginstack" }],
+  "observability": { "enabled": true }
+  // Custom domains (www.pluginstackai.com / apex) are attached later, once the Cloudflare zone is active.
+  // Secrets (set with `wrangler secret put`, never commit): RESEND_API_KEY, RESEND_AUDIENCE_NEWSLETTER,
+  // RESEND_AUDIENCE_WAITLIST, optional UNSUBSCRIBE_SECRET, BUSINESS_EMAIL, RESEND_FROM.
+}

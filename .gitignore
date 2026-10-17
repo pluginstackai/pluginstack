@@ -3,3 +3,9 @@ node_modules
 out
 .env
 .env*.local
+
+# Cloudflare / OpenNext
+.open-next
+.wrangler
+.dev.vars*
+!.dev.vars.example

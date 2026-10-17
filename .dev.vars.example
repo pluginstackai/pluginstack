@@ -1,0 +1,4 @@
+NEXTJS_ENV=development
+# Local-only secrets for `npm run preview` (copy to .dev.vars; never commit real values)
+# RESEND_API_KEY=
+# UNSUBSCRIBE_SECRET=

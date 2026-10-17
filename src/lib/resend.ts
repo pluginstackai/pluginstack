@@ -49,7 +49,8 @@ export function rateLimited(ip: string, max = 5, windowMs = 10 * 60_000) {
   const now = Date.now(); const arr = (hits.get(ip) || []).filter(t => now - t < windowMs);
   arr.push(now); hits.set(ip, arr); if (hits.size > 5000) hits.clear(); return arr.length > max;
 }
-export const clientIp = (req: Request) => (req.headers.get('x-forwarded-for') || '').split(',')[0].trim() || req.headers.get('x-real-ip') || 'local';
+// cf-connecting-ip: Cloudflare Workers; x-forwarded-for / x-real-ip: Vercel and other proxies.
+export const clientIp = (req: Request) => req.headers.get('cf-connecting-ip')?.trim() || (req.headers.get('x-forwarded-for') || '').split(',')[0].trim() || req.headers.get('x-real-ip') || 'local';
 export const clean = (s: unknown, n = 500) => (typeof s === 'string' ? s.replace(/[\r\n]+/g, ' ').trim().slice(0, n) : '');
 export const json = (body: object, status = 200) => Response.json(body, { status });
 export const UNAVAILABLE = "Signups are briefly unavailable — please try again soon, or email pluginstackai@gmail.com.";
