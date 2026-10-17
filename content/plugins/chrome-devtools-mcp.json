@@ -9,6 +9,7 @@
   ],
   "url": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
   "maker": "Google (Chrome DevTools)",
+  "updated": "2026-10-17",
   "what": "Lets a coding agent control and inspect a live Chrome browser through Chrome DevTools (Google now calls it \"Chrome DevTools for agents\"; the package is chrome-devtools-mcp). It can record performance traces, read network requests and console messages (with source-mapped stack traces) and automate pages with Puppeteer. A CLI is included for use without MCP. Apache-2.0.",
   "who": "Web developers who want the agent to debug a page or check its performance in a real Chrome.",
   "setup": [

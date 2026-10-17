@@ -8,6 +8,7 @@
   ],
   "url": "https://github.com/brave/brave-search-mcp-server",
   "maker": "Brave",
+  "updated": "2026-10-17",
   "what": "Brave's official MCP server for the Brave Search API. It adds web, local, place, image, video and news search tools, plus LLM context and AI summarization. Version 2.x uses stdio by default, with HTTP as an option. MIT licensed.",
   "who": "Builders who want their agent to search the web through an independent search index. Needs a Brave Search API key; some features (like extra snippets and full local search) need a Pro plan.",
   "setup": [

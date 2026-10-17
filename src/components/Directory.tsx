@@ -16,7 +16,7 @@ export default function Directory({ plugins }: { plugins: P[] }) {
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{list.map(p => (
       <Link key={p.slug} href={`/plugins/${p.slug}/`} className="card transition hover:-translate-y-0.5 hover:shadow-md hover:border-coral-dark dark:hover:border-coral">
         <div className="text-xs text-coral-dark dark:text-coral mb-1">{p.category} · {p.maker}</div>
-        <h3 className="font-semibold text-lg text-navy dark:text-white">{p.name}</h3>
+        <h2 className="font-semibold text-lg text-navy dark:text-white">{p.name}</h2>
         <p className="text-sm text-slate-600 dark:text-slate-400 mt-2 line-clamp-3">{p.what}</p>
       </Link>))}
       {!list.length && <p className="text-slate-600 dark:text-slate-400">No matches.</p>}</div>

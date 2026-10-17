@@ -9,6 +9,7 @@
   ],
   "url": "https://github.com/CoplayDev/unity-mcp",
   "maker": "CoplayDev (maintained by Aura)",
+  "updated": "2026-10-17",
   "what": "A free, MIT-licensed bridge between AI assistants and the Unity Editor over MCP. From any MCP client you can create scenes and GameObjects, edit C# scripts, manage assets, run tests, profile and build. It is maintained by Aura, which also sells a separate paid assistant (Aura for Unity). Not affiliated with Unity Technologies.",
   "who": "Unity developers (Unity 2021.3 LTS through 6.x) who want Claude, Codex, Cursor or another MCP client to work directly in the editor.",
   "setup": [

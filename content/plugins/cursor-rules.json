@@ -8,6 +8,7 @@
   ],
   "url": "https://cursor.com/docs/context/rules",
   "maker": "Cursor",
+  "updated": "2026-10-15",
   "what": "Cursor's rules feature gives the Agent persistent instructions. Project rules are .mdc files in .cursor/rules, and there are also User Rules, Team Rules and plain AGENTS.md files.",
   "who": "Cursor users who are tired of repeating the same instructions every chat.",
   "setup": [

@@ -9,6 +9,7 @@
   ],
   "url": "https://github.com/PrefectHQ/fastmcp",
   "maker": "Prefect",
+  "updated": "2026-10-17",
   "what": "A Python framework for building MCP servers, clients and interactive apps. You write ordinary Python functions and FastMCP generates the tool schemas, validation and docs. FastMCP 1.0 was folded into the official MCP Python SDK in 2024; this is the actively maintained standalone project. Apache-2.0.",
   "who": "Python developers who want to turn their own functions or APIs into an MCP server quickly.",
   "setup": [

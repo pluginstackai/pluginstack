@@ -1,6 +1,7 @@
+import { pageMeta } from '../../lib/seo';
 import Prose from '../../components/Prose';
 import { site } from '../../lib/data';
-export const metadata = { title: 'Privacy Policy', description: `How ${site.name} collects and uses your information.`, alternates: { canonical: '/privacy/' } };
+export const metadata = pageMeta({ title: 'Privacy Policy', description: `How ${site.name} collects and uses your information.`, path: '/privacy/' });
 export default function Page() {
   const addr = site.mailingAddress?.trim();
   return (<Prose title="Privacy Policy" updated="October 16, 2026">

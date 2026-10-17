@@ -8,6 +8,7 @@
   ],
   "url": "https://docs.stripe.com/mcp",
   "maker": "Stripe",
+  "updated": "2026-10-15",
   "what": "Stripe's MCP server that lets AI agents work with the Stripe API (customers, products, prices, invoices, subscriptions and more) and search Stripe's docs and support articles.",
   "who": "Builders adding payments to an app, or managing customers and products with an agent.",
   "setup": [

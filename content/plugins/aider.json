@@ -9,6 +9,7 @@
   ],
   "url": "https://aider.chat",
   "maker": "Aider",
+  "updated": "2026-10-15",
   "what": "Open-source AI pair programming in your terminal. It edits code in your local git repo and works with many LLMs (Claude, DeepSeek, OpenAI models and more).",
   "who": "Terminal fans who want git-tracked AI edits and a choice of models.",
   "setup": [

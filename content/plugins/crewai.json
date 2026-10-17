@@ -9,6 +9,7 @@
   ],
   "url": "https://github.com/crewAIInc/crewAI",
   "maker": "CrewAI",
+  "updated": "2026-10-17",
   "what": "A Python framework for multi-agent automation. Crews are teams of role-based agents that work together on a task; Flows are event-driven workflows with state and branching that can call crews. The CLI scaffolds projects, which are JSON-first by default. MIT licensed.",
   "who": "Builders who want to model a task as a team of specialized agents (researcher, writer, reviewer) and run it from the command line. The framework is free; CrewAI AMP is an optional paid enterprise platform.",
   "setup": [

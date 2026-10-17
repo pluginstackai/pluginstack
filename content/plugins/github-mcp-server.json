@@ -9,6 +9,7 @@
   ],
   "url": "https://github.com/github/github-mcp-server",
   "maker": "GitHub",
+  "updated": "2026-10-15",
   "what": "Official MCP server from GitHub that lets AI tools read repositories and code, manage issues and pull requests, check GitHub Actions runs and review security findings, all through natural language.",
   "who": "Developers who want their AI assistant to read code, triage issues or open PRs without leaving the chat.",
   "setup": [

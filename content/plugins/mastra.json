@@ -9,6 +9,7 @@
   ],
   "url": "https://github.com/mastra-ai/mastra",
   "maker": "Mastra",
+  "updated": "2026-10-17",
   "what": "A TypeScript framework for AI apps and agents. It includes model routing across 40+ providers, agents with tools, graph-based workflows with suspend/resume, memory and RAG, MCP server authoring, evals and observability, plus a local Studio UI. Apache-2.0, except code in ee/ folders, which uses an enterprise license.",
   "who": "JavaScript and TypeScript developers who want to add agents to a Next.js, React or Node app.",
   "setup": [

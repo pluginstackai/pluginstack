@@ -1,6 +1,7 @@
+import { pageMeta } from '../../lib/seo';
 import Prose from '../../components/Prose';
 import { site } from '../../lib/data';
-export const metadata = { title: 'Disclosures', description: `How ${site.name} handles sponsorships, affiliate links and independence.`, alternates: { canonical: '/disclosures/' } };
+export const metadata = pageMeta({ title: 'Disclosures', description: `How ${site.name} handles sponsorships, affiliate links and independence.`, path: '/disclosures/' });
 export default function Page() {
   return (<Prose title="Disclosures" updated="October 16, 2026">
     <h2>Not affiliated</h2>

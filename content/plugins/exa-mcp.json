@@ -9,6 +9,7 @@
   ],
   "url": "https://github.com/exa-labs/exa-mcp-server",
   "maker": "Exa",
+  "updated": "2026-10-17",
   "what": "Exa's official MCP server for web search and page fetching. The hosted server gives web_search_exa and web_fetch_exa by default, with optional advanced search and an Exa Agent tool for multi-step research. MIT licensed.",
   "who": "Anyone who wants AI-oriented web search in their agent. It works anonymously with rate limits; sign in or add an API key for higher limits and Exa Agent.",
   "setup": [

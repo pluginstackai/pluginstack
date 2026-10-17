@@ -9,6 +9,7 @@
   ],
   "url": "https://www.dyad.sh",
   "maker": "Dyad",
+  "updated": "2026-10-17",
   "what": "A local, open-source AI app builder, similar in spirit to Lovable, v0 or Bolt, that runs as a desktop app on your machine. You bring your own AI API keys, and no sign-up is required to download it. The app is free; Dyad Pro and Max are optional paid plans with extra AI modes and credits. Apache-2.0, except code in src/pro, which is under the Functional Source License.",
   "who": "Vibe coders who want to build apps by prompting but keep their code and keys on their own computer.",
   "setup": [

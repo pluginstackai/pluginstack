@@ -1,6 +1,6 @@
 import Prose from '../../components/Prose';
 import { site } from '../../lib/data';
-export const metadata = { title: 'Terms of Service', description: `The terms for using ${site.name}.`, alternates: { canonical: '/terms/' } };
+export const metadata = { title: 'Terms of Service', description: `The terms for using ${site.name}: the free directory, third-party tools, packs, the newsletter, warranty and liability limits.`, alternates: { canonical: '/terms/' } };
 export default function Page() {
   return (<Prose title="Terms of Service" updated="October 16, 2026">
     <p>These terms apply when you use {site.url.replace('https://', '')} and anything we sell. By using the site, you agree to them.</p>

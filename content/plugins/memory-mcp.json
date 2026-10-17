@@ -8,6 +8,7 @@
   ],
   "url": "https://github.com/modelcontextprotocol/servers/tree/main/src/memory",
   "maker": "Model Context Protocol",
+  "updated": "2026-10-15",
   "what": "Reference MCP server that gives an AI basic persistent memory: a local knowledge graph of entities, relations and observations that survives across chats.",
   "who": "People who want their assistant to remember preferences and facts across chats.",
   "setup": [

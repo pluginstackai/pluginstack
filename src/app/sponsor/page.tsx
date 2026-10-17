@@ -1,7 +1,8 @@
+import { pageMeta } from '../../lib/seo';
 import Link from 'next/link';
 import EmailForm from '../../components/EmailForm';
 import { site } from '../../lib/data';
-export const metadata = { title: 'Sponsor', description: `Sponsor ${site.name} and reach builders into AI agents and vibe coding.`, alternates: { canonical: '/sponsor/' } };
+export const metadata = pageMeta({ title: 'Sponsor', description: `Sponsor ${site.name} and reach builders into AI agents and vibe coding.`, path: '/sponsor/' });
 export default function Page() {
   return (<div className="max-w-2xl mx-auto py-12"><h1 className="text-4xl font-bold">Sponsor {site.name}</h1>
     <p className="text-slate-600 dark:text-slate-400 mt-4">Put your tool in front of developers, vibe coders and agent builders.</p>

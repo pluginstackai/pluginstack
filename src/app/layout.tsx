@@ -2,11 +2,18 @@ import './globals.css';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { site } from '../lib/data';
+import { DEFAULT_OG, TWITTER } from '../lib/seo';
 import EmailForm from '../components/EmailForm';
 import ThemeToggle from '../components/ThemeToggle';
+// Site-wide defaults. Every page sets its own title, description, canonical and Open Graph/Twitter tags (see lib/seo.ts pageMeta);
+// no canonical here, so pages that don't set one (e.g. 404) don't inherit the home page's.
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url), title: { default: `${site.name} – AI plugins & MCP servers, explained`, template: `%s | ${site.name}` },
-  description: site.tagline, openGraph: { siteName: site.name, type: 'website', images: [{ url: '/og.png', width: 1200, height: 630, alt: site.name }] }, twitter: { card: 'summary_large_image', images: ['/og.png'] }, alternates: { canonical: '/' },
+  metadataBase: new URL(site.url),
+  title: { default: `${site.name}: AI plugins & MCP servers, explained`, template: `%s | ${site.name}` },
+  description: site.tagline,
+  applicationName: site.name,
+  openGraph: { siteName: site.name, type: 'website', locale: 'en_US', images: [DEFAULT_OG] },
+  twitter: { card: 'summary_large_image', site: TWITTER, images: [DEFAULT_OG.url] },
 };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (<html lang="en" suppressHydrationWarning><head><script dangerouslySetInnerHTML={{ __html: `(function(){try{var t=localStorage.getItem('ps_theme');var d=t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.classList.toggle('dark',d);document.documentElement.style.colorScheme=d?'dark':'light'}catch(e){}})()` }} /></head><body>

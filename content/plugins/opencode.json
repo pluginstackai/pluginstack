@@ -9,6 +9,7 @@
   ],
   "url": "https://opencode.ai",
   "maker": "Anomaly",
+  "updated": "2026-10-17",
   "what": "An open-source AI coding agent with a terminal UI, plus a desktop app and IDE support. It works with API keys from many LLM providers. It has a full-access build agent and a read-only plan agent you switch between with Tab. MIT licensed.",
   "who": "Terminal users who want an open-source agent and the freedom to pick their own model provider.",
   "setup": [

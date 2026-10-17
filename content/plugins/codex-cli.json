@@ -9,6 +9,7 @@
   ],
   "url": "https://github.com/openai/codex",
   "maker": "OpenAI",
+  "updated": "2026-10-17",
   "what": "OpenAI's open-source coding agent that runs locally in your terminal. It reads and edits your code, runs commands and connects to MCP servers. Codex also comes as an IDE extension (VS Code, Cursor, Windsurf), a desktop app and a cloud version. Apache-2.0.",
   "who": "Developers and vibe coders who want a terminal agent and already have a ChatGPT plan (Plus, Pro, Business, Edu or Enterprise), or an OpenAI API key.",
   "setup": [

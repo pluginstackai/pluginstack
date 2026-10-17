@@ -9,6 +9,7 @@
   ],
   "url": "https://github.com/modelcontextprotocol/inspector",
   "maker": "Model Context Protocol",
+  "updated": "2026-10-17",
   "what": "The official developer tool for testing MCP servers. It connects to a local or remote server and lets you list and call its tools, resources and prompts from a web UI, a scriptable CLI or a terminal UI. Version 2 needs Node 22.19 or newer.",
   "who": "Anyone building or debugging an MCP server who wants to see exactly what it exposes before wiring it into an agent.",
   "setup": [

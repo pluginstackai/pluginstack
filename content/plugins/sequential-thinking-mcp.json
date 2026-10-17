@@ -9,6 +9,7 @@
   ],
   "url": "https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking",
   "maker": "Model Context Protocol",
+  "updated": "2026-10-17",
   "what": "An official MCP reference server with one tool, sequential_thinking, that lets the model work through a problem as numbered steps. It can revise earlier steps, branch into alternatives and change how many steps it plans as it goes.",
   "who": "People who want the agent to plan out a tricky design or debugging task step by step before it acts.",
   "setup": [

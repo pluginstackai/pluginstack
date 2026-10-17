@@ -8,6 +8,7 @@
   ],
   "url": "https://github.com/upstash/context7",
   "maker": "Upstash",
+  "updated": "2026-10-15",
   "what": "Pulls up-to-date, version-specific library documentation and code examples into your prompt, so the AI stops relying on outdated training data or made-up APIs.",
   "who": "Anyone coding with AI on fast-moving frameworks (Next.js, React, Supabase, etc.).",
   "setup": [

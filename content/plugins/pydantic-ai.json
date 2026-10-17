@@ -9,6 +9,7 @@
   ],
   "url": "https://github.com/pydantic/pydantic-ai",
   "maker": "Pydantic",
+  "updated": "2026-10-17",
   "what": "A typed Python agent framework from the Pydantic team. You define agents with typed outputs and tools, and switching model providers is a one-string change. Companion packages add a harness for long-running agents (files, shell, sub-agents) and Pydantic Evals for testing. MIT licensed.",
   "who": "Python developers who like type hints and want validated, structured outputs from their agents.",
   "setup": [

@@ -8,6 +8,7 @@
   ],
   "url": "https://github.com/supabase-community/supabase-mcp",
   "maker": "Supabase",
+  "updated": "2026-10-15",
   "what": "Supabase's MCP server that connects AI assistants to your Supabase projects so they can manage tables, fetch config and query data.",
   "who": "Vibe coders building apps on Supabase who want the agent to handle the database side.",
   "setup": [

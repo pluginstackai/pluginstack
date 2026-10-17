@@ -9,6 +9,7 @@
   ],
   "url": "https://github.com/cline/cline",
   "maker": "Cline",
+  "updated": "2026-10-15",
   "what": "Open-source coding agent for VS Code (also JetBrains, a CLI and a desktop app). It edits files across your project, runs terminal commands and uses a browser, with Plan/Act modes and approval for every change unless you turn on auto-approve.",
   "who": "Developers who want an open-source agent that works with many model providers, including local models via Ollama or LM Studio.",
   "setup": [

@@ -8,6 +8,7 @@
   ],
   "url": "https://linear.app/docs/mcp",
   "maker": "Linear",
+  "updated": "2026-10-15",
   "what": "Linear's official MCP server for finding, creating and updating issues, projects and comments from your AI tool.",
   "who": "Teams and solo builders tracking work in Linear.",
   "setup": [

@@ -1,5 +1,6 @@
+import { pageMeta } from '../../lib/seo';
 import EmailForm from '../../components/EmailForm';
-export const metadata = { title: 'Get unstuck: vibe-coded app rescue', description: 'Your AI-built app broke? Join the waitlist for a human-plus-AI rescue service.', alternates: { canonical: '/get-unstuck/' } };
+export const metadata = pageMeta({ title: 'Get unstuck: vibe-coded app rescue', description: 'Your AI-built app broke? Join the waitlist for a human-plus-AI rescue service.', path: '/get-unstuck/' });
 export default function Page() {
   return (<div className="max-w-2xl mx-auto py-12 text-center"><span className="text-xs uppercase tracking-widest text-coral-dark dark:text-coral">Coming soon</span>
     <h1 className="text-4xl md:text-5xl font-bold mt-2">Vibe-coded app stuck?</h1>

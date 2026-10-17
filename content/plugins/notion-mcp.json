@@ -8,6 +8,7 @@
   ],
   "url": "https://developers.notion.com/docs/get-started-with-mcp",
   "maker": "Notion",
+  "updated": "2026-10-15",
   "what": "Notion's hosted MCP server that lets AI tools search, read, create and update pages and databases you have access to in your Notion workspace.",
   "who": "Anyone keeping specs, notes or task lists in Notion who wants the AI to use them.",
   "setup": [

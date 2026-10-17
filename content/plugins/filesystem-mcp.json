@@ -8,6 +8,7 @@
   ],
   "url": "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem",
   "maker": "Model Context Protocol",
+  "updated": "2026-10-15",
   "what": "Reference MCP server that lets an AI read, write, edit, move and search files and directories, restricted to the folders you allow.",
   "who": "People who want Claude Desktop or another chat app to work with files on their computer.",
   "setup": [
