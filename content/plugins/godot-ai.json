@@ -1,0 +1,30 @@
+{
+  "slug": "godot-ai",
+  "name": "Godot AI",
+  "category": "Game Dev",
+  "tags": [
+    "godot",
+    "mcp",
+    "gamedev"
+  ],
+  "url": "https://github.com/hi-godot/godot-ai",
+  "maker": "hi-godot",
+  "what": "An MCP server and Godot editor plugin that connects Claude Code, Codex, Cursor, VS Code and other MCP clients to a live Godot editor. Its tools let the AI build scenes, edit nodes and scripts, wire signals and set up UI, materials, animation, particles and cameras. GDScript is fully supported; C# is text-only. MIT licensed.",
+  "who": "Godot 4.7+ developers who want an AI assistant that can work inside the editor, not just edit files.",
+  "setup": [
+    {
+      "text": "Install uv, then download a release from github.com/hi-godot/godot-ai/releases and place the add-on at your-project/addons/godot_ai/ (plugin.cfg goes inside that folder)."
+    },
+    {
+      "text": "In Godot, enable it: Project → Project Settings → Plugins → Godot AI."
+    },
+    {
+      "text": "In the Godot AI dock, press Configure next to your MCP client (or Configure all), then restart the client if needed."
+    }
+  ],
+  "prompts": [
+    "Create a 2D player scene with a CharacterBody2D, sprite and collision shape, plus a movement script.",
+    "Build a pause menu UI and wire the Resume button's signal.",
+    "Add a particle effect for coin pickups."
+  ]
+}

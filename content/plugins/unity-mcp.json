@@ -1,0 +1,39 @@
+{
+  "slug": "unity-mcp",
+  "name": "MCP for Unity",
+  "category": "Game Dev",
+  "tags": [
+    "unity",
+    "mcp",
+    "gamedev"
+  ],
+  "url": "https://github.com/CoplayDev/unity-mcp",
+  "maker": "Coplay / Aura",
+  "what": "A free, MIT-licensed bridge between AI assistants and the Unity Editor over MCP. From any MCP client you can create scenes and GameObjects, edit C# scripts, manage assets, run tests, profile and build. It is a community project, not affiliated with Unity Technologies.",
+  "who": "Unity developers (Unity 2021.3 LTS through 6.x) who want Claude, Codex, Cursor or another MCP client to work directly in the editor.",
+  "setup": [
+    {
+      "text": "Needs Python 3.10+ via uv. In Unity, open Package Manager → Add package from git URL and paste:",
+      "code": "https://github.com/CoplayDev/unity-mcp.git?path=/MCPForUnity#main",
+      "language": "text"
+    },
+    {
+      "text": "Or install from OpenUPM:",
+      "code": "openupm add com.coplaydev.unity-mcp",
+      "language": "bash"
+    },
+    {
+      "text": "In Unity, choose Window → MCP for Unity → Configure All Detected Clients."
+    },
+    {
+      "text": "Try the README's first prompt:",
+      "code": "Create a cube at the origin and add a Rigidbody.",
+      "language": "text"
+    }
+  ],
+  "prompts": [
+    "Create a third-person player controller script and attach it to a capsule.",
+    "Set up a simple level with a ground plane, three platforms and a spawn point.",
+    "Run the edit-mode tests and fix any failures."
+  ]
+}

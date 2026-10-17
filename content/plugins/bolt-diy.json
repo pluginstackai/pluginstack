@@ -1,0 +1,34 @@
+{
+  "slug": "bolt-diy",
+  "name": "bolt.diy",
+  "category": "Vibe Coding",
+  "tags": [
+    "app-builder",
+    "open-source",
+    "self-hosted"
+  ],
+  "url": "https://github.com/stackblitz-labs/bolt.diy",
+  "maker": "StackBlitz Labs community",
+  "what": "The open-source version of Bolt: an AI workspace where you prompt, run, edit and deploy full-stack web apps in the browser. You choose the LLM for each prompt from 22+ providers, including local models through Ollama or LM Studio. MIT licensed; the WebContainers API it uses has separate commercial terms for enterprise use.",
+  "who": "Vibe coders who want a Bolt-style app builder they run themselves, with their own API keys or local models.",
+  "setup": [
+    {
+      "text": "Needs Node.js 22.12+ and pnpm 9.15.9+. Clone and install:",
+      "code": "git clone https://github.com/stackblitz-labs/bolt.diy.git\ncd bolt.diy\npnpm install",
+      "language": "bash"
+    },
+    {
+      "text": "Start it and open http://localhost:5173:",
+      "code": "pnpm run dev",
+      "language": "bash"
+    },
+    {
+      "text": "Add provider keys in Settings → Providers (or in .env.local). Prebuilt desktop apps and Docker setups are in the README."
+    }
+  ],
+  "prompts": [
+    "Build a habit tracker with a calendar view and local storage.",
+    "Make a landing page for my indie game with a mailing list signup form.",
+    "Add a dark mode toggle and make the layout work on mobile."
+  ]
+}

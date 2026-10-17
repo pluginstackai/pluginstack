@@ -1,0 +1,38 @@
+{
+  "slug": "kilo-code",
+  "name": "Kilo Code",
+  "category": "Editor Extensions",
+  "tags": [
+    "vscode",
+    "jetbrains",
+    "cli",
+    "open-source"
+  ],
+  "url": "https://kilo.ai",
+  "maker": "Kilo Code",
+  "what": "An open-source AI coding agent for VS Code, JetBrains IDEs and the terminal. With a Kilo account you can pick from 500+ models, switch mid-task, and pay the model provider's price with no markup. It also offers a cloud agent and automated PR reviews. MIT licensed.",
+  "who": "VS Code and JetBrains users who want an open-source agent inside the editor and a choice of models.",
+  "setup": [
+    {
+      "text": "VS Code: install Kilo Code from the VS Code Marketplace (kilocode.Kilo-Code)."
+    },
+    {
+      "text": "JetBrains: Settings → Plugins → search for \"Kilo Code\"."
+    },
+    {
+      "text": "CLI:",
+      "code": "npm install -g @kilocode/cli\n# or\ncurl -fsSL https://kilo.ai/cli/install | bash",
+      "language": "bash"
+    },
+    {
+      "text": "Run kilo in a project folder (or open the Kilo panel in your editor) and sign in to your Kilo account.",
+      "code": "kilo",
+      "language": "bash"
+    }
+  ],
+  "prompts": [
+    "Explain what this file does and suggest a cleaner structure.",
+    "Add form validation to the signup page and write tests for it.",
+    "Review my staged changes for bugs before I commit."
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "slug": "openhands",
+  "name": "OpenHands",
+  "category": "Coding Agents",
+  "tags": [
+    "agent",
+    "self-hosted",
+    "open-source"
+  ],
+  "url": "https://github.com/OpenHands/OpenHands",
+  "maker": "OpenHands",
+  "what": "An open-source platform for running coding agents. Its Agent Canvas app is a self-hosted control center where you start agent conversations and set up automations (for example with Slack, GitHub or Linear). It runs the OpenHands agent by default and can also run Claude Code, Codex, OpenCode and other ACP-compatible agents, locally, in Docker, on VMs or in OpenHands Cloud. MIT licensed.",
+  "who": "Developers and teams who want agents running on their own machines or servers, ideally in a sandbox, with any LLM.",
+  "setup": [
+    {
+      "text": "Quick local install (needs Node.js 24+ and uv). Warning: without a sandbox the agent has full access to your files.",
+      "code": "npm install -g @openhands/agent-canvas\nagent-canvas",
+      "language": "bash"
+    },
+    {
+      "text": "Safer: run each conversation in its own Docker container (needs Docker running):",
+      "code": "OH_CONVERSATION_RUNTIME=docker agent-canvas",
+      "language": "bash"
+    },
+    {
+      "text": "Open http://localhost:8000 and start a conversation. See the README for the single-container Docker command and self-hosting security notes."
+    }
+  ],
+  "prompts": [
+    "Fix the failing tests in this repo and open a summary of what changed.",
+    "Every morning, summarize new GitHub issues and post the summary to Slack.",
+    "Upgrade this project's dependencies and make sure the build still passes."
+  ]
+}

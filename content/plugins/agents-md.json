@@ -1,0 +1,32 @@
+{
+  "slug": "agents-md",
+  "name": "AGENTS.md",
+  "category": "Rules & Prompts",
+  "tags": [
+    "rules",
+    "standard",
+    "coding-agents"
+  ],
+  "url": "https://agents.md",
+  "maker": "AGENTS.md (open format)",
+  "what": "A simple open format for giving coding agents project instructions: one AGENTS.md markdown file in your repo with setup commands, test steps and code style. The agents.md site lists many tools that read it, including Codex, Cursor, goose, OpenCode, Aider, Zed, Kilo Code and GitHub Copilot's coding agent.",
+  "who": "Anyone who uses more than one coding agent and wants a single instructions file they all understand.",
+  "setup": [
+    {
+      "text": "Create AGENTS.md at the root of your repo:",
+      "code": "# AGENTS.md\n\n## Setup commands\n- Install deps: `pnpm install`\n- Start dev server: `pnpm dev`\n- Run tests: `pnpm test`\n\n## Code style\n- TypeScript strict mode\n- Single quotes, no semicolons",
+      "language": "markdown"
+    },
+    {
+      "text": "Add sections for testing and PR rules. Keep it short and specific: exact commands work better than general advice."
+    },
+    {
+      "text": "Commit it. Agents that support the format read it automatically when they work in the repo."
+    }
+  ],
+  "prompts": [
+    "Read this repo and write an AGENTS.md with the real setup, test and lint commands.",
+    "Update AGENTS.md so agents always run the type checker before committing.",
+    "Compare our CLAUDE.md and AGENTS.md and merge them into one AGENTS.md."
+  ]
+}

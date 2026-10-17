@@ -1,0 +1,35 @@
+{
+  "slug": "cloudflare-mcp",
+  "name": "Cloudflare MCP Servers",
+  "category": "MCP Servers",
+  "tags": [
+    "cloud",
+    "infrastructure",
+    "remote"
+  ],
+  "url": "https://github.com/cloudflare/mcp-server-cloudflare",
+  "maker": "Cloudflare",
+  "what": "Cloudflare's official remote MCP servers. The recommended Cloudflare API server (mcp.cloudflare.com) covers the whole Cloudflare API through a small set of code-mode tools; separate servers cover docs, Browser Run, containers and more. All are hosted, so there is nothing to install. Apache-2.0.",
+  "who": "Developers who run sites, Workers or DNS on Cloudflare and want the agent to read or change their setup. Some features need a paid Workers plan.",
+  "setup": [
+    {
+      "text": "Add the Cloudflare API server to your MCP client and sign in with OAuth when prompted:",
+      "code": "{\n  \"mcpServers\": {\n    \"cloudflare-api\": {\n      \"type\": \"http\",\n      \"url\": \"https://mcp.cloudflare.com/mcp\"\n    }\n  }\n}",
+      "language": "json"
+    },
+    {
+      "text": "For CI or automation, use the same URL with a Cloudflare API token as a Bearer token instead of OAuth."
+    },
+    {
+      "text": "Need only Cloudflare docs? Point your client at https://docs.mcp.cloudflare.com/mcp instead."
+    },
+    {
+      "text": "The agent can change real settings in your account, so review its actions before approving them."
+    }
+  ],
+  "prompts": [
+    "List my Cloudflare zones and show the DNS records for my main domain.",
+    "Using the Cloudflare docs server, explain how to add a KV binding to a Worker.",
+    "Create a KV namespace called cache in my account and show me its ID."
+  ]
+}

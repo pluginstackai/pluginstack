@@ -1,0 +1,39 @@
+{
+  "slug": "mcp-inspector",
+  "name": "MCP Inspector",
+  "category": "MCP Dev Tools",
+  "tags": [
+    "testing",
+    "debugging",
+    "mcp"
+  ],
+  "url": "https://github.com/modelcontextprotocol/inspector",
+  "maker": "Model Context Protocol",
+  "what": "The official developer tool for testing MCP servers. It connects to a local or remote server and lets you list and call its tools, resources and prompts from a web UI, a scriptable CLI or a terminal UI. Version 2 needs Node 22.19 or newer.",
+  "who": "Anyone building or debugging an MCP server who wants to see exactly what it exposes before wiring it into an agent.",
+  "setup": [
+    {
+      "text": "Open the web UI against a local stdio server:",
+      "code": "npx @modelcontextprotocol/inspector node build/index.js",
+      "language": "bash"
+    },
+    {
+      "text": "Or use the CLI in scripts and CI:",
+      "code": "npx @modelcontextprotocol/inspector --cli node build/index.js --method tools/list",
+      "language": "bash"
+    },
+    {
+      "text": "Remote server over HTTP:",
+      "code": "npx @modelcontextprotocol/inspector --server-url https://example.com/mcp --transport http",
+      "language": "bash"
+    },
+    {
+      "text": "It stores OAuth tokens and env secrets in your OS keychain when one is available; see the README if you're on a machine without one."
+    }
+  ],
+  "prompts": [
+    "Help me write an Inspector CLI command that calls my search tool with query=test and checks the output.",
+    "My server's tools don't show up in the Inspector. Look at my server code and find out why.",
+    "Add a CI step that runs the Inspector CLI tools/list against my server."
+  ]
+}

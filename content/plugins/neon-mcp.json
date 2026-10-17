@@ -1,0 +1,36 @@
+{
+  "slug": "neon-mcp",
+  "name": "Neon MCP Server",
+  "category": "MCP Servers",
+  "tags": [
+    "database",
+    "postgres",
+    "backend"
+  ],
+  "url": "https://github.com/neondatabase/mcp-server-neon",
+  "maker": "Neon",
+  "what": "Neon's official MCP server for managing Neon Postgres in plain language: create projects and branches, run queries, inspect schemas and run migrations on a branch. It is offered as a hosted remote server with OAuth or API-key auth. MIT licensed.",
+  "who": "Developers using Neon Postgres for local development. Neon says it is meant for development and IDE use, not production, so review every action before approving it.",
+  "setup": [
+    {
+      "text": "Quick setup for Cursor, VS Code and Claude Code (signs you in and configures the editor):",
+      "code": "npx neon@latest init",
+      "language": "bash"
+    },
+    {
+      "text": "Or add the hosted server to all detected agents with OAuth:",
+      "code": "npx add-mcp https://mcp.neon.tech/mcp",
+      "language": "bash"
+    },
+    {
+      "text": "Or add it to your MCP config by hand; an OAuth window opens on first use:",
+      "code": "{\n  \"mcpServers\": {\n    \"Neon\": {\n      \"type\": \"http\",\n      \"url\": \"https://mcp.neon.tech/mcp\"\n    }\n  }\n}",
+      "language": "json"
+    }
+  ],
+  "prompts": [
+    "Create a new Neon project called my-app with a users table (id, name, email).",
+    "Add a created_at column to the users table on a new branch first, then show me the diff.",
+    "Summarize all of my Neon projects and what tables each one has."
+  ]
+}

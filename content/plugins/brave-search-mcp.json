@@ -1,0 +1,31 @@
+{
+  "slug": "brave-search-mcp",
+  "name": "Brave Search MCP Server",
+  "category": "MCP Servers",
+  "tags": [
+    "search",
+    "web"
+  ],
+  "url": "https://github.com/brave/brave-search-mcp-server",
+  "maker": "Brave",
+  "what": "Brave's official MCP server for the Brave Search API. It adds web, local, image, video and news search tools, plus LLM context and AI summarization. Version 2.x uses stdio by default, with HTTP as an option. MIT licensed.",
+  "who": "Builders who want their agent to search the web through an independent search index. Needs a Brave Search API key; some features (like extra snippets and full local search) need a Pro plan.",
+  "setup": [
+    {
+      "text": "Sign up for the Brave Search API at brave.com/search/api, pick a plan and create an API key."
+    },
+    {
+      "text": "Add to your MCP client config:",
+      "code": "{\n  \"mcpServers\": {\n    \"brave-search\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"@brave/brave-search-mcp-server\",\n        \"--transport\",\n        \"stdio\"\n      ],\n      \"env\": {\n        \"BRAVE_API_KEY\": \"YOUR_API_KEY_HERE\"\n      }\n    }\n  }\n}",
+      "language": "json"
+    },
+    {
+      "text": "Docker also works with the image mcp/brave-search (see the README)."
+    }
+  ],
+  "prompts": [
+    "Search the web for the latest Next.js release notes and summarize them.",
+    "Find recent news about MCP security and list the sources.",
+    "Search for coffee shops near Denver, CO and give me the top 5."
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "slug": "blender-mcp",
+  "name": "MCP for Blender",
+  "category": "Game Dev",
+  "tags": [
+    "blender",
+    "3d",
+    "mcp"
+  ],
+  "url": "https://github.com/ahujasid/mcp-for-blender",
+  "maker": "ahujasid (community project)",
+  "what": "A community plugin (formerly blender-mcp) that connects Blender to any LLM through MCP. A Blender add-on runs a local socket server and the MCP server sends it commands, so the AI can create and edit objects, materials and scenes. Third-party, not made by Blender. MIT licensed.",
+  "who": "Game artists and indie devs who want to block out 3D scenes or props by prompting.",
+  "setup": [
+    {
+      "text": "One-command setup on macOS/Linux (installs uv if needed, configures your MCP clients and the Blender add-on):",
+      "code": "curl -LsSf https://www.mcp-for-blender.com/install.sh | sh",
+      "language": "bash"
+    },
+    {
+      "text": "Windows PowerShell:",
+      "code": "powershell -ExecutionPolicy ByPass -c \"irm https://www.mcp-for-blender.com/install.ps1 | iex\"",
+      "language": "powershell"
+    },
+    {
+      "text": "Already have uv? Run setup directly, or add it to Claude Code by hand:",
+      "code": "uvx mcp-for-blender setup\n# or\nclaude mcp add blender uvx mcp-for-blender",
+      "language": "bash"
+    },
+    {
+      "text": "Fully quit and reopen your AI app, then open Blender. The add-on can run Python code inside Blender, so save your work first."
+    }
+  ],
+  "prompts": [
+    "Create a low-poly campfire scene with logs, rocks and a warm point light.",
+    "Make a stylized treasure chest and give it a wood and gold material.",
+    "Set up a camera that orbits the scene and render a preview."
+  ]
+}

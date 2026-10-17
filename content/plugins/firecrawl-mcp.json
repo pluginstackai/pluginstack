@@ -1,0 +1,34 @@
+{
+  "slug": "firecrawl-mcp",
+  "name": "Firecrawl MCP Server",
+  "category": "MCP Servers",
+  "tags": [
+    "web",
+    "scraping",
+    "search"
+  ],
+  "url": "https://github.com/firecrawl/firecrawl-mcp-server",
+  "maker": "Firecrawl",
+  "what": "Firecrawl's official MCP server. It lets agents search the web, scrape pages into clean markdown or structured data, crawl and map sites, and interact with pages. There is a hosted endpoint and a local npx version, and it can point at a self-hosted Firecrawl. MIT licensed.",
+  "who": "Vibe coders and researchers who need clean page content from many sites. The hosted keyless tier allows scrape, search and parse with rate limits; crawl, map and agent tools need a Firecrawl API key.",
+  "setup": [
+    {
+      "text": "Easiest: add the hosted server URL to your MCP client (keyless free tier, rate-limited):",
+      "code": "https://mcp.firecrawl.dev/v2/mcp",
+      "language": "text"
+    },
+    {
+      "text": "For the full tool set, sign in with OAuth at https://mcp.firecrawl.dev/v2/mcp-oauth, or keep the first URL and set an Authorization: Bearer header with your API key in the client's secret settings (never in the URL)."
+    },
+    {
+      "text": "Or run it locally with your API key:",
+      "code": "env FIRECRAWL_API_KEY=fc-YOUR_API_KEY npx -y firecrawl-mcp",
+      "language": "bash"
+    }
+  ],
+  "prompts": [
+    "Scrape https://example.com/pricing and return the plans as a table.",
+    "Search the web for 'MCP server security best practices' and summarize the top 3 results.",
+    "Map all the URLs on my docs site and list pages that look outdated."
+  ]
+}

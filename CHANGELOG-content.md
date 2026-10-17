@@ -1,3 +1,8 @@
+# Content additions — 2026-10-17
+Added 29 listings. Each was checked against its official repo/docs on 2026-10-17 (exists, not archived, commits in the last 6 months, license, install steps taken from the README/docs). No star counts or usage stats are quoted.
+New categories: MCP Dev Tools, Agent Frameworks, Vibe Coding, Game Dev.
+Considered and left out: Roo Code (repo archived), Roblox studio-rust-mcp-server (archived), Unreal MCP by chongdashu (no commits since Apr 2025), Gemini CLI (Google says it was replaced by Antigravity CLI for unpaid users and isn't optimized for the latest models), AWS Labs MCP servers (being superseded by the Agent Toolkit for AWS), Hunyuan3D-2/2.1 (no commits since Oct 2025).
+
 # Content fact-check — 2026-10-15
 Checked each plugin against its official README/docs.
 - continue: REMOVED. continue.dev now says "Continue has joined Cursor" (acquired); product status is unclear.

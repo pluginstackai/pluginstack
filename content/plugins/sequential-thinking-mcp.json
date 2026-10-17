@@ -1,0 +1,37 @@
+{
+  "slug": "sequential-thinking-mcp",
+  "name": "Sequential Thinking MCP Server",
+  "category": "MCP Servers",
+  "tags": [
+    "reasoning",
+    "planning",
+    "reference-server"
+  ],
+  "url": "https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking",
+  "maker": "Model Context Protocol",
+  "what": "An official MCP reference server with one tool, sequential_thinking, that lets the model work through a problem as numbered steps. It can revise earlier steps, branch into alternatives and change how many steps it plans as it goes.",
+  "who": "People who want the agent to plan out a tricky design or debugging task step by step before it acts.",
+  "setup": [
+    {
+      "text": "Install Node.js."
+    },
+    {
+      "text": "Add to your MCP client config:",
+      "code": "{\n  \"mcpServers\": {\n    \"sequential-thinking\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"@modelcontextprotocol/server-sequential-thinking\"\n      ]\n    }\n  }\n}",
+      "language": "json"
+    },
+    {
+      "text": "Or add it from the Codex CLI:",
+      "code": "codex mcp add sequential-thinking npx -y @modelcontextprotocol/server-sequential-thinking",
+      "language": "bash"
+    },
+    {
+      "text": "On Windows, launch npx through cmd /c (the README shows the exact config)."
+    }
+  ],
+  "prompts": [
+    "Use sequential thinking to plan a migration from REST to tRPC for this app.",
+    "Think step by step about why this test is flaky before changing any code.",
+    "Break down how to add multiplayer to this game into ordered steps, revising as needed."
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "slug": "mastra",
+  "name": "Mastra",
+  "category": "Agent Frameworks",
+  "tags": [
+    "typescript",
+    "agents",
+    "workflows"
+  ],
+  "url": "https://github.com/mastra-ai/mastra",
+  "maker": "Mastra",
+  "what": "A TypeScript framework for AI apps and agents. It includes model routing across 40+ providers, agents with tools, graph-based workflows with suspend/resume, memory and RAG, MCP server authoring, evals and observability, plus a local Studio UI. Apache-2.0, except code in ee/ folders, which uses an enterprise license.",
+  "who": "JavaScript and TypeScript developers who want to add agents to a Next.js, React or Node app.",
+  "setup": [
+    {
+      "text": "Create a project:",
+      "code": "npm create mastra@latest",
+      "language": "bash"
+    },
+    {
+      "text": "Follow the prompts to pick a project name and model provider, then add your API key to .env."
+    },
+    {
+      "text": "Start the dev server and open Mastra Studio at http://localhost:4111 to test agents and workflows.",
+      "code": "npm run dev",
+      "language": "bash"
+    }
+  ],
+  "prompts": [
+    "Create a Mastra agent with a tool that fetches weather for a city.",
+    "Build a Mastra workflow that pauses for human approval before publishing a post.",
+    "Expose my Mastra tools as an MCP server."
+  ]
+}

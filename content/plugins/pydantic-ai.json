@@ -1,0 +1,34 @@
+{
+  "slug": "pydantic-ai",
+  "name": "Pydantic AI",
+  "category": "Agent Frameworks",
+  "tags": [
+    "python",
+    "typed",
+    "sdk"
+  ],
+  "url": "https://github.com/pydantic/pydantic-ai",
+  "maker": "Pydantic",
+  "what": "A typed Python agent framework from the Pydantic team. You define agents with typed outputs and tools, and switching model providers is a one-string change. Companion packages add a harness for long-running agents (files, shell, sub-agents) and Pydantic Evals for testing. MIT licensed.",
+  "who": "Python developers who like type hints and want validated, structured outputs from their agents.",
+  "setup": [
+    {
+      "text": "Install:",
+      "code": "uv add pydantic-ai",
+      "language": "bash"
+    },
+    {
+      "text": "For a ready-made coding agent toolkit, add the harness too:",
+      "code": "uv add pydantic-ai pydantic-ai-harness",
+      "language": "bash"
+    },
+    {
+      "text": "Set your provider's API key (for example OPENAI_API_KEY or ANTHROPIC_API_KEY) and follow the docs at pydantic.dev/docs/ai."
+    }
+  ],
+  "prompts": [
+    "Build a Pydantic AI agent that extracts invoice data into a typed Invoice model.",
+    "Add a tool to this agent that looks up a customer by email in our database.",
+    "Write Pydantic Evals tests for this agent's outputs."
+  ]
+}

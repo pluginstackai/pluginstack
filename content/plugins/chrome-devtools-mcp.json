@@ -1,0 +1,40 @@
+{
+  "slug": "chrome-devtools-mcp",
+  "name": "Chrome DevTools MCP",
+  "category": "MCP Servers",
+  "tags": [
+    "browser",
+    "debugging",
+    "performance"
+  ],
+  "url": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
+  "maker": "Google Chrome DevTools team",
+  "what": "Lets a coding agent control and inspect a live Chrome browser through Chrome DevTools. It can record performance traces, read network requests and console messages (with source-mapped stack traces) and automate pages with Puppeteer. A CLI is included for use without MCP. Apache-2.0.",
+  "who": "Web developers who want the agent to debug a page or check its performance in a real Chrome.",
+  "setup": [
+    {
+      "text": "Needs a current Node.js LTS and Chrome stable (or Chrome for Testing)."
+    },
+    {
+      "text": "Add to your MCP client config:",
+      "code": "{\n  \"mcpServers\": {\n    \"chrome-devtools\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"chrome-devtools-mcp@latest\"\n      ]\n    }\n  }\n}",
+      "language": "json"
+    },
+    {
+      "text": "For basic browser tasks only, add \"--slim\" (and \"--headless\") to the args."
+    },
+    {
+      "text": "Google collects usage statistics by default; add \"--no-usage-statistics\" to opt out. Performance tools may send trace URLs to the CrUX API; \"--no-performance-crux\" turns that off."
+    },
+    {
+      "text": "Test it with the README's first prompt:",
+      "code": "Check the performance of https://developers.chrome.com",
+      "language": "text"
+    }
+  ],
+  "prompts": [
+    "Check the performance of http://localhost:3000 and tell me the biggest issues.",
+    "Open my app, click Sign up, and show me any console errors or failed network requests.",
+    "Record a trace of the homepage load and explain what is slowing down LCP."
+  ]
+}

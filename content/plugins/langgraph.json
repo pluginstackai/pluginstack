@@ -1,0 +1,32 @@
+{
+  "slug": "langgraph",
+  "name": "LangGraph",
+  "category": "Agent Frameworks",
+  "tags": [
+    "python",
+    "stateful",
+    "orchestration"
+  ],
+  "url": "https://github.com/langchain-ai/langgraph",
+  "maker": "LangChain",
+  "what": "A low-level framework for building long-running, stateful agents as graphs. It provides durable execution (agents resume after failures), human-in-the-loop interrupts and short- and long-term memory. It works on its own or with LangChain and LangSmith. A JS version (LangGraph.js) is also available. MIT licensed.",
+  "who": "Developers who need fine control over agent steps and state, beyond a simple tool-calling loop.",
+  "setup": [
+    {
+      "text": "Install:",
+      "code": "pip install -U langgraph",
+      "language": "bash"
+    },
+    {
+      "text": "Follow the official quickstart at docs.langchain.com/oss/python/langgraph/quickstart to build your first graph."
+    },
+    {
+      "text": "Want something higher-level? LangChain's Deep Agents package is built on LangGraph for agents that plan and use subagents."
+    }
+  ],
+  "prompts": [
+    "Build a LangGraph agent that drafts an email, pauses for my approval, then sends it.",
+    "Add persistence so this LangGraph agent can resume after a crash.",
+    "Turn this chain of three LLM calls into a LangGraph graph with a retry branch."
+  ]
+}

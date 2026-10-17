@@ -1,0 +1,39 @@
+{
+  "slug": "trellis-2",
+  "name": "TRELLIS.2",
+  "category": "Game Dev",
+  "tags": [
+    "3d",
+    "image-to-3d",
+    "model"
+  ],
+  "url": "https://github.com/microsoft/TRELLIS.2",
+  "maker": "Microsoft",
+  "what": "Microsoft's open 4B-parameter image-to-3D model. It turns an image into a fully textured 3D asset, including PBR attributes (base color, roughness, metallic, opacity), and handles open surfaces and non-manifold geometry. It ships with inference code, training code, pretrained weights and a Gradio web demo. MIT licensed; some dependencies have their own licenses.",
+  "who": "Technical artists and indie devs with a strong NVIDIA GPU who want to generate 3D assets from concept art. It needs Linux and an NVIDIA GPU with at least 24 GB of memory.",
+  "setup": [
+    {
+      "text": "Try it in the browser first on the official Hugging Face demo: huggingface.co/spaces/microsoft/TRELLIS.2."
+    },
+    {
+      "text": "To run locally (Linux, CUDA Toolkit 12.4 recommended, conda), clone the repo:",
+      "code": "git clone -b main https://github.com/microsoft/TRELLIS.2.git --recursive\ncd TRELLIS.2",
+      "language": "bash"
+    },
+    {
+      "text": "Create the environment and install dependencies (this takes a while):",
+      "code": ". ./setup.sh --new-env --basic --flash-attn --nvdiffrast --nvdiffrec --cumesh --o-voxel --flexgemm",
+      "language": "bash"
+    },
+    {
+      "text": "Run the web demo:",
+      "code": "python app.py",
+      "language": "bash"
+    }
+  ],
+  "prompts": [
+    "Help me set up TRELLIS.2 on my Linux machine with an RTX 4090.",
+    "Write a script that runs TRELLIS.2 on every PNG in concept_art/ and saves GLB files.",
+    "Explain how to import a TRELLIS.2 GLB into Godot or Unity and fix the scale."
+  ]
+}

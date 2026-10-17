@@ -1,0 +1,41 @@
+{
+  "slug": "vercel-ai-sdk",
+  "name": "AI SDK",
+  "category": "Agent Frameworks",
+  "tags": [
+    "typescript",
+    "nextjs",
+    "sdk"
+  ],
+  "url": "https://ai-sdk.dev",
+  "maker": "Vercel",
+  "what": "Vercel's provider-agnostic TypeScript toolkit for building AI apps and agents, with UI hooks for Next.js, React, Svelte, Vue and Angular. One API covers OpenAI, Anthropic, Google and many more providers, either through Vercel AI Gateway (the default) or each provider's own package. Apache-2.0.",
+  "who": "Web developers adding chat, streaming or agent features to a JavaScript or TypeScript app.",
+  "setup": [
+    {
+      "text": "Needs Node.js 22+. Install:",
+      "code": "npm install ai",
+      "language": "bash"
+    },
+    {
+      "text": "To call providers directly instead of through AI Gateway, add their packages:",
+      "code": "npm install @ai-sdk/openai @ai-sdk/anthropic @ai-sdk/google",
+      "language": "bash"
+    },
+    {
+      "text": "For React chat UIs:",
+      "code": "npm install @ai-sdk/react",
+      "language": "bash"
+    },
+    {
+      "text": "Using Claude Code or Cursor? Add the AI SDK skill to your repo:",
+      "code": "npx skills add vercel/ai",
+      "language": "bash"
+    }
+  ],
+  "prompts": [
+    "Add a streaming chat page to my Next.js app using the AI SDK and useChat.",
+    "Give this AI SDK agent a tool that searches our product database.",
+    "Switch this generateText call from OpenAI to Anthropic."
+  ]
+}

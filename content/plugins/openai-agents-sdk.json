@@ -1,0 +1,36 @@
+{
+  "slug": "openai-agents-sdk",
+  "name": "OpenAI Agents SDK",
+  "category": "Agent Frameworks",
+  "tags": [
+    "python",
+    "multi-agent",
+    "sdk"
+  ],
+  "url": "https://github.com/openai/openai-agents-python",
+  "maker": "OpenAI",
+  "what": "A lightweight Python framework for building agents and multi-agent workflows. It covers agents with tools and handoffs, guardrails, human-in-the-loop, sessions, tracing, sandbox agents and voice/realtime agents. It works with OpenAI's APIs and, per the README, 100+ other LLMs. A JS/TS version exists too. MIT licensed.",
+  "who": "Python developers building their own agents who want a small, well-documented framework.",
+  "setup": [
+    {
+      "text": "Needs Python 3.10 or newer. Install:",
+      "code": "python -m venv .venv\nsource .venv/bin/activate\npip install openai-agents",
+      "language": "bash"
+    },
+    {
+      "text": "Or with uv:",
+      "code": "uv init\nuv add openai-agents",
+      "language": "bash"
+    },
+    {
+      "text": "Set OPENAI_API_KEY and run a first agent:",
+      "code": "from agents import Agent, Runner\n\nagent = Agent(name=\"Assistant\", instructions=\"You are a helpful assistant\")\nresult = Runner.run_sync(agent, \"Write a haiku about recursion in programming.\")\nprint(result.final_output)",
+      "language": "text"
+    }
+  ],
+  "prompts": [
+    "Build a triage agent with the OpenAI Agents SDK that hands off to a billing agent or a support agent.",
+    "Add an input guardrail that blocks requests unrelated to our product.",
+    "Connect my agent to a local MCP server and list the tools it can see."
+  ]
+}

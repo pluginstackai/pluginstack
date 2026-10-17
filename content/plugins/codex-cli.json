@@ -1,0 +1,41 @@
+{
+  "slug": "codex-cli",
+  "name": "Codex CLI",
+  "category": "Coding Agents",
+  "tags": [
+    "cli",
+    "agent",
+    "open-source"
+  ],
+  "url": "https://github.com/openai/codex",
+  "maker": "OpenAI",
+  "what": "OpenAI's open-source coding agent that runs locally in your terminal. It reads and edits your code, runs commands and connects to MCP servers. Codex also comes as an IDE extension (VS Code, Cursor, Windsurf), a desktop app and a cloud version. Apache-2.0.",
+  "who": "Developers and vibe coders who want a terminal agent and already have a ChatGPT plan (Plus, Pro, Business, Edu or Enterprise), or an OpenAI API key.",
+  "setup": [
+    {
+      "text": "Install (macOS/Linux):",
+      "code": "curl -fsSL https://chatgpt.com/codex/install.sh | sh",
+      "language": "bash"
+    },
+    {
+      "text": "Windows:",
+      "code": "powershell -ExecutionPolicy ByPass -c \"irm https://chatgpt.com/codex/install.ps1 | iex\"",
+      "language": "powershell"
+    },
+    {
+      "text": "Or with npm or Homebrew:",
+      "code": "npm install -g @openai/codex\n# or\nbrew install --cask codex",
+      "language": "bash"
+    },
+    {
+      "text": "cd into your project and run codex, then choose Sign in with ChatGPT. Add an AGENTS.md file for project instructions.",
+      "code": "codex",
+      "language": "bash"
+    }
+  ],
+  "prompts": [
+    "Explain this codebase and where the main entry point is.",
+    "Find the bug that makes the login test fail and fix it.",
+    "Add a dark mode toggle and run the build to make sure it passes."
+  ]
+}

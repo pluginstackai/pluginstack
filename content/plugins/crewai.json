@@ -1,0 +1,36 @@
+{
+  "slug": "crewai",
+  "name": "CrewAI",
+  "category": "Agent Frameworks",
+  "tags": [
+    "python",
+    "multi-agent",
+    "workflows"
+  ],
+  "url": "https://github.com/crewAIInc/crewAI",
+  "maker": "CrewAI",
+  "what": "A Python framework for multi-agent automation. Crews are teams of role-based agents that work together on a task; Flows are event-driven workflows with state and branching that can call crews. The CLI scaffolds projects, which are JSON-first by default. MIT licensed.",
+  "who": "Builders who want to model a task as a team of specialized agents (researcher, writer, reviewer) and run it from the command line.",
+  "setup": [
+    {
+      "text": "Needs Python 3.10 to 3.13 and uv. Install the CLI:",
+      "code": "uv tool install crewai",
+      "language": "bash"
+    },
+    {
+      "text": "Create a crew project:",
+      "code": "crewai create crew my-crew\ncd my-crew",
+      "language": "bash"
+    },
+    {
+      "text": "Put your model provider API key in .env, then install and run:",
+      "code": "crewai install\ncrewai run",
+      "language": "bash"
+    }
+  ],
+  "prompts": [
+    "Create a CrewAI crew with a researcher and a writer that produces a weekly AI tools roundup.",
+    "Add a reviewer agent to this crew that checks every claim has a source.",
+    "Convert this crew into a Flow that only runs the writer if research found results."
+  ]
+}

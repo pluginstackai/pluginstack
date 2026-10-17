@@ -1,0 +1,30 @@
+{
+  "slug": "dyad",
+  "name": "Dyad",
+  "category": "Vibe Coding",
+  "tags": [
+    "app-builder",
+    "local",
+    "open-source"
+  ],
+  "url": "https://www.dyad.sh",
+  "maker": "Dyad",
+  "what": "A local, open-source AI app builder, similar in spirit to Lovable, v0 or Bolt, that runs as a desktop app on your machine. You bring your own AI API keys, and no sign-up is required to download it. Apache-2.0, except code in src/pro, which is under the Functional Source License.",
+  "who": "Vibe coders who want to build apps by prompting but keep their code and keys on their own computer.",
+  "setup": [
+    {
+      "text": "Download the app for Mac or Windows from dyad.sh."
+    },
+    {
+      "text": "Open it, add your AI provider API key in settings, and describe the app you want to build."
+    },
+    {
+      "text": "Your project is a normal codebase on your machine, so you can open it in any editor later."
+    }
+  ],
+  "prompts": [
+    "Build a simple CRM to track leads with a table and a detail page.",
+    "Add user login to this app.",
+    "Change the color scheme to navy and coral and make the buttons rounder."
+  ]
+}

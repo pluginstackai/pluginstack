@@ -1,0 +1,34 @@
+{
+  "slug": "goose",
+  "name": "goose",
+  "category": "Coding Agents",
+  "tags": [
+    "agent",
+    "desktop",
+    "open-source"
+  ],
+  "url": "https://github.com/aaif-goose/goose",
+  "maker": "Agentic AI Foundation (Linux Foundation)",
+  "what": "An open-source, general-purpose AI agent that runs on your machine as a desktop app (macOS, Linux, Windows), a CLI and an API. It isn't only for code: it also handles research, writing and automation. It supports 15+ model providers and connects to tools through MCP extensions. Originally from Block, now part of the Agentic AI Foundation. Apache-2.0.",
+  "who": "People who want one local agent for coding and everyday tasks, with their choice of model.",
+  "setup": [
+    {
+      "text": "Download the desktop app from goose-docs.ai/docs/getting-started/installation, or install the CLI:",
+      "code": "curl -fsSL https://github.com/aaif-goose/goose/releases/download/stable/download_cli.sh | bash",
+      "language": "bash"
+    },
+    {
+      "text": "Run goose configure to pick a provider and model, then start a session:",
+      "code": "goose configure\ngoose session",
+      "language": "bash"
+    },
+    {
+      "text": "Add MCP extensions from the desktop app or through goose configure."
+    }
+  ],
+  "prompts": [
+    "Set up a new Vite + React project here and get the dev server running.",
+    "Read the CSV files in this folder and write a summary report as markdown.",
+    "Review my last commit and suggest improvements."
+  ]
+}

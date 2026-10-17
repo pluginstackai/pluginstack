@@ -1,0 +1,39 @@
+{
+  "slug": "agent-skills",
+  "name": "Agent Skills (Anthropic)",
+  "category": "Rules & Prompts",
+  "tags": [
+    "skills",
+    "claude-code",
+    "templates"
+  ],
+  "url": "https://github.com/anthropics/skills",
+  "maker": "Anthropic",
+  "what": "Anthropic's public repository of Agent Skills: folders with a SKILL.md file (plus optional scripts and resources) that Claude loads when a task needs them. It includes example skills, the document skills behind Claude's file creation, a template and the Agent Skills spec. Many skills are Apache-2.0; the document skills are source-available, not open source.",
+  "who": "Claude Code and Claude.ai users who want ready-made skills, or a starting point to write their own.",
+  "setup": [
+    {
+      "text": "In Claude Code, add the repo as a plugin marketplace:",
+      "code": "/plugin marketplace add anthropics/skills",
+      "language": "text"
+    },
+    {
+      "text": "Then install a skill set:",
+      "code": "/plugin install document-skills@anthropic-agent-skills\n/plugin install example-skills@anthropic-agent-skills",
+      "language": "text"
+    },
+    {
+      "text": "To write your own, make a folder with a SKILL.md that has a name and description in its YAML frontmatter:",
+      "code": "---\nname: my-skill-name\ndescription: What this skill does and when to use it\n---\n# My Skill Name\nInstructions Claude should follow...",
+      "language": "markdown"
+    },
+    {
+      "text": "The repo says these skills are for demonstration and education; behavior in Claude may differ."
+    }
+  ],
+  "prompts": [
+    "Use the PDF skill to extract the form fields from forms/application.pdf.",
+    "Create a skill that writes release notes in our team's format.",
+    "Use the skill-creator skill to help me turn my code review checklist into a skill."
+  ]
+}

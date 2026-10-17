@@ -1,0 +1,36 @@
+{
+  "slug": "fetch-mcp",
+  "name": "Fetch MCP Server",
+  "category": "MCP Servers",
+  "tags": [
+    "web",
+    "reference-server"
+  ],
+  "url": "https://github.com/modelcontextprotocol/servers/tree/main/src/fetch",
+  "maker": "Model Context Protocol",
+  "what": "One of the official MCP reference servers. It gives the agent a single fetch tool that downloads a web page and converts the HTML to markdown, and it can read long pages in chunks. By default it refuses private and loopback addresses.",
+  "who": "Anyone who wants their agent to read a docs page, changelog or article by URL without a full browser.",
+  "setup": [
+    {
+      "text": "Install uv (recommended); uvx then runs the server with no separate install."
+    },
+    {
+      "text": "Add to your MCP client config:",
+      "code": "{\n  \"mcpServers\": {\n    \"fetch\": {\n      \"command\": \"uvx\",\n      \"args\": [\n        \"mcp-server-fetch\"\n      ]\n    }\n  }\n}",
+      "language": "json"
+    },
+    {
+      "text": "Or install with pip and run it as a module:",
+      "code": "pip install mcp-server-fetch\npython -m mcp_server_fetch",
+      "language": "bash"
+    },
+    {
+      "text": "Optional: install Node.js too; the server then uses a more robust HTML simplifier. The --allow-private-ips flag turns off the private-address guard, so only use it if you understand the risk."
+    }
+  ],
+  "prompts": [
+    "Fetch https://nextjs.org/docs and summarize what's new on that page.",
+    "Read this changelog URL and list the breaking changes.",
+    "Fetch this article and give me the 5 key points."
+  ]
+}

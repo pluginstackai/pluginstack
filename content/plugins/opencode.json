@@ -1,0 +1,39 @@
+{
+  "slug": "opencode",
+  "name": "OpenCode",
+  "category": "Coding Agents",
+  "tags": [
+    "cli",
+    "agent",
+    "open-source"
+  ],
+  "url": "https://opencode.ai",
+  "maker": "Anomaly",
+  "what": "An open-source AI coding agent with a terminal UI, plus a desktop app and IDE support. It works with API keys from many LLM providers. It has a full-access build agent and a read-only plan agent you switch between with Tab. MIT licensed.",
+  "who": "Terminal users who want an open-source agent and the freedom to pick their own model provider.",
+  "setup": [
+    {
+      "text": "Install with the script:",
+      "code": "curl -fsSL https://opencode.ai/install | bash",
+      "language": "bash"
+    },
+    {
+      "text": "Or with Homebrew (the OpenCode tap is updated most often):",
+      "code": "brew install anomalyco/tap/opencode",
+      "language": "bash"
+    },
+    {
+      "text": "OpenCode 1 and OpenCode 2 both use the opencode command and can't be installed side by side; check opencode.ai/docs for which version a given install method gives you."
+    },
+    {
+      "text": "cd into your project, run opencode, and add API keys for the providers you want to use.",
+      "code": "opencode",
+      "language": "bash"
+    }
+  ],
+  "prompts": [
+    "Switch to plan mode and explain how authentication works in this repo.",
+    "Add pagination to the /api/posts endpoint and update the tests.",
+    "@general find every place we call the payments API."
+  ]
+}
