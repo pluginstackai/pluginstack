@@ -8,8 +8,16 @@
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "assets": { "directory": ".open-next/assets", "binding": "ASSETS" },
   "services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "pluginstack" }],
-  "observability": { "enabled": true }
-  // Custom domains (www.pluginstackai.com / apex) are attached later, once the Cloudflare zone is active.
+  "observability": { "enabled": true },
+  // Production is served only on the custom domains; workers.dev and per-version preview URLs are disabled.
+  "workers_dev": false,
+  "preview_urls": false,
+  // Custom domains are declared here so redeploys keep them. pluginstackai.com (apex) is 301'd to www by a
+  // Cloudflare Redirect Rule in the zone, which runs before the Worker.
+  "routes": [
+    { "pattern": "www.pluginstackai.com", "custom_domain": true },
+    { "pattern": "pluginstackai.com", "custom_domain": true }
+  ]
   // Secrets (set with `wrangler secret put`, never commit): RESEND_API_KEY, RESEND_AUDIENCE_NEWSLETTER,
   // RESEND_AUDIENCE_WAITLIST, optional UNSUBSCRIBE_SECRET, BUSINESS_EMAIL, RESEND_FROM.
 }
