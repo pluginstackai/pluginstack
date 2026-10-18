@@ -45,7 +45,7 @@
     "slug": "mega-bundle",
     "name": "Everything Bundle",
     "price": 20,
-    "desc": "All current packs, plus future updates.",
+    "desc": "All current packs.",
     "items": [
       "All packs",
       "Future updates"

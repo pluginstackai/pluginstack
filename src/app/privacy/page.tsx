@@ -1,10 +1,11 @@
 import { pageMeta } from '../../lib/seo';
 import Prose from '../../components/Prose';
 import { site } from '../../lib/data';
+import { NEWSLETTER } from '../../lib/email-copy';
 export const metadata = pageMeta({ title: 'Privacy Policy', description: `How ${site.name} collects and uses your information.`, path: '/privacy/' });
 export default function Page() {
   const addr = site.mailingAddress?.trim();
-  return (<Prose title="Privacy Policy" updated="October 16, 2026">
+  return (<Prose title="Privacy Policy" updated="October 18, 2026">
     <p>{site.name} is a free directory of AI plugins, MCP servers and agent tools, run by Kyle in Colorado, USA. This page explains, in plain English, what we collect and what we do with it.</p>
     <h2>What we collect</h2>
     <ul>
@@ -15,7 +16,7 @@ export default function Page() {
     </ul>
     <h2>Why we use it</h2>
     <ul>
-      <li><b>Newsletter:</b> to send PluginStack Weekly, a weekly email with new AI tools, plus occasional offers on our paid packs.</li>
+      <li><b>Newsletter:</b> {NEWSLETTER.privacy}</li>
       <li><b>Waitlist:</b> to tell you when the Get unstuck service opens and to understand your problem.</li>
       <li><b>Sponsor form:</b> to reply to your sponsorship enquiry.</li>
     </ul>
@@ -23,7 +24,7 @@ export default function Page() {
     <h2>Who processes it for us</h2>
     <ul>
       <li><a href="https://resend.com/legal/privacy-policy">Resend</a>: stores our contact lists and sends our emails.</li>
-      <li><a href="https://vercel.com/legal/privacy-policy">Vercel</a>: hosts this website.</li>
+      <li><a href="https://www.cloudflare.com/privacypolicy/">Cloudflare</a>: hosts this website and provides our CDN and DNS.</li>
       <li>Google (Gmail): our business inbox, where waitlist and sponsor messages are delivered.</li>
       <li>When our packs go on sale, Gumroad will handle payments as the seller of record; we never see your card details.</li>
     </ul>

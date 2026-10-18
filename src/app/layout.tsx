@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { site } from '../lib/data';
 import { DEFAULT_OG, TWITTER } from '../lib/seo';
 import EmailForm from '../components/EmailForm';
+import { NEWSLETTER } from '../lib/email-copy';
 import ThemeToggle from '../components/ThemeToggle';
 // Site-wide defaults. Every page sets its own title, description, canonical and Open Graph/Twitter tags (see lib/seo.ts pageMeta);
 // no canonical here, so pages that don't set one (e.g. 404) don't inherit the home page's.
@@ -26,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </header>
     <main className="max-w-6xl mx-auto px-4 pb-16">{children}</main>
     <footer className="bg-white/60 dark:bg-navy-900/60 border-t border-navy/10 dark:border-navy-700"><div className="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-2 gap-6">
-      <div><h2 className="font-semibold">{site.newsletterTitle}</h2><p className="text-sm text-slate-600 dark:text-slate-400 mb-3">PluginStack Weekly: one email a week with new AI tools, plus occasional offers on our packs.</p><EmailForm list="newsletter" /></div>
+      <div><h2 className="font-semibold">{site.newsletterTitle}</h2><p className="text-sm text-slate-600 dark:text-slate-400 mb-3">{NEWSLETTER.footer}</p><EmailForm list="newsletter" /></div>
       <div className="text-sm text-slate-600 dark:text-slate-400 md:text-right space-y-2">
         <nav aria-label="Legal" className="flex gap-4 md:justify-end font-medium"><Link href="/privacy/">Privacy</Link><Link href="/terms/">Terms</Link><Link href="/disclosures/">Disclosures</Link></nav>
         <p>© {new Date().getFullYear()} {site.name}. Free directory. {site.name} is independent and not affiliated with or endorsed by the listed companies; trademarks belong to their owners.</p>

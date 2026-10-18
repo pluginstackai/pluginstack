@@ -54,8 +54,8 @@ export const latest = (items: ListedPlugin[]) => items.map(p => p.updated).filte
 
 /** Last significant content change for static pages (update when you change a page's content). */
 export const PAGE_UPDATED: Record<string, string> = {
-  '/packs/': '2026-10-15', '/get-unstuck/': '2026-10-16', '/sponsor/': '2026-10-16',
-  '/privacy/': '2026-10-16', '/terms/': '2026-10-16', '/disclosures/': '2026-10-16',
+  '/packs/': '2026-10-15', '/get-unstuck/': '2026-10-16', '/sponsor/': '2026-10-18',
+  '/privacy/': '2026-10-18', '/terms/': '2026-10-16', '/disclosures/': '2026-10-16',
 };
 
 export const ORG_ID = `${site.url}/#organization`;

@@ -1,3 +1,4 @@
+import { NEWSLETTER } from '../../../lib/email-copy';
 import { WELCOME_SUBJECT, welcomeText, welcomeHtml } from '../../../lib/welcome-email';
 import { unsubscribeUrl } from '../../../lib/unsubscribe';
 import { addToSegment, sendEmail, sendMarketingEmail, EMAIL_SENDING_ENABLED, hasKey, isEmail, rateLimited, clientIp, clean, json, UNAVAILABLE, BUSINESS_EMAIL } from '../../../lib/resend';
@@ -28,5 +29,5 @@ export async function POST(req: Request) {
       if (!w.ok) console.error('[subscribe] welcome email failed', w.status, w.error);
     } catch (e) { console.error('[subscribe] welcome email error', e); }
   }
-  return json({ ok: true, message: list === 'waitlist' ? "You're on the waitlist. We'll be in touch!" : "You're subscribed. Thanks!" });
+  return json({ ok: true, message: list === 'waitlist' ? "You're on the waitlist. We'll be in touch!" : NEWSLETTER.subscribed });
 }

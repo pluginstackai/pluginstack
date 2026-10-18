@@ -1,10 +1,11 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
+import { NEWSLETTER } from '../lib/email-copy';
 // Posts to /api/subscribe (newsletter, waitlist) or /api/sponsor. Hidden "website" field is a bot honeypot.
 // Point-of-collection notice: what this form is for, who we are, and how to opt out.
 const NOTICE = {
-  newsletter: 'Weekly email with new AI tools, plus occasional offers on our packs. Unsubscribe anytime. From PluginStack (pluginstackai@gmail.com).',
+  newsletter: NEWSLETTER.notice,
   waitlist: "Joins the Get unstuck waitlist: we'll email you when the app rescue service opens. We only use your note to understand the problem. Not a newsletter signup.",
   sponsor: 'Sends your email and company to PluginStack so we can reply about sponsorship. Not a newsletter signup.',
 } as const;
