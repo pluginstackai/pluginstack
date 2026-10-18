@@ -9,6 +9,12 @@
   "url": "https://github.com/getsentry/sentry-mcp",
   "maker": "Sentry",
   "updated": "2026-10-15",
+  "demo": {
+    "youtubeId": "-GMmoXbU004",
+    "title": "Configuring and Using the Sentry MCP Server",
+    "channel": "Sentry",
+    "channelUrl": "https://www.youtube.com/@Sentry-monitoring"
+  },
   "what": "Sentry's official remote MCP server, built for coding agents: it lets your AI look up Sentry issues, errors and traces and help you debug them.",
   "who": "Developers who use Sentry and want the agent to fix bugs from real error reports.",
   "setup": [

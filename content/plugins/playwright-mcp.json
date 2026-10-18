@@ -10,6 +10,12 @@
   "url": "https://github.com/microsoft/playwright-mcp",
   "maker": "Microsoft",
   "updated": "2026-10-15",
+  "demo": {
+    "youtubeId": "IixdI2bTR1g",
+    "title": "Let AI Explore Your Site & Write Tests with Playwright MCP!",
+    "channel": "Playwright",
+    "channelUrl": "https://www.youtube.com/@Playwrightdev"
+  },
   "what": "Microsoft's MCP server that gives an AI agent a real browser via Playwright. It works from the page's structured accessibility snapshot instead of screenshots, so no vision model is needed.",
   "who": "Vibe coders and QA folks who want the agent to test their web app or automate web tasks.",
   "setup": [

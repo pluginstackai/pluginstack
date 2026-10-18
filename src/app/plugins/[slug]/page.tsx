@@ -6,6 +6,7 @@ import { pageMeta, summarize, categoryPath, breadcrumbLd, absUrl, WEBSITE_ID, pl
 import CodeBlock from '../../../components/CodeBlock';
 import JsonLd from '../../../components/JsonLd';
 import PluginGrid from '../../../components/PluginGrid';
+import YouTubeDemo from '../../../components/YouTubeDemo';
 export const generateStaticParams = () => getPlugins().map(p => ({ slug: p.slug }));
 export const dynamicParams = false;
 const fmtDate = (d: string) => new Date(`${d}T12:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
@@ -16,6 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function PluginPage({ params }: { params: Promise<{ slug: string }> }) {
   const p = getPlugin((await params).slug) as ListedPlugin | undefined; if (!p) notFound();
   const path = `/plugins/${p.slug}/`; const catPath = categoryPath(p.category);
+  if (p.demo && !/^[A-Za-z0-9_-]{11}$/.test(p.demo.youtubeId)) throw new Error(`Invalid demo.youtubeId for ${p.slug}`);
   const related = plugins().filter(x => x.category === p.category && x.slug !== p.slug).slice(0, 6);
   const crumbs = [{ name: 'Home', path: '/' }, { name: p.category, path: catPath }, { name: p.name, path }];
   // Describes the third-party tool truthfully: no ratings, reviews or prices.
@@ -40,7 +42,7 @@ export default async function PluginPage({ params }: { params: Promise<{ slug: s
       <p className="text-xs text-slate-600 dark:text-slate-400 mt-3">Check the <a className="link" href={p.url}>official {p.name} docs</a> for the latest steps.</p></section>
     <section className="card"><H>Example prompts</H><div className="space-y-3">{p.prompts.map((s, i) => <CodeBlock key={i} code={s} tone="prompt" />)}</div></section>
     {p.demo && <section className="card"><H>Demo</H>
-      <video controls preload="metadata" src={p.demo} aria-label={`${p.name} walkthrough`} className="aspect-video w-full rounded-xl border border-navy/10 dark:border-navy-700 bg-navy-950" /></section>}
+      <YouTubeDemo id={p.demo.youtubeId} title={p.demo.title} channel={p.demo.channel} toolName={p.name} /></section>}
     {related.length > 0 && <section aria-labelledby="related"><h2 id="related" className="text-xl font-semibold mb-3">More {p.category}</h2>
       <PluginGrid items={related} heading="h3" showCategory={false} />
       <p className="mt-4 text-sm"><Link href={catPath} className="link">See all {p.category} on {site.name}</Link></p></section>}

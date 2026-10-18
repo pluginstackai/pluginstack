@@ -10,6 +10,12 @@
   "url": "https://github.com/langchain-ai/langgraph",
   "maker": "LangChain",
   "updated": "2026-10-17",
+  "demo": {
+    "youtubeId": "B_BCeWhyD5Q",
+    "title": "LangChain Academy New Course: LangGraph Essentials",
+    "channel": "LangChain",
+    "channelUrl": "https://www.youtube.com/@LangChain"
+  },
   "what": "A low-level framework for building long-running, stateful agents as graphs. It provides durable execution (agents resume after failures), human-in-the-loop interrupts and short- and long-term memory. It works on its own or with LangChain and LangSmith. A JS version (LangGraph.js) is also available. MIT licensed.",
   "who": "Developers who need fine control over agent steps and state, beyond a simple tool-calling loop.",
   "setup": [

@@ -9,6 +9,12 @@
   "url": "https://code.claude.com/docs/en/overview",
   "maker": "Anthropic",
   "updated": "2026-10-15",
+  "demo": {
+    "youtubeId": "fl1DSmwQKKY",
+    "title": "What is Claude Code?",
+    "channel": "Claude",
+    "channelUrl": "https://www.youtube.com/@claude"
+  },
   "what": "Anthropic's agentic coding tool. It reads your codebase, edits files, runs commands, works with git and connects to MCP servers. It runs in the terminal, with VS Code/JetBrains extensions, a desktop app and a web version too.",
   "who": "Developers and vibe coders who want an agent that works across their whole project. Requires a Claude Pro, Max, Team, Enterprise or Console account (or a supported cloud provider).",
   "setup": [

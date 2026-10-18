@@ -10,6 +10,12 @@
   "url": "https://github.com/firecrawl/firecrawl-mcp-server",
   "maker": "Firecrawl",
   "updated": "2026-10-17",
+  "demo": {
+    "youtubeId": "aovuyqN2QPE",
+    "title": "Firecrawl MCP Server: Search Scrape And Crawl The Web",
+    "channel": "Firecrawl",
+    "channelUrl": "https://www.youtube.com/@Firecrawl_dev"
+  },
   "what": "Firecrawl's official MCP server. It lets agents search the web, scrape pages into clean markdown or structured data, crawl and map sites, and interact with pages. There is a hosted endpoint and a local npx version, and it can point at a self-hosted Firecrawl. MIT licensed.",
   "who": "Vibe coders and researchers who need clean page content from many sites. The hosted keyless tier allows scrape, search and parse with rate limits; crawl, map and agent tools need a Firecrawl API key.",
   "setup": [

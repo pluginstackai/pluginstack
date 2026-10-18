@@ -10,6 +10,12 @@
   "url": "https://github.com/cloudflare/mcp-server-cloudflare",
   "maker": "Cloudflare",
   "updated": "2026-10-17",
+  "demo": {
+    "youtubeId": "eTa8TPxkvMY",
+    "title": "The Cloudflare API MCP in Under 3 Minutes",
+    "channel": "Cloudflare Developers",
+    "channelUrl": "https://www.youtube.com/@CloudflareDevelopers"
+  },
   "what": "Cloudflare's official remote MCP servers. The recommended Cloudflare API server (mcp.cloudflare.com, maintained in the cloudflare/mcp repo) covers the whole Cloudflare API through a small set of code-mode tools; the domain-specific servers in this repo cover docs, Browser Run, containers and more. All are hosted, so there is nothing to install. Apache-2.0.",
   "who": "Developers who run sites, Workers or DNS on Cloudflare and want the agent to read or change their setup. Some features need a paid Workers plan.",
   "setup": [

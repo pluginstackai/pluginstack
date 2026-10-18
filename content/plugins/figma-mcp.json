@@ -9,6 +9,12 @@
   "url": "https://developers.figma.com/docs/figma-mcp-server/",
   "maker": "Figma",
   "updated": "2026-10-15",
+  "demo": {
+    "youtubeId": "brTAdHVCwSw",
+    "title": "Getting started with the Figma MCP server",
+    "channel": "Figma",
+    "channelUrl": "https://www.youtube.com/@Figma"
+  },
   "what": "Brings design context from your Figma files into AI coding tools so they can generate code that matches your designs. The remote server can also write to the canvas (in beta), creating and editing content in your Figma files.",
   "who": "Designers and frontend devs turning Figma frames into real UI.",
   "setup": [

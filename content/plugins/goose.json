@@ -10,6 +10,12 @@
   "url": "https://github.com/aaif-goose/goose",
   "maker": "Agentic AI Foundation (Linux Foundation)",
   "updated": "2026-10-17",
+  "demo": {
+    "youtubeId": "D-DpDunrbpo",
+    "title": "Build Apps Faster with AI | Vibe Coding with Goose",
+    "channel": "goose OSS",
+    "channelUrl": "https://www.youtube.com/@goose-oss"
+  },
   "what": "An open-source, general-purpose AI agent that runs on your machine as a desktop app (macOS, Linux, Windows), a CLI and an API. It isn't only for code: it also handles research, writing and automation. It supports 15+ model providers and connects to tools through MCP extensions. Originally from Block, now part of the Agentic AI Foundation. Apache-2.0.",
   "who": "People who want one local agent for coding and everyday tasks, with their choice of model.",
   "setup": [

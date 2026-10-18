@@ -10,6 +10,12 @@
   "url": "https://github.com/ahujasid/mcp-for-blender",
   "maker": "ahujasid (community project)",
   "updated": "2026-10-17",
+  "demo": {
+    "youtubeId": "DqgKuLYUv00",
+    "title": "Blender MCP Demo: AI Prompting a dragon in a dungeon",
+    "channel": "ahujasid",
+    "channelUrl": "https://www.youtube.com/@ahujasid95"
+  },
   "what": "A community plugin (formerly blender-mcp) that connects Blender to any LLM through MCP. A Blender add-on runs a local socket server and the MCP server sends it commands, so the AI can create and edit objects, materials and scenes, and pull in assets from Poly Haven, Sketchfab and Poly Pizza. Third-party, not made by or affiliated with Blender. MIT licensed.",
   "who": "Game artists and indie devs who want to block out 3D scenes or props by prompting. The plugin is free; built-in AI 3D model generation without your own API keys is an optional paid Premium feature.",
   "setup": [

@@ -10,6 +10,12 @@
   "url": "https://github.com/openai/openai-agents-python",
   "maker": "OpenAI",
   "updated": "2026-10-17",
+  "demo": {
+    "youtubeId": "tK32trvj_b4",
+    "title": "Build Hour: Agents SDK",
+    "channel": "OpenAI",
+    "channelUrl": "https://www.youtube.com/@OpenAI"
+  },
   "what": "A lightweight Python framework for building agents and multi-agent workflows. It covers agents with tools and handoffs, guardrails, human-in-the-loop, sessions, tracing, sandbox agents and voice/realtime agents. It works with OpenAI's APIs and, per the README, 100+ other LLMs. A JS/TS version exists too. MIT licensed.",
   "who": "Python developers building their own agents who want a small, well-documented framework.",
   "setup": [

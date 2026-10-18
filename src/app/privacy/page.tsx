@@ -29,6 +29,8 @@ export default function Page() {
       <li>Google (Gmail): our business inbox, where waitlist and sponsor messages are delivered.</li>
       <li>When our packs go on sale, Gumroad will handle payments as the seller of record; we never see your card details.</li>
     </ul>
+    <h2>Embedded YouTube videos</h2>
+    <p>Some listing pages include an official demo video from YouTube (owned by Google), embedded in YouTube's privacy-enhanced mode (youtube-nocookie.com). The video player loads from YouTube only when you click play. Until then the page shows only a preview image, which your browser fetches from YouTube's image server (i.ytimg.com) when you scroll to it; we don't send it the page address. Once you click play, YouTube receives information such as your IP address and the page you're on, may store data on your device, and <a href="https://policies.google.com/privacy">Google's privacy policy</a> applies.</p>
     <h2>How long we keep it</h2>
     <p>We keep your email for as long as you're subscribed or on the waitlist. If you unsubscribe, we keep a record that you opted out so we don't email you again. Ask us to delete it and we will.</p>
     <h2>Your choices</h2>

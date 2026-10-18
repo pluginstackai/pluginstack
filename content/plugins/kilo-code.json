@@ -11,6 +11,12 @@
   "url": "https://kilo.ai",
   "maker": "Kilo Code",
   "updated": "2026-10-17",
+  "demo": {
+    "youtubeId": "_4H1D1OBLgY",
+    "title": "Kilo VS Code Rebuild Explained: Faster Agents, Better Diffs, More Kilo Speed",
+    "channel": "Kilo",
+    "channelUrl": "https://www.youtube.com/@Kilo-Code"
+  },
   "what": "An open-source AI coding agent for VS Code, JetBrains IDEs and the terminal. With a Kilo account you can pick from 500+ models and switch mid-task; Kilo says you pay the model provider's rate with no markup. It also offers a cloud agent and automated PR reviews. MIT licensed.",
   "who": "VS Code and JetBrains users who want an open-source agent inside the editor and a choice of models.",
   "setup": [

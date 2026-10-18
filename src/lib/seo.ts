@@ -2,8 +2,10 @@ import type { Metadata } from 'next';
 import { getPlugins, site, type Plugin } from './data';
 
 /** Plugin plus the optional `updated` (YYYY-MM-DD, last checked against official docs). */
-/** demo: optional URL of a short walkthrough video (mp4/webm). Listings without one render no demo section. */
-export type ListedPlugin = Plugin & { updated?: string; demo?: string };
+/** Official demo video on YouTube, embedded click-to-load via youtube-nocookie.com. See content/SCHEMA.md for the rules. */
+export type DemoVideo = { youtubeId: string; title: string; channel: string; channelUrl: string };
+/** demo: optional official YouTube demo. Listings without one render no demo section. */
+export type ListedPlugin = Plugin & { updated?: string; demo?: DemoVideo };
 export const plugins = (): ListedPlugin[] => getPlugins();
 
 export const absUrl = (path: string) => new URL(path, site.url).toString();
