@@ -1,5 +1,6 @@
 import './globals.css';
 import Link from 'next/link';
+import Script from 'next/script';
 import type { Metadata } from 'next';
 import { site } from '../lib/data';
 import { DEFAULT_OG, TWITTER } from '../lib/seo';
@@ -33,5 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <p>© {new Date().getFullYear()} {site.name}. Free directory. {site.name} is independent and not affiliated with or endorsed by the listed companies; trademarks belong to their owners.</p>
         <p>Contact: <a href={`mailto:${site.contactEmail}`} className="underline underline-offset-2">{site.contactEmail}</a></p></div>
     </div></footer>
+    {/* Cloudflare Web Analytics (cookieless, no personal tracking); site www.pluginstackai.com, public token. */}
+    <Script src="https://static.cloudflareinsights.com/beacon.min.js" strategy="afterInteractive" data-cf-beacon='{"token": "ed80b4b805fb4ebb8c22ad1cc0fd32b3"}' />
   </body></html>);
 }

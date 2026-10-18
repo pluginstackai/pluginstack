@@ -12,7 +12,8 @@ export default function Page() {
       <li><b>Your email address</b>, when you sign up for the newsletter, join the Get unstuck waitlist, or ask about sponsorship.</li>
       <li><b>Anything you type in the optional note field</b> (for example “what's broken” on the waitlist, or your company name on the sponsor form).</li>
       <li><b>Your IP address</b>, briefly and in memory only, to rate-limit signups and block spam. We don't store it in a database.</li>
-      <li>Standard server logs kept by our hosting provider. We don't use advertising trackers or sell data.</li>
+      <li><b>Anonymous, aggregate site statistics</b> via <a href="https://www.cloudflare.com/web-analytics/">Cloudflare Web Analytics</a>, a privacy-first analytics tool: it uses no cookies, doesn't track you across sites or build a profile of you, and only gives us totals such as page views, referring sites, country, and device/browser type.</li>
+      <li>Standard server logs kept by our hosting provider. We don't use advertising trackers, cookies for tracking, or sell data.</li>
     </ul>
     <h2>Why we use it</h2>
     <ul>
@@ -24,7 +25,7 @@ export default function Page() {
     <h2>Who processes it for us</h2>
     <ul>
       <li><a href="https://resend.com/legal/privacy-policy">Resend</a>: stores our contact lists and sends our emails.</li>
-      <li><a href="https://www.cloudflare.com/privacypolicy/">Cloudflare</a>: hosts this website and provides our CDN and DNS.</li>
+      <li><a href="https://www.cloudflare.com/privacypolicy/">Cloudflare</a>: hosts this website, provides our CDN and DNS, and provides our cookieless Web Analytics.</li>
       <li>Google (Gmail): our business inbox, where waitlist and sponsor messages are delivered.</li>
       <li>When our packs go on sale, Gumroad will handle payments as the seller of record; we never see your card details.</li>
     </ul>
