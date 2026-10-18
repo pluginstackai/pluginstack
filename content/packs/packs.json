@@ -50,7 +50,7 @@
     "name": "Everything Bundle",
     "price": 20,
     "gumroadUrl": "",
-    "desc": "All current packs, plus future updates.",
+    "desc": "All current packs.",
     "items": [
       "All packs",
       "Future updates"
