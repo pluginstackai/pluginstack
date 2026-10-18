@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import { getPlugins, site, type Plugin } from './data';
 
 /** Plugin plus the optional `updated` (YYYY-MM-DD, last checked against official docs). */
-export type ListedPlugin = Plugin & { updated?: string };
+/** demo: optional URL of a short walkthrough video (mp4/webm). Listings without one render no demo section. */
+export type ListedPlugin = Plugin & { updated?: string; demo?: string };
 export const plugins = (): ListedPlugin[] => getPlugins();
 
 export const absUrl = (path: string) => new URL(path, site.url).toString();

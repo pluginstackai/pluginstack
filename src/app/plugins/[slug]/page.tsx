@@ -39,15 +39,8 @@ export default async function PluginPage({ params }: { params: Promise<{ slug: s
     <section className="card"><H>How to set it up</H><ol className="list-decimal pl-5 space-y-4 text-slate-700 dark:text-slate-300">{p.setup.map((s, i) => <li key={i} className="min-w-0"><p>{s.text}</p>{s.code && <div className="mt-2"><CodeBlock code={s.code} language={s.language} /></div>}</li>)}</ol>
       <p className="text-xs text-slate-600 dark:text-slate-400 mt-3">Check the <a className="link" href={p.url}>official {p.name} docs</a> for the latest steps.</p></section>
     <section className="card"><H>Example prompts</H><div className="space-y-3">{p.prompts.map((s, i) => <CodeBlock key={i} code={s} tone="prompt" />)}</div></section>
-    <section className="card"><H>Demo</H>
-      <div className="relative aspect-video overflow-hidden rounded-xl border border-navy/10 dark:border-navy-700 bg-gradient-to-br from-cream to-cream-300 dark:from-navy-950 dark:to-navy-800 grid place-items-center">
-        <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(#0F235022_1px,transparent_1px),linear-gradient(90deg,#0F235022_1px,transparent_1px)] dark:opacity-40 [background-size:32px_32px]" />
-        <div className="relative text-center px-6">
-          <div className="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-full bg-coral shadow-lg shadow-coral/30"><svg viewBox="0 0 24 24" aria-hidden="true" className="h-7 w-7 fill-navy ml-1"><path d="M8 5v14l11-7z" /></svg></div>
-          <p className="font-semibold text-lg text-navy dark:text-white">Demo coming soon</p>
-          <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">A short walkthrough of {p.name} in action.</p>
-        </div>
-      </div></section>
+    {p.demo && <section className="card"><H>Demo</H>
+      <video controls preload="metadata" src={p.demo} aria-label={`${p.name} walkthrough`} className="aspect-video w-full rounded-xl border border-navy/10 dark:border-navy-700 bg-navy-950" /></section>}
     {related.length > 0 && <section aria-labelledby="related"><h2 id="related" className="text-xl font-semibold mb-3">More {p.category}</h2>
       <PluginGrid items={related} heading="h3" showCategory={false} />
       <p className="mt-4 text-sm"><Link href={catPath} className="link">See all {p.category} on {site.name}</Link></p></section>}
