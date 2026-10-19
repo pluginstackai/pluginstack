@@ -3,7 +3,7 @@ import Prose from '../../components/Prose';
 import { site } from '../../lib/data';
 export const metadata = pageMeta({ title: 'Disclosures', description: `How ${site.name} handles sponsorships, affiliate links and independence.`, path: '/disclosures/' });
 export default function Page() {
-  return (<Prose title="Disclosures" updated="October 16, 2026">
+  return (<Prose title="Disclosures" updated="October 19, 2026">
     <h2>Not affiliated</h2>
     <p><b>Not affiliated with or endorsed by the listed companies; trademarks belong to their owners.</b> {site.name} is an independent site. We mention product names only to describe what each tool is and what it works with.</p>
     <h2>Sponsorships</h2>
@@ -15,8 +15,8 @@ export default function Page() {
     </ul>
     <h2>Affiliate links</h2>
     <p>Right now we don't use affiliate links. If we add any, the link will be marked “(affiliate)” next to it, and it means we may earn a commission if you buy, at no extra cost to you. Affiliate deals don't affect what we feature.</p>
-    <h2>Our own products</h2>
-    <p>We sell our own prompt and rules packs. When we mention them in the newsletter or on the site, it's because they're ours.</p>
+    <h2 id="our-products">Our own products</h2>
+    <p>We sell our own prompt and rules packs. When we mention them in the newsletter or on the site, it's because they're ours. Some plugin pages show one of our packs in a box labeled “From PluginStack · our own pack” when it's relevant to that tool. That box is our product, not a sponsored placement or affiliate link, and it doesn't change what we say about the tool.</p>
     <h2>How we check pages</h2>
     <p>Directory pages are checked against official docs. Tools change often, so if something is out of date, tell us at <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>.</p>
   </Prose>);

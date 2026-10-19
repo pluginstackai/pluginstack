@@ -1,0 +1,177 @@
+{
+  "_about": "One 'Pairs well with' pack per listing page, or none. pack = slug in content/packs/packs.json, or null. why = shown on the card (keep it true to what the pack contains). reason = internal note for null entries, not shown. Every listing must have an entry (checked at build).",
+  "pairings": {
+    "agent-skills": {
+      "pack": null,
+      "reason": "Agent Builder has 2 Claude Code skills, but only for MCP servers and evals; not a general skills pack."
+    },
+    "agents-md": {
+      "pack": null,
+      "reason": "No pack is built around AGENTS.md files in general (the game-dev AGENTS.md files are engine-specific)."
+    },
+    "aider": {
+      "pack": "vibe-coder-starter",
+      "why": "50 plain-English prompts for planning, building, debugging and shipping with any AI coding agent, plus a debugging checklist."
+    },
+    "blender-mcp": {
+      "pack": null,
+      "reason": "Blender is 3D modeling; no pack covers it (Indie Game Dev is Phaser 3 / Three.js browser games)."
+    },
+    "bolt-diy": {
+      "pack": "vibe-coder-starter",
+      "why": "50 plain-English prompts for planning, building, debugging and shipping with any AI coding agent, plus a debugging checklist."
+    },
+    "brave-search-mcp": {
+      "pack": null,
+      "reason": "Uses or connects an existing tool/service; no pack covers it."
+    },
+    "chrome-devtools-mcp": {
+      "pack": null,
+      "reason": "Uses or connects an existing tool/service; no pack covers it."
+    },
+    "claude-code": {
+      "pack": "vibe-coder-starter",
+      "why": "50 plain-English prompts for planning, building, debugging and shipping with any AI coding agent, plus a debugging checklist."
+    },
+    "cline": {
+      "pack": "vibe-coder-starter",
+      "why": "50 plain-English prompts for planning, building, debugging and shipping with any AI coding agent, plus a debugging checklist."
+    },
+    "cloudflare-mcp": {
+      "pack": null,
+      "reason": "Uses or connects an existing tool/service; no pack covers it."
+    },
+    "codex-cli": {
+      "pack": "vibe-coder-starter",
+      "why": "50 plain-English prompts for planning, building, debugging and shipping with any AI coding agent, plus a debugging checklist."
+    },
+    "context7": {
+      "pack": null,
+      "reason": "Uses or connects an existing tool/service; no pack covers it."
+    },
+    "crewai": {
+      "pack": "agent-builder-pack",
+      "why": "Framework-agnostic rules for agent tool design and error handling, plus 12 eval prompt templates to test any agent. Not specific to CrewAI."
+    },
+    "cursor-rules": {
+      "pack": "nextjs-cursorrules",
+      "why": "8 ready-made Cursor project rules (.mdc) for Next.js App Router, Server Components, Tailwind, TypeScript and testing."
+    },
+    "dyad": {
+      "pack": "vibe-coder-starter",
+      "why": "50 plain-English prompts for planning, building, debugging and shipping with any AI coding agent, plus a debugging checklist."
+    },
+    "exa-mcp": {
+      "pack": null,
+      "reason": "Uses or connects an existing tool/service; no pack covers it."
+    },
+    "fastmcp": {
+      "pack": null,
+      "reason": "Agent Builder targets the official MCP SDK v2 (MCPServer) and tells the agent not to use FastMCP-style APIs, so it would conflict."
+    },
+    "fetch-mcp": {
+      "pack": null,
+      "reason": "Uses or connects an existing tool/service; no pack covers it."
+    },
+    "figma-mcp": {
+      "pack": null,
+      "reason": "Uses or connects an existing tool/service; no pack covers it."
+    },
+    "filesystem-mcp": {
+      "pack": null,
+      "reason": "Uses or connects an existing tool/service; no pack covers it."
+    },
+    "firecrawl-mcp": {
+      "pack": null,
+      "reason": "Uses or connects an existing tool/service; no pack covers it."
+    },
+    "github-mcp-server": {
+      "pack": null,
+      "reason": "Uses or connects an existing tool/service; no pack covers it."
+    },
+    "godot-ai": {
+      "pack": null,
+      "reason": "Indie Game Dev pack covers browser games in Phaser 3 and Three.js, not Godot."
+    },
+    "goose": {
+      "pack": "vibe-coder-starter",
+      "why": "50 plain-English prompts for planning, building, debugging and shipping with any AI coding agent, plus a debugging checklist."
+    },
+    "kilo-code": {
+      "pack": "vibe-coder-starter",
+      "why": "50 plain-English prompts for planning, building, debugging and shipping with any AI coding agent, plus a debugging checklist."
+    },
+    "langgraph": {
+      "pack": "agent-builder-pack",
+      "why": "Framework-agnostic rules for agent tool design and error handling, plus 12 eval prompt templates to test any agent. Not specific to LangGraph."
+    },
+    "linear-mcp": {
+      "pack": null,
+      "reason": "Uses or connects an existing tool/service; no pack covers it."
+    },
+    "mastra": {
+      "pack": "agent-builder-pack",
+      "why": "Framework-agnostic rules for agent tool design and error handling, plus 12 eval prompt templates to test any agent. Not specific to Mastra."
+    },
+    "mcp-inspector": {
+      "pack": "agent-builder-pack",
+      "why": "Rules, skills and prompts for building MCP servers in TypeScript or Python, with MCP Inspector checks built into every step."
+    },
+    "memory-mcp": {
+      "pack": null,
+      "reason": "Uses or connects an existing tool/service; no pack covers it."
+    },
+    "neon-mcp": {
+      "pack": null,
+      "reason": "Uses or connects an existing tool/service; no pack covers it."
+    },
+    "notion-mcp": {
+      "pack": null,
+      "reason": "Uses or connects an existing tool/service; no pack covers it."
+    },
+    "openai-agents-sdk": {
+      "pack": "agent-builder-pack",
+      "why": "Framework-agnostic rules for agent tool design and error handling, plus 12 eval prompt templates to test any agent. Not specific to the OpenAI Agents SDK."
+    },
+    "opencode": {
+      "pack": "vibe-coder-starter",
+      "why": "50 plain-English prompts for planning, building, debugging and shipping with any AI coding agent, plus a debugging checklist."
+    },
+    "openhands": {
+      "pack": "vibe-coder-starter",
+      "why": "50 plain-English prompts for planning, building, debugging and shipping with any AI coding agent, plus a debugging checklist."
+    },
+    "playwright-mcp": {
+      "pack": null,
+      "reason": "Uses or connects an existing tool/service; no pack covers it."
+    },
+    "pydantic-ai": {
+      "pack": "agent-builder-pack",
+      "why": "Framework-agnostic rules for agent tool design and error handling, plus 12 eval prompt templates to test any agent. Not specific to Pydantic AI."
+    },
+    "sentry-mcp": {
+      "pack": null,
+      "reason": "Uses or connects an existing tool/service; no pack covers it."
+    },
+    "sequential-thinking-mcp": {
+      "pack": null,
+      "reason": "Uses or connects an existing tool/service; no pack covers it."
+    },
+    "stripe-mcp": {
+      "pack": null,
+      "reason": "Uses or connects an existing tool/service; no pack covers it."
+    },
+    "supabase-mcp": {
+      "pack": null,
+      "reason": "Uses or connects an existing tool/service; no pack covers it."
+    },
+    "unity-mcp": {
+      "pack": null,
+      "reason": "Indie Game Dev pack covers browser games in Phaser 3 and Three.js, not Unity."
+    },
+    "vercel-ai-sdk": {
+      "pack": "agent-builder-pack",
+      "why": "Framework-agnostic rules for agent tool design and error handling, plus 12 eval prompt templates to test any agent. Not specific to the AI SDK."
+    }
+  }
+}

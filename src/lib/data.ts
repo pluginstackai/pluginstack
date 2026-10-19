@@ -13,3 +13,16 @@ export function getPlugins(): Plugin[] {
 }
 export const getPlugin = (slug: string) => getPlugins().find(p => p.slug === slug);
 export const getPacks = (): Pack[] => JSON.parse(fs.readFileSync(path.join(dir, 'packs', 'packs.json'), 'utf8'));
+/** "Pairs well with" mapping: content/packs/pairings.json. One pack (or none) per listing, reviewed by hand. */
+export type Pairing = { pack: string | null; why?: string; reason?: string };
+export function getPairedPack(slug: string): { pack: Pack; why: string } | null {
+  const all: Record<string, Pairing> = JSON.parse(fs.readFileSync(path.join(dir, 'packs', 'pairings.json'), 'utf8')).pairings;
+  const entry = all[slug];
+  if (!entry) throw new Error(`content/packs/pairings.json has no entry for "${slug}" (use "pack": null for none)`);
+  if (!entry.pack) return null;
+  const pack = getPacks().find(k => k.slug === entry.pack);
+  if (!pack) throw new Error(`pairings.json: unknown pack "${entry.pack}" for "${slug}"`);
+  if (!entry.why?.trim()) throw new Error(`pairings.json: "${slug}" needs a "why" line`);
+  // Not on sale yet (no Gumroad link): show nothing rather than a dead end.
+  return pack.gumroadUrl?.trim() ? { pack, why: entry.why } : null;
+}

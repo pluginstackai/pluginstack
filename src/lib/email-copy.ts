@@ -11,6 +11,8 @@ export const NEWSLETTER = NEWSLETTER_LIVE ? {
   sponsor: 'Featured spot in the weekly email.',
   sponsorTitle: 'Newsletter feature',
   subscribed: "You're subscribed. Thanks!",
+  inlineTitle: 'Get weekly picks',
+  inlineBlurb: 'New AI plugins, MCP servers and setup guides like this one, in one email a week.',
 } : {
   homeCta: 'Join the list',
   footer: 'PluginStack Weekly (starting soon): one email a week with new AI tools, plus occasional offers on our packs. Join the list now and get the first issue.',
@@ -19,4 +21,6 @@ export const NEWSLETTER = NEWSLETTER_LIVE ? {
   sponsor: 'Featured spot in the weekly email, once PluginStack Weekly launches.',
   sponsorTitle: 'Newsletter feature (coming soon)',
   subscribed: "You're on the list for PluginStack Weekly. We'll email you when the first issue goes out.",
+  inlineTitle: 'Join the list',
+  inlineBlurb: "Want to hear about more tools like this one? Join the PluginStack list. We haven't sent an email yet; we'll write when the first issue is ready.",
 };
