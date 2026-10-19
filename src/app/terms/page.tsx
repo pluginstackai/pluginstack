@@ -2,13 +2,13 @@ import Prose from '../../components/Prose';
 import { site } from '../../lib/data';
 export const metadata = { title: 'Terms of Service', description: `The terms for using ${site.name}: the free directory, third-party tools, packs, the newsletter, warranty and liability limits.`, alternates: { canonical: '/terms/' } };
 export default function Page() {
-  return (<Prose title="Terms of Service" updated="October 16, 2026">
+  return (<Prose title="Terms of Service" updated="October 19, 2026">
     <p>These terms apply when you use {site.url.replace('https://', '')} and anything we sell. By using the site, you agree to them.</p>
     <h2>The directory</h2>
     <p>The plugin pages are free to read. We check them against official docs, but tools change fast. Information is provided “as is”, and we can't promise any third-party tool will work as described. Always review commands before you run them, especially anything that touches your files, accounts or payments.</p>
     <h2>Third-party tools</h2>
     <p>The tools we list are made by other companies. Your use of them is governed by their own terms. {site.name} is independent and not affiliated with or endorsed by the listed companies; trademarks belong to their owners.</p>
-    <h2>Packs (when on sale)</h2>
+    <h2 id="packs">Packs: license &amp; refunds</h2>
     <ul>
       <li>You get a personal and commercial-use license to use pack contents in your own projects and your clients' projects.</li>
       <li>You may not resell, redistribute or share the pack files themselves.</li>
