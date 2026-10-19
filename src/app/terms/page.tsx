@@ -12,7 +12,9 @@ export default function Page() {
     <ul>
       <li>You get a personal and commercial-use license to use pack contents in your own projects and your clients' projects.</li>
       <li>You may not resell, redistribute or share the pack files themselves.</li>
-      <li>Payments are handled by Gumroad. Refunds follow the policy shown on each product page.</li>
+      <li>Payments are handled by Gumroad.</li>
+      <li>All sales are final because packs are instant digital downloads. If a file is broken or doesn't match its description, email <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a> and we'll fix it or make it right.</li>
+      <li>Where local law gives you a right to cancel or a refund (for example in the EU or UK), that right still applies, and Gumroad, as seller of record, handles it.</li>
     </ul>
     <h2>Newsletter</h2>
     <p>The newsletter is free. You can unsubscribe anytime using the link in any email.</p>

@@ -24,6 +24,6 @@ export default function Packs() {
         <p className="text-xs text-slate-500 dark:text-slate-400 mt-2 text-right">Personal &amp; commercial use, no resale. <Link href={terms} className="link">License &amp; refunds</Link></p>
       </div>);
     })}</div>
-    <p className="text-sm text-slate-600 dark:text-slate-400 mt-6">Checkout is handled securely by Gumroad. By buying you agree to our <Link href={terms} className="link">pack license and refund terms</Link>.</p>
+    <p className="text-sm text-slate-600 dark:text-slate-400 mt-6">Checkout is handled securely by Gumroad. All sales are final (instant digital downloads), but if a file is broken or doesn't match its description, we'll fix it or make it right. By buying you agree to our <Link href={terms} className="link">pack license and refund terms</Link>.</p>
   </div>);
 }
