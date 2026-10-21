@@ -10,12 +10,6 @@
   "url": "https://github.com/oraios/serena",
   "maker": "Oraios AI",
   "updated": "2026-10-21",
-  "demo": {
-    "youtubeId": "5QN7gN1KYLA",
-    "title": "Introduction to Serena – The IDE for Your Coding Agent",
-    "channel": "Oraios AI",
-    "channelUrl": "https://www.youtube.com/@OraiosAI"
-  },
   "what": "An MCP server that gives coding agents IDE-style tools: find a symbol, list references, rename across files, replace a function body and read diagnostics, working at the symbol level instead of with line numbers and text search. It uses language servers (free and open source, 40+ languages) by default, or an optional paid JetBrains plugin. It also has a project memory system and a local web dashboard. Serena v2.1.0 was released on 2026-10-19. The Serena application is GPL-3.0-or-later; its SolidLSP component is MIT.",
   "who": "Developers using Claude Code, Codex, Cursor or another MCP client on larger codebases, where cross-file renames and reference lookups by text search get slow or error-prone.",
   "setup": [
