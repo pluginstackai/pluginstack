@@ -1,0 +1,43 @@
+{
+  "slug": "claude-code-plugins",
+  "name": "Claude Code Plugins (official marketplace)",
+  "category": "Rules & Prompts",
+  "tags": [
+    "claude-code",
+    "plugins",
+    "marketplace"
+  ],
+  "url": "https://github.com/anthropics/claude-plugins-official",
+  "maker": "Anthropic",
+  "updated": "2026-10-21",
+  "what": "Anthropic's official plugin marketplace for Claude Code. A plugin bundles skills, subagents, hooks and MCP or LSP servers so you install them in one step. It lists plugins Anthropic maintains (such as commit-commands, code-review, feature-dev and the language-server plugins) alongside plugins from partners and other authors. Claude Code adds this marketplace for you the first time you start an interactive terminal session. The repo is Apache-2.0; each plugin has its own license.",
+  "who": "Claude Code users who want ready-made workflows or official service integrations without wiring up each skill and MCP server by hand.",
+  "setup": [
+    {
+      "text": "Start Claude Code in your project with claude, then run /plugin to browse the Discover tab. Or open a plugin's details directly by name and marketplace:",
+      "code": "/plugin install commit-commands@claude-plugins-official",
+      "language": "text"
+    },
+    {
+      "text": "Read the details pane before installing: it lists what the plugin will install (commands, agents, skills, hooks, MCP and LSP servers) and, for this marketplace, a context-cost estimate. Then pick a scope: you (every project), all collaborators on this repository, or you in this repo only."
+    },
+    {
+      "text": "From your shell instead (user scope by default):",
+      "code": "claude plugin install commit-commands@claude-plugins-official",
+      "language": "bash"
+    },
+    {
+      "text": "If you see Marketplace \"claude-plugins-official\" not found (for example on a new machine or if you've only used the VS Code extension), add it, then install again:",
+      "code": "/plugin marketplace add anthropics/claude-plugins-official",
+      "language": "text"
+    },
+    {
+      "text": "Anthropic's own warning applies: plugins can run hooks and MCP servers with your user permissions, and Anthropic doesn't control what third-party plugins include. Check each plugin's homepage or source first. You can also browse the catalog on the web at claude.com/marketplace/plugins."
+    }
+  ],
+  "prompts": [
+    "/commit-commands:commit",
+    "Review my open pull request with the code-review plugin.",
+    "Which plugins do I have installed, and which of them add MCP servers or hooks?"
+  ]
+}

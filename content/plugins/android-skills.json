@@ -1,0 +1,40 @@
+{
+  "slug": "android-skills",
+  "name": "Android Skills",
+  "category": "Rules & Prompts",
+  "tags": [
+    "android",
+    "skills",
+    "kotlin"
+  ],
+  "url": "https://github.com/android/skills",
+  "maker": "Google (Android)",
+  "updated": "2026-10-21",
+  "what": "Google's official Agent Skills for Android development: SKILL.md instructions that ground coding agents in current Android guidance for tasks where Google's evaluations show LLMs underperform. Examples include migrating XML views to Jetpack Compose, upgrading to AGP 9, setting up Navigation 3, making an app edge-to-edge, auditing R8 configuration and fixing ANRs. They follow the open Agent Skills standard, so they work with Claude Code, Codex, Gemini/Antigravity and other agents that support skills. Apache-2.0.",
+  "who": "Android developers using an AI coding agent who want it to follow Google's current recommended patterns instead of outdated ones.",
+  "setup": [
+    {
+      "text": "Install the Android CLI from developer.android.com/tools/agents/android-cli, then list and add skills (add --all for every skill, --agent to pick agents, --project to install into a project):",
+      "code": "android skills list\nandroid skills add --all\nandroid skills add r8-analyzer --project=.",
+      "language": "bash"
+    },
+    {
+      "text": "Or install as a plugin. Claude Code:",
+      "code": "/plugin marketplace add android/skills\n/plugin install android-skills@android-skills",
+      "language": "text"
+    },
+    {
+      "text": "Codex:",
+      "code": "codex plugin marketplace add android/skills\ncodex plugin add android-skills@android-skills",
+      "language": "bash"
+    },
+    {
+      "text": "Agents pick up a relevant skill automatically when your request matches it. The Android CLI collects basic usage data; pass --no-metrics to turn that off. Google doesn't accept public contributions to the repo and reminds you to double-check AI output."
+    }
+  ],
+  "prompts": [
+    "Make my app UI edge-to-edge.",
+    "Upgrade this project to AGP 9 and fix anything the upgrade breaks.",
+    "Migrate the settings screen from XML views to Jetpack Compose."
+  ]
+}

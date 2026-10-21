@@ -305,6 +305,256 @@ const claude: Guide = {
   ],
 };
 
-export const GUIDES: Guide[] = [cursor, claude];
+const plugins: Guide = {
+  slug: "install-claude-code-plugins",
+  title: "How to install Claude Code plugins (marketplaces, scopes & fixes)",
+  h1: "How to install Claude Code plugins",
+  description: "Install Claude Code plugins from the official marketplace or any GitHub repo: /plugin commands, install scopes, updates, safety checks and fixes for common errors.",
+  published: "2026-10-21", updated: "2026-10-21",
+  intro: "Claude Code plugins bundle skills, subagents, hooks and MCP servers so you can add a whole workflow or integration in one step. This guide covers installing from Anthropic's official marketplace and from other repositories, choosing a scope, keeping plugins updated, checking what a plugin can do before you trust it, and fixing the errors people hit most.",
+  blocks: [
+
+    { h2: "Quick answer", id: "quick-answer" },
+    { ol: [
+      "Open a terminal in your project and start Claude Code with `claude`.",
+      "Run `/plugin` to browse the **Discover** tab, or open one plugin's details directly with `/plugin install <name>@claude-plugins-official`.",
+      "Read what the plugin will install, then choose a scope: you (every project), everyone on this repository, or you in this repository only.",
+      "Type `/` and look for the plugin's skills, which appear as `/plugin-name:skill-name`.",
+    ] },
+    { p: "`/plugin` only works inside a Claude Code terminal session. To install from a script or a plain shell, use `claude plugin install` instead (see below)." },
+
+    { h2: "What a plugin is (and when you need one)", id: "what" },
+    { p: "A plugin is a folder of components that Claude Code installs and loads as one unit: **skills** (SKILL.md instructions), **agents** (subagents Claude can delegate to), **hooks** (commands that run at points such as after every edit) and **MCP or LSP servers**. Plugins come from a **marketplace**, which is just a catalog: a repository with a `.claude-plugin/marketplace.json` file listing plugins and where to fetch each one." },
+    { p: "You don't need a plugin for a single skill or a single MCP server. A skill saved in `~/.claude/skills/` already works in every project (see [how to create an Agent Skill](/guides/how-to-create-agent-skills/)), and one MCP server is a single `claude mcp add` command (see [the best MCP servers for Claude Code](/guides/best-mcp-servers-for-claude-code/)). Plugins are worth it when you want several pieces packaged together, with updates from the marketplace." },
+
+    { h2: "Install from the official marketplace", id: "official" },
+    { p: "Claude Code adds Anthropic's official marketplace, `claude-plugins-official`, the first time you start an interactive terminal session. It lists plugins Anthropic maintains plus plugins from partners and other authors. This example installs `commit-commands`, which adds commands for committing, pushing and opening pull requests:" },
+    { code: "/plugin install commit-commands@claude-plugins-official", lang: "text", caption: "Inside a Claude Code session" },
+    { ol: [
+      "The command opens the plugin's details instead of installing straight away.",
+      "Check **Will install**: the commands, agents, skills, hooks and MCP and LSP servers the plugin adds. For plugins in the official marketplace, a **Context cost** estimate shows what it adds to every message and what its skills add once loaded.",
+      "Pick a scope (next section). Claude Code installs the plugin and any plugins it depends on.",
+      "If the summary says `Plugin is now active.`, you're done. If it says `Run /reload-plugins to apply.`, Claude Code runs that reload for you when the panel closes.",
+    ] },
+    { p: "Then type `/` and look for `/commit-commands:commit`. The **Installed** tab in `/plugin` and `claude plugin list` in your shell also list the plugin with its scope." },
+    { h3: "Pick a scope" },
+    { ul: [
+      "**User** (Install for you): every project on this machine. Saved in `~/.claude/settings.json`.",
+      "**Project** (Install for all collaborators on this repository): saved in `.claude/settings.json`, which you commit. That turns the plugin on for teammates but doesn't download it for them, so each person runs `claude plugin install <plugin>@<marketplace> --scope project` once.",
+      "**Local** (Install for you, in this repo only): saved in `.claude/settings.local.json`.",
+    ] },
+    { p: "If the same plugin is set at several scopes, local beats project and project beats user." },
+
+    { h2: "Install from your shell, the desktop app or VS Code", id: "surfaces" },
+    { p: "From a shell or setup script, without starting a session (user scope unless you pass `--scope`):" },
+    { code: "claude plugin install commit-commands@claude-plugins-official\nclaude plugin install commit-commands@claude-plugins-official --scope project", lang: "bash" },
+    { p: "On a machine where nobody has opened an interactive Claude Code session yet, the official marketplace isn't registered, so add it first with `claude plugin marketplace add anthropics/claude-plugins-official`. Shell installs load the next time you start Claude Code, or after `/reload-plugins` in an open session." },
+    { ul: [
+      "**Desktop app** (local or SSH session in the Code tab): click **+** next to the prompt box, choose **Add plugins**, select the plugin and a scope.",
+      "**VS Code extension**: type `/plugins` to open **Manage plugins** and click **Install** on the Plugins tab. If the list is empty, add `anthropics/claude-plugins-official` on the Marketplaces tab first.",
+      "**Cloud sessions** (including claude.ai/code) have no plugin browser and don't load the plugins installed on your machine.",
+    ] },
+    { p: "The terminal, the desktop app's local sessions and the VS Code extension share the same settings files, so a user-scope plugin installed in one shows up in the other two." },
+
+    { h2: "Install from other marketplaces", id: "other-marketplaces" },
+    { p: "Many plugins live in their authors' own marketplaces, usually a GitHub repository. Add the marketplace once, then install by `plugin@marketplace-name`:" },
+    { code: "/plugin marketplace add <owner>/<repo>\n/plugin install <plugin>@<marketplace-name>", lang: "text" },
+    { p: "Claude Code prints the marketplace name when it adds it. Two real examples from our directory:" },
+    { code: "/plugin marketplace add android/skills\n/plugin install android-skills@android-skills", lang: "text", caption: "Android Skills (Google)" },
+    { code: "/plugin marketplace add apify/apify-claude-code-plugin\n/plugin install apify@apify", lang: "text", caption: "Apify MCP Server + skills" },
+    { p: "Anthropic also runs two other general marketplaces you add yourself: the community marketplace (`/plugin marketplace add anthropics/claude-plugins-community`, install with `@claude-community`) and a small demo marketplace in `anthropics/claude-code` (named `claude-code-plugins`). Older tutorials often add the demo one; most of its plugins, such as `code-review` and `commit-commands`, are also in the official marketplace, so install them from there to avoid duplicates." },
+    { p: "`/plugin marketplace add` also accepts a full git URL, a local folder or an `https://` URL to a `marketplace.json`. Recent versions can add and install in one step with `--marketplace`, for example `/plugin install deploy-helper --marketplace your-org/plugins` (Claude Code v2.1.275 or later in a session, v2.1.292 or later for `claude plugin install`)." },
+
+    { h2: "Plugins worth trying first", id: "try" },
+    { p: "This isn't a ranking and nobody paid to be listed. Each name below is in the official marketplace, so install it with `/plugin install <name>@claude-plugins-official`." },
+    { ul: [
+      "**From Anthropic**: `commit-commands` (commit, push, open a PR), `code-review` (multi-agent review of a pull request), `feature-dev` (a guided feature workflow with exploration, architecture and review agents) and `security-guidance` (security review of the code Claude writes).",
+      "**Code intelligence**: language-server plugins such as `typescript-lsp` and `pyright-lsp` let Claude see type errors after its edits and navigate by symbol. Install the language server itself first; for TypeScript that's `npm install -g typescript-language-server typescript`.",
+      "**Services you already use**: the official marketplace includes plugins named `context7`, `github`, `playwright`, `sentry`, `supabase`, `linear`, `notion` and `figma`. Our listings explain each tool: [Context7](/plugins/context7/), [GitHub MCP Server](/plugins/github-mcp-server/), [Playwright MCP](/plugins/playwright-mcp/), [Sentry MCP](/plugins/sentry-mcp/), [Supabase MCP](/plugins/supabase-mcp/).",
+      "**Skills**: `skill-creator` helps you write, improve and test your own skills.",
+    ] },
+    { p: "[Serena](/plugins/serena/) also appears in the official marketplace, but its maintainers ask users to install it with uv instead because marketplace entries can carry outdated commands. When a tool's own docs give a different install path, follow the tool's docs." },
+    { p: "Each enabled plugin adds the names and descriptions of its skills, agents and commands to Claude's context on every turn, and its MCP servers run alongside each session. Install the few you'll use. To see what an installed plugin costs, run `claude plugin details <name>` and read the `Always-on` line; the **Installed** tab groups plugins you haven't used recently under **Not used recently**." },
+
+    { h2: "Check a plugin before you trust it", id: "safety" },
+    { p: "A plugin runs with your user permissions. Its hooks, MCP servers and language servers run outside Claude Code's sandbox, and its skills become instructions Claude follows. Anthropic's install screen says it plainly: Anthropic doesn't control what MCP servers, files or other software plugins include." },
+    { ul: [
+      "Run `claude plugin marketplace list` to see where each marketplace came from.",
+      "In the plugin's details pane, choose **Open homepage** or **View on GitHub** and read `hooks/hooks.json` (what each hook runs), `.mcp.json` (each server's command or URL) and anything in `bin/`.",
+      "Prefer plugins from the company behind the service. Names such as `claude-plugins-official` are reserved: Claude Code only accepts them from `github.com/anthropics/` repositories, so a third-party catalog can't pose as Anthropic's.",
+      "Remember that updates can change what you reviewed. Auto-update is on by default for the official marketplace and off for third-party ones.",
+    ] },
+
+    { h2: "Update, disable or remove plugins", id: "manage" },
+    { p: "Run `/plugin` and press Tab to reach **Installed**. Select a plugin to disable, update or uninstall it, or press Space to toggle it. From your shell:" },
+    { code: "claude plugin list\nclaude plugin disable <plugin>@<marketplace>\nclaude plugin enable <plugin>@<marketplace>\nclaude plugin update <plugin>@<marketplace>\nclaude plugin uninstall <plugin>@<marketplace> --scope project", lang: "bash" },
+    { p: "Updated plugins load in your next session, or after `/reload-plugins`. Removing a marketplace (`claude plugin marketplace remove <name>`) also uninstalls every plugin you installed from it." },
+
+    { h2: "Common errors and fixes", id: "errors" },
+    { h3: "\"zsh: no such file or directory: /plugin\"" },
+    { p: "You typed `/plugin` at the shell prompt. Run `claude` first and type it at the Claude Code prompt, or use `claude plugin install <plugin>@<marketplace>` in the shell." },
+    { h3: "\"/plugin isn't available in this environment\"" },
+    { p: "`/plugin` needs a terminal session. It doesn't run with `claude -p`, the Agent SDK, the desktop app's Code tab or claude.ai/code, and in the VS Code panel only `/plugin` or `/plugins` on its own opens **Manage plugins**. Use that surface's own install steps above, or a terminal." },
+    { h3: "Marketplace \"claude-plugins-official\" not found" },
+    { p: "The official marketplace isn't registered yet, which happens if you've only used the VS Code extension, a policy blocks it, or `CLAUDE_CODE_DISABLE_OFFICIAL_MARKETPLACE_AUTOINSTALL` is set. Add it and retry:" },
+    { code: "/plugin marketplace add anthropics/claude-plugins-official", lang: "text" },
+    { p: "The same fix applies when the **Discover** tab is empty or `claude plugin marketplace list` says `No marketplaces configured`." },
+    { h3: "Plugin \"<name>\" not found in any marketplace" },
+    { p: "You left off `@marketplace`, so Claude Code only searched catalogs it already had. Name the marketplace (`/plugin install <name>@<marketplace>`), which refreshes it first, or copy the exact name from the **Discover** tab. If the plugin lives in a third-party marketplace, add that marketplace first." },
+    { h3: "\"not found in marketplace\" with a refresh hint" },
+    { p: "Your local copy of the catalog is out of date. Refresh it, then install again:" },
+    { code: "/plugin marketplace update <marketplace>", lang: "text" },
+    { h3: "Installed, but its skills don't show up" },
+    { ul: [
+      "Check **Installed** in `/plugin` (or `claude plugin list`) and make sure it's enabled.",
+      "Open the **Errors** tab in `/plugin`; each entry says what failed.",
+      "If you installed it during this session, run `/reload-plugins`.",
+      "Open the plugin's details: a plugin that lists no skills has none to show when you type `/`.",
+    ] },
+    { h3: "\"This reload changes MCP tools … Run /reload-plugins --force to apply\"" },
+    { p: "Adding or removing a plugin's MCP server would invalidate the prompt cache, so Claude Code waits. Run `/reload-plugins --force` to apply it now (your next message re-reads the whole conversation), or start a new session." },
+
+    { h2: "FAQ", id: "faq" },
+    { h3: "What's the difference between a plugin and an MCP server?" },
+    { p: "An MCP server gives Claude tools. A plugin is a package that can include MCP servers along with skills, subagents and hooks. Many plugins in the official marketplace, such as `github` or `sentry`, package a service's MCP server for you." },
+    { h3: "Do plugins work on claude.ai or in the desktop app?" },
+    { p: "The desktop app's local and SSH sessions do (use **+ → Add plugins**). Cloud sessions, including claude.ai/code, don't load plugins from your machine. claude.ai and Cowork have their own plugin support with a different set of components." },
+    { h3: "Using Cursor too?" },
+    { p: "Cursor has its own plugin format and marketplace, installed from **Customize**. See [Cursor Plugins](/plugins/cursor-plugins/), and [how to add an MCP server to Cursor](/guides/add-mcp-server-to-cursor/) for single servers." },
+  ],
+  related: ["claude-code-plugins", "claude-code", "android-skills", "apify-mcp", "serena", "cursor-plugins"],
+  sources: [
+    { label: "Claude Code docs: Install and manage plugins", url: "https://code.claude.com/docs/en/plugins/install" },
+    { label: "Claude Code docs: Anthropic's marketplaces", url: "https://code.claude.com/docs/en/plugins/anthropic-marketplaces" },
+    { label: "Claude Code docs: Plugins overview", url: "https://code.claude.com/docs/en/plugins/overview" },
+    { label: "Claude Code docs: Plugin security and trust", url: "https://code.claude.com/docs/en/plugins/security" },
+    { label: "Claude Code docs: Troubleshoot plugins", url: "https://code.claude.com/docs/en/plugins/troubleshooting" },
+    { label: "Claude Code docs: Plugin commands reference", url: "https://code.claude.com/docs/en/plugins/cli-reference" },
+    { label: "Claude Code docs: Code intelligence plugins", url: "https://code.claude.com/docs/en/plugins/code-intelligence" },
+    { label: "anthropics/claude-plugins-official (marketplace.json and README)", url: "https://github.com/anthropics/claude-plugins-official" },
+    { label: "Android Skills README (plugin install)", url: "https://github.com/android/skills" },
+    { label: "Apify docs: Install the Apify plugin in your AI agent", url: "https://docs.apify.com/agents/plugins" },
+    { label: "Serena README (installation)", url: "https://github.com/oraios/serena" },
+  ],
+};
+
+const skills: Guide = {
+  slug: "how-to-create-agent-skills",
+  title: "How to create an Agent Skill (SKILL.md) for Claude Code, Cursor and Codex",
+  h1: "How to create an Agent Skill (SKILL.md)",
+  description: "Write a SKILL.md that works in Claude Code, Cursor and Codex: where the folder goes, the frontmatter rules, a copy-paste example, and fixes when a skill won't trigger.",
+  published: "2026-10-21", updated: "2026-10-21",
+  intro: "An Agent Skill is a folder with a `SKILL.md` file that teaches a coding agent how to do one job, such as reviewing changes before a commit or following your deploy steps. Skills follow an open standard, so the same file works in Claude Code, Cursor and Codex. Only the folder locations and a few optional settings differ. This guide walks through a working example and the differences that trip people up.",
+  blocks: [
+
+    { h2: "Quick answer", id: "quick-answer" },
+    { ol: [
+      "Make a folder named after the skill, in lowercase with hyphens, for example `review-changes`, inside your tool's skills folder: `.claude/skills/` for Claude Code, `.agents/skills/` for Codex. Cursor reads either.",
+      "Add a `SKILL.md` that starts with YAML frontmatter containing `name` (the same as the folder name) and `description` (what it does and when to use it), followed by the instructions.",
+      "Ask for something that matches the description and the agent loads the skill on its own, or run it directly: `/review-changes` in Claude Code and Cursor, `$review-changes` in Codex.",
+    ] },
+
+    { h2: "How skills work", id: "how" },
+    { p: "Agents load skills in stages. At the start of a session they only see each skill's `name` and `description`. When a request matches a description, the agent reads the full `SKILL.md`, and it opens extra files in the skill folder only if the instructions point to them. That's why you can install many skills without filling the context window, and why the `description` decides whether a skill ever gets used." },
+    { p: "Skills are different from always-on instructions. Files such as `CLAUDE.md`, [AGENTS.md](/plugins/agents-md/) and [Cursor rules](/plugins/cursor-rules/) apply to every session. A skill only loads when it's relevant or when you call it. They're also different from MCP servers: a skill is instructions (plus optional scripts), while an [MCP server](/guides/add-mcp-server-to-cursor/) gives the agent new tools." },
+
+    { h2: "Where the skill folder goes", id: "locations" },
+    { ul: [
+      "**Claude Code**: `.claude/skills/<name>/SKILL.md` in the project (commit it to share with your team) or `~/.claude/skills/<name>/SKILL.md` for all your projects. In a monorepo it also loads `.claude/skills/` from parent folders up to the repository root.",
+      "**Cursor**: `.agents/skills/` or `.cursor/skills/` in the project, `~/.agents/skills/` or `~/.cursor/skills/` for all projects. For compatibility it also reads `.claude/skills/`, `.codex/skills/`, `~/.claude/skills/` and `~/.codex/skills/`.",
+      "**Codex**: `.agents/skills/` in the folder you start Codex in and every parent folder up to the repository root, plus `~/.agents/skills/` (written as `$HOME/.agents/skills` in OpenAI's docs) for all projects.",
+    ] },
+    { h3: "One skill for all three tools" },
+    { p: "If you only use Claude Code and Cursor, `.claude/skills/` is enough, since Cursor reads it too. If you also use Codex, keep the real folder in `.agents/skills/` (read by Cursor and Codex) and link it into `.claude/skills/` for Claude Code, which follows symlinked skill folders. On macOS or Linux, from the project root:" },
+    { code: "mkdir -p .agents/skills/review-changes .claude/skills\nln -s ../../.agents/skills/review-changes .claude/skills/review-changes", lang: "bash" },
+
+    { h2: "Write the SKILL.md", id: "write" },
+    { p: "This skill reviews uncommitted changes before a commit. It uses only the fields all three tools understand. Save it as `SKILL.md` inside the `review-changes` folder:" },
+    { code: "---\nname: review-changes\ndescription: Reviews uncommitted git changes and flags risky edits, missing tests and leftover debug code. Use when the user asks what changed, wants a review before committing, or asks for a commit message.\n---\n\n# Review changes\n\n1. Run git status and git diff HEAD to see what changed.\n2. Summarize the changes in two or three bullet points.\n3. List risks: missing error handling, hardcoded secrets or URLs, deleted or skipped tests, debug logging left in.\n4. Suggest a one-line commit message in the imperative mood.\n\nIf there are no uncommitted changes, say so and stop.", lang: "text", caption: ".agents/skills/review-changes/SKILL.md" },
+    { h3: "Frontmatter rules" },
+    { ul: [
+      "The opening `---` has to be the very first line of the file, or the frontmatter is read as plain text.",
+      "`name`: up to 64 characters, lowercase letters, numbers and hyphens only, no hyphen at the start or end, no double hyphens, and the same as the folder name. Claude Code treats `name` as optional (it falls back to the folder name), but Cursor and Codex require it, so always set it.",
+      "`description`: up to 1,024 characters under the open standard. Say what the skill does **and** when to use it, with the words people actually type. Put the main use case first: Claude Code cuts long descriptions in its skill list and Codex shortens descriptions when many skills are installed.",
+    ] },
+    { h3: "Keep the body short" },
+    { p: "Write direct, numbered steps with clear inputs and outputs. The open standard suggests keeping `SKILL.md` under 500 lines and moving detail into the skill folder:" },
+    { code: "review-changes/\n├── SKILL.md\n├── references/   # longer docs the agent reads only when needed\n├── scripts/      # code the agent can run\n└── assets/       # templates, schemas, example files", lang: "text" },
+    { p: "Point to those files with paths relative to the skill folder, for example \"See references/checklist.md for the full checklist\", and keep references one level deep." },
+
+    { h2: "Optional settings that differ by tool", id: "options" },
+    { ul: [
+      "**Manual-only skills** (for steps with side effects, like deploying): add `disable-model-invocation: true` to the frontmatter in Claude Code and Cursor, and the agent won't load the skill on its own. In Codex, add an `agents/openai.yaml` file to the skill with `allow_implicit_invocation: false` under `policy`.",
+      "**Only for certain files**: Claude Code and Cursor accept `paths` with glob patterns such as `\"**/*.tsx\"`, so the skill only comes up when the agent works on matching files.",
+      "**Pre-approved tools**: `allowed-tools` is an experimental field in the open standard. In Claude Code it lets the skill use the listed tools without asking, for the turn that invokes it.",
+      "**Claude Code extras**: `context: fork` runs the skill in a subagent, `argument-hint` and `$ARGUMENTS` pass arguments, and dynamic context injection runs a shell command and inlines its output before Claude reads the skill.",
+    ] },
+    { p: "For a skill you plan to share across tools, stick to `name` and `description` (plus the standard's optional `license`, `compatibility` and `metadata`) and put everything else in the instructions." },
+
+    { h2: "Use and test the skill", id: "use" },
+    { ul: [
+      "**Claude Code**: ask \"What did I change?\" or run `/review-changes`. Edits to existing skill folders are picked up during the session; if you create a new top-level skills folder mid-session, run `/reload-skills`. Ask \"What skills are available?\" to confirm it loaded.",
+      "**Cursor**: ask in Agent chat, or type `/` and pick the skill. Discovered skills are listed under **Customize → Skills**.",
+      "**Codex**: ask in the CLI or IDE extension, run `/skills`, or type `$review-changes`. Codex picks up changes automatically; restart it if the skill doesn't appear.",
+    ] },
+    { p: "Test it with a few differently worded requests. If it fires when it shouldn't, make the description narrower; if it never fires, add the words people actually say." },
+
+    { h2: "Let the agent draft it", id: "creators" },
+    { p: "Each tool has a built-in helper that interviews you and writes the folder:" },
+    { ul: [
+      "**Claude Code**: install Anthropic's skill-creator plugin with `/plugin install skill-creator@claude-plugins-official`; it can also run evals on a skill. See [how to install Claude Code plugins](/guides/install-claude-code-plugins/).",
+      "**Cursor**: type `/create-skill` in Agent chat. `/migrate-to-skills` converts eligible rules and slash commands into skills.",
+      "**Codex**: run `$skill-creator`.",
+    ] },
+    { p: "Read what it writes before relying on it, especially any scripts." },
+
+    { h2: "Share skills with your team", id: "share" },
+    { ul: [
+      "**In one repository**: commit the project skills folder. Everyone who opens the repo gets the skill.",
+      "**Across repositories**: package skills in a plugin. Claude Code installs plugins from marketplaces ([Claude Code Plugins](/plugins/claude-code-plugins/)), Cursor imports skills from GitHub only through plugins ([Cursor Plugins](/plugins/cursor-plugins/)), and OpenAI recommends plugins for distributing Codex skills.",
+    ] },
+
+    { h2: "Ready-made skills to learn from", id: "examples" },
+    { ul: [
+      "[Agent Skills (Anthropic)](/plugins/agent-skills/): Anthropic's public repository of example and document skills, plus a skill template.",
+      "[Android Skills](/plugins/android-skills/): Google's official skills for Android tasks such as Compose migration and AGP upgrades, installable as plugins for Claude Code and Codex.",
+    ] },
+    { p: "Building MCP servers? Our own (paid) [Agent Builder Rules + Prompts](/packs/) pack includes two Claude Code skills for MCP server work and evals." },
+
+    { h2: "Common problems and fixes", id: "errors" },
+    { h3: "The skill never triggers" },
+    { ul: [
+      "Rewrite the `description` with the keywords people would use, and lead with the main use case.",
+      "Run it directly (`/name` or `$name`). If that works, the problem is the description; if it doesn't, the skill isn't loading.",
+      "Check the folder: `SKILL.md` must be spelled exactly like that, inside a folder whose name matches `name`, in one of the locations above.",
+    ] },
+    { h3: "The frontmatter is ignored" },
+    { p: "In Claude Code, broken YAML makes the skill load with empty metadata: `/name` still works but Claude can't match the description. Start with `claude --debug` to see the parse error, or check the whole folder with `claude plugin validate .claude/skills` (Claude Code v2.1.233 or later). The open standard's `skills-ref validate ./my-skill` checks the frontmatter and naming rules for any tool." },
+    { h3: "The skill triggers too often" },
+    { p: "Make the description more specific, or make the skill manual-only with the settings under Optional settings above." },
+    { h3: "A Codex skill is missing" },
+    { p: "Restart Codex, and check `~/.codex/config.toml` for a `[[skills.config]]` entry that sets `enabled = false` for that skill's path." },
+
+    { h2: "FAQ", id: "faq" },
+    { h3: "Do my old Claude Code custom commands still work?" },
+    { p: "Yes. Files in `.claude/commands/` still work and create the same `/name` commands. Skills add a folder for supporting files and control over whether Claude can load them on its own." },
+    { h3: "Skill, rule or AGENTS.md?" },
+    { p: "Use `AGENTS.md`, `CLAUDE.md` or an always-on rule for facts every session needs (stack, conventions, test command). Use a skill for a specific procedure that only matters sometimes, so it doesn't take up context the rest of the time." },
+    { h3: "Can a skill run scripts?" },
+    { p: "Yes. Put them in `scripts/` and tell the agent when to run them. They run with the agent's normal permissions, so review scripts in skills you didn't write." },
+  ],
+  related: ["agent-skills", "android-skills", "claude-code", "codex-cli", "cursor-rules", "agents-md"],
+  sources: [
+    { label: "Claude Code docs: Extend Claude with skills", url: "https://code.claude.com/docs/en/skills" },
+    { label: "Cursor docs: Agent Skills", url: "https://cursor.com/docs/skills" },
+    { label: "OpenAI docs: Build skills (ChatGPT and Codex)", url: "https://learn.chatgpt.com/docs/build-skills" },
+    { label: "Agent Skills specification", url: "https://agentskills.io/specification" },
+    { label: "Claude Code docs: Install and manage plugins", url: "https://code.claude.com/docs/en/plugins/install" },
+    { label: "Android skills overview (Android Developers)", url: "https://developer.android.com/tools/agents/android-skills" },
+  ],
+};
+
+
+export const GUIDES: Guide[] = [cursor, claude, plugins, skills];
 export const guidePath = (slug: string) => `/guides/${slug}/`;
 export const getGuide = (slug: string) => GUIDES.find(g => g.slug === slug);

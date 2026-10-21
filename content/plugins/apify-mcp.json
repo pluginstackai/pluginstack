@@ -1,0 +1,38 @@
+{
+  "slug": "apify-mcp",
+  "name": "Apify MCP Server",
+  "category": "MCP Servers",
+  "tags": [
+    "web",
+    "scraping",
+    "automation"
+  ],
+  "url": "https://github.com/apify/apify-mcp-server",
+  "maker": "Apify",
+  "updated": "2026-10-21",
+  "what": "Apify's official MCP server. It lets an agent search Apify Store and run its ready-made scrapers and automation tools (called Actors) for websites, search engines, maps, social media and e-commerce, then read the results from your Apify datasets. By default it loads Actor search and run tools, Apify docs search, and the RAG Web Browser and Web Fetch Actors. The hosted server at mcp.apify.com signs you in with OAuth. MIT licensed; running Actors uses your Apify plan (a free plan includes $5 of monthly usage; most Store Actors charge per event).",
+  "who": "People who want their agent to pull structured data from sites like Google Maps, search results or online stores without writing a scraper.",
+  "setup": [
+    {
+      "text": "Add the hosted server to your MCP client. On first connection your browser opens to sign in to Apify:",
+      "code": "{\n  \"mcpServers\": {\n    \"apify\": {\n      \"url\": \"https://mcp.apify.com\"\n    }\n  }\n}",
+      "language": "json"
+    },
+    {
+      "text": "Claude Code: Apify recommends its plugin, which sets up the server plus Agent Skills. In a session run:",
+      "code": "/plugin marketplace add apify/apify-claude-code-plugin\n/plugin install apify@apify",
+      "language": "text"
+    },
+    {
+      "text": "Cursor: install Apify from the Cursor Marketplace (cursor.com/marketplace/apify), then in Cursor Settings → Tools & MCPs select Connect on Apify MCP and sign in."
+    },
+    {
+      "text": "Limit the tools it loads with the tools URL parameter, for example https://mcp.apify.com?tools=actors,docs,apify/rag-web-browser. Telemetry is on by default; add telemetry-enabled=false to the URL to opt out. Running Actors costs money on your Apify account, so set run limits and watch usage in Apify Console."
+    }
+  ],
+  "prompts": [
+    "Scrape the top 10 restaurants in Prague from Google Maps with their contact details.",
+    "Find the latest news about autonomous AI agents and summarize the key developments.",
+    "Search Apify Store for an Actor that extracts product prices from Amazon and show me its input schema and pricing before running it."
+  ]
+}

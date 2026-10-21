@@ -3,7 +3,7 @@ import { site } from '../../lib/data';
 import { GUIDES, guidePath } from '../../lib/guides';
 import { pageMeta, breadcrumbLd, absUrl, WEBSITE_ID } from '../../lib/seo';
 import JsonLd from '../../components/JsonLd';
-export const metadata = pageMeta({ title: 'Setup guides for MCP servers and AI coding tools', description: `Step-by-step guides to setting up MCP servers in Cursor and Claude Code, with real config, exact commands and fixes for common errors.`, path: '/guides/' });
+export const metadata = pageMeta({ title: 'Setup guides for MCP servers and AI coding tools', description: `Step-by-step guides to MCP servers, plugins and Agent Skills in Cursor, Claude Code and Codex, with real config, exact commands and fixes for common errors.`, path: '/guides/' });
 export default function Guides() {
   const url = absUrl('/guides/');
   const ld = { '@graph': [
