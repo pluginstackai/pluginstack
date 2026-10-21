@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <span className="opacity-80">{site.sponsor.paid ? 'Sponsored · ' : 'Ad space · '}</span><Link href={site.sponsor.href} className="font-semibold text-coral underline underline-offset-2 hover:text-coral-light">{site.sponsor.label}</Link><span className="hidden sm:inline"> — {site.sponsor.text}</span></div>
     <header className="max-w-6xl mx-auto px-4 py-5 flex flex-wrap items-center justify-between gap-3">
       <Link href="/" className="flex items-center gap-2 text-xl font-extrabold text-navy dark:text-white"><img src="/icon.svg" alt="" width={28} height={28} />{site.name}</Link>
-      <nav className="flex items-center gap-4 sm:gap-5 text-sm font-medium text-slate-700 dark:text-slate-300 [&>a:hover]:text-coral-dark dark:[&>a:hover]:text-coral"><Link href="/">Plugins</Link><Link href="/packs/">Packs</Link><Link href="/get-unstuck/">Get unstuck</Link><Link href="/sponsor/">Sponsor</Link><ThemeToggle /></nav>
+      <nav className="flex items-center gap-4 sm:gap-5 text-sm font-medium text-slate-700 dark:text-slate-300 [&>a:hover]:text-coral-dark dark:[&>a:hover]:text-coral"><Link href="/">Plugins</Link><Link href="/guides/">Guides</Link><Link href="/packs/">Packs</Link><Link href="/get-unstuck/">Get unstuck</Link><Link href="/sponsor/">Sponsor</Link><ThemeToggle /></nav>
     </header>
     <main className="max-w-6xl mx-auto px-4 pb-16">{children}</main>
     <footer className="bg-white/60 dark:bg-navy-900/60 border-t border-navy/10 dark:border-navy-700"><div className="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-2 gap-6">
