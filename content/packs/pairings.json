@@ -38,8 +38,8 @@
       "reason": "Uses or connects an existing tool/service; no pack covers it."
     },
     "claude-code": {
-      "pack": "vibe-coder-starter",
-      "why": "50 plain-English prompts for planning, building, debugging and shipping with any AI coding agent, plus a debugging checklist."
+      "pack": "agent-builder-pack",
+      "why": "Drop-in CLAUDE.md, Claude Code skills, and MCP scaffolding prompts so your agent builds servers the right way — not a pile of half-working tools."
     },
     "claude-code-plugins": {
       "pack": null,

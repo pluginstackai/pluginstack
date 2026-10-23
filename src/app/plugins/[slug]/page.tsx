@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getPlugins, getPlugin, getPairedPack, site } from '../../../lib/data';
-import { NEWSLETTER } from '../../../lib/email-copy';
+import { FREEBIE } from '../../../lib/email-copy';
 import { pageMeta, summarize, categoryPath, breadcrumbLd, absUrl, WEBSITE_ID, plugins, type ListedPlugin } from '../../../lib/seo';
 import CodeBlock from '../../../components/CodeBlock';
 import JsonLd from '../../../components/JsonLd';
@@ -49,9 +49,9 @@ export default async function PluginPage({ params }: { params: Promise<{ slug: s
     {p.demo && <section className="card"><H>Demo</H>
       <YouTubeDemo id={p.demo.youtubeId} title={p.demo.title} channel={p.demo.channel} toolName={p.name} /></section>}
     <section aria-labelledby="join-list" className="card">
-      <h2 id="join-list" className="text-lg font-semibold">{NEWSLETTER.inlineTitle}</h2>
-      <p className="text-sm text-slate-600 dark:text-slate-400 mt-1 mb-3">{NEWSLETTER.inlineBlurb}</p>
-      <EmailForm list="newsletter" cta={NEWSLETTER.homeCta} /></section>
+      <h2 id="join-list" className="text-lg font-semibold">{FREEBIE.toolHeadline}</h2>
+      <p className="text-sm text-slate-600 dark:text-slate-400 mt-1 mb-3">{FREEBIE.toolSubline}</p>
+      <EmailForm list="newsletter" cta={FREEBIE.toolCta} microcopy={FREEBIE.toolMicro} /></section>
     {related.length > 0 && <section aria-labelledby="related"><h2 id="related" className="text-xl font-semibold mb-3">More {p.category}</h2>
       <PluginGrid items={related} heading="h3" showCategory={false} />
       <p className="mt-4 text-sm"><Link href={catPath} className="link">See all {p.category} on {site.name}</Link></p></section>}
