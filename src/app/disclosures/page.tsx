@@ -20,7 +20,7 @@ export default function Page() {
       <li>We also mark affiliate links as paid links in the page code, so search engines know they're paid.</li>
       <li>Clicking an affiliate link may set a cookie from the company's own site so they can credit us for the referral. See their privacy policy for how they handle it.</li>
     </ul>
-    <p>If a link has no “(affiliate link)” label, we don't earn anything from it.</p>
+    <p>If a link isn't labeled “(affiliate link)”, it isn't an affiliate link.</p>
     <h2 id="editorial-independence">Listings and guides are not paid placements</h2>
     <ul>
       <li>We don't accept payment to be listed or to rank higher in the directory. Listings and guides are not paid placements.</li>
