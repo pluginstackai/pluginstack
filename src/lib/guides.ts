@@ -10,7 +10,11 @@ export type GuideBlock =
   | { ul: string[] }
   | { ol: string[] }
   | { code: string; lang: 'bash' | 'json' | 'powershell' | 'text'; caption?: string }
-  | { note: string };
+  | { note: string }
+  /** Free MCP Starter Checklist signup card (same EmailForm + FREEBIE copy as the homepage and tool pages). */
+  | { freebie: true }
+  /** "From PluginStack" pack callout (PackPairing, same component as tool pages). `pack` = slug in content/packs/packs.json. */
+  | { pack: string; toolName: string; why: string };
 export type Guide = {
   slug: string; title: string; h1: string; description: string; published: string; updated: string;
   intro: string; blocks: GuideBlock[]; related: string[]; sources: { label: string; url: string }[];
@@ -32,6 +36,8 @@ const cursor: Guide = {
       'Open **Customize** in the sidebar, then **MCPs**, and check the server is listed and switched on.',
     ] },
     { p: 'Prefer not to edit JSON? Use the one-click install first and come back to `mcp.json` for anything it doesn\'t list.' },
+
+    { freebie: true },
 
     { h2: 'Option 1: one-click install from Customize', id: 'one-click' },
     { ol: [
@@ -86,6 +92,8 @@ const cursor: Guide = {
       'In the Agent chat, ask for something only that server can do, for example "Use playwright to open https://example.com and tell me the page title".',
       'Approve the tool call. Cursor asks for approval before running MCP tools unless your approval settings (Cursor Settings → Agents → Approvals & Execution) let them run; click the arrow next to the tool name to see the arguments it will send.',
     ] },
+
+    { pack: 'agent-builder-pack', toolName: 'Cursor', why: 'This guide is about connecting servers other people built. If you want to build your own MCP server, the pack has Cursor and Claude Code rules, 2 Claude Code skills, 10 scaffolding prompts for TypeScript or Python, and 12 eval prompt templates. You don\'t need it just to add servers.' },
 
     { h2: 'Common errors and fixes', id: 'errors' },
     { h3: 'The server doesn\'t show up' },

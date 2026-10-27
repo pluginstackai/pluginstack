@@ -1,7 +1,10 @@
 import Link from 'next/link';
 import type { GuideBlock } from '../lib/guides';
-import { getPlugin } from '../lib/data';
+import { getPlugin, getPacks } from '../lib/data';
 import CodeBlock from './CodeBlock';
+import EmailForm from './EmailForm';
+import PackPairing from './PackPairing';
+import { FREEBIE } from '../lib/email-copy';
 
 /** Internal links must point at real pages; a typo in a guide fails the build instead of shipping a 404. */
 const STATIC_PATHS = new Set(['/', '/packs/', '/guides/']);
@@ -38,6 +41,11 @@ export default function GuideBody({ blocks }: { blocks: GuideBlock[] }) {
     if ('ul' in b) return <ul key={i} className="list-disc pl-5 space-y-1.5">{b.ul.map((t, j) => <li key={j}><Inline text={t} /></li>)}</ul>;
     if ('ol' in b) return <ol key={i} className="list-decimal pl-5 space-y-1.5">{b.ol.map((t, j) => <li key={j}><Inline text={t} /></li>)}</ol>;
     if ('code' in b) return <figure key={i} className="min-w-0">{b.caption && <figcaption className="text-xs text-slate-600 dark:text-slate-400 mb-1 font-mono">{b.caption}</figcaption>}<CodeBlock code={b.code} language={b.lang} /></figure>;
+    if ('freebie' in b) return (<section key={i} aria-labelledby="guide-freebie" className="card">
+      <h2 id="guide-freebie" className="text-lg font-semibold">{FREEBIE.toolHeadline}</h2>
+      <p className="text-sm text-slate-600 dark:text-slate-400 mt-1 mb-3">{FREEBIE.homeSubline}</p>
+      <EmailForm list="newsletter" cta={FREEBIE.toolCta} microcopy={FREEBIE.toolMicro} /></section>);
+    if ('pack' in b) { const pack = getPacks().find(x => x.slug === b.pack); if (!pack) throw new Error(`Guide pack block: unknown pack ${b.pack}`); return <PackPairing key={i} pack={pack} why={b.why} toolName={b.toolName} />; }
     return <p key={i} className="card text-sm"><Inline text={b.note} /></p>;
   })}</div>);
 }
