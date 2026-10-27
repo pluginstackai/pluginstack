@@ -19,5 +19,11 @@ export default {
   async headers() { return [
     { source: '/:path*', headers: SECURITY_HEADERS },
     { source: '/api/:path*', headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }] },
+    // Public machine-readable directory (read by the PluginStack MCP server): any origin may fetch it; don't index it.
+    { source: '/directory.json', headers: [
+      { key: 'Access-Control-Allow-Origin', value: '*' },
+      { key: 'Cache-Control', value: 'public, max-age=3600' },
+      { key: 'X-Robots-Tag', value: 'noindex' },
+    ] },
   ]; },
 };

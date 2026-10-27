@@ -1,3 +1,8 @@
+# Directory JSON — 2026-10-27 (branch mcp-directory-json, not deployed)
+- /directory.json (new, static, built at deploy time from the same data as the pages): every public listing (what it does, who it's for, setup, prompts, install snippets per client, FAQ, related guides), every category and every guide (as Markdown, same as scripts/guides-md.mjs). Each item carries its canonical pluginstackai.com URL. Headers: CORS *, 1-hour cache, X-Robots-Tag noindex (it duplicates the pages). Nothing private (no owner field, no analytics).
+- Used by the free PluginStack MCP server (npm pluginstack-mcp, not yet published), which also ships a bundled snapshot of this file.
+- llms.txt: "Machine-readable" section linking /directory.json.
+
 # Quick wins — 2026-10-27 (branch quick-wins, not deployed)
 - One-click install: "Add to Cursor" (cursor://anysphere.cursor-deeplink/mcp/install?name=…&config=<base64 JSON>, per cursor.com/docs/context/mcp/install-links) and "Install in VS Code" (vscode:mcp/install?<url-encoded JSON with name+type>, per code.visualstudio.com/api/extension-guides/ai/mcp) on the 15 listings whose config is ready to run. Hidden on brave-search, filesystem, firecrawl and memory because their snippets need an API key or folder path filled in first. Note under the buttons: the app asks you to confirm, so check it matches the snippet.
 - fetch-mcp: install note explaining that the README's extra "mcp" wrapper is the older settings.json layout; .vscode/mcp.json uses top-level "servers" (VS Code docs).
