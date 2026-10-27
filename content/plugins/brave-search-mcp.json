@@ -24,6 +24,29 @@
       "text": "Docker also works with the image mcp/brave-search (see the README)."
     }
   ],
+  "install": {
+    "name": "brave-search",
+    "transport": "stdio",
+    "command": "npx",
+    "args": [
+      "-y",
+      "@brave/brave-search-mcp-server",
+      "--transport",
+      "stdio"
+    ],
+    "env": {
+      "BRAVE_API_KEY": "YOUR_API_KEY_HERE"
+    },
+    "requires": {
+      "runtime": "Node.js (runs with npx)",
+      "auth": "Brave Search API key"
+    },
+    "notes": [
+      "Create the key at brave.com/search/api, then paste it in place of the placeholder."
+    ],
+    "source": "https://github.com/brave/brave-search-mcp-server",
+    "checked": "2026-10-27"
+  },
   "prompts": [
     "Search the web for the latest Next.js release notes and summarize them.",
     "Find recent news about MCP security and list the sources.",

@@ -28,6 +28,17 @@
       "language": "json"
     }
   ],
+  "install": {
+    "name": "stripe",
+    "transport": "http",
+    "url": "https://mcp.stripe.com",
+    "requires": {
+      "runtime": "None (hosted)",
+      "auth": "Stripe OAuth sign-in (or an agent API key)"
+    },
+    "source": "https://docs.stripe.com/mcp",
+    "checked": "2026-10-27"
+  },
   "prompts": [
     "Create a sandbox product 'Pro Plan' with a $9/month price.",
     "How do I handle a failed subscription payment webhook?",

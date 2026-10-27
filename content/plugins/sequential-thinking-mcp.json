@@ -35,6 +35,21 @@
       "text": "To stop it logging thought details, set the environment variable DISABLE_THOUGHT_LOGGING to true in the server's env block."
     }
   ],
+  "install": {
+    "name": "sequential-thinking",
+    "transport": "stdio",
+    "command": "npx",
+    "args": [
+      "-y",
+      "@modelcontextprotocol/server-sequential-thinking"
+    ],
+    "requires": {
+      "runtime": "Node.js 24 or later",
+      "auth": "None"
+    },
+    "source": "https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking",
+    "checked": "2026-10-27"
+  },
   "prompts": [
     "Use sequential thinking to plan a migration from REST to tRPC for this app.",
     "Think step by step about why this test is flaky before changing any code.",

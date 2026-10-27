@@ -26,6 +26,17 @@
       "language": "json"
     }
   ],
+  "install": {
+    "name": "linear",
+    "transport": "http",
+    "url": "https://mcp.linear.app/mcp",
+    "requires": {
+      "runtime": "None (hosted)",
+      "auth": "Linear OAuth sign-in"
+    },
+    "source": "https://linear.app/docs/mcp",
+    "checked": "2026-10-27"
+  },
   "prompts": [
     "Show my assigned issues for this cycle sorted by priority.",
     "Create a bug issue for the login redirect problem.",

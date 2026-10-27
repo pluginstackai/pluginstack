@@ -30,6 +30,17 @@
       "text": "Limit the tools it loads with the tools URL parameter, for example https://mcp.apify.com?tools=actors,docs,apify/rag-web-browser. Telemetry is on by default; add telemetry-enabled=false to the URL to opt out. Running Actors costs money on your Apify account, so set run limits and watch usage in Apify Console."
     }
   ],
+  "install": {
+    "name": "apify",
+    "transport": "http",
+    "url": "https://mcp.apify.com",
+    "requires": {
+      "runtime": "None (hosted)",
+      "auth": "Apify OAuth sign-in (or an API token)"
+    },
+    "source": "https://github.com/apify/apify-mcp-server",
+    "checked": "2026-10-27"
+  },
   "prompts": [
     "Scrape the top 10 restaurants in Prague from Google Maps with their contact details.",
     "Find the latest news about autonomous AI agents and summarize the key developments.",

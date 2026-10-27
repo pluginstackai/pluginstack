@@ -27,6 +27,17 @@
       "text": "Turn on extra tools by listing them in the URL, for example https://mcp.exa.ai/mcp?tools=web_search_exa,web_fetch_exa,agent_run (this replaces the defaults)."
     }
   ],
+  "install": {
+    "name": "exa",
+    "transport": "http",
+    "url": "https://mcp.exa.ai/mcp",
+    "requires": {
+      "runtime": "None (hosted)",
+      "auth": "None for basic use (rate-limited); OAuth or an API key for higher limits"
+    },
+    "source": "https://github.com/exa-labs/exa-mcp-server",
+    "checked": "2026-10-27"
+  },
   "prompts": [
     "Search for recent blog posts about agent memory and summarize the main ideas.",
     "Fetch the docs page for this library and tell me how to configure retries.",

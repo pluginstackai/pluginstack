@@ -10,6 +10,7 @@ import PluginGrid from '../../../components/PluginGrid';
 import YouTubeDemo from '../../../components/YouTubeDemo';
 import PackPairing from '../../../components/PackPairing';
 import EmailForm from '../../../components/EmailForm';
+import InstallInClient from '../../../components/InstallInClient';
 export const generateStaticParams = () => getPlugins().map(p => ({ slug: p.slug }));
 export const dynamicParams = false;
 const fmtDate = (d: string) => new Date(`${d}T12:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
@@ -44,6 +45,7 @@ export default async function PluginPage({ params }: { params: Promise<{ slug: s
     <section className="card"><H>Who it's for</H><p className="text-slate-700 dark:text-slate-300">{p.who}</p></section>
     <section className="card"><H>How to set it up</H><ol className="list-decimal pl-5 space-y-4 text-slate-700 dark:text-slate-300">{p.setup.map((s, i) => <li key={i} className="min-w-0"><p>{s.text}</p>{s.code && <div className="mt-2"><CodeBlock code={s.code} language={s.language} /></div>}</li>)}</ol>
       <p className="text-xs text-slate-600 dark:text-slate-400 mt-3">Check the <a className="link" href={p.url}>official {p.name} docs</a> for the latest steps.</p></section>
+    {p.install && <InstallInClient spec={p.install} toolName={p.name} />}
     {paired && <PackPairing pack={paired.pack} why={paired.why} toolName={p.name} />}
     <section className="card"><H>Example prompts</H><div className="space-y-3">{p.prompts.map((s, i) => <CodeBlock key={i} code={s} tone="prompt" />)}</div></section>
     {p.demo && <section className="card"><H>Demo</H>

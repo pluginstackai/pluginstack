@@ -32,6 +32,17 @@
       "text": "To limit what the agent can do, uncheck Allow writes on the OAuth page, or use https://mcp.neon.tech/mcp?readonly=true."
     }
   ],
+  "install": {
+    "name": "neon",
+    "transport": "http",
+    "url": "https://mcp.neon.tech/mcp",
+    "requires": {
+      "runtime": "None (hosted)",
+      "auth": "Neon OAuth sign-in"
+    },
+    "source": "https://github.com/neondatabase/mcp-server-neon",
+    "checked": "2026-10-27"
+  },
   "prompts": [
     "Create a new Neon project called my-app with a users table (id, name, email).",
     "Add a created_at column to the users table on a new branch first, then show me the diff.",

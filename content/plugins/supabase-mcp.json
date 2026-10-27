@@ -32,6 +32,20 @@
       "language": "text"
     }
   ],
+  "install": {
+    "name": "supabase",
+    "transport": "http",
+    "url": "https://mcp.supabase.com/mcp",
+    "requires": {
+      "runtime": "None (hosted)",
+      "auth": "Supabase login"
+    },
+    "notes": [
+      "Connecting an AI to a database carries real risks; read Supabase's MCP security best practices first."
+    ],
+    "source": "https://github.com/supabase-community/supabase-mcp",
+    "checked": "2026-10-27"
+  },
   "prompts": [
     "Create a 'profiles' table linked to auth users with a username column.",
     "List the tables in my project and describe how they relate.",

@@ -26,6 +26,20 @@
       "text": "Add 'use context7' to a prompt (or add a rule telling your agent to always use it) to pull in fresh docs."
     }
   ],
+  "install": {
+    "name": "context7",
+    "transport": "http",
+    "url": "https://mcp.context7.com/mcp",
+    "requires": {
+      "runtime": "None (hosted)",
+      "auth": "No key required; an API key is recommended for higher rate limits"
+    },
+    "notes": [
+      "To send an API key, add an Authorization: Bearer header as the Context7 README describes."
+    ],
+    "source": "https://github.com/upstash/context7",
+    "checked": "2026-10-27"
+  },
   "prompts": [
     "Create a Next.js proxy that checks for a valid JWT in cookies and redirects unauthenticated users to /login. use context7",
     "Show me the Supabase auth API for email/password sign-up. use context7",

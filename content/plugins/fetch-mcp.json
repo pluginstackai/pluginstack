@@ -35,6 +35,23 @@
       "text": "Optional: install Node.js too; the server then uses a more robust HTML simplifier."
     }
   ],
+  "install": {
+    "name": "fetch",
+    "transport": "stdio",
+    "command": "uvx",
+    "args": [
+      "mcp-server-fetch"
+    ],
+    "requires": {
+      "runtime": "uv (Python package, runs with uvx)",
+      "auth": "None"
+    },
+    "notes": [
+      "This one is a Python package, so it needs uv installed rather than Node.js."
+    ],
+    "source": "https://github.com/modelcontextprotocol/servers/tree/main/src/fetch",
+    "checked": "2026-10-27"
+  },
   "prompts": [
     "Fetch https://nextjs.org/docs and summarize what's new on that page.",
     "Read this changelog URL and list the breaking changes.",

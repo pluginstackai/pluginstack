@@ -34,6 +34,25 @@
       "language": "bash"
     }
   ],
+  "install": {
+    "name": "filesystem",
+    "transport": "stdio",
+    "command": "npx",
+    "args": [
+      "-y",
+      "@modelcontextprotocol/server-filesystem",
+      "/path/to/allowed/folder"
+    ],
+    "requires": {
+      "runtime": "Node.js 24 or later",
+      "auth": "None"
+    },
+    "notes": [
+      "Replace the path with a folder the AI may access. You can list more folders; at least one is required."
+    ],
+    "source": "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem",
+    "checked": "2026-10-27"
+  },
   "prompts": [
     "Find every markdown file in my notes folder that mentions 'invoice'.",
     "Show me a directory tree of my project folder, excluding node_modules.",

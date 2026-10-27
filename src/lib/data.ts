@@ -3,7 +3,15 @@ import path from 'path';
 import site from '../../site.config.json';
 export { site };
 export type SetupStep = { text: string; code?: string; language?: string };
-export type Plugin = { slug: string; name: string; category: string; tags: string[]; url: string; maker: string; what: string; who: string; setup: SetupStep[]; prompts: string[] };
+/**
+ * Verified "Install in your client" data for an MCP server (rendered by src/components/InstallInClient.tsx; snippets come from src/lib/install.ts).
+ * stdio: command + args (+ env). http: url. Only add it when the values are checked against the server's official README/docs (`source`).
+ */
+export type InstallSpec = {
+  name: string; transport: 'stdio' | 'http'; command?: string; args?: string[]; env?: Record<string, string>; url?: string;
+  requires: { runtime: string; auth: string }; notes?: string[]; source: string; checked: string;
+};
+export type Plugin = { slug: string; name: string; category: string; tags: string[]; url: string; maker: string; what: string; who: string; setup: SetupStep[]; install?: InstallSpec; prompts: string[] };
 /** gumroadUrl: Gumroad product link (e.g. https://<name>.gumroad.com/l/<id>). Empty = not on sale yet. */
 export type Pack = { slug: string; name: string; price: number; gumroadUrl?: string; desc: string; items: string[] };
 const dir = path.join(process.cwd(), 'content');

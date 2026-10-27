@@ -34,6 +34,20 @@
       "text": "The agent can change real settings in your account, so review its actions before approving them."
     }
   ],
+  "install": {
+    "name": "cloudflare-api",
+    "transport": "http",
+    "url": "https://mcp.cloudflare.com/mcp",
+    "requires": {
+      "runtime": "None (hosted)",
+      "auth": "Cloudflare OAuth sign-in"
+    },
+    "notes": [
+      "The agent can change real settings in your Cloudflare account, so review its actions before approving them."
+    ],
+    "source": "https://github.com/cloudflare/mcp-server-cloudflare",
+    "checked": "2026-10-27"
+  },
   "prompts": [
     "List my Cloudflare zones and show the DNS records for my main domain.",
     "Using the Cloudflare docs server, explain how to add a KV binding to a Worker.",

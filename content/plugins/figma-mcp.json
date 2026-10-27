@@ -38,6 +38,20 @@
       "text": "Writing to the canvas is in beta and needs edit access to the file. Test on a duplicate file first."
     }
   ],
+  "install": {
+    "name": "figma",
+    "transport": "http",
+    "url": "https://mcp.figma.com/mcp",
+    "requires": {
+      "runtime": "None (hosted)",
+      "auth": "Figma sign-in"
+    },
+    "notes": [
+      "Figma's docs list Cursor, VS Code, Claude Code and Codex as supported clients."
+    ],
+    "source": "https://developers.figma.com/docs/figma-mcp-server/",
+    "checked": "2026-10-27"
+  },
   "prompts": [
     "Implement this Figma frame as a React component with Tailwind: <link>",
     "List the colors and text styles used in this design.",

@@ -33,6 +33,27 @@
       "language": "bash"
     }
   ],
+  "install": {
+    "name": "firecrawl",
+    "transport": "stdio",
+    "command": "npx",
+    "args": [
+      "-y",
+      "firecrawl-mcp"
+    ],
+    "env": {
+      "FIRECRAWL_API_KEY": "YOUR_API_KEY"
+    },
+    "requires": {
+      "runtime": "Node.js (runs with npx)",
+      "auth": "Firecrawl API key"
+    },
+    "notes": [
+      "This is the local server. Firecrawl also offers a hosted server URL; see its listing for that option."
+    ],
+    "source": "https://github.com/firecrawl/firecrawl-mcp-server",
+    "checked": "2026-10-27"
+  },
   "prompts": [
     "Scrape https://example.com/pricing and return the plans as a table.",
     "Search the web for 'MCP server security best practices' and summarize the top 3 results.",

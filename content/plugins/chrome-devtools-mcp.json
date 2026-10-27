@@ -39,6 +39,21 @@
       "language": "text"
     }
   ],
+  "install": {
+    "name": "chrome-devtools",
+    "transport": "stdio",
+    "command": "npx",
+    "args": [
+      "-y",
+      "chrome-devtools-mcp@latest"
+    ],
+    "requires": {
+      "runtime": "Current Node.js LTS and Chrome stable",
+      "auth": "None"
+    },
+    "source": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
+    "checked": "2026-10-27"
+  },
   "prompts": [
     "Check the performance of http://localhost:3000 and tell me the biggest issues.",
     "Open my app, click Sign up, and show me any console errors or failed network requests.",

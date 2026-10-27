@@ -39,6 +39,20 @@
       "text": "Using a coding agent? Microsoft notes that Playwright CLI + Skills (github.com/microsoft/playwright-cli) can be more token-efficient than the MCP server."
     }
   ],
+  "install": {
+    "name": "playwright",
+    "transport": "stdio",
+    "command": "npx",
+    "args": [
+      "@playwright/mcp@latest"
+    ],
+    "requires": {
+      "runtime": "Node.js 18 or newer",
+      "auth": "None"
+    },
+    "source": "https://github.com/microsoft/playwright-mcp",
+    "checked": "2026-10-27"
+  },
   "prompts": [
     "Open localhost:3000, sign up with a test email and tell me if anything breaks.",
     "Go to my pricing page and check every link works.",

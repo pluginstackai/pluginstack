@@ -32,6 +32,27 @@
       "text": "Add a system prompt or custom instructions telling the assistant when to save and recall memories. The README includes an example prompt."
     }
   ],
+  "install": {
+    "name": "memory",
+    "transport": "stdio",
+    "command": "npx",
+    "args": [
+      "-y",
+      "@modelcontextprotocol/server-memory"
+    ],
+    "env": {
+      "MEMORY_FILE_PATH": "/path/to/custom/memory.jsonl"
+    },
+    "requires": {
+      "runtime": "Node.js 24 or later",
+      "auth": "None"
+    },
+    "notes": [
+      "MEMORY_FILE_PATH is optional. Leave the env part out and the server stores memory.jsonl inside its own package directory."
+    ],
+    "source": "https://github.com/modelcontextprotocol/servers/tree/main/src/memory",
+    "checked": "2026-10-27"
+  },
   "prompts": [
     "Remember that my main project uses Next.js and Supabase.",
     "What do you remember about my coding preferences?",
