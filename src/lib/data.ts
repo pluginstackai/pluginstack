@@ -11,7 +11,20 @@ export type InstallSpec = {
   name: string; transport: 'stdio' | 'http'; command?: string; args?: string[]; env?: Record<string, string>; url?: string;
   requires: { runtime: string; auth: string }; notes?: string[]; source: string; checked: string;
 };
-export type Plugin = { slug: string; name: string; category: string; tags: string[]; url: string; maker: string; what: string; who: string; setup: SetupStep[]; install?: InstallSpec; prompts: string[] };
+/** Optional extra content for a listing page. All text is plain (no markdown/HTML) and must be checked against the official docs. */
+export type ListingSection = { heading: string; paragraphs?: string[]; bullets?: string[]; code?: string; language?: string };
+export type ListingFaq = { q: string; a: string };
+export type Plugin = {
+  slug: string; name: string; category: string; tags: string[]; url: string; maker: string; what: string; who: string; setup: SetupStep[]; install?: InstallSpec; prompts: string[];
+  /** Overrides the default <title> (before the site-name suffix) and meta description. */
+  seo?: { title: string; description: string };
+  /** Extra sections shown between "What it does" and "How to set it up". */
+  sections?: ListingSection[];
+  /** Visible FAQ (also emitted as FAQPage JSON-LD). */
+  faq?: ListingFaq[];
+  /** Slugs of /guides/ pages to link under "Related guides". */
+  guides?: string[];
+};
 /** gumroadUrl: Gumroad product link (e.g. https://<name>.gumroad.com/l/<id>). Empty = not on sale yet. */
 export type Pack = { slug: string; name: string; price: number; gumroadUrl?: string; desc: string; items: string[] };
 const dir = path.join(process.cwd(), 'content');

@@ -32,5 +32,8 @@
     "Use the Create Plugin skill to scaffold a new plugin for our team's rules and skills.",
     "Which installed plugins add MCP servers, and which of those are switched on?",
     "Use the Playwright plugin to open localhost:3000 and check the sign-up form works."
+  ],
+  "guides": [
+    "cursor-rules-vs-agents-md"
   ]
 }

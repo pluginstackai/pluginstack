@@ -46,5 +46,9 @@
     "Explain how this project is structured and where the auth logic lives.",
     "Write tests for the auth module, run them, and fix any failures.",
     "Commit my changes with a descriptive message."
+  ],
+  "guides": [
+    "best-mcp-servers-for-claude-code",
+    "cursor-rules-vs-agents-md"
   ]
 }

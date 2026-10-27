@@ -44,5 +44,8 @@
     "Explain this codebase and where the main entry point is.",
     "Find the bug that makes the login test fail and fix it.",
     "Add a dark mode toggle and run the build to make sure it passes."
+  ],
+  "guides": [
+    "cursor-rules-vs-agents-md"
   ]
 }

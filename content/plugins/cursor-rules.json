@@ -6,9 +6,9 @@
     "cursor",
     "rules"
   ],
-  "url": "https://cursor.com/docs/context/rules",
+  "url": "https://cursor.com/docs/rules",
   "maker": "Cursor",
-  "updated": "2026-10-15",
+  "updated": "2026-10-27",
   "what": "Cursor's rules feature gives the Agent persistent instructions. Project rules are .mdc files in .cursor/rules, and there are also User Rules, Team Rules and plain AGENTS.md files.",
   "who": "Cursor users who are tired of repeating the same instructions every chat.",
   "setup": [
@@ -28,5 +28,8 @@
     "/create-rule Use named exports and Tailwind for all components in src/components.",
     "Following our project rules, create a new API route for user settings.",
     "Write an AGENTS.md for this repo based on package.json and the folder structure."
+  ],
+  "guides": [
+    "cursor-rules-vs-agents-md"
   ]
 }

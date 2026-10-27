@@ -9,14 +9,14 @@
   ],
   "url": "https://github.com/openai/openai-agents-python",
   "maker": "OpenAI",
-  "updated": "2026-10-17",
+  "updated": "2026-10-27",
   "demo": {
     "youtubeId": "tK32trvj_b4",
     "title": "Build Hour: Agents SDK",
     "channel": "OpenAI",
     "channelUrl": "https://www.youtube.com/@OpenAI"
   },
-  "what": "A lightweight Python framework for building agents and multi-agent workflows. It covers agents with tools and handoffs, guardrails, human-in-the-loop, sessions, tracing, sandbox agents and voice/realtime agents. It works with OpenAI's APIs and, per the README, 100+ other LLMs. A JS/TS version exists too. MIT licensed.",
+  "what": "OpenAI's lightweight, open-source framework for building agents and multi-agent workflows, in Python (openai-agents) and JavaScript/TypeScript (@openai/agents). It covers agents with tools (functions, MCP servers, hosted tools), handoffs, guardrails, human-in-the-loop, sessions, tracing, sandbox agents and realtime/voice agents. Per the README it is provider-agnostic: it supports the OpenAI Responses and Chat Completions APIs and 100+ other LLMs. MIT licensed.",
   "who": "Python developers building their own agents who want a small, well-documented framework.",
   "setup": [
     {
@@ -33,11 +33,66 @@
       "text": "Set OPENAI_API_KEY and run a first agent:",
       "code": "from agents import Agent, Runner\n\nagent = Agent(name=\"Assistant\", instructions=\"You are a helpful assistant\")\nresult = Runner.run_sync(agent, \"Write a haiku about recursion in programming.\")\nprint(result.final_output)",
       "language": "text"
+    },
+    {
+      "text": "JavaScript/TypeScript equivalent of the first agent (after npm install @openai/agents zod):",
+      "code": "import { Agent, run } from '@openai/agents';\n\nconst agent = new Agent({\n  name: 'Assistant',\n  instructions: 'You are a helpful assistant.',\n});\nconst result = await run(agent, 'Write a haiku about recursion in programming.');\nconsole.log(result.finalOutput);",
+      "language": "text"
+    },
+    {
+      "text": "Optional Python extras: pip install 'openai-agents[voice]' for voice pipelines and pip install 'openai-agents[redis]' for Redis-backed sessions. Docs: openai.github.io/openai-agents-python."
     }
   ],
   "prompts": [
     "Build a triage agent with the OpenAI Agents SDK that hands off to a billing agent or a support agent.",
     "Add an input guardrail that blocks requests unrelated to our product.",
     "Connect my agent to a local MCP server and list the tools it can see."
+  ],
+  "seo": {
+    "title": "OpenAI Agents SDK: install, quickstart & what it is",
+    "description": "The OpenAI Agents SDK explained: Python and JavaScript/TypeScript install commands, a first agent, handoffs, guardrails, MCP tools, sessions and tracing."
+  },
+  "sections": [
+    {
+      "heading": "Agents SDK vs the OpenAI SDK",
+      "paragraphs": [
+        "People often search for \"OpenAI SDK\" and mean one of two things. The openai package is OpenAI's general API client. The OpenAI Agents SDK is a separate package (openai-agents for Python, @openai/agents for JavaScript/TypeScript) that adds the agent loop, handoffs, guardrails, sessions and tracing on top of model calls.",
+        "The Agents SDK docs include a section on when to use the Agents SDK and when to call the Responses API directly. A single model call with no tools or handoffs doesn't need an agent framework."
+      ]
+    },
+    {
+      "heading": "JavaScript / TypeScript version",
+      "paragraphs": [
+        "There is a separate repository, openai/openai-agents-js. Its README lists Node.js 22 or later, Deno and Bun as supported environments, with Cloudflare Workers (nodejs_compat enabled) as experimental."
+      ],
+      "code": "npm install @openai/agents zod",
+      "language": "bash"
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the OpenAI Agents SDK?",
+      "a": "An open-source framework from OpenAI for building agents and multi-agent workflows. An agent is a model configured with instructions, tools, guardrails and handoffs, and the SDK runs the loop that calls tools and passes work between agents."
+    },
+    {
+      "q": "How do I install the OpenAI Agents SDK?",
+      "a": "For Python 3.10 or newer, run pip install openai-agents (or uv add openai-agents) and set OPENAI_API_KEY. For JavaScript/TypeScript, run npm install @openai/agents zod."
+    },
+    {
+      "q": "Does it only work with OpenAI models?",
+      "a": "No. The README describes it as provider-agnostic: it supports the OpenAI Responses and Chat Completions APIs and 100+ other LLMs. You still need credentials for whichever provider you use."
+    },
+    {
+      "q": "Can agents use MCP servers?",
+      "a": "Yes. The README lists MCP among the tool types, next to function tools and hosted tools."
+    },
+    {
+      "q": "Is it the same as the openai package?",
+      "a": "No. The openai package is the general API client. The Agents SDK is a separate package built for agent workflows."
+    },
+    {
+      "q": "Is it free?",
+      "a": "The SDK is MIT licensed and free to use. Model calls to OpenAI or another provider are billed by that provider."
+    }
   ]
 }

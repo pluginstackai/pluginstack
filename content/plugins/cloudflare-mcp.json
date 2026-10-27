@@ -9,26 +9,34 @@
   ],
   "url": "https://github.com/cloudflare/mcp-server-cloudflare",
   "maker": "Cloudflare",
-  "updated": "2026-10-17",
+  "updated": "2026-10-27",
   "demo": {
     "youtubeId": "eTa8TPxkvMY",
     "title": "The Cloudflare API MCP in Under 3 Minutes",
     "channel": "Cloudflare Developers",
     "channelUrl": "https://www.youtube.com/@CloudflareDevelopers"
   },
-  "what": "Cloudflare's official remote MCP servers. The recommended Cloudflare API server (mcp.cloudflare.com, maintained in the cloudflare/mcp repo) covers the whole Cloudflare API through a small set of code-mode tools; the domain-specific servers in this repo cover docs, Browser Run, containers and more. All are hosted, so there is nothing to install. Apache-2.0.",
-  "who": "Developers who run sites, Workers or DNS on Cloudflare and want the agent to read or change their setup. Some features need a paid Workers plan.",
+  "what": "Cloudflare's official remote MCP servers. The recommended Cloudflare API MCP server (https://mcp.cloudflare.com/mcp, maintained in the cloudflare/mcp repo) reaches the whole Cloudflare API through a few code-mode tools, and the repo also lists product servers for docs, containers, Browser Run and more. All are hosted by Cloudflare, so there is nothing to install. Apache-2.0.",
+  "who": "Developers who run sites, Workers or DNS on Cloudflare and want the agent to read or change their setup, look up Cloudflare docs, or publish a remote MCP server of their own. Some features need a paid Workers plan.",
   "setup": [
     {
-      "text": "Add the Cloudflare API server to your MCP client and sign in with OAuth when prompted:",
+      "text": "Easiest: add the Cloudflare API MCP server to any client that supports remote servers, then sign in with Cloudflare OAuth when prompted. Choose the permissions to grant on the consent screen:",
       "code": "{\n  \"mcpServers\": {\n    \"cloudflare-api\": {\n      \"type\": \"http\",\n      \"url\": \"https://mcp.cloudflare.com/mcp\"\n    }\n  }\n}",
       "language": "json"
     },
     {
-      "text": "For CI or automation, use the same URL with a Cloudflare API token as a Bearer token instead of OAuth."
+      "text": "Claude Code: add it from your terminal, then run /mcp inside a session to finish the OAuth sign-in:",
+      "code": "claude mcp add --transport http cloudflare-api https://mcp.cloudflare.com/mcp",
+      "language": "bash"
     },
     {
-      "text": "Need only Cloudflare docs? Point your client at https://docs.mcp.cloudflare.com/mcp instead."
+      "text": "For CI or automation, skip OAuth: use the same URL and send a Cloudflare API token as a Bearer token. Create the token in the dashboard with only the permissions you need. Tokens with Client IP Address Filtering aren't supported."
+    },
+    {
+      "text": "Only need Cloudflare docs? Point your client at https://docs.mcp.cloudflare.com/mcp instead (same JSON, different URL)."
+    },
+    {
+      "text": "Client that only supports local stdio servers? The third-party mcp-remote npm package (not made by Cloudflare) bridges to a remote URL. Check its README for your client, then use a command like npx -y mcp-remote https://mcp.cloudflare.com/mcp."
     },
     {
       "text": "The agent can change real settings in your account, so review its actions before approving them."
@@ -52,5 +60,72 @@
     "List my Cloudflare zones and show the DNS records for my main domain.",
     "Using the Cloudflare docs server, explain how to add a KV binding to a Worker.",
     "Create a KV namespace called cache in my account and show me its ID."
+  ],
+  "seo": {
+    "title": "Cloudflare MCP server: URLs, setup & how to connect",
+    "description": "The Cloudflare MCP server explained: the official remote servers, how to connect from Claude Code, Cursor or any MCP client, and how to build your own on Workers."
+  },
+  "sections": [
+    {
+      "heading": "What the Cloudflare MCP servers are",
+      "paragraphs": [
+        "These are remote MCP servers run by Cloudflare. Your MCP client connects to a URL over Streamable HTTP, so you don't run any code on your machine. Per the cloudflare/mcp-server-cloudflare README, each one answers at /mcp, and the old /sse URL now returns 410 Gone.",
+        "Cloudflare splits them into two kinds: one general API server for broad access, and domain-specific servers for a single product area."
+      ]
+    },
+    {
+      "heading": "Which Cloudflare MCP server to use",
+      "bullets": [
+        "Cloudflare API MCP server (recommended): https://mcp.cloudflare.com/mcp. It exposes the whole Cloudflare API through code execution (Code Mode): the README says about 2,500 endpoints fit in roughly 1,000 tokens of tool definitions. Its main tools are search and execute, plus docs and whoami.",
+        "Documentation server: https://docs.mcp.cloudflare.com/mcp for up-to-date Cloudflare reference answers.",
+        "Container server: https://containers.mcp.cloudflare.com/mcp for a sandbox development environment.",
+        "Browser Run server: https://browser.mcp.cloudflare.com/mcp to fetch pages, convert them to markdown and take screenshots.",
+        "Also listed in the repo: Digital Experience Monitoring (dex), Cloudflare One CASB (casb), Cloudflare Blog (blog) and a minimal Demo Day server, each at its own *.mcp.cloudflare.com/mcp address.",
+        "Deprecated: the older observability, Workers Bindings, Workers Builds, Radar, GraphQL, DNS Analytics, Logpush, Audit Logs, AI Gateway and AutoRAG servers. Cloudflare's README says to move to the API server, so older tutorials that point at them are out of date."
+      ]
+    },
+    {
+      "heading": "Build your own remote MCP server on Cloudflare Workers",
+      "paragraphs": [
+        "Cloudflare's Agents docs (Build a Remote MCP server) show how to deploy your own server to Workers. The templates use createMcpHandler from the Agents SDK, so the server is stateless and needs no Durable Object. Without authentication it is public. With authentication, users sign in before their agent can call tools.",
+        "After deploying, the server lives at your workers.dev subdomain under /mcp. The docs test it with the MCP Inspector and add it to Claude Code with claude mcp add --transport http."
+      ],
+      "code": "npm create cloudflare@latest -- remote-mcp-server-authless --template=cloudflare/ai/demos/remote-mcp-authless\ncd remote-mcp-server-authless\nnpx wrangler@latest deploy",
+      "language": "bash"
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the Cloudflare MCP server?",
+      "a": "It is a set of official, hosted MCP servers from Cloudflare. They let an MCP client such as Claude Code or Cursor read your Cloudflare configuration, search Cloudflare docs and make changes through natural language. The recommended one is the Cloudflare API MCP server at https://mcp.cloudflare.com/mcp."
+    },
+    {
+      "q": "What is the Cloudflare MCP server URL?",
+      "a": "For the whole Cloudflare API: https://mcp.cloudflare.com/mcp. For docs only: https://docs.mcp.cloudflare.com/mcp. Product servers follow the same pattern, such as https://browser.mcp.cloudflare.com/mcp."
+    },
+    {
+      "q": "Do I need to install anything?",
+      "a": "No. The servers are hosted by Cloudflare. You only add the URL to your MCP client. A client that supports only local servers can use the third-party mcp-remote adapter."
+    },
+    {
+      "q": "Does it use OAuth or an API token?",
+      "a": "Both work on the API server. OAuth is the recommended default: you sign in to Cloudflare and pick permissions. An API token sent as a Bearer token suits CI and automation."
+    },
+    {
+      "q": "Are the Workers observability and bindings servers still available?",
+      "a": "They are listed as deprecated in Cloudflare's README, which says to migrate to the Cloudflare API MCP server."
+    },
+    {
+      "q": "Can I build my own remote MCP server on Cloudflare?",
+      "a": "Yes. Cloudflare's Build a Remote MCP server guide deploys a template to Workers with Wrangler and serves it at /mcp on your workers.dev subdomain. You can run it without authentication or add sign-in."
+    },
+    {
+      "q": "Does it cost anything?",
+      "a": "The README doesn't mention a separate charge for the MCP servers, but it says some features may require a paid Workers plan. Changes your agent makes run against your real account."
+    }
+  ],
+  "guides": [
+    "best-mcp-servers-for-claude-code",
+    "add-mcp-server-to-cursor"
   ]
 }

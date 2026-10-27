@@ -9,26 +9,26 @@
   ],
   "url": "https://opencode.ai",
   "maker": "Anomaly",
-  "updated": "2026-10-17",
-  "what": "An open-source AI coding agent with a terminal UI, plus a desktop app and IDE support. It works with API keys from many LLM providers. It has a full-access build agent and a read-only plan agent you switch between with Tab. MIT licensed.",
+  "updated": "2026-10-27",
+  "what": "An open-source AI coding agent with a terminal UI, plus a desktop app (beta) and IDE support. It works with API keys from many LLM providers, and also has an optional curated model service called OpenCode Zen. It ships a full-access build agent and a read-only plan agent you switch between with Tab. The code is on GitHub at anomalyco/opencode (the older sst/opencode address redirects there). MIT licensed.",
   "who": "Terminal users who want an open-source agent and the freedom to pick their own model provider.",
   "setup": [
     {
-      "text": "OpenCode 2 (what opencode.ai/download offers now):",
-      "code": "curl -fsSL https://opencode.ai/v2/install | bash\n# or\nnpm install -g @opencode/cli",
+      "text": "OpenCode 2 (what the GitHub README and opencode.ai/download offer now). Use one of:",
+      "code": "curl -fsSL https://opencode.ai/v2/install | bash\n# or\nnpm i -g @opencode/cli@latest\n# or (macOS and Linux)\nbrew install anomalyco/tap/opencode-v2",
       "language": "bash"
     },
     {
-      "text": "OpenCode 1 (the install the GitHub README still shows):",
-      "code": "curl -fsSL https://opencode.ai/install | bash\n# or\nbrew install anomalyco/tap/opencode",
+      "text": "OpenCode 1 (what opencode.ai/docs still documents; npm package name is different):",
+      "code": "curl -fsSL https://opencode.ai/install | bash\n# or\nnpm install -g opencode-ai\n# or (macOS and Linux)\nbrew install anomalyco/tap/opencode",
       "language": "bash"
     },
     {
-      "text": "Both versions use the opencode command and aren't installed side by side by default; the V2 installer replaces a V1 binary. If you're moving from V1, read opencode.ai/v2/docs/migrate-v1 first (V1 plugins don't run in V2)."
+      "text": "Don't mix them: both versions provide the opencode command. If you're moving from V1, read opencode.ai/v2/docs/migrate-v1 first (V1 plugins don't run in V2). On Windows, the docs recommend WSL."
     },
     {
-      "text": "cd into your project, run opencode, and add API keys for the providers you want to use.",
-      "code": "opencode",
+      "text": "cd into your project, start OpenCode, then run /connect to add a provider and /init to generate AGENTS.md:",
+      "code": "cd your-project\nopencode",
       "language": "bash"
     }
   ],
@@ -36,5 +36,64 @@
     "Switch to plan mode and explain how authentication works in this repo.",
     "Add pagination to the /api/posts endpoint and update the tests.",
     "@general find every place we call the payments API."
+  ],
+  "seo": {
+    "title": "OpenCode: install, docs & setup for the terminal coding agent",
+    "description": "OpenCode explained: an open-source AI coding agent for your terminal. Install commands (V2 and V1), connecting a provider, /init and AGENTS.md, plan vs build, and where the docs live."
+  },
+  "sections": [
+    {
+      "heading": "Using OpenCode in the terminal",
+      "bullets": [
+        "Run opencode inside a project folder to open the terminal UI.",
+        "Use /connect to add a provider's API key. OpenCode Zen is suggested for newcomers but optional; any supported provider works.",
+        "Run /init and OpenCode analyzes the project and creates an AGENTS.md in the project root. Commit it so every agent that reads AGENTS.md shares the same instructions.",
+        "Press Tab to switch between the build agent (full access) and the plan agent (read-only by default; it asks before running shell commands).",
+        "Type @general to hand a search or multi-step task to the built-in general subagent."
+      ]
+    },
+    {
+      "heading": "OpenCode 1 vs OpenCode 2",
+      "paragraphs": [
+        "OpenCode currently ships in two major versions that share the opencode command and can't be installed side by side under it. The GitHub README and opencode.ai/download point at V2. The main docs at opencode.ai/docs still document V1 installs and note that V2 is available. V1 plugins don't run in V2, so read the migration page at opencode.ai/v2/docs/migrate-v1 before switching."
+      ]
+    },
+    {
+      "heading": "Where the OpenCode docs are",
+      "bullets": [
+        "opencode.ai/docs: intro, config, providers, TUI, CLI, agents, rules, MCP servers, permissions and more.",
+        "opencode.ai/v2/docs/migrate-v1: moving from V1 to V2.",
+        "github.com/anomalyco/opencode: source, releases and issues."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is OpenCode?",
+      "a": "An open-source AI coding agent you run in your terminal (there is also a beta desktop app and IDE support). You bring an API key from a model provider, or use OpenCode's optional Zen service."
+    },
+    {
+      "q": "How do I install OpenCode?",
+      "a": "For OpenCode 2, run curl -fsSL https://opencode.ai/v2/install | bash or npm i -g @opencode/cli@latest. For OpenCode 1, use curl -fsSL https://opencode.ai/install | bash or npm install -g opencode-ai."
+    },
+    {
+      "q": "Where are the OpenCode docs?",
+      "a": "At opencode.ai/docs, which currently documents V1 and links to the V2 docs. The source is at github.com/anomalyco/opencode."
+    },
+    {
+      "q": "Does OpenCode read AGENTS.md?",
+      "a": "Yes. It is listed as a supported tool on agents.md, and /init creates an AGENTS.md file in your project root."
+    },
+    {
+      "q": "What is the difference between the build and plan agents?",
+      "a": "Build has full access for making changes. Plan is read-only by default: it denies edits and asks before running shell commands. Press Tab to switch."
+    },
+    {
+      "q": "Can OpenCode 1 and 2 be installed together?",
+      "a": "Not under the default opencode command. Both use it, and the docs say they can't be installed side by side."
+    }
+  ],
+  "guides": [
+    "cursor-rules-vs-agents-md"
   ]
 }

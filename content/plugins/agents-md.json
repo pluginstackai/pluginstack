@@ -9,8 +9,8 @@
   ],
   "url": "https://agents.md",
   "maker": "Agentic AI Foundation (Linux Foundation)",
-  "updated": "2026-10-17",
-  "what": "A simple open format for giving coding agents project instructions: one AGENTS.md markdown file in your repo with setup commands, test steps and code style. It is now stewarded by the Agentic AI Foundation under the Linux Foundation, and the agents.md site lists many tools that read it, including Codex, Cursor, goose, OpenCode, Aider, Zed, Kilo Code and GitHub Copilot's coding agent. The site and repo are MIT licensed.",
+  "updated": "2026-10-27",
+  "what": "A simple open format for giving coding agents project instructions: one AGENTS.md markdown file in your repo with setup commands, test steps and code style. It is now stewarded by the Agentic AI Foundation under the Linux Foundation, and the agents.md site lists many tools that read it, including Codex, Cursor, goose, OpenCode, Aider, Zed, Kilo Code and GitHub Copilot's coding agent. The site and repo are MIT licensed. Claude Code reads it too when a project has no CLAUDE.md.",
   "who": "Anyone who uses more than one coding agent and wants a single instructions file they all understand.",
   "setup": [
     {
@@ -29,5 +29,8 @@
     "Read this repo and write an AGENTS.md with the real setup, test and lint commands.",
     "Update AGENTS.md so agents always run the type checker before committing.",
     "Compare our CLAUDE.md and AGENTS.md and merge them into one AGENTS.md."
+  ],
+  "guides": [
+    "cursor-rules-vs-agents-md"
   ]
 }

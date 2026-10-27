@@ -171,10 +171,19 @@ const claude: Guide = {
   slug: 'best-mcp-servers-for-claude-code',
   title: 'Best MCP servers for Claude Code (with install commands)',
   h1: 'The best MCP servers for Claude Code',
-  description: 'Nine official MCP servers worth adding to Claude Code, from GitHub and Context7 to Playwright and Sentry, with the exact claude mcp add command for each.',
-  published: '2026-10-20', updated: '2026-10-20',
-  intro: 'Claude Code can already read, edit and run code in your project. MCP servers connect it to the things it can\'t see on its own: your GitHub issues, current library docs, a real browser, production errors, your tickets and your database. Below are nine official servers worth considering, the exact command to add each one, and how to fix the usual setup problems.',
+  description: 'Ten official MCP servers worth adding to Claude Code, from GitHub and Context7 to Playwright, Sentry and Cloudflare, with the exact claude mcp add command for each.',
+  published: '2026-10-20', updated: '2026-10-27',
+  intro: 'Claude Code can already read, edit and run code in your project. MCP servers connect it to the things it can\'t see on its own: your GitHub issues, current library docs, a real browser, production errors, your tickets and your database. Below are ten official servers worth considering, the exact command to add each one, and how to fix the usual setup problems.',
   blocks: [
+    { h2: 'Short answer: where to start', id: 'start-here' },
+    { ul: [
+      '**Almost everyone:** [GitHub](/plugins/github-mcp-server/) for issues and PRs, and [Context7](/plugins/context7/) for current library docs.',
+      '**Front-end work:** [Playwright](/plugins/playwright-mcp/) or [Chrome DevTools](/plugins/chrome-devtools-mcp/) so Claude can see the running page.',
+      '**Team tools:** [Sentry](/plugins/sentry-mcp/), [Linear](/plugins/linear-mcp/) and [Notion](/plugins/notion-mcp/) if your team already uses them.',
+      '**Data and infrastructure:** [Supabase](/plugins/supabase-mcp/) (or [Neon](/plugins/neon-mcp/)) and [Cloudflare](/plugins/cloudflare-mcp/), scoped to read-only or one project while you test.',
+    ] },
+    { p: 'Add two or three, not all ten. The reasons are under "How we picked".' },
+
     { h2: 'How we picked', id: 'how-we-picked' },
     { ul: [
       '**Official**: published by the company behind the service (or by Microsoft and Google for the browser tools), so it tracks the real API.',
@@ -206,7 +215,7 @@ const claude: Guide = {
     { p: 'For read-only tools, GitHub\'s remote-server docs give `https://api.githubcopilot.com/mcp/readonly` as the URL. `claude mcp add` doesn\'t check the token when it saves, so run `/mcp` afterwards: a bad token shows an ✘ and an HTTP 401. More: [GitHub MCP Server on PluginStack](/plugins/github-mcp-server/).' },
 
     { h3: '2. Context7: current library docs' },
-    { p: 'Context7 pulls version-specific documentation and code examples into the conversation, which helps with libraries that changed after the model was trained. The quickest setup signs you in and configures Claude Code for you (needs Node.js 22.13+):' },
+    { p: 'Context7 pulls version-specific documentation and code examples into the conversation, which helps with libraries that changed after the model was trained. The quickest setup is Context7\'s `ctx7` command, which signs you in, then lets you choose CLI + Skills or MCP mode; `--claude` targets Claude Code (needs Node.js 22.13 or newer):' },
     { code: 'npx ctx7 setup --claude', lang: 'bash' },
     { p: 'Or add the hosted server by hand. An API key is optional but recommended for higher rate limits (free keys at context7.com/dashboard):' },
     { code: 'claude mcp add --scope user --header "Authorization: Bearer YOUR_API_KEY" \\\n  --transport http context7 https://mcp.context7.com/mcp', lang: 'bash' },
@@ -247,14 +256,19 @@ const claude: Guide = {
     { code: 'claude mcp add --transport http figma https://mcp.figma.com/mcp', lang: 'bash' },
     { p: 'Sign in through Figma\'s OAuth flow, then paste a link to a frame or layer into your prompt. More: [Figma MCP Server](/plugins/figma-mcp/).' },
 
+    { h3: '10. Cloudflare MCP server: your Cloudflare account' },
+    { p: 'Cloudflare\'s recommended server covers the whole Cloudflare API through a few code-mode tools, so Claude can inspect and change zones, Workers, DNS and more. Cloudflare also runs separate hosted servers for docs, Browser Run and containers. Cloudflare\'s own README now marks its older observability and bindings servers as deprecated in favour of this one:' },
+    { code: 'claude mcp add --transport http cloudflare-api https://mcp.cloudflare.com/mcp', lang: 'bash' },
+    { p: 'Run `/mcp` to sign in with Cloudflare OAuth and choose the permissions to grant. For CI, send a scoped API token as a Bearer header instead. It can change real settings, so review each action. More: [Cloudflare MCP servers](/plugins/cloudflare-mcp/).' },
+
     { h3: 'Also worth a look' },
     { ul: [
       'Web search and scraping: [Exa](/plugins/exa-mcp/), [Firecrawl](/plugins/firecrawl-mcp/) and [Brave Search](/plugins/brave-search-mcp/).',
-      'Payments and infrastructure: [Stripe MCP](/plugins/stripe-mcp/) and [Cloudflare MCP](/plugins/cloudflare-mcp/). These can change real accounts, so review every action.',
+      'Payments: [Stripe MCP](/plugins/stripe-mcp/). It can change a real account, so review every action.',
     ] },
 
     { h2: 'Servers you can usually skip', id: 'skip' },
-    { p: 'Claude Code already reads and edits files in your project and loads project instructions from `CLAUDE.md`. That makes general-purpose [Filesystem](/plugins/filesystem-mcp/) and [Memory](/plugins/memory-mcp/) servers mostly redundant in Claude Code. They\'re more useful when you want the same setup across several MCP apps, or access to folders outside the project.' },
+    { p: 'Claude Code already reads and edits files in your project and loads project instructions from `CLAUDE.md` (or from `AGENTS.md` when there is no `CLAUDE.md`, on recent versions; see [Cursor rules vs AGENTS.md](/guides/cursor-rules-vs-agents-md/)). That makes general-purpose [Filesystem](/plugins/filesystem-mcp/) and [Memory](/plugins/memory-mcp/) servers mostly redundant in Claude Code. They\'re more useful when you want the same setup across several MCP apps, or access to folders outside the project.' },
 
     { h2: 'Share servers with your team', id: 'share' },
     { p: 'Add a server with `--scope project` (or write the entry by hand) and commit the resulting `.mcp.json`. Teammates get a prompt to approve each project server the first time Claude Code sees it. Keep secrets out of the file with environment variables: `.mcp.json` expands `${VAR}` and `${VAR:-default}`.' },
@@ -298,7 +312,7 @@ const claude: Guide = {
     { h3: 'Using Cursor too?' },
     { p: 'Most of these servers work in Cursor as well. See [how to add an MCP server to Cursor](/guides/add-mcp-server-to-cursor/).' },
   ],
-  related: ['claude-code', 'github-mcp-server', 'context7', 'playwright-mcp', 'sentry-mcp', 'supabase-mcp'],
+  related: ['claude-code', 'github-mcp-server', 'context7', 'playwright-mcp', 'sentry-mcp', 'supabase-mcp', 'cloudflare-mcp'],
   sources: [
     { label: 'Claude Code docs: Connect Claude Code to tools via MCP', url: 'https://code.claude.com/docs/en/mcp' },
     { label: 'Claude Code docs: Connect to MCP servers (quickstart and troubleshooting)', url: 'https://code.claude.com/docs/en/mcp-quickstart' },
@@ -311,6 +325,8 @@ const claude: Guide = {
     { label: 'Notion docs: Get started with MCP', url: 'https://developers.notion.com/docs/get-started-with-mcp' },
     { label: 'Supabase MCP README', url: 'https://github.com/supabase-community/supabase-mcp' },
     { label: 'Neon MCP Server README', url: 'https://github.com/neondatabase/mcp-server-neon' },
+    { label: 'Cloudflare MCP server repo (servers, URLs, deprecations)', url: 'https://github.com/cloudflare/mcp-server-cloudflare' },
+    { label: 'Cloudflare API MCP server README', url: 'https://github.com/cloudflare/mcp' },
     { label: 'Figma docs: Remote MCP server installation', url: 'https://developers.figma.com/docs/figma-mcp-server/remote-server-installation/' },
   ],
 };
@@ -565,6 +581,121 @@ const skills: Guide = {
 };
 
 
-export const GUIDES: Guide[] = [cursor, claude, plugins, skills, ...MCP_GUIDES];
+const rules: Guide = {
+  slug: 'cursor-rules-vs-agents-md',
+  title: 'Cursor rules vs AGENTS.md: which to use (and .cursorrules)',
+  h1: 'Cursor rules vs AGENTS.md',
+  description: 'Cursor rules (.cursor/rules .mdc), the legacy .cursorrules file and AGENTS.md compared: what each does, which tools read it, when to use each, with examples.',
+  published: '2026-10-27', updated: '2026-10-27',
+  intro: 'Cursor gives you three ways to hand your coding agent standing instructions: project rules in `.cursor/rules`, an `AGENTS.md` file, and the older `.cursorrules` file. They overlap, and they work differently. This guide explains each one, which tools read it, and which to pick, with copy-paste examples checked against Cursor\'s docs and the agents.md site.',
+  blocks: [
+    { h2: 'Quick answer', id: 'quick-answer' },
+    { ul: [
+      '**Use `AGENTS.md`** for plain, always-relevant project instructions (setup, test and lint commands, code style). It is an open format that many coding agents read, and Cursor reads it in your project root and in subfolders.',
+      '**Use `.cursor/rules/*.mdc`** when you need Cursor to apply an instruction only sometimes: for certain file patterns, when the agent judges it relevant, or only when you @-mention it.',
+      '**Don\'t start with `.cursorrules`.** Cursor calls it legacy and says it will be deprecated. If you have one, migrate it.',
+      '**Using several agents?** Put the shared basics in `AGENTS.md` and keep Cursor-specific, file-scoped rules in `.cursor/rules`.',
+    ] },
+
+    { h2: 'The three options at a glance', id: 'compare' },
+    { ul: [
+      '**Project rules**: `.mdc` files in `.cursor/rules/`. Cursor-only. YAML frontmatter controls when each rule loads. Supports folders and globs.',
+      '**AGENTS.md**: one markdown file with no required fields or frontmatter. Cross-tool. Nested files in subfolders apply to that part of the repo.',
+      '**.cursorrules**: a single file in the project root. Legacy. Always-on behaviour only, with no scoping.',
+    ] },
+    { p: 'Cursor also has **User Rules** (your personal preferences across projects, set in Customize) and **Team Rules** (managed from the dashboard on Team and Enterprise plans). Cursor applies them in this order when guidance conflicts: Team Rules, then Project Rules, then User Rules.' },
+
+    { h2: 'Cursor project rules (.cursor/rules)', id: 'cursor-rules' },
+    { p: 'Project rules live in `.cursor/rules` as `.mdc` files and are meant to be committed to git. The extension matters: Cursor\'s docs say a plain `.md` file in that folder is ignored because it has no frontmatter. Folders inside `.cursor/rules` are fine.' },
+    { code: '.cursor/rules/\n  react-patterns.mdc      # recognized\n  api-guidelines.md       # ignored (wrong extension)\n  frontend/\n    components.mdc        # recognized', lang: 'text', caption: 'Rule files' },
+    { p: 'Three frontmatter fields decide when a rule is included:' },
+    { ul: [
+      '`alwaysApply: true`: included in every chat session. Globs and description are ignored.',
+      '`globs` set and `alwaysApply: false`: attached automatically when a matching file is in context (**Apply to Specific Files**).',
+      '`description` set, no globs, `alwaysApply: false`: the agent reads the description and pulls the rule in when relevant (**Apply Intelligently**).',
+      'None of them: the rule is only used when you @-mention it in chat (**Apply Manually**).',
+    ] },
+    { p: 'A rule that applies only to React components:' },
+    { code: '---\nglobs: src/components/**/*.tsx\nalwaysApply: false\n---\n\n- Use named exports, not default exports\n- Co-locate styles in a module CSS file next to the component\n- Keep components under 200 lines', lang: 'text', caption: '.cursor/rules/components.mdc' },
+    { p: 'A rule the agent can choose to load, plus a file reference. Cursor\'s docs note that `@template.ts` tells the agent where to look; the file is read when needed, not pasted into the prompt:' },
+    { code: '---\ndescription: RPC service conventions and patterns for the backend\nalwaysApply: false\n---\n\n- Define each service in its own file under `src/services/`\n- Validate inputs at the service boundary\n- Read `@service-template.ts` before creating a new service', lang: 'text', caption: '.cursor/rules/services.mdc' },
+    { p: 'Create one by typing `/create-rule` in Agent chat, or open **Customize**, go to **Rules** and click **Add Rule**. Cursor\'s tips: keep each rule under 500 lines, split big ones into smaller composable rules, point to example files instead of copying code, and add a rule only after you see the agent make the same mistake more than once. Rules don\'t affect Cursor Tab or other AI features.' },
+
+    { h2: 'AGENTS.md', id: 'agents-md' },
+    { p: '[AGENTS.md](/plugins/agents-md/) is an open format described at agents.md as "a README for agents". It is plain markdown with no required fields: headings are up to you. The agents.md site is stewarded by the Agentic AI Foundation under the Linux Foundation. A typical file:' },
+    { code: '# AGENTS.md\n\n## Setup commands\n- Install deps: `pnpm install`\n- Start dev server: `pnpm dev`\n- Run tests: `pnpm test`\n\n## Code style\n- TypeScript strict mode\n- Single quotes, no semicolons', lang: 'text', caption: 'AGENTS.md' },
+    { h3: 'How Cursor treats it' },
+    { p: 'Cursor supports `AGENTS.md` in the project root and in subdirectories. Nested files are combined with their parents, and the more specific one wins when instructions conflict. Cursor describes it as a simple alternative to `.cursor/rules` for straightforward cases: no metadata, no globs, no rule types.' },
+    { code: 'project/\n  AGENTS.md              # global instructions\n  frontend/\n    AGENTS.md            # frontend-specific\n  backend/\n    AGENTS.md            # backend-specific', lang: 'text', caption: 'Nested AGENTS.md' },
+    { h3: 'Which tools read AGENTS.md' },
+    { p: 'The agents.md site lists these among supported tools: Codex, Jules, Factory, Aider, goose, OpenCode, Zed, Warp, VS Code, Devin, Junie, Amp, Cursor, RooCode, Gemini CLI, Kilo Code, Windsurf, Augment Code and GitHub Copilot\'s coding agent. Two are worth knowing about:' },
+    { ul: [
+      '**Claude Code** reads `AGENTS.md` too, but only when your project has no `CLAUDE.md` (or `CLAUDE.local.md`) in the working directory or above it, and it needs Claude Code v2.1.277 or later. If you have both, it reads `CLAUDE.md` only, unless you change the **Project instructions** setting in `/config`.',
+      '**Aider and Gemini CLI** need a one-line setting pointing at `AGENTS.md`; the agents.md FAQ shows each one.',
+    ] },
+    { p: 'See [Codex CLI](/plugins/codex-cli/), [OpenCode](/plugins/opencode/) and [Claude Code](/plugins/claude-code/) for those tools.' },
+    { h3: 'Conflicts' },
+    { p: 'Per agents.md, the closest `AGENTS.md` to the file being edited wins, and explicit instructions you type in chat override everything.' },
+
+    { h2: '.cursorrules (legacy)', id: 'cursorrules' },
+    { p: 'The `.cursorrules` file in your project root is the original format. Cursor\'s help center calls it legacy and says it will be deprecated. In March 2026 a Cursor team member said on the forum that it should still work for now, but that `.cursor/rules` is the actively supported format, and that when both exist the `.mdc` rules take precedence where they overlap. Treat it as something to move off, not build on.' },
+    { h3: 'Migrate it' },
+    { ol: [
+      'Create a new rule: open the command palette and run **New Cursor Rule** (or use `/create-rule`).',
+      'Copy the contents of `.cursorrules` into the new rule.',
+      'Set the rule type to **Always Apply**, which matches the old behaviour.',
+      'Delete `.cursorrules` from your project root.',
+    ] },
+    { p: 'If the instructions aren\'t Cursor-specific, you could put them in `AGENTS.md` instead and skip the rule file.' },
+
+    { h2: 'When to use which', id: 'when' },
+    { ul: [
+      '**One small project, only Cursor:** either works. `AGENTS.md` is faster to write; a single always-apply rule is equivalent.',
+      '**Team uses Cursor plus Claude Code, Codex or another agent:** `AGENTS.md` for the shared facts, so nobody maintains duplicate files.',
+      '**Different conventions for different file types** (React components versus SQL migrations): `.cursor/rules` with globs. `AGENTS.md` has no way to scope by file pattern, other than nesting by folder.',
+      '**A long reference the agent should only load when relevant:** an Apply Intelligently rule with a good description.',
+      '**A checklist you want to trigger by hand** (release steps, migration template): an Apply Manually rule you @-mention.',
+      '**Personal preferences** such as reply style: User Rules, not the repo.',
+    ] },
+    { h3: 'Using both' },
+    { p: 'Cursor loads both, so a common setup is a short `AGENTS.md` for commands and conventions plus a few scoped `.mdc` rules. Avoid saying the same thing in both places: if the two disagree you\'re leaving the agent to guess. To keep a single source of truth for Claude Code as well, Anthropic\'s docs suggest a `CLAUDE.md` that imports `AGENTS.md`:' },
+    { code: '@AGENTS.md\n\n## Claude Code\n\nUse plan mode for changes under `src/billing/`.', lang: 'text', caption: 'CLAUDE.md' },
+    { p: 'A symlink (`ln -s AGENTS.md CLAUDE.md`) also works if you need no Claude-specific content, but Anthropic notes the import is safer on Windows.' },
+
+    { h2: 'What to put in either one', id: 'what-to-write' },
+    { ul: [
+      'Exact commands: install, build, test, lint, and how to run a single test.',
+      'Conventions the agent can\'t infer from the code, such as naming and folder layout.',
+      'Hard rules: files that are generated, directories not to touch, checks to run before finishing.',
+      'Pointers to canonical example files rather than copied code.',
+    ] },
+    { p: 'Cursor\'s docs advise against pasting whole style guides (use a linter), documenting every common command, and covering rare edge cases. Instructions are guidance for the model, not enforcement: for hard security limits, use permissions and review rather than a rules file.' },
+
+    { h2: 'FAQ', id: 'faq' },
+    { h3: 'Does Cursor read AGENTS.md?' },
+    { p: 'Yes. Cursor supports `AGENTS.md` in the project root and in subdirectories.' },
+    { h3: 'Should I replace .cursor/rules with AGENTS.md?' },
+    { p: 'Only if you don\'t need scoping. Rules can attach by glob, by description or by @-mention; `AGENTS.md` is always plain instructions.' },
+    { h3: 'Can I use .md files in .cursor/rules?' },
+    { p: 'No. Cursor\'s docs say project rules must use the `.mdc` extension and a plain `.md` file there is ignored. If you prefer plain markdown, use `AGENTS.md`.' },
+    { h3: 'Why isn\'t my rule applying?' },
+    { p: 'Check the rule type. For Apply Intelligently, make sure a description is set. For Apply to Specific Files, make sure the glob matches the files in context.' },
+    { h3: 'Do rules apply to Cursor Tab?' },
+    { p: 'No. Cursor says rules don\'t impact Cursor Tab or other AI features.' },
+    { h3: 'Setting up MCP servers too?' },
+    { p: 'MCP servers are configured separately in `mcp.json`. See [how to add an MCP server to Cursor](/guides/add-mcp-server-to-cursor/).' },
+  ],
+  related: ['cursor-rules', 'agents-md', 'cursor-plugins', 'codex-cli', 'claude-code', 'opencode'],
+  sources: [
+    { label: 'Cursor docs: Rules', url: 'https://cursor.com/docs/rules' },
+    { label: 'Cursor help: Rules (including migrating from .cursorrules)', url: 'https://cursor.com/help/customization/rules' },
+    { label: 'Cursor forum: .cursorrules is legacy, use .cursor/rules (staff reply, March 2026)', url: 'https://forum.cursor.com/t/project-rule-in-cursorrules-not-applied-in-agent-chat-works-in-cursor-rules/154309' },
+    { label: 'agents.md: the AGENTS.md format, FAQ and supported tools', url: 'https://agents.md/' },
+    { label: 'agentsmd/agents.md on GitHub', url: 'https://github.com/agentsmd/agents.md' },
+    { label: 'Claude Code docs: How Claude remembers your project (CLAUDE.md and AGENTS.md)', url: 'https://code.claude.com/docs/en/memory' },
+  ],
+};
+
+export const GUIDES: Guide[] = [cursor, claude, rules, plugins, skills, ...MCP_GUIDES];
 export const guidePath = (slug: string) => `/guides/${slug}/`;
 export const getGuide = (slug: string) => GUIDES.find(g => g.slug === slug);
