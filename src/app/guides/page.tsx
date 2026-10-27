@@ -15,10 +15,10 @@ export default function Guides() {
     <JsonLd data={ld} />
     <nav aria-label="Breadcrumb" className="text-sm text-slate-600 dark:text-slate-400"><ol className="flex flex-wrap gap-1"><li><Link href="/" className="link">Home</Link> ›</li><li aria-current="page">Guides</li></ol></nav>
     <h1 className="text-4xl font-bold mt-3">Guides</h1>
-    <p className="text-slate-600 dark:text-slate-400 mt-2 mb-8 max-w-2xl">Step-by-step setup guides for MCP servers and AI coding tools. Every command and config snippet is checked against the official docs, and each guide links to its sources.</p>
+    <p className="text-slate-600 dark:text-slate-400 mt-2 mb-8 max-w-2xl">Step-by-step setup guides for MCP servers and AI coding tools, plus beginner reading like our list of free AI courses. Every command and config snippet is checked against the official docs, and each guide links to its sources.</p>
     <ul className="grid gap-4 sm:grid-cols-2">{GUIDES.map(g => (
       <li key={g.slug} className="min-w-0"><Link href={guidePath(g.slug)} className="card block h-full transition hover:-translate-y-0.5 hover:shadow-md hover:border-coral-dark dark:hover:border-coral">
-        <div className="text-xs text-coral-dark dark:text-coral mb-1">Setup guide</div>
+        <div className="text-xs text-coral-dark dark:text-coral mb-1">{g.kind ?? 'Setup guide'}</div>
         <h2 className="font-semibold text-lg text-navy dark:text-white">{g.h1}</h2>
         <p className="text-sm text-slate-600 dark:text-slate-400 mt-2">{g.description}</p>
       </Link></li>))}</ul>

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { InstallSpec } from '../lib/data';
-import { clientSnippets, usesNpx } from '../lib/install';
+import { clientSnippets, cursorInstallUrl, hasPlaceholders, usesNpx, vscodeInstallUrl } from '../lib/install';
 import CodeBlock from './CodeBlock';
 
 const fmtDate = (d: string) => new Date(`${d}T12:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
@@ -8,11 +8,23 @@ const fmtDate = (d: string) => new Date(`${d}T12:00:00Z`).toLocaleDateString('en
 /** "Install in your client" section for MCP server listings. All snippets are generated from one verified InstallSpec. */
 export default function InstallInClient({ spec, toolName }: { spec: InstallSpec; toolName: string }) {
   const snippets = clientSnippets(spec);
+  const cursorUrl = cursorInstallUrl(spec);
+  const vscodeUrl = vscodeInstallUrl(spec);
   return (<section className="card" aria-labelledby="install-in-client">
     <h2 id="install-in-client" className="text-xl font-semibold mb-1">Install {toolName} in your client</h2>
     <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
       {spec.transport === 'stdio' ? 'Runs on your computer.' : 'Hosted by the maker, so there is nothing to install locally.'} Needs: {spec.requires.runtime}. Sign-in or keys: {spec.requires.auth}.
     </p>
+    {(cursorUrl || vscodeUrl) ? (<div className="mb-4 rounded-lg border border-slate-200 dark:border-navy-700 p-3">
+      <p className="text-sm font-medium mb-2">One-click install</p>
+      <div className="flex flex-wrap gap-2">
+        {cursorUrl && <a href={cursorUrl} className="btn" data-install="cursor">Add to Cursor</a>}
+        {vscodeUrl && <a href={vscodeUrl} className="btn" data-install="vscode">Install in VS Code</a>}
+      </div>
+      <p className="text-xs text-slate-600 dark:text-slate-400 mt-2">These buttons open the app on your computer (it needs to be installed already). The app asks you to confirm before it adds the server: review the command or URL it shows and check it matches the snippet below before you approve.</p>
+    </div>) : hasPlaceholders(spec) ? (
+      <p className="mb-4 text-sm text-slate-600 dark:text-slate-400">No one-click install for this one: the snippet has a placeholder (like an API key or a folder path) that you need to fill in first, so copy it below and edit it.</p>
+    ) : null}
     <div className="space-y-2">{snippets.map((c, i) => (
       <details key={c.id} open={i === 0} className="rounded-lg border border-slate-200 dark:border-navy-700 px-3 py-2">
         <summary className="cursor-pointer font-medium">{c.label}</summary>

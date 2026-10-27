@@ -12,6 +12,7 @@ import YouTubeDemo from '../../../components/YouTubeDemo';
 import PackPairing from '../../../components/PackPairing';
 import EmailForm from '../../../components/EmailForm';
 import InstallInClient from '../../../components/InstallInClient';
+import BadgeSnippets from '../../../components/BadgeSnippets';
 export const generateStaticParams = () => getPlugins().map(p => ({ slug: p.slug }));
 export const dynamicParams = false;
 const fmtDate = (d: string) => new Date(`${d}T12:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
@@ -61,6 +62,7 @@ export default async function PluginPage({ params }: { params: Promise<{ slug: s
     <section className="card"><H>Example prompts</H><div className="space-y-3">{p.prompts.map((s, i) => <CodeBlock key={i} code={s} tone="prompt" />)}</div></section>
     {p.demo && <section className="card"><H>Demo</H>
       <YouTubeDemo id={p.demo.youtubeId} title={p.demo.title} channel={p.demo.channel} toolName={p.name} /></section>}
+    <BadgeSnippets slug={p.slug} toolName={p.name} />
     <section aria-labelledby="join-list" className="card">
       <h2 id="join-list" className="text-lg font-semibold">{FREEBIE.toolHeadline}</h2>
       <p className="text-sm text-slate-600 dark:text-slate-400 mt-1 mb-3">{FREEBIE.toolSubline}</p>

@@ -1,0 +1,138 @@
+/**
+ * Learning guides. Every course fact here was checked on the course's own official page on `updated`.
+ * Keep links to official pages only (no affiliate or tracking links).
+ */
+import type { Guide } from './guides.ts';
+
+export const freeAiCourses: Guide = {
+  slug: 'free-ai-courses',
+  title: 'Best free AI courses (2026): beginner to builder',
+  h1: 'Best free AI courses (2026)',
+  description: 'Free AI courses for 2026, from no-code basics to building agents and MCP servers, each checked on its official page: OpenAI, Anthropic, Google, Hugging Face, fast.ai, CS50 and more.',
+  published: '2026-10-27', updated: '2026-10-27',
+  kind: 'Learning guide',
+  checkedLabel: 'Last checked on each course\'s official page',
+  sourcesNote: 'Every course above was checked on these official pages. Prices and certificates change, so check the course page before you sign up.',
+  intro: 'You don\'t need to pay to learn AI. These are the best free courses we found, from total beginner (no coding) to building your own agents and MCP servers. For each one we say who it\'s for, what\'s actually free, and whether you get a certificate.',
+  blocks: [
+    { h2: 'Quick answer: where to start', id: 'quick-answer' },
+    { ul: [
+      '**Never used AI tools much?** Start with [Elements of AI](https://www.elementsofai.com/) or **Claude 101** from Anthropic Academy. No coding needed.',
+      '**Want to use ChatGPT or Codex better at work?** [OpenAI Academy](https://academy.openai.com/).',
+      '**Starting to code with AI?** **Claude Code 101** from Anthropic Academy, then our [Start here](/start-here/) page to set up your first tools.',
+      '**Want to build agents?** The [Hugging Face Agents Course](https://huggingface.co/learn/agents-course/unit0/introduction) (basic Python needed).',
+      '**Want to build MCP servers?** **Introduction to Model Context Protocol** from Anthropic Academy (Python).',
+      '**Want the computer science behind it?** [Harvard CS50 AI](https://cs50.harvard.edu/ai/) or [fast.ai](https://course.fast.ai/).',
+    ] },
+    { note: 'How we picked: the lessons have to be free to take. Where a certificate or extras cost money, we say so. We don\'t earn anything from these links.' },
+
+    { h2: 'Beginner courses (no coding)', id: 'beginner' },
+    { h3: 'OpenAI Academy' },
+    { p: 'OpenAI\'s free, self-paced courses on using AI at work, building with AI and Codex, leading AI adoption, and teaching and learning with AI. You can browse without signing in, but you need a ChatGPT account to enroll and save your progress.' },
+    { ul: [
+      '**Cost:** free.',
+      '**Certificate:** pass a course\'s assessment (80% or higher) to earn a shareable badge. Finish every course in a pathway (such as Foundations, Codex or API) for a certificate of completion. OpenAI says these are not formal certifications.',
+      '**Link:** [academy.openai.com](https://academy.openai.com/)',
+    ] },
+    { h3: 'Anthropic Academy: Claude 101 and AI Fluency' },
+    { p: 'Anthropic\'s free courses, hosted on Skilljar. (Anthropic\'s learning hub is now called [Claude Academy](https://academy.claude.com/); the course catalog is still headed Anthropic Academy.) Two good beginner picks:' },
+    { ul: [
+      '[Claude 101](https://anthropic.skilljar.com/claude-101): using Claude for everyday work, including projects, artifacts, skills and connecting your tools.',
+      '[AI Fluency: Framework & Foundations](https://anthropic.skilljar.com/ai-fluency-framework-foundations): how to work with any AI effectively, efficiently, ethically and safely. Made with professors from University College Cork and Ringling College.',
+      '**Cost:** free (you register for each course).',
+      '**Certificate:** each course page lists a certificate of completion.',
+    ] },
+    { h3: 'Elements of AI' },
+    { p: 'A free online course series from MinnaLearn and the University of Helsinki, taken by over 2 million people. **Introduction to AI** explains what AI is and what it can and can\'t do, with no complicated math or programming. **Building AI** is the follow-up and goes a step further (basic Python helps).' },
+    { ul: [
+      '**Cost:** free, self-paced.',
+      '**Link:** [elementsofai.com](https://www.elementsofai.com/)',
+    ] },
+    { h3: 'Google: Introduction to Generative AI' },
+    { p: 'A short (about 45 minutes) introductory course on what generative AI is, how it works and how it differs from traditional machine learning. It\'s on Google Skills (formerly Google Cloud Skills Boost) and you can earn a badge.' },
+    { ul: [
+      '**Cost:** free.',
+      '**Link:** [Introduction to Generative AI on Google Skills](https://www.skills.google/course_templates/536)',
+    ] },
+    { note: 'Heads up: **Google AI Essentials** is not free. Google says it costs $49 USD per month in the U.S. and Canada after a 7-day free trial (it may cost less in other countries). It\'s on Coursera. If you want a free Google option, take Introduction to Generative AI above.' },
+
+    { h2: 'For people who code with AI', id: 'coding' },
+    { h3: 'Anthropic Academy: Claude Code 101' },
+    { p: 'For developers who are new to software engineering, or experienced engineers who haven\'t tried AI coding agents yet. It goes from installing [Claude Code](/plugins/claude-code/) to customizing it for your daily work.' },
+    { ul: [
+      '**Cost:** free. (Using Claude Code itself needs a paid Claude plan or a Console account.)',
+      '**Certificate:** certificate of completion.',
+      '**Link:** [Claude Code 101](https://anthropic.skilljar.com/claude-code-101)',
+    ] },
+    { h3: 'DeepLearning.AI short courses' },
+    { p: 'Short, hands-on courses on specific topics like prompting, agents, RAG and tools such as MCP, some made with the companies behind those tools (like Anthropic). A good way to learn one thing in an afternoon.' },
+    { ul: [
+      '**Cost:** the course videos are free to watch. Quizzes, labs and certificates of completion need a paid Pro membership.',
+      '**Link:** [deeplearning.ai/courses](https://www.deeplearning.ai/courses)',
+    ] },
+
+    { h2: 'For people who want to build agents and models', id: 'builders' },
+    { h3: 'Anthropic Academy: Introduction to Model Context Protocol' },
+    { p: 'Build MCP servers and clients from scratch in Python, covering MCP\'s three core parts: tools, resources and prompts. Take this after you\'ve used a few MCP servers (see [what an MCP server is](/start-here/)).' },
+    { ul: [
+      '**Cost:** free. **Certificate:** certificate of completion.',
+      '**Link:** [Introduction to Model Context Protocol](https://anthropic.skilljar.com/introduction-to-model-context-protocol)',
+    ] },
+    { h3: 'Hugging Face Agents Course' },
+    { p: 'A free course that takes you from beginner to building your own AI agents, using frameworks like smolagents, LlamaIndex and LangGraph, and ending with a final project. You need basic Python, a free Hugging Face account and an internet connection.' },
+    { ul: [
+      '**Cost:** free.',
+      '**Certificate:** follow along for free in "audit mode", or do the assignments to earn one of its two certificates.',
+      '**Link:** [Hugging Face Agents Course](https://huggingface.co/learn/agents-course/unit0/introduction)',
+    ] },
+    { h3: 'Hugging Face LLM Course' },
+    { p: 'How large language models work and how to use, fine-tune and share them with the Hugging Face libraries. It needs a good knowledge of Python, and Hugging Face suggests taking an intro deep learning course first (such as fast.ai below).' },
+    { ul: [
+      '**Cost:** completely free, with no ads.',
+      '**Certificate:** the course FAQ says there isn\'t a certification for it yet.',
+      '**Link:** [Hugging Face LLM Course](https://huggingface.co/learn/llm-course/chapter1/1)',
+    ] },
+    { h3: 'fast.ai: Practical Deep Learning for Coders' },
+    { p: 'A free course for people with some coding experience (about a year, ideally in Python) and high-school math. There are 9 lessons of about 90 minutes each, and the book it\'s based on is free online too. You use free tools for building and running models.' },
+    { ul: [
+      '**Cost:** free.',
+      '**Link:** [course.fast.ai](https://course.fast.ai/)',
+    ] },
+    { h3: 'Harvard CS50\'s Introduction to AI with Python' },
+    { p: 'Harvard\'s course on the ideas and algorithms behind modern AI: search, knowledge, uncertainty, optimization, machine learning, neural networks and language. It\'s seven weeks of lectures and projects. You need CS50x or at least a year of Python.' },
+    { ul: [
+      '**Cost:** free through Harvard\'s OpenCourseWare.',
+      '**Certificate:** score at least 70% on each project for a free CS50 Certificate. A verified certificate from edX costs extra.',
+      '**Link:** [cs50.harvard.edu/ai](https://cs50.harvard.edu/ai/)',
+    ] },
+
+    { h2: 'FAQ', id: 'faq' },
+    { h3: 'Which free AI course is best for a complete beginner?' },
+    { p: 'Elements of AI if you want to understand AI in general, or Claude 101 or OpenAI Academy if you want to get better at using an AI assistant. None of them need coding.' },
+    { h3: 'Do free courses give you a certificate?' },
+    { p: 'Some do. Anthropic Academy and the Hugging Face Agents Course offer free certificates, OpenAI Academy gives badges, and CS50 AI has a free CS50 Certificate. DeepLearning.AI certificates need a paid membership.' },
+    { h3: 'I finished a course. What next?' },
+    { p: 'Try it for real. Our [Start here](/start-here/) page walks you through installing Cursor or Claude Code and adding your first MCP server. Then browse the [directory](/) for tools to add.' },
+  ],
+  related: [],
+  sources: [
+    { label: 'OpenAI Academy', url: 'https://academy.openai.com/' },
+    { label: 'OpenAI Help Center: OpenAI Academy courses (free, badges, pathways)', url: 'https://help.openai.com/en/articles/20001270-openai-academy-courses' },
+    { label: 'Anthropic Academy course catalog', url: 'https://anthropic.skilljar.com/' },
+    { label: 'Claude Academy (Anthropic)', url: 'https://academy.claude.com/' },
+    { label: 'Anthropic Academy: Claude 101', url: 'https://anthropic.skilljar.com/claude-101' },
+    { label: 'Anthropic Academy: AI Fluency: Framework & Foundations', url: 'https://anthropic.skilljar.com/ai-fluency-framework-foundations' },
+    { label: 'Anthropic Academy: Claude Code 101', url: 'https://anthropic.skilljar.com/claude-code-101' },
+    { label: 'Anthropic Academy: Introduction to Model Context Protocol', url: 'https://anthropic.skilljar.com/introduction-to-model-context-protocol' },
+    { label: 'Elements of AI', url: 'https://www.elementsofai.com/' },
+    { label: 'Google Skills: Introduction to Generative AI', url: 'https://www.skills.google/course_templates/536' },
+    { label: 'Google AI Essentials (pricing FAQ)', url: 'https://grow.google/ai-essentials/' },
+    { label: 'DeepLearning.AI courses', url: 'https://www.deeplearning.ai/courses' },
+    { label: 'DeepLearning.AI: what Pro includes', url: 'https://info.deeplearning.ai/knowledge-base/what-do-i-get-with-the-deeplearning.ai-pro-membership-that-i-dont-get-for-free' },
+    { label: 'Hugging Face Agents Course', url: 'https://huggingface.co/learn/agents-course/unit0/introduction' },
+    { label: 'Hugging Face LLM Course', url: 'https://huggingface.co/learn/llm-course/chapter1/1' },
+    { label: 'fast.ai: Practical Deep Learning for Coders', url: 'https://course.fast.ai/' },
+    { label: 'Harvard CS50 AI', url: 'https://cs50.harvard.edu/ai/' },
+    { label: 'Harvard CS50 AI: CS50 Certificate', url: 'https://cs50.harvard.edu/ai/certificate/' },
+  ],
+};

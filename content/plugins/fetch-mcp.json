@@ -47,7 +47,8 @@
       "auth": "None"
     },
     "notes": [
-      "This one is a Python package, so it needs uv installed rather than Node.js."
+      "This one is a Python package, so it needs uv installed rather than Node.js.",
+      "VS Code: the fetch README wraps its example in an extra \"mcp\" key. That is the older settings.json layout. In a .vscode/mcp.json file, VS Code's current docs put \"servers\" at the top level, as in the snippet here."
     ],
     "source": "https://github.com/modelcontextprotocol/servers/tree/main/src/fetch",
     "checked": "2026-10-27"

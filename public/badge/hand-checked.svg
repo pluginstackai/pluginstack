@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="226" height="28" viewBox="0 0 226 28" role="img" aria-label="Hand-checked on PluginStack">
+  <title>Hand-checked on PluginStack</title>
+  <rect width="226" height="28" rx="6" fill="#0F2350"/>
+  <path d="M6 0h112v28H6a6 6 0 0 1-6-6V6a6 6 0 0 1 6-6z" fill="#F26B5B"/>
+  <circle cx="15" cy="14" r="7" fill="#0F2350"/>
+  <path d="M11.6 14.2l2.3 2.3 4.4-4.8" fill="none" stroke="#FFF4E8" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+  <g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="12" font-weight="600">
+    <text x="27" y="18" fill="#0F2350" textLength="83" lengthAdjust="spacingAndGlyphs">Hand-checked</text>
+    <text x="126" y="18" fill="#FFF4E8" textLength="91" lengthAdjust="spacingAndGlyphs">on PluginStack</text>
+  </g>
+</svg>

@@ -54,3 +54,44 @@ export function clientSnippets(spec: InstallSpec): ClientSnippet[] {
 
 /** True when the command launches npx (Windows users may need the cmd /c wrapper; see the Windows guide). */
 export const usesNpx = (spec: InstallSpec) => spec.transport === 'stdio' && spec.command === 'npx';
+
+/**
+ * One-click install links (checked 2026-10-27).
+ * - Cursor: cursor://anysphere.cursor-deeplink/mcp/install?name=$NAME&config=$BASE64_ENCODED_CONFIG
+ *   where the config is the JSON for one server (the value under mcpServers.<name>), base64-encoded.
+ *   https://cursor.com/docs/context/mcp/install-links
+ * - VS Code: vscode:mcp/install?<URL-encoded JSON of { name, ...server config }>
+ *   https://code.visualstudio.com/api/extension-guides/ai/mcp (Create an MCP installation URL)
+ * Links are only built when the spec has no placeholders, so the button installs exactly what the snippet shows.
+ */
+const PLACEHOLDER = /YOUR_|\/path\/to\/|<[^>]+>/;
+
+/** True when any value in the spec is a placeholder the user has to replace (API keys, folder paths). */
+export function hasPlaceholders(spec: InstallSpec): boolean {
+  const values = [spec.url ?? '', spec.command ?? '', ...(spec.args ?? []), ...Object.values(spec.env ?? {})];
+  return values.some((v) => PLACEHOLDER.test(v));
+}
+
+const validSpec = (spec: InstallSpec) =>
+  /^[A-Za-z0-9_-]+$/.test(spec.name) &&
+  (spec.transport === 'stdio' ? !!spec.command && Array.isArray(spec.args) : /^https:\/\//.test(spec.url ?? '')) &&
+  !hasPlaceholders(spec);
+
+/** Cursor's MCP install deeplink, or null if the spec is not safe to one-click install. */
+export function cursorInstallUrl(spec: InstallSpec): string | null {
+  if (!validSpec(spec)) return null;
+  const env = spec.env && Object.keys(spec.env).length ? spec.env : undefined;
+  const config = spec.transport === 'stdio' ? { command: spec.command, args: spec.args, ...(env && { env }) } : { url: spec.url };
+  const b64 = Buffer.from(JSON.stringify(config), 'utf8').toString('base64');
+  return `cursor://anysphere.cursor-deeplink/mcp/install?name=${encodeURIComponent(spec.name)}&config=${encodeURIComponent(b64)}`;
+}
+
+/** VS Code's MCP install URL, or null if the spec is not safe to one-click install. */
+export function vscodeInstallUrl(spec: InstallSpec): string | null {
+  if (!validSpec(spec)) return null;
+  const env = spec.env && Object.keys(spec.env).length ? spec.env : undefined;
+  const obj = spec.transport === 'stdio'
+    ? { name: spec.name, type: 'stdio', command: spec.command, args: spec.args, ...(env && { env }) }
+    : { name: spec.name, type: 'http', url: spec.url };
+  return `vscode:mcp/install?${encodeURIComponent(JSON.stringify(obj))}`;
+}

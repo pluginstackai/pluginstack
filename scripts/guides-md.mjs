@@ -18,7 +18,7 @@ for (const g of GUIDES) {
     else if ('ol' in b) md.push(...b.ol.map((t, i) => `${i + 1}. ${abs(t)}`), '');
     else if ('code' in b) md.push(...(b.caption ? [`_${b.caption}_`, ''] : []), '```' + b.lang, b.code, '```', '');
   }
-  md.push('## Sources', '', ...g.sources.map(s => `- [${s.label}](${s.url})`), '', '## Tools in this guide', '', ...g.related.map(s => `- ${site.url}/plugins/${s}/`), '');
+  md.push('## Sources', '', ...g.sources.map(s => `- [${s.label}](${s.url})`), '', ...(g.related.length ? ['## Tools in this guide', '', ...g.related.map(s => `- ${site.url}/plugins/${s}/`), ''] : []));
   fs.writeFileSync(path.join(out, `${g.slug}.md`), md.join('\n'));
   console.log('wrote', path.join(out, `${g.slug}.md`));
 }

@@ -7,7 +7,7 @@ import PackPairing from './PackPairing';
 import { FREEBIE } from '../lib/email-copy';
 
 /** Internal links must point at real pages; a typo in a guide fails the build instead of shipping a 404. */
-const STATIC_PATHS = new Set(['/', '/packs/', '/guides/', '/mcp-server-requirements/']);
+const STATIC_PATHS = new Set(['/', '/packs/', '/guides/', '/mcp-server-requirements/', '/start-here/', '/badge/']);
 function checkHref(href: string) {
   if (!href.startsWith('/')) return;
   const plugin = href.match(/^\/plugins\/([^/]+)\/$/);

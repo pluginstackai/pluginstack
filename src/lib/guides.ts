@@ -4,6 +4,7 @@
  * Every command, path and config snippet must match the official docs linked in `sources` (checked on `updated`).
  */
 import { MCP_GUIDES } from './guides-mcp.ts';
+import { freeAiCourses } from './guides-learn.ts';
 
 export type GuideBlock =
   | { h2: string; id?: string }
@@ -20,6 +21,12 @@ export type GuideBlock =
 export type Guide = {
   slug: string; title: string; h1: string; description: string; published: string; updated: string;
   intro: string; blocks: GuideBlock[]; related: string[]; sources: { label: string; url: string }[];
+  /** Small label above the title and on the guides index (default "Setup guide"). */
+  kind?: string;
+  /** Text before the date at the top (default "Checked against the official docs"). */
+  checkedLabel?: string;
+  /** Intro line in the Sources box (default says commands and config come from these docs). */
+  sourcesNote?: string;
 };
 
 const cursor: Guide = {
@@ -696,6 +703,6 @@ const rules: Guide = {
   ],
 };
 
-export const GUIDES: Guide[] = [cursor, claude, rules, plugins, skills, ...MCP_GUIDES];
+export const GUIDES: Guide[] = [cursor, claude, rules, plugins, skills, ...MCP_GUIDES, freeAiCourses];
 export const guidePath = (slug: string) => `/guides/${slug}/`;
 export const getGuide = (slug: string) => GUIDES.find(g => g.slug === slug);

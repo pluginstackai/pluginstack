@@ -20,6 +20,7 @@ export default function Home() {
     <section className="-mx-4 mb-10 rounded-b-3xl bg-gradient-to-b from-cream to-cream-300 px-4 py-12 md:py-20 text-center dark:from-navy-950 dark:to-navy-800">
       <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-navy dark:text-white">AI plugins worth <span className="text-coral-dark dark:text-coral">actually using</span></h1>
       <p className="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">{site.tagline} For people into AI agents, tech, gaming and vibe coding. Free, forever.</p>
+      <p className="mt-3 text-sm text-slate-700 dark:text-slate-300">New to all this? <Link href="/start-here/" className="link font-semibold">Start here</Link> · <Link href="/guides/free-ai-courses/" className="link">Free AI courses</Link></p>
       <div className="max-w-md mx-auto mt-8 text-left sm:text-center">
         <h2 className="text-lg font-semibold text-navy dark:text-white">{FREEBIE.homeHeadline}</h2>
         <p className="text-sm text-slate-600 dark:text-slate-400 mt-1 mb-3">{FREEBIE.homeSubline}</p>
