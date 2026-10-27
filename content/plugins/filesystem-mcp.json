@@ -8,20 +8,30 @@
   ],
   "url": "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem",
   "maker": "Model Context Protocol",
-  "updated": "2026-10-15",
-  "what": "Reference MCP server that lets an AI read, write, edit, move and search files and directories, restricted to the folders you allow.",
+  "updated": "2026-10-27",
+  "what": "Reference MCP server that lets an AI read, write, edit, move and search files and directories, restricted to the folders you pass it. Version 2.0.1 (25 Oct 2026) includes security fixes for how it checks paths.",
   "who": "People who want Claude Desktop or another chat app to work with files on their computer.",
   "setup": [
     {
-      "text": "Install Node.js."
+      "text": "Install Node.js 24 or later. Version 2.0.0 raised the minimum from earlier Node versions to 24, and the README says the server needs Node 24+ when it runs through npx."
     },
     {
-      "text": "Add the server, listing as many allowed folders as you need. On Windows, launch it through cmd /c npx.",
+      "text": "Add the server to your MCP client config, listing each folder the AI may access as an argument (at least one is required):",
       "code": "{\n  \"mcpServers\": {\n    \"filesystem\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"@modelcontextprotocol/server-filesystem\",\n        \"/path/to/allowed/folder\"\n      ]\n    }\n  }\n}",
       "language": "json"
     },
     {
-      "text": "Only list folders you're happy for the AI to access. If your client supports MCP Roots, it can set the allowed folders for you. Restart the client afterwards."
+      "text": "On Windows, the README launches npx through cmd /c:",
+      "code": "{\n  \"mcpServers\": {\n    \"filesystem\": {\n      \"command\": \"cmd\",\n      \"args\": [\n        \"/c\",\n        \"npx\",\n        \"-y\",\n        \"@modelcontextprotocol/server-filesystem\",\n        \"C:\\\\Users\\\\you\\\\Documents\"\n      ]\n    }\n  }\n}",
+      "language": "json"
+    },
+    {
+      "text": "Only list folders you're happy for the AI to access. Folders passed on the command line work with every protocol version. MCP Roots, where a client sets the folders for you, only works with older (2025-era) clients and is deprecated; 2026-07-28 clients can't use it. With no folders on the command line, the server exits at startup if a 2025-era client doesn't support Roots, and answers every tool call with an error for a 2026-07-28 client. Restart the client after editing its config."
+    },
+    {
+      "text": "Already running a date-versioned release (2025.x or 2026.x)? The project warns that package managers rank 2.0.1 below those, so they won't offer it as an upgrade. Install it explicitly, or pin it in your config:",
+      "code": "npm install @modelcontextprotocol/server-filesystem@2.0.1",
+      "language": "bash"
     }
   ],
   "prompts": [

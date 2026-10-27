@@ -9,12 +9,12 @@
   ],
   "url": "https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking",
   "maker": "Model Context Protocol",
-  "updated": "2026-10-17",
-  "what": "An official MCP reference server with one tool, sequential_thinking, that lets the model work through a problem as numbered steps. It can revise earlier steps, branch into alternatives and change how many steps it plans as it goes.",
+  "updated": "2026-10-27",
+  "what": "An official MCP reference server with one tool, sequential_thinking, that lets the model work through a problem as numbered steps. It can revise earlier steps, branch into alternatives and change how many steps it plans as it goes. Version 2.0.0 (19 Oct 2026) needs Node 24 or later.",
   "who": "People who want the agent to plan out a tricky design or debugging task step by step before it acts.",
   "setup": [
     {
-      "text": "Install Node.js."
+      "text": "Install Node.js 24 or later (the README's requirement for running through npx)."
     },
     {
       "text": "Add to your MCP client config:",
@@ -22,12 +22,17 @@
       "language": "json"
     },
     {
-      "text": "Or add it from the Codex CLI:",
-      "code": "codex mcp add sequential-thinking npx -y @modelcontextprotocol/server-sequential-thinking",
+      "text": "Or add it from the Codex CLI (everything after -- is the server command):",
+      "code": "codex mcp add sequential-thinking -- npx -y @modelcontextprotocol/server-sequential-thinking",
       "language": "bash"
     },
     {
-      "text": "On Windows, launch npx through cmd /c (the README shows the exact config)."
+      "text": "On Windows, the README launches npx through cmd /c:",
+      "code": "{\n  \"mcpServers\": {\n    \"sequential-thinking\": {\n      \"command\": \"cmd\",\n      \"args\": [\n        \"/c\",\n        \"npx\",\n        \"-y\",\n        \"@modelcontextprotocol/server-sequential-thinking\"\n      ]\n    }\n  }\n}",
+      "language": "json"
+    },
+    {
+      "text": "To stop it logging thought details, set the environment variable DISABLE_THOUGHT_LOGGING to true in the server's env block."
     }
   ],
   "prompts": [

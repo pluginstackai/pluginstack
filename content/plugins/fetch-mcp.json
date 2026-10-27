@@ -8,12 +8,12 @@
   ],
   "url": "https://github.com/modelcontextprotocol/servers/tree/main/src/fetch",
   "maker": "Model Context Protocol",
-  "updated": "2026-10-17",
-  "what": "One of the official MCP reference servers. It gives the agent a single fetch tool that downloads a web page and converts the HTML to markdown, and it can read long pages in chunks. By default it refuses private and loopback addresses and follows robots.txt for requests the model makes.",
+  "updated": "2026-10-27",
+  "what": "One of the official MCP reference servers. It gives the agent a single fetch tool that downloads a web page and converts the HTML to markdown, and it can read long pages in chunks. By default it refuses private, loopback and other non-public addresses (checking every redirect) and follows robots.txt for requests the model makes. Version 2026.10.24 (25 Oct 2026) includes security fixes to those checks.",
   "who": "Anyone who wants their agent to read a docs page, changelog or article by URL without a full browser.",
   "setup": [
     {
-      "text": "Install uv (recommended); uvx then runs the server with no separate install."
+      "text": "Install uv (recommended); uvx then runs the server with no separate install. This is the one reference server that isn't a Node package: it's a Python package on PyPI (Python 3.10 or newer), so the Node 24 requirement of the other reference servers doesn't apply."
     },
     {
       "text": "Add to your MCP client config:",
@@ -26,7 +26,13 @@
       "language": "bash"
     },
     {
-      "text": "Optional: install Node.js too; the server then uses a more robust HTML simplifier. The --allow-private-ips flag turns off the private-address guard, so only use it if you understand the risk."
+      "text": "Already using it? Releases from 2026.10.19 need the MCP Python SDK 2.x (mcp>=2.3,<3), and 2026.10.24 is the security-fix release, so make sure you're on at least that. Calling a tool the server doesn't have now returns a JSON-RPC -32602 error instead of a tool-error result."
+    },
+    {
+      "text": "On Windows, if the server times out, the README suggests setting PYTHONIOENCODING to utf-8 in the server's env block. The README also documents optional --ignore-robots-txt, --user-agent and --proxy-url arguments. The --allow-private-ips argument turns off the private-address guard, so only use it for a local or internal site you trust."
+    },
+    {
+      "text": "Optional: install Node.js too; the server then uses a more robust HTML simplifier."
     }
   ],
   "prompts": [

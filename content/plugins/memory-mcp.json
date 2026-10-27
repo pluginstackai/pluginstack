@@ -8,14 +8,25 @@
   ],
   "url": "https://github.com/modelcontextprotocol/servers/tree/main/src/memory",
   "maker": "Model Context Protocol",
-  "updated": "2026-10-15",
-  "what": "Reference MCP server that gives an AI basic persistent memory: a local knowledge graph of entities, relations and observations that survives across chats.",
+  "updated": "2026-10-27",
+  "what": "Reference MCP server that gives an AI basic persistent memory: a local knowledge graph of entities, relations and observations that survives across chats. Version 2.0.0 (19 Oct 2026) needs Node 24 or later.",
   "who": "People who want their assistant to remember preferences and facts across chats.",
   "setup": [
     {
-      "text": "Add the server (or run the mcp/memory Docker image). Optionally set MEMORY_FILE_PATH to choose where the memory .jsonl file is stored:",
+      "text": "Install Node.js 24 or later (the README's requirement for running through npx)."
+    },
+    {
+      "text": "Add the server (or run the mcp/memory Docker image). Optionally set MEMORY_FILE_PATH to choose where the memory .jsonl file is stored. If you leave it out, the file (memory.jsonl) is created inside the server's own package directory, so an absolute path is easier to find and back up:",
       "code": "{\n  \"mcpServers\": {\n    \"memory\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"@modelcontextprotocol/server-memory\"\n      ],\n      \"env\": {\n        \"MEMORY_FILE_PATH\": \"/path/to/custom/memory.jsonl\"\n      }\n    }\n  }\n}",
       "language": "json"
+    },
+    {
+      "text": "On Windows, the README launches npx through cmd /c:",
+      "code": "{\n  \"mcpServers\": {\n    \"memory\": {\n      \"command\": \"cmd\",\n      \"args\": [\n        \"/c\",\n        \"npx\",\n        \"-y\",\n        \"@modelcontextprotocol/server-memory\"\n      ],\n      \"env\": {\n        \"MEMORY_FILE_PATH\": \"C:\\\\Users\\\\you\\\\memory.jsonl\"\n      }\n    }\n  }\n}",
+      "language": "json"
+    },
+    {
+      "text": "Two clients pointed at the same MEMORY_FILE_PATH run two server processes on one file. The write tools take a lock file next to the memory file so they don't overwrite each other, which assumes a local filesystem rather than a network share."
     },
     {
       "text": "Add a system prompt or custom instructions telling the assistant when to save and recall memories. The README includes an example prompt."
