@@ -5,7 +5,7 @@ import site from '../../site.config.json';
 const SITE = 'https://www.pluginstackai.com';
 const esc = (t: string) => t.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]!));
 // Postal address for CAN-SPAM. Set "mailingAddress" in site.config.json (e.g. a PO box or virtual mailbox).
-// While it's empty, no address line is rendered. TODO(Kyle): fill it in before sending promotional email.
+// While it's empty, no address line is rendered. TODO(owner): fill it in before sending promotional email.
 const ADDRESS = ((site as any).mailingAddress || '').trim();
 const WHY = "You're getting this because you signed up for PluginStack Weekly at pluginstackai.com.";
 

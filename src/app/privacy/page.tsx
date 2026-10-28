@@ -5,8 +5,8 @@ import { NEWSLETTER } from '../../lib/email-copy';
 export const metadata = pageMeta({ title: 'Privacy Policy', description: `How ${site.name} collects and uses your information.`, path: '/privacy/' });
 export default function Page() {
   const addr = site.mailingAddress?.trim();
-  return (<Prose title="Privacy Policy" updated="October 19, 2026">
-    <p>{site.name} is a free directory of AI plugins, MCP servers and agent tools, run by Kyle in Colorado, USA. This page explains, in plain English, what we collect and what we do with it.</p>
+  return (<Prose title="Privacy Policy" updated="October 28, 2026">
+    <p>{site.name} is a free directory of AI plugins, MCP servers and agent tools, run by {site.name} and based in the USA. This page explains, in plain English, what we collect and what we do with it.</p>
     <h2>What we collect</h2>
     <ul>
       <li><b>Your email address</b>, when you sign up for the newsletter, join the Get unstuck waitlist, or ask about sponsorship.</li>
@@ -48,6 +48,6 @@ export default function Page() {
     <h2>Changes</h2>
     <p>If we change this policy, we'll update the date at the top of this page.</p>
     <h2>Contact</h2>
-    <p>{site.name}, Kyle, Colorado, USA. Email: <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>{addr ? <> · Mail: {addr}</> : null}</p>
+    <p>{site.name}, based in the USA. Email: <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>{addr ? <> · Mail: {addr}</> : null}</p>
   </Prose>);
 }
