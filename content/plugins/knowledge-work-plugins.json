@@ -1,0 +1,70 @@
+{
+  "slug": "knowledge-work-plugins",
+  "name": "Anthropic Knowledge Work Plugins",
+  "category": "Rules & Prompts",
+  "tags": [
+    "claude-code",
+    "plugins",
+    "cowork"
+  ],
+  "url": "https://github.com/anthropics/knowledge-work-plugins",
+  "maker": "Anthropic",
+  "updated": "2026-10-28",
+  "what": "Anthropic's open-source set of role plugins built for Claude Cowork that also install in Claude Code. Each plugin bundles slash commands, skills and connector (MCP) settings for one kind of work: sales, finance, data, legal, marketing, customer support, product management, engineering, design, HR, operations, bio research, small business and more. Plugins are plain Markdown and JSON, so you can read and edit them, or fork one as a template for your own team. The repository's marketplace also lists plugins from partners. Apache-2.0.",
+  "who": "Teams using Claude Cowork or Claude Code for non-coding work (sales calls, SQL questions, contract review, support replies) who want role-specific commands and connectors instead of writing them from scratch.",
+  "setup": [
+    {
+      "text": "In Claude Cowork, install plugins from claude.com/plugins."
+    },
+    {
+      "text": "In Claude Code, add the marketplace, then install the plugin for your role (sales is the example used in the README):",
+      "code": "claude plugin marketplace add anthropics/knowledge-work-plugins\nclaude plugin install sales@knowledge-work-plugins",
+      "language": "bash"
+    },
+    {
+      "text": "Plugin commands are namespaced by plugin name, for example /sales:call-prep or /data:write-query. Skills in the plugin load on their own when they are relevant."
+    },
+    {
+      "text": "Connectors are defined in each plugin's .mcp.json. Look through it before connecting accounts, and remove any services you do not use. Partner-built plugins in the marketplace are maintained by their authors, so check each one's source."
+    }
+  ],
+  "prompts": [
+    "/sales:call-prep",
+    "/data:write-query",
+    "Which commands did the finance plugin add, and which connectors does it expect?"
+  ],
+  "seo": {
+    "title": "Anthropic Knowledge Work Plugins: install role plugins in Claude Code and Cowork",
+    "description": "What's in Anthropic's knowledge-work-plugins repo, how to install a role plugin in Claude Code with claude plugin install, and how the plugin files are laid out."
+  },
+  "sections": [
+    {
+      "heading": "How a plugin is laid out",
+      "bullets": [
+        ".claude-plugin/plugin.json: the plugin's name and metadata.",
+        ".mcp.json: the connectors (MCP servers) the plugin uses.",
+        "commands/: slash commands you run on purpose.",
+        "skills/: instructions Claude loads when they match the task."
+      ]
+    },
+    {
+      "heading": "Customizing for your team",
+      "paragraphs": [
+        "Because everything is Markdown and JSON, the usual approach is to fork a plugin, change the connectors to the tools your team actually uses, and rewrite the skills with your own terms and processes. The repo includes a plugin-management plugin for creating and editing plugins."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Do I need Cowork?",
+      "a": "No. The plugins are built for Cowork but the README says they work in Claude Code too, installed through the marketplace command."
+    },
+    {
+      "q": "Are the partner plugins made by Anthropic?",
+      "a": "No. The marketplace file lists both Anthropic's role plugins and plugins built by other companies. Check the author and source of each before you install it."
+    }
+  ],
+  "guides": [
+    "install-claude-code-plugins"
+  ]
+}

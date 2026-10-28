@@ -1,0 +1,80 @@
+{
+  "slug": "superpowers",
+  "name": "Superpowers",
+  "category": "Rules & Prompts",
+  "tags": [
+    "agent-skills",
+    "workflow",
+    "tdd"
+  ],
+  "url": "https://github.com/obra/superpowers",
+  "maker": "Prime Radiant (Jesse Vincent)",
+  "updated": "2026-10-28",
+  "what": "A library of agent skills that gives a coding agent a fixed way of working: brainstorm and agree a design, set up a git worktree, write a step-by-step plan, carry it out with sub-agents or in batches, use test-driven development, request code review and finish the branch. It also has skills for systematic debugging, checking work before calling it done and writing new skills. The skills trigger on their own when they match the task. Version 7.0.1 was released on 2026-10-21. MIT licensed.",
+  "who": "Developers on Claude Code, Codex, Cursor, Gemini CLI, Copilot CLI or OpenCode who want the agent to plan and test before it writes code, and who are fine with a more structured, slower start to each task.",
+  "setup": [
+    {
+      "text": "Claude Code: install from Anthropic's official plugin marketplace:",
+      "code": "/plugin install superpowers@claude-plugins-official",
+      "language": "text"
+    },
+    {
+      "text": "Or use the project's own marketplace, which the README also documents:",
+      "code": "/plugin marketplace add obra/superpowers-marketplace\n/plugin install superpowers@superpowers-marketplace",
+      "language": "text"
+    },
+    {
+      "text": "Cursor: run /add-plugin superpowers in Agent chat. Gemini CLI:",
+      "code": "gemini extensions install https://github.com/obra/superpowers",
+      "language": "bash"
+    },
+    {
+      "text": "Codex, Copilot CLI and OpenCode have their own steps in the README (the Codex plugin list, the Copilot CLI marketplace, and an INSTALL.md you point OpenCode at). Start a new session after installing."
+    },
+    {
+      "text": "The optional visual companion loads a logo that reports the installed version. Set SUPERPOWERS_DISABLE_TELEMETRY=1 to turn that off; the README says it also respects DISABLE_TELEMETRY and Claude Code's CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC."
+    }
+  ],
+  "prompts": [
+    "I want to add CSV export to the reports page. Let's brainstorm the design before any code.",
+    "Write an implementation plan for the design we agreed, then execute it with subagents.",
+    "This test fails intermittently. Debug it systematically and find the root cause before changing anything."
+  ],
+  "seo": {
+    "title": "Superpowers: install the agent skills workflow for Claude Code, Codex and Cursor",
+    "description": "What the Superpowers skills library does (brainstorm, plan, TDD, review), how to install it in Claude Code, Cursor, Gemini CLI and others, and how to turn off its telemetry."
+  },
+  "sections": [
+    {
+      "heading": "The workflow it enforces",
+      "bullets": [
+        "brainstorming: questions and a design you approve before work starts.",
+        "using-git-worktrees: an isolated branch for the work.",
+        "writing-plans: a plan broken into small tasks with exact files and checks.",
+        "subagent-driven-development or executing-plans: carrying out the plan task by task, with review between steps.",
+        "test-driven-development: write a failing test first, then the code.",
+        "requesting-code-review and finishing-a-development-branch: review against the plan, then merge, open a PR or clean up."
+      ]
+    },
+    {
+      "heading": "When it is a poor fit",
+      "paragraphs": [
+        "For quick one-line fixes the brainstorm-and-plan steps add overhead. The skills are designed to trigger automatically, so if you only want them some of the time, say so in the prompt or keep the plugin disabled for that project."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is it free?",
+      "a": "Yes, the skills are MIT licensed. The README mentions paid commercial support from the maker, which you don't need to use it."
+    },
+    {
+      "q": "Does it work outside Claude Code?",
+      "a": "Yes. The README has install steps for Codex, Cursor, Gemini CLI, GitHub Copilot CLI and OpenCode."
+    }
+  ],
+  "guides": [
+    "install-claude-code-plugins",
+    "how-to-create-agent-skills"
+  ]
+}

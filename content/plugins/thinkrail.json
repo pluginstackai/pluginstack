@@ -1,0 +1,71 @@
+{
+  "slug": "thinkrail",
+  "name": "ThinkRail",
+  "category": "Coding Agents",
+  "tags": [
+    "agentic-ide",
+    "git-worktrees",
+    "jetbrains"
+  ],
+  "url": "https://github.com/JetBrains/thinkrail",
+  "maker": "JetBrains (incubator project)",
+  "updated": "2026-10-28",
+  "what": "An open-source agentic IDE from a JetBrains incubator team, built around the pi coding agent. Each task gets its own git worktree with an editor, terminals and diff view, and you can run several agent sessions side by side with a token and cost readout for each. It keeps a spec graph in SPEC.md files, reads Agent Skills in place and connects the MCP servers in pi's mcp.json, keeping servers that a repository defines switched off until you approve them. You sign in with JetBrains AI or bring your own model provider; ThinkRail has no accounts of its own. v0.2.0 (2026-10-18) is the latest stable release; nightlies are also published. Apache-2.0.",
+  "who": "Developers who run several coding-agent tasks in parallel and want each in its own worktree with diffs and costs visible, and who are comfortable with an early-stage tool.",
+  "setup": [
+    {
+      "text": "Desktop app: download it from the GitHub releases page (macOS 14 or later, Windows x64, Linux x64 or ARM64 on Ubuntu 24.04 or later). Or install the CLI on macOS or Linux:",
+      "code": "curl -fsSL https://raw.githubusercontent.com/JetBrains/thinkrail/main/install.sh | bash",
+      "language": "bash"
+    },
+    {
+      "text": "Windows (PowerShell):",
+      "code": "powershell -c \"irm https://raw.githubusercontent.com/JetBrains/thinkrail/main/install.ps1 | iex\"",
+      "language": "powershell"
+    },
+    {
+      "text": "Open a repository. You need git installed and a model provider (JetBrains AI sign-in or your own API key):",
+      "code": "thinkrail ~/code/my-repo",
+      "language": "bash"
+    },
+    {
+      "text": "Basic usage events and error reports (no prompts or code, according to the README) are always sent, with an extra sharing option you can turn on. Start it with thinkrail --no-analytics or set THINKRAIL_NO_ANALYTICS=1 to stop them. The README notes the macOS CLI is signed but not notarized and the Linux builds are unsigned."
+    }
+  ],
+  "prompts": [
+    "Create a new workspace for adding rate limiting to the API and draft a SPEC.md for it first.",
+    "Run two sessions in parallel: one fixes the failing auth tests, one updates the README. Show me both diffs.",
+    "Which MCP servers are configured for this workspace, and what tools do they expose?"
+  ],
+  "seo": {
+    "title": "ThinkRail: JetBrains' open-source agentic IDE for the pi coding agent",
+    "description": "What ThinkRail is, how its worktree workspaces, spec graph and parallel agent sessions work, how to install the desktop app or CLI, and what analytics it sends."
+  },
+  "sections": [
+    {
+      "heading": "How it is organized",
+      "bullets": [
+        "Workspaces: one git worktree per task, so parallel agents don't edit the same checkout.",
+        "Sessions: several pi agent sessions at once, each with token usage and cost.",
+        "Spec graph: requirements live in SPEC.md files that the agent reads and updates.",
+        "Skills and MCP: Agent Skills are read from where they are. MCP servers come from pi's mcp.json; ThinkRail asks in the chat before tool calls a server doesn't mark read-only, unless you always allow that tool in the project."
+      ]
+    },
+    {
+      "heading": "Early-stage software",
+      "paragraphs": [
+        "ThinkRail is at version 0.2 and published as a JetBrains incubator project, so expect changes between releases. The README says full extension support is still being added."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is it free?",
+      "a": "The app is open source under Apache-2.0. You pay for model usage, either through a JetBrains AI subscription or your own provider's API."
+    },
+    {
+      "q": "What is pi?",
+      "a": "pi is an open-source coding agent published on npm as @earendil-works/pi-coding-agent. ThinkRail runs pi sessions and adds the IDE, worktree and spec features around them, and it reads your existing pi configuration in ~/.pi/agent."
+    }
+  ]
+}

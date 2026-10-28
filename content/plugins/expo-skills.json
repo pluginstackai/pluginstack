@@ -1,0 +1,74 @@
+{
+  "slug": "expo-skills",
+  "name": "Expo Skills",
+  "category": "Rules & Prompts",
+  "tags": [
+    "react-native",
+    "expo",
+    "agent-skills"
+  ],
+  "url": "https://github.com/expo/skills",
+  "maker": "Expo",
+  "updated": "2026-10-28",
+  "what": "Official agent skills from the Expo team that teach coding agents how to build, upgrade and ship Expo and React Native apps: Expo Router, native UI and animation, data fetching, SDK upgrades, native modules, and the EAS services for builds, updates, hosting, workflows and store submission. Framework skills cover free Expo features; service skills cover EAS, which has paid plans. The Claude Code and Codex plugins also register Expo's hosted MCP server. MIT licensed.",
+  "who": "Developers building Expo or React Native apps with Claude Code, Codex, Cursor or another skills-capable agent who want it to follow current Expo practice instead of older patterns.",
+  "setup": [
+    {
+      "text": "Any agent that supports skills: run this in your project root, then restart the agent. Add --agent <agent> to target a specific one:",
+      "code": "npx skills@latest add expo/skills --skill '*'",
+      "language": "bash"
+    },
+    {
+      "text": "Claude Code (plugin from the official marketplace):",
+      "code": "claude plugin install expo@claude-plugins-official",
+      "language": "bash"
+    },
+    {
+      "text": "Codex:",
+      "code": "codex plugin add expo@openai-curated",
+      "language": "bash"
+    },
+    {
+      "text": "Keep them current with npx skills@latest update (or name one skill, such as expo-router). Experimental skills are in a separate expo-experiments plugin."
+    },
+    {
+      "text": "The plugin's MCP server is Expo's remote server at https://mcp.expo.dev/mcp. It needs an Expo account and signs in with OAuth (run /mcp in Claude Code or codex mcp login expo). Expo's docs mark some tools, such as documentation search, as needing a paid EAS plan."
+    }
+  ],
+  "prompts": [
+    "Add a settings screen with a native tab bar using Expo Router.",
+    "Upgrade this project to the latest Expo SDK and fix anything that breaks.",
+    "Set up an EAS workflow that builds and submits the iOS app when I push to main."
+  ],
+  "seo": {
+    "title": "Expo Skills: official Expo agent skills for Claude Code, Codex and Cursor",
+    "description": "What Expo's official agent skills cover (Expo Router, SDK upgrades, EAS), how to install them with npx skills add or as a Claude Code or Codex plugin, and what needs a paid plan."
+  },
+  "sections": [
+    {
+      "heading": "Framework skills and service skills",
+      "paragraphs": [
+        "The repository splits skills into two groups. Framework skills (for example expo-router, expo-native-ui, expo-animation, expo-data-fetching and expo-upgrade) are about building the app and use free Expo tooling. Service skills (for example eas-workflows, eas-update, eas-hosting and eas-app-stores) drive EAS, Expo's hosted service, which has free and paid tiers."
+      ]
+    },
+    {
+      "heading": "How it relates to the Expo MCP server",
+      "paragraphs": [
+        "The skills are instructions; the MCP server is a set of live tools (docs lookup, library install, EAS builds and workflows, simulator screenshots with the expo-mcp package). The plugins bundle both, but with npx skills add you get the skills only and can add the MCP server separately."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Do I need an Expo account?",
+      "a": "Not for the skills themselves. The Expo MCP server and the EAS service skills need an Expo account, and some features need a paid EAS plan."
+    },
+    {
+      "q": "Does it work with bare React Native?",
+      "a": "The skills are written for Expo projects. Some advice applies to React Native in general, but commands like npx expo install and EAS assume Expo."
+    }
+  ],
+  "guides": [
+    "how-to-create-agent-skills"
+  ]
+}

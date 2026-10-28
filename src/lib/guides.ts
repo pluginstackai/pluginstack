@@ -4,6 +4,7 @@
  * Every command, path and config snippet must match the official docs linked in `sources` (checked on `updated`).
  */
 import { MCP_GUIDES } from './guides-mcp.ts';
+import { CLIENT_GUIDES } from './guides-clients.ts';
 import { freeAiCourses } from './guides-learn.ts';
 
 export type GuideBlock =
@@ -703,6 +704,6 @@ const rules: Guide = {
   ],
 };
 
-export const GUIDES: Guide[] = [cursor, claude, rules, plugins, skills, ...MCP_GUIDES, freeAiCourses];
+export const GUIDES: Guide[] = [cursor, claude, rules, plugins, skills, ...MCP_GUIDES, ...CLIENT_GUIDES, freeAiCourses];
 export const guidePath = (slug: string) => `/guides/${slug}/`;
 export const getGuide = (slug: string) => GUIDES.find(g => g.slug === slug);

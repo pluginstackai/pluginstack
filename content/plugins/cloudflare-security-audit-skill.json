@@ -1,0 +1,72 @@
+{
+  "slug": "cloudflare-security-audit-skill",
+  "name": "Cloudflare Security Audit Skill",
+  "category": "Rules & Prompts",
+  "tags": [
+    "security",
+    "agent-skills",
+    "code-review"
+  ],
+  "url": "https://github.com/cloudflare/security-audit-skill",
+  "maker": "Cloudflare",
+  "updated": "2026-10-28",
+  "what": "An agent skill from Cloudflare that runs a structured security audit of a codebase instead of a one-shot \"look for bugs\" prompt. It works in phases: map the architecture and keep a coverage ledger, hunt for issues area by area, have a fresh sub-agent try to validate each candidate, write findings as JSON checked against a schema (confirmed, needs validation or rejected), verify each record again, then produce a written report. Cloudflare says it grew out of the internal vulnerability harness described on its blog in June 2026. It is a single skill (security-audit), MIT licensed.",
+  "who": "Developers and security reviewers who use Claude Code, Codex or another skills-capable agent and want a repeatable audit with evidence for each finding, rather than a list of guesses.",
+  "setup": [
+    {
+      "text": "Install it into the current project with the open skills CLI (run from the project root). Add --global to install it for your user instead:",
+      "code": "npx skills add https://github.com/cloudflare/security-audit-skill --skill security-audit",
+      "language": "bash"
+    },
+    {
+      "text": "Check the requirements first. The README asks for an agent whose model supports tool use and parallel sub-agents, Node.js for the bundled validators, and an OS-enforced sandbox for running any of the target's code. Without the sandbox, leads stay marked as needing validation instead of being confirmed."
+    },
+    {
+      "text": "Restart your agent so it picks up the skill, then ask for an audit in plain language. Output goes to ~/security-audit-skill/<repo-name>/run-<N> unless you name another folder. Each run writes REPORT.md, FINDINGS-DETAIL.md and NEEDS-VALIDATION.md plus the JSON findings."
+    },
+    {
+      "text": "Treat the report as a starting point for human review. A full audit uses many sub-agent calls, so it can take a while and use a lot of tokens on a large repository."
+    }
+  ],
+  "prompts": [
+    "Security audit this codebase.",
+    "Find security vulnerabilities in ./src.",
+    "Do a security review of this repo and write the output to ~/audits/my-project."
+  ],
+  "seo": {
+    "title": "Cloudflare Security Audit Skill: install and use the security-audit agent skill",
+    "description": "What Cloudflare's security-audit skill does, how to install it with npx skills add, its sandbox and Node.js requirements, and what the report contains."
+  },
+  "sections": [
+    {
+      "heading": "How an audit runs",
+      "bullets": [
+        "Recon: the agent maps the architecture (architecture.md) and starts a coverage ledger (coverage-ledger.json) so it can track what it has looked at.",
+        "Hunting: it works through the code area by area, guided by the ledger.",
+        "Validation: each candidate goes to a fresh verifier sub-agent that tries to confirm or reject it.",
+        "Structured output: findings are written to findings.json and checked against the bundled report-schema.json, each marked confirmed, needs_validation or rejected.",
+        "Verification and reporting: every record is checked again before the Markdown reports are written."
+      ]
+    },
+    {
+      "heading": "Things to know before you run it",
+      "paragraphs": [
+        "The skill has two modes. Asking it to audit or pen-test a codebase runs the full audit with report files. Security questions and focused work on one issue use a lighter guidance mode unless you ask for the report artifacts.",
+        "Validation is only as strong as your sandbox. To execute the target's builds, tests or fixtures, the README asks for an OS-enforced sandbox with no external network, a clean environment, resource limits and writes limited to scratch folders. Without that, candidates stay as needs_validation instead of being run."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Which agents can use it?",
+      "a": "Any coding agent that supports Agent Skills, with a model that can use tools and run parallel sub-agents. You install it with the open skills CLI, which supports agents such as Claude Code, Codex, Cursor and OpenCode."
+    },
+    {
+      "q": "Is it free?",
+      "a": "Yes. The skill is MIT licensed. You pay only for the model usage of the agent you run it in."
+    }
+  ],
+  "guides": [
+    "how-to-create-agent-skills"
+  ]
+}

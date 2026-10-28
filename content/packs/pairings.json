@@ -53,6 +53,10 @@
       "pack": null,
       "reason": "Uses or connects an existing tool/service; no pack covers it."
     },
+    "cloudflare-security-audit-skill": {
+      "pack": null,
+      "reason": "Security auditing skill; no pack covers security review."
+    },
     "codex-cli": {
       "pack": "vibe-coder-starter",
       "why": "50 plain-English prompts for planning, building, debugging and shipping with any AI coding agent, plus a debugging checklist."
@@ -80,6 +84,10 @@
     "exa-mcp": {
       "pack": null,
       "reason": "Uses or connects an existing tool/service; no pack covers it."
+    },
+    "expo-skills": {
+      "pack": null,
+      "reason": "Expo/React Native skills; no pack is about mobile app development."
     },
     "fastmcp": {
       "pack": null,
@@ -116,6 +124,10 @@
     "kilo-code": {
       "pack": "vibe-coder-starter",
       "why": "50 plain-English prompts for planning, building, debugging and shipping with any AI coding agent, plus a debugging checklist."
+    },
+    "knowledge-work-plugins": {
+      "pack": null,
+      "reason": "Role plugins for non-coding work (sales, finance, legal); no pack matches."
     },
     "langgraph": {
       "pack": "agent-builder-pack",
@@ -184,6 +196,14 @@
     "supabase-mcp": {
       "pack": null,
       "reason": "Uses or connects an existing tool/service; no pack covers it."
+    },
+    "superpowers": {
+      "pack": null,
+      "reason": "General coding workflow skills; Agent Builder's skills are only for MCP servers and evals, so not a true pairing."
+    },
+    "thinkrail": {
+      "pack": null,
+      "reason": "Agentic IDE around pi; no pack is built for it."
     },
     "unity-mcp": {
       "pack": null,
