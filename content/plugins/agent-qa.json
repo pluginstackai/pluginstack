@@ -1,0 +1,41 @@
+{
+  "slug": "agent-qa",
+  "name": "agent-qa",
+  "category": "MCP Servers",
+  "tags": [
+    "testing",
+    "mcp",
+    "memory",
+    "self-improvement"
+  ],
+  "url": "https://vostride.com",
+  "maker": "vostride",
+  "updated": "2026-10-31",
+  "what": "AI app testing through CLI and MCP for web, Android and iOS journeys. Persistent memidex memory and validated self-improvement retain useful experience across runs, with evidence for reviewing results.",
+  "who": "Developers and QA teams who want their coding agents to run app checks and inspect failures.",
+  "setup": [
+    {
+      "text": "Install Node.js 24 or newer, then add agent-qa to your project.",
+      "code": "npm install -D agent-qa",
+      "language": "bash"
+    },
+    {
+      "text": "Follow the official Quickstart to configure the workspace, test journeys and model authentication: https://vostride.com/docs/agent-qa/quickstart"
+    },
+    {
+      "text": "From the configured project folder, start the local stdio MCP server.",
+      "code": "npx agent-qa mcp",
+      "language": "bash"
+    },
+    {
+      "text": "Configure your MCP client to launch this command from the project folder. The server reads agent-qa.config.yaml there; setup details are at https://vostride.com/docs/agent-qa/mcp."
+    },
+    {
+      "text": "The runtime uses FSL-1.1-ALv2. Model and external service costs vary by configuration and usage."
+    }
+  ],
+  "prompts": [
+    "Run the configured smoke tests and summarize failed assertions with their run evidence.",
+    "Show the evidence for the failed checkout step and explain what the application displayed."
+  ]
+}
