@@ -1,6 +1,10 @@
 {
   "_about": "One 'Pairs well with' pack per listing page, or none. pack = slug in content/packs/packs.json, or null. why = shown on the card (keep it true to what the pack contains). reason = internal note for null entries, not shown. Every listing must have an entry (checked at build).",
   "pairings": {
+    "agent-qa": {
+      "pack": null,
+      "reason": "Uses an existing app-testing runtime; no pack-specific setup is needed."
+    },
     "agent-skills": {
       "pack": null,
       "reason": "Agent Builder has 2 Claude Code skills, but only for MCP servers and evals; not a general skills pack."
