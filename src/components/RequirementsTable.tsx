@@ -19,7 +19,7 @@ export default function RequirementsTable({ rows }: { rows: ReqRow[] }) {
           <button type="button" onClick={() => click(c.key)} className="hover:text-coral-dark dark:hover:text-coral">{c.label}{key === c.key ? (dir === 1 ? ' ▲' : ' ▼') : ''}</button></th>))}</tr></thead>
       <tbody>{sorted.map(r => (
         <tr key={r.slug} className="border-t border-slate-200 dark:border-navy-700 align-top">
-          <th scope="row" className="px-3 py-2 font-medium"><Link href={`/plugins/${r.slug}/`} className="link">{r.name}</Link><div className="font-mono text-xs font-normal text-slate-600 dark:text-slate-400 break-all">{r.how}</div></th>
+          <th scope="row" className="px-3 py-2 font-medium"><Link href={`/plugins/${r.slug}/`} className="link">{r.name}</Link><code className="block font-mono text-xs font-normal text-slate-600 dark:text-slate-400 break-all">{r.how}</code></th>
           <td className="px-3 py-2 whitespace-nowrap">{r.type}</td><td className="px-3 py-2">{r.runtime}</td><td className="px-3 py-2">{r.auth}</td>
           <td className="px-3 py-2 whitespace-nowrap"><time dateTime={r.checked}>{r.checked}</time></td></tr>))}</tbody>
     </table></div>);

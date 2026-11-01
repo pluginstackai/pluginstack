@@ -27,7 +27,9 @@ export default function Home() {
         <EmailForm list="newsletter" cta={FREEBIE.homeCta} microcopy={FREEBIE.homeMicro} />
       </div>
     </section>
-    <Directory plugins={plugins} />
+    {/* Pass only the card fields: the full objects (setup snippets, install configs) would be serialized into the page's inline
+        script data, where Google picks up placeholder paths like "/path/to/allowed/folder" as URLs to crawl. */}
+    <Directory plugins={plugins.map(({ slug, name, category, what, tags, maker }) => ({ slug, name, category, what, tags, maker }))} />
     <nav aria-labelledby="browse-cats" className="mt-12">
       <h2 id="browse-cats" className="text-xl font-semibold mb-3">Browse by category</h2>
       <ul className="flex flex-wrap gap-2">{cats.map(c => <li key={c.slug}><Link href={c.path} className="inline-block rounded-full border border-navy/15 dark:border-navy-700 bg-white dark:bg-navy-900 px-3 py-1 text-sm hover:border-coral-dark dark:hover:border-coral">{c.name} ({c.items.length})</Link></li>)}</ul>

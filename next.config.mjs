@@ -15,6 +15,18 @@ export default {
     // trailingSlash: true makes Next 308 /mcp -> /mcp/ first, so the 301 rule must match the slash form.
     { source: '/mcp/', destination: '/categories/mcp-servers/', statusCode: 301 },
     { source: '/sse/', destination: '/categories/mcp-servers/', statusCode: 301 },
+    // More Search Console 404s from code-snippet text (plain text / script data, never <a href>):
+    // `/mcp-server-dev:build-mcp-server` is a Claude Code slash command quoted in the Claude Code guide's "Building your own server?"
+    // section. The colon must be escaped or path-to-regexp reads `:build` as a param. Slash form only (trailingSlash 308s first).
+    { source: '/mcp-server-dev\\:build-mcp-server/', destination: '/guides/best-mcp-servers-for-claude-code/', statusCode: 301 },
+    // Same URL with the colon percent-encoded (Next matches the raw path, so this needs its own rule).
+    { source: '/mcp-server-dev%3Abuild-mcp-server/', destination: '/guides/best-mcp-servers-for-claude-code/', statusCode: 301 },
+    // Placeholder paths from the Memory and Filesystem MCP config snippets. memory.jsonl has a file extension, so Next serves it
+    // without a trailing slash (no 308 first); folder gets the usual 308 to its slash form.
+    { source: '/path/to/custom/memory.jsonl', destination: '/plugins/memory-mcp/', statusCode: 301 },
+    { source: '/path/to/allowed/folder/', destination: '/plugins/filesystem-mcp/', statusCode: 301 },
+    // Any other placeholder under /path/to/ (with or without a trailing slash).
+    { source: '/path/to/:rest*', destination: '/guides/', statusCode: 301 },
   ]; },
   async headers() { return [
     { source: '/:path*', headers: SECURITY_HEADERS },
