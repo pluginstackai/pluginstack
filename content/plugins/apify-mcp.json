@@ -45,5 +45,9 @@
     "Scrape the top 10 restaurants in Prague from Google Maps with their contact details.",
     "Find the latest news about autonomous AI agents and summarize the key developments.",
     "Search Apify Store for an Actor that extracts product prices from Amazon and show me its input schema and pricing before running it."
-  ]
+  ],
+  "affiliate": {
+    "url": "https://www.apify.com?fpr=ji7hxj",
+    "text": "Create a free Apify account"
+  }
 }

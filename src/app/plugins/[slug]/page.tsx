@@ -44,6 +44,7 @@ export default async function PluginPage({ params }: { params: Promise<{ slug: s
       <div className="text-sm text-coral-dark dark:text-coral mt-3">{p.category} · by {p.maker}</div>
       <h1 className="text-4xl font-bold mt-1">{p.name}</h1>
       <a href={p.url} target="_blank" rel="noopener" className="btn mt-4 inline-block">{p.name} official site ↗</a>
+      {p.affiliate && <p className="text-sm text-slate-700 dark:text-slate-300 mt-3"><a href={p.affiliate.url} target="_blank" rel="sponsored nofollow noopener" className="link">{p.affiliate.text} ↗</a> <span className="text-slate-600 dark:text-slate-400">(affiliate link)</span> <Link href="/disclosures/#affiliate-links" className="link text-xs">What this means</Link></p>}
       {p.updated && <p className="text-xs text-slate-600 dark:text-slate-400 mt-3">Last checked against the official docs: <time dateTime={p.updated}>{fmtDate(p.updated)}</time></p>}</div>
     <section className="card"><H>What it does</H><p className="text-slate-700 dark:text-slate-300">{p.what}</p></section>
     {p.sections?.map((sec, i) => <section key={i} className="card"><H>{sec.heading}</H><div className="space-y-3 text-slate-700 dark:text-slate-300">

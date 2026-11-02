@@ -58,5 +58,9 @@
     "Scrape https://example.com/pricing and return the plans as a table.",
     "Search the web for 'MCP server security best practices' and summarize the top 3 results.",
     "Map all the URLs on my docs site and list pages that look outdated."
-  ]
+  ],
+  "affiliate": {
+    "url": "https://firecrawl.link/pluginstackai",
+    "text": "Get a Firecrawl API key"
+  }
 }

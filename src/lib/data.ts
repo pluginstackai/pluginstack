@@ -24,6 +24,12 @@ export type Plugin = {
   faq?: ListingFaq[];
   /** Slugs of /guides/ pages to link under "Related guides". */
   guides?: string[];
+  /**
+   * Approved affiliate link for this tool (see /disclosures/#affiliate-links). Rendered with rel="sponsored nofollow"
+   * and the visible "(affiliate link)" label. Only add one for a program we're actually enrolled in, and only on the
+   * tool's own listing. Never replaces `url` (the official source link stays non-affiliate). Not exported in /directory.json.
+   */
+  affiliate?: { url: string; text: string };
 };
 /** gumroadUrl: Gumroad product link (e.g. https://<name>.gumroad.com/l/<id>). Empty = not on sale yet. */
 export type Pack = { slug: string; name: string; price: number; gumroadUrl?: string; desc: string; items: string[] };
