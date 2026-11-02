@@ -39,6 +39,9 @@ export const GUIDE_TOPICS: Record<string, GuideTopic> = {
   'install-claude-code-plugins': { role: 'setup', tags: ['plugins', 'client:claude-code'] },
   'how-to-create-agent-skills': { role: 'setup', tags: ['skills', 'rules', 'client:claude-code', 'client:cursor', 'client:codex'] },
   'cursor-rules-vs-agents-md': { role: 'explainer', tags: ['rules', 'client:cursor', 'client:codex', 'client:claude-code'] },
+  // One-server setup guides: no client tags, so they attach only to their own listing (via `related` / the listing's `guides`).
+  'context7-mcp-setup': { role: 'setup', tags: ['mcp'], relatedGuides: ['add-mcp-server-to-cursor', 'add-mcp-server-to-vs-code', 'add-mcp-server-to-codex-config-toml', 'best-mcp-servers-for-claude-code'] },
+  'cloudflare-mcp-server-setup': { role: 'setup', tags: ['mcp'], relatedGuides: ['best-mcp-servers-for-claude-code', 'fix-claude-code-mcp-needs-authentication', 'add-mcp-server-to-cursor', 'context7-mcp-setup'] },
   'free-ai-courses': { role: 'learn', tags: ['learn'], relatedGuides: ['best-mcp-servers-for-claude-code', 'add-mcp-server-to-cursor', 'how-to-create-agent-skills'] },
 };
 

@@ -125,6 +125,7 @@
     }
   ],
   "guides": [
+    "cloudflare-mcp-server-setup",
     "best-mcp-servers-for-claude-code",
     "add-mcp-server-to-cursor"
   ]

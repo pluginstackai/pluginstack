@@ -44,5 +44,10 @@
     "Create a Next.js proxy that checks for a valid JWT in cookies and redirects unauthenticated users to /login. use context7",
     "Show me the Supabase auth API for email/password sign-up. use context7",
     "Implement basic authentication with Supabase. use library /supabase/supabase for API and docs."
+  ],
+  "guides": [
+    "context7-mcp-setup",
+    "best-mcp-servers-for-claude-code",
+    "add-mcp-server-to-cursor"
   ]
 }

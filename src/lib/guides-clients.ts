@@ -60,7 +60,7 @@ const vscode: Guide = {
     { h3: 'Portable format (.mcp.json or ~/.copilot/mcp-config.json)' },
     { p: 'A local server started with a command, here the [Playwright MCP server](/plugins/playwright-mcp/) (it needs Node.js 18 or newer):' },
     { code: j('{', '  "mcpServers": {', '    "playwright": {', '      "command": "npx",', '      "args": ["-y", "@playwright/mcp@latest"]', '    }', '  }', '}'), lang: 'json', caption: '.mcp.json (workspace root) or ~/.copilot/mcp-config.json' },
-    { p: 'A remote server only needs its URL. This is the [Context7](/plugins/context7/) endpoint from Microsoft\'s example; check the publisher\'s docs for sign-in and limits:' },
+    { p: 'A remote server only needs its URL. This is the [Context7](/plugins/context7/) endpoint from Microsoft\'s example; check the publisher\'s docs for sign-in and limits (for Context7, see [how to set up Context7 MCP](/guides/context7-mcp-setup/)):' },
     { code: j('{', '  "mcpServers": {', '    "context7": {', '      "type": "http",', '      "url": "https://mcp.context7.com/mcp"', '    }', '  }', '}'), lang: 'json' },
     { h3: 'VS Code format (.vscode/mcp.json)' },
     { p: 'Same Playwright server, but note the `servers` key and the explicit `"type": "stdio"`:' },

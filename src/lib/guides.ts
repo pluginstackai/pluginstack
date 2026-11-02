@@ -6,6 +6,7 @@
 import { MCP_GUIDES } from './guides-mcp.ts';
 import { CLIENT_GUIDES } from './guides-clients.ts';
 import { freeAiCourses } from './guides-learn.ts';
+import { SERVER_GUIDES } from './guides-servers.ts';
 
 export type GuideBlock =
   | { h2: string; id?: string }
@@ -227,7 +228,7 @@ const claude: Guide = {
     { code: 'npx ctx7 setup --claude', lang: 'bash' },
     { p: 'Or add the hosted server by hand. An API key is optional but recommended for higher rate limits (free keys at context7.com/dashboard):' },
     { code: 'claude mcp add --scope user --header "Authorization: Bearer YOUR_API_KEY" \\\n  --transport http context7 https://mcp.context7.com/mcp', lang: 'bash' },
-    { p: 'Add "use context7" to a prompt, or a line in `CLAUDE.md` telling Claude to use it for library questions. More: [Context7](/plugins/context7/).' },
+    { p: 'Add "use context7" to a prompt, or a line in `CLAUDE.md` telling Claude to use it for library questions. More: [Context7](/plugins/context7/) and [how to set up Context7 MCP](/guides/context7-mcp-setup/) in other clients.' },
 
     { h3: '3. Playwright MCP: drive a real browser' },
     { p: 'Microsoft\'s Playwright server lets Claude open pages, click, fill forms and read the result, which is handy for checking that a UI change actually works. It needs Node.js 18 or newer:' },
@@ -267,7 +268,7 @@ const claude: Guide = {
     { h3: '10. Cloudflare MCP server: your Cloudflare account' },
     { p: 'Cloudflare\'s recommended server covers the whole Cloudflare API through a few code-mode tools, so Claude can inspect and change zones, Workers, DNS and more. Cloudflare also runs separate hosted servers for docs, Browser Run and containers. Cloudflare\'s own README now marks its older observability and bindings servers as deprecated in favour of this one:' },
     { code: 'claude mcp add --transport http cloudflare-api https://mcp.cloudflare.com/mcp', lang: 'bash' },
-    { p: 'Run `/mcp` to sign in with Cloudflare OAuth and choose the permissions to grant. For CI, send a scoped API token as a Bearer header instead. It can change real settings, so review each action. More: [Cloudflare MCP servers](/plugins/cloudflare-mcp/).' },
+    { p: 'Run `/mcp` to sign in with Cloudflare OAuth and choose the permissions to grant. For CI, send a scoped API token as a Bearer header instead. It can change real settings, so review each action. More: [Cloudflare MCP servers](/plugins/cloudflare-mcp/) and [how to connect the Cloudflare MCP server](/guides/cloudflare-mcp-server-setup/) (tokens, portals and errors).' },
 
     { h3: 'Also worth a look' },
     { ul: [
@@ -704,6 +705,6 @@ const rules: Guide = {
   ],
 };
 
-export const GUIDES: Guide[] = [cursor, claude, rules, plugins, skills, ...MCP_GUIDES, ...CLIENT_GUIDES, freeAiCourses];
+export const GUIDES: Guide[] = [cursor, claude, rules, plugins, skills, ...MCP_GUIDES, ...CLIENT_GUIDES, ...SERVER_GUIDES, freeAiCourses];
 export const guidePath = (slug: string) => `/guides/${slug}/`;
 export const getGuide = (slug: string) => GUIDES.find(g => g.slug === slug);

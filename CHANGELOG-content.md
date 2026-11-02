@@ -1,3 +1,11 @@
+# Search guides — 2026-11-02 (branch guides-2026-11-02, not deployed)
+Two setup guides for query clusters from the Search Console export (last 3 months) that no guide covered. Module src/lib/guides-servers.ts (SERVER_GUIDES).
+- /guides/context7-mcp-setup/ "How to set up Context7 MCP (Claude Code, Cursor, VS Code, Codex)": ctx7 setup, remote URL with API key or OAuth (/mcp/oauth), local stdio, prompts and rules, Inspector check, REST API, troubleshooting. Targets context7, context7 mcp, context 7, context7 mcp server, contex7, context7 api, context7 mcp local and other variants.
+- /guides/cloudflare-mcp-server-setup/ "How to connect the Cloudflare MCP server (Claude Code, Cursor, VS Code, Codex)": which server, per-client setup, OAuth vs API token, mcp-remote, codemode=false, MCP server portals, 401/403/410 troubleshooting. Targets cloudflare mcp server, cloudflare mcp, cloudflare oauth mcp, cloudflare mcp (server) portals, cloudflare/mcp-server-cloudflare.
+- Commands checked on 2 November 2026 with Claude Code 2.1.316, Codex CLI 0.166.0, @upstash/context7-mcp 4.4.4 and the MCP Inspector CLI.
+- Guide topics: tags ['mcp'] only, with hand-picked relatedGuides, so they attach only to their own listing. context7.json gains `guides`; cloudflare-mcp.json lists the new guide first (it drops the auto-picked auth-fix guide, which the new guide links to).
+- Backlinks: best-mcp-servers-for-claude-code (Context7 and Cloudflare sections) and add-mcp-server-to-vs-code (Context7 example).
+
 # Affiliate links + disclosures — 2026-11-02 (branch disclosures-affiliate-v2, not deployed)
 - New optional listing field `affiliate` (content/SCHEMA.md) and component AffiliateLink: link labeled "(affiliate link)", rel="sponsored nofollow noopener", and a disclosure line next to it ("we may earn a commission ... at no extra cost to you", link to /disclosures/#affiliate-links).
 - Firecrawl MCP Server listing: affiliate link https://firecrawl.link/pluginstackai (Firecrawl partner program).
