@@ -24,7 +24,14 @@ export type Plugin = {
   faq?: ListingFaq[];
   /** Slugs of /guides/ pages to link under "Related guides". */
   guides?: string[];
+  /**
+   * Approved affiliate link for this tool (rendered by src/components/AffiliateLink.tsx with rel="sponsored nofollow",
+   * the visible "(affiliate link)" label and a disclosure line). Add ONLY after the program has approved us, and list the
+   * program in src/lib/affiliates.ts so /disclosures/ names it. `cta` is plain link text, e.g. "Try Firecrawl".
+   */
+  affiliate?: AffiliateSpec;
 };
+export type AffiliateSpec = { url: string; cta: string; program: string };
 /** gumroadUrl: Gumroad product link (e.g. https://<name>.gumroad.com/l/<id>). Empty = not on sale yet. */
 export type Pack = { slug: string; name: string; price: number; gumroadUrl?: string; desc: string; items: string[] };
 const dir = path.join(process.cwd(), 'content');

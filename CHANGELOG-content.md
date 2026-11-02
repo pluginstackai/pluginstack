@@ -1,3 +1,9 @@
+# Affiliate links + disclosures — 2026-11-02 (branch disclosures-affiliate-v2, not deployed)
+- New optional listing field `affiliate` (content/SCHEMA.md) and component AffiliateLink: link labeled "(affiliate link)", rel="sponsored nofollow noopener", and a disclosure line next to it ("we may earn a commission ... at no extra cost to you", link to /disclosures/#affiliate-links).
+- Firecrawl MCP Server listing: affiliate link https://firecrawl.link/pluginstackai (Firecrawl partner program).
+- Apify MCP Server listing: affiliate link https://www.apify.com?fpr=ji7hxj (Apify affiliate program).
+- /disclosures/: affiliate-ready wording (rebased from disclosures-affiliate) plus an auto-generated "Affiliate programs we're in" list (src/lib/affiliates.ts). Listing text unchanged; other pages that mention Firecrawl or Apify (guides) keep plain, unlabeled, non-affiliate links.
+
 # Junk 404 fix — 2026-11-01 (branch fix-junk-404s, not deployed)
 Search Console 404s for /mcp-server-dev:build-mcp-server, /path/to/custom/memory.jsonl and /path/to/allowed/folder (crawled Oct 21–23). No page links to them with <a href>, and none are in JSON-LD. Google took them from text: the slash command in the Claude Code guide, placeholder paths in the Memory/Filesystem config snippets, a plain <div> on /mcp-server-requirements/, and the inline script data on the homepage (the Directory client component received full listing objects, setup snippets included).
 - Homepage: Directory now gets only the card fields, so no setup/install snippets end up in the homepage's inline script data.

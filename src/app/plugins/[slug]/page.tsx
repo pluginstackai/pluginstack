@@ -13,6 +13,7 @@ import PackPairing from '../../../components/PackPairing';
 import EmailForm from '../../../components/EmailForm';
 import InstallInClient from '../../../components/InstallInClient';
 import BadgeSnippets from '../../../components/BadgeSnippets';
+import AffiliateLink from '../../../components/AffiliateLink';
 export const generateStaticParams = () => getPlugins().map(p => ({ slug: p.slug }));
 export const dynamicParams = false;
 const fmtDate = (d: string) => new Date(`${d}T12:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
@@ -44,6 +45,7 @@ export default async function PluginPage({ params }: { params: Promise<{ slug: s
       <div className="text-sm text-coral-dark dark:text-coral mt-3">{p.category} · by {p.maker}</div>
       <h1 className="text-4xl font-bold mt-1">{p.name}</h1>
       <a href={p.url} target="_blank" rel="noopener" className="btn mt-4 inline-block">{p.name} official site ↗</a>
+      {p.affiliate && <AffiliateLink spec={p.affiliate} />}
       {p.updated && <p className="text-xs text-slate-600 dark:text-slate-400 mt-3">Last checked against the official docs: <time dateTime={p.updated}>{fmtDate(p.updated)}</time></p>}</div>
     <section className="card"><H>What it does</H><p className="text-slate-700 dark:text-slate-300">{p.what}</p></section>
     {p.sections?.map((sec, i) => <section key={i} className="card"><H>{sec.heading}</H><div className="space-y-3 text-slate-700 dark:text-slate-300">
