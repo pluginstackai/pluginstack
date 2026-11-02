@@ -1,9 +1,12 @@
 import { pageMeta } from '../../lib/seo';
 import Prose from '../../components/Prose';
+import Link from 'next/link';
 import { site } from '../../lib/data';
+import { affiliatePrograms } from '../../lib/affiliates';
 export const metadata = pageMeta({ title: 'Disclosures', description: `How ${site.name} handles sponsorships, affiliate links and independence.`, path: '/disclosures/' });
 export default function Page() {
-  return (<Prose title="Disclosures" updated="October 27, 2026">
+  const programs = affiliatePrograms();
+  return (<Prose title="Disclosures" updated="November 2, 2026">
     <h2>Not affiliated</h2>
     <p><b>Not affiliated with or endorsed by the listed companies; trademarks belong to their owners.</b> {site.name} is an independent site. We mention product names only to describe what each tool is and what it works with.</p>
     <h2>Sponsorships</h2>
@@ -21,6 +24,12 @@ export default function Page() {
       <li>Clicking an affiliate link may set a cookie from the company's own site so they can credit us for the referral. See their privacy policy for how they handle it.</li>
     </ul>
     <p>If a link isn't labeled “(affiliate link)”, it isn't an affiliate link.</p>
+    {programs.length > 0 && <>
+      <h3 id="affiliate-programs">Affiliate programs we're in</h3>
+      <p>We currently have affiliate links for these companies, on these pages only:</p>
+      <ul>{programs.map(a => <li key={a.slug}><b>{a.program}</b>: on the <Link href={`/plugins/${a.slug}/`}>{a.name}</Link> page</li>)}</ul>
+      <p>We list every program here and update this list when it changes.</p>
+    </>}
     <h2 id="editorial-independence">Listings and guides are not paid placements</h2>
     <ul>
       <li>We don't accept payment to be listed or to rank higher in the directory. Listings and guides are not paid placements.</li>

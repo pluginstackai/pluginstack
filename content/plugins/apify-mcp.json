@@ -10,6 +10,11 @@
   "url": "https://github.com/apify/apify-mcp-server",
   "maker": "Apify",
   "updated": "2026-10-21",
+  "affiliate": {
+    "url": "https://www.apify.com?fpr=ji7hxj",
+    "cta": "Try Apify",
+    "program": "Apify"
+  },
   "what": "Apify's official MCP server. It lets an agent search Apify Store and run its ready-made scrapers and automation tools (called Actors) for websites, search engines, maps, social media and e-commerce, then read the results from your Apify datasets. By default it loads Actor search and run tools, Apify docs search, and the RAG Web Browser and Web Fetch Actors. The hosted server at mcp.apify.com signs you in with OAuth. MIT licensed; running Actors uses your Apify plan (a free plan includes $5 of monthly usage; most Store Actors charge per event).",
   "who": "People who want their agent to pull structured data from sites like Google Maps, search results or online stores without writing a scraper.",
   "setup": [

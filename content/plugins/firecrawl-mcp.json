@@ -10,6 +10,11 @@
   "url": "https://github.com/firecrawl/firecrawl-mcp-server",
   "maker": "Firecrawl",
   "updated": "2026-10-17",
+  "affiliate": {
+    "url": "https://firecrawl.link/pluginstackai",
+    "cta": "Try Firecrawl",
+    "program": "Firecrawl"
+  },
   "demo": {
     "youtubeId": "aovuyqN2QPE",
     "title": "Firecrawl MCP Server: Search Scrape And Crawl The Web",
