@@ -3,7 +3,8 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getPlugins, getPlugin, getPairedPack, site } from '../../../lib/data';
 import { FREEBIE } from '../../../lib/email-copy';
-import { getGuide, guidePath } from '../../../lib/guides';
+import { guidesForListing } from '../../../lib/guide-links';
+import GuideLinks from '../../../components/GuideLinks';
 import { pageMeta, summarize, categoryPath, breadcrumbLd, absUrl, WEBSITE_ID, plugins, type ListedPlugin } from '../../../lib/seo';
 import CodeBlock from '../../../components/CodeBlock';
 import JsonLd from '../../../components/JsonLd';
@@ -35,7 +36,7 @@ export default async function PluginPage({ params }: { params: Promise<{ slug: s
     { '@id': `${absUrl(path)}#breadcrumb`, ...breadcrumbLd(crumbs) },
     ...(p.faq?.length ? [{ '@type': 'FAQPage', '@id': `${absUrl(path)}#faq`, mainEntity: p.faq.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) }] : []),
   ] };
-  const guides = (p.guides ?? []).map(slug => { const g = getGuide(slug); if (!g) throw new Error(`${p.slug}: unknown guide "${slug}"`); return g; });
+  const guides = guidesForListing(p);
   const H = ({ children }: { children: React.ReactNode }) => <h2 className="text-xl font-semibold mb-3">{children}</h2>;
   return (<article className="max-w-3xl mx-auto py-8 space-y-8 min-w-0">
     <JsonLd data={ld} />
@@ -56,10 +57,9 @@ export default async function PluginPage({ params }: { params: Promise<{ slug: s
     <section className="card"><H>How to set it up</H><ol className="list-decimal pl-5 space-y-4 text-slate-700 dark:text-slate-300">{p.setup.map((s, i) => <li key={i} className="min-w-0"><p>{s.text}</p>{s.code && <div className="mt-2"><CodeBlock code={s.code} language={s.language} /></div>}</li>)}</ol>
       <p className="text-xs text-slate-600 dark:text-slate-400 mt-3">Check the <a className="link" href={p.url}>official {p.name} docs</a> for the latest steps.</p></section>
     {p.install && <InstallInClient spec={p.install} toolName={p.name} />}
+    {guides.length > 0 && <GuideLinks id="setup-guides" title="Set it up / Fixes" intro={`Step-by-step guides for getting ${p.name} running and fixing common errors.`} items={guides.map(x => ({ guide: x.guide, role: x.role }))} />}
     {p.faq && p.faq.length > 0 && <section aria-labelledby="faq" className="card"><h2 id="faq" className="text-xl font-semibold mb-3">Frequently asked questions</h2>
       <div className="space-y-4">{p.faq.map((f, i) => <div key={i}><h3 className="font-semibold">{f.q}</h3><p className="text-slate-700 dark:text-slate-300 mt-1">{f.a}</p></div>)}</div></section>}
-    {guides.length > 0 && <section aria-labelledby="guides" className="card"><h2 id="guides" className="text-xl font-semibold mb-3">Related guides</h2>
-      <ul className="list-disc pl-5 space-y-1.5">{guides.map(g => <li key={g.slug}><Link href={guidePath(g.slug)} className="link">{g.h1}</Link></li>)}</ul></section>}
     {paired && <PackPairing pack={paired.pack} why={paired.why} toolName={p.name} />}
     <section className="card"><H>Example prompts</H><div className="space-y-3">{p.prompts.map((s, i) => <CodeBlock key={i} code={s} tone="prompt" />)}</div></section>
     {p.demo && <section className="card"><H>Demo</H>
