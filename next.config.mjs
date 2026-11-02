@@ -25,6 +25,9 @@ export default {
     // without a trailing slash (no 308 first); folder gets the usual 308 to its slash form.
     { source: '/path/to/custom/memory.jsonl', destination: '/plugins/memory-mcp/', statusCode: 301 },
     { source: '/path/to/allowed/folder/', destination: '/plugins/filesystem-mcp/', statusCode: 301 },
+    // /plugins/ has no index page (only /plugins/<slug>/); the homepage is the full directory listing. Exact match only, so
+    // /plugins/<slug>/ is unaffected. /plugins (no slash) gets Next's trailingSlash 308 to /plugins/ first, then this 301.
+    { source: '/plugins/', destination: '/', statusCode: 301 },
     // Any other placeholder under /path/to/ (with or without a trailing slash).
     { source: '/path/to/:rest*', destination: '/guides/', statusCode: 301 },
   ]; },
