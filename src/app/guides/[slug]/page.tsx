@@ -7,6 +7,8 @@ import { pageMeta, breadcrumbLd, absUrl, WEBSITE_ID, ORG_ID, plugins } from '../
 import GuideBody from '../../../components/GuideBody';
 import JsonLd from '../../../components/JsonLd';
 import PluginGrid from '../../../components/PluginGrid';
+import GuideLinks from '../../../components/GuideLinks';
+import { relatedGuides, guideTopic } from '../../../lib/guide-links';
 export const generateStaticParams = () => GUIDES.map(g => ({ slug: g.slug }));
 export const dynamicParams = false;
 const fmtDate = (d: string) => new Date(`${d}T12:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
@@ -20,6 +22,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   const path = guidePath(g.slug); const url = absUrl(path);
   const all = plugins();
   const related = g.related.map(s => { const p = all.find(x => x.slug === s); if (!p) throw new Error(`Guide ${g.slug}: unknown related listing ${s}`); return p; });
+  const moreGuides = relatedGuides(g).map(x => ({ guide: x, role: guideTopic(x.slug).role }));
   const crumbs = [{ name: 'Home', path: '/' }, { name: 'Guides', path: '/guides/' }, { name: g.h1, path }];
   const ld = { '@graph': [
     { '@type': 'Article', '@id': `${url}#article`, headline: g.h1, description: g.description, url, mainEntityOfPage: url, inLanguage: 'en',
@@ -46,6 +49,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
       <ul className="list-disc pl-5 space-y-1 text-sm">{g.sources.map(s => <li key={s.url}><a href={s.url} className="link" target="_blank" rel="noopener">{s.label}</a></li>)}</ul>
       <p className="text-xs text-slate-600 dark:text-slate-400 mt-3">{site.name} is independent and not affiliated with or endorsed by the companies mentioned. Spotted something out of date? Email <a className="link" href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>.</p>
     </section>
+    {moreGuides.length > 0 && <div className="mt-10"><GuideLinks id="related-guides" title="Related guides" items={moreGuides} /></div>}
     {related.length > 0 && <section aria-labelledby="related" className="mt-10"><h2 id="related" className="text-xl font-semibold mb-3">Tools in this guide</h2>
       <PluginGrid items={related} heading="h3" /></section>}
   </article>);

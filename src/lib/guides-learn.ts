@@ -114,7 +114,7 @@ export const freeAiCourses: Guide = {
     { h3: 'I finished a course. What next?' },
     { p: 'Try it for real. Our [Start here](/start-here/) page walks you through installing Cursor or Claude Code and adding your first MCP server. Then browse the [directory](/) for tools to add.' },
   ],
-  related: [],
+  related: ['claude-code', 'langgraph'],
   sources: [
     { label: 'OpenAI Academy', url: 'https://academy.openai.com/' },
     { label: 'OpenAI Help Center: OpenAI Academy courses (free, badges, pathways)', url: 'https://help.openai.com/en/articles/20001270-openai-academy-courses' },

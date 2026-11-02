@@ -22,7 +22,7 @@ export type Plugin = {
   sections?: ListingSection[];
   /** Visible FAQ (also emitted as FAQPage JSON-LD). */
   faq?: ListingFaq[];
-  /** Slugs of /guides/ pages to link under "Related guides". */
+  /** Slugs of /guides/ pages always shown first under "Set it up / Fixes" (the rest come from src/lib/guide-links.ts). */
   guides?: string[];
 };
 /** gumroadUrl: Gumroad product link (e.g. https://<name>.gumroad.com/l/<id>). Empty = not on sale yet. */
