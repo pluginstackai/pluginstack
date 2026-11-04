@@ -1,0 +1,51 @@
+{
+  "slug": "impeccable",
+  "name": "Impeccable",
+  "category": "Rules & Prompts",
+  "tags": [
+    "skills",
+    "design",
+    "frontend",
+    "ui"
+  ],
+  "url": "https://github.com/pbakaus/impeccable",
+  "maker": "Paul Bakaus",
+  "updated": "2026-11-04",
+  "what": "A design skill for AI coding agents that helps them build and fix interfaces that don't look like generic AI output. You get one /impeccable command with sub-commands such as critique, audit, polish, bolder, quieter, distill and harden, plus a live mode that swaps design variants into your running dev server. It also ships a detector CLI with 62 deterministic rules for common AI-design tells and quality problems (no LLM or API key needed), and an optional design hook that checks each UI file the agent edits. It started from Anthropic's frontend-design skill. Apache-2.0 licensed.",
+  "who": "People building websites and app screens with Claude Code, Cursor, Codex, Copilot, Gemini CLI, OpenCode or similar agents who keep getting the same samey layouts, fonts and colors.",
+  "setup": [
+    {
+      "text": "From your project folder, run the installer. It detects your coding tools, asks whether to install for this project or globally, and offers the design hook where your tool supports one:",
+      "code": "npx impeccable install",
+      "language": "bash"
+    },
+    {
+      "text": "Reload your coding tool, then run init once per project in the agent's chat. It reads your code, asks what it can't work out (who the product is for, what it needs to do) and writes PRODUCT.md. On Codex the prefix is $ instead of /:",
+      "code": "/impeccable init",
+      "language": "text"
+    },
+    {
+      "text": "Claude Code alternative: add the plugin marketplace, then open /plugin and install Impeccable:",
+      "code": "/plugin marketplace add pbakaus/impeccable",
+      "language": "text"
+    },
+    {
+      "text": "Point a command at one narrow target. Narrow targets work better than whole pages:",
+      "code": "/impeccable critique the pricing cards\n/impeccable polish settings\n/impeccable harden checkout",
+      "language": "text"
+    },
+    {
+      "text": "Run the detector on its own, on source files or a rendered page (rules like low contrast only run on a URL). Exit code 2 means it found problems, which makes it usable in CI:",
+      "code": "npx impeccable detect src/\nnpx impeccable detect http://localhost:5173\nnpx impeccable detect --list-rules",
+      "language": "bash"
+    },
+    {
+      "text": "Things to know before you use it: the design hook runs outside the model's approval prompts, so in Claude Code it runs even when you deny the model's own commands (pass --settings '{\"disableAllHooks\": true}' to switch hooks off for a run). The skill fetches design directions from impeccable.style, and sends an anonymous record of which ones were shown and picked unless you turn telemetry off with npx impeccable telemetry off or DO_NOT_TRACK=1. In live mode, Apply can fall back to running the codex or claude CLI with approvals and sandboxing turned off; set IMPECCABLE_LIVE_COPY_AGENT=chat (or off) before starting live mode to prevent that."
+    }
+  ],
+  "prompts": [
+    "/impeccable critique the onboarding flow and list the three changes that would help most.",
+    "/impeccable quieter the landing page hero, keep the copy as is.",
+    "Run npx impeccable detect on src/components and fix every finding in the Button and Card components."
+  ]
+}

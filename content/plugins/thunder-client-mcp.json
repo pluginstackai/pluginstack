@@ -1,0 +1,58 @@
+{
+  "slug": "thunder-client-mcp",
+  "name": "Thunder Client MCP Server",
+  "category": "MCP Servers",
+  "tags": [
+    "api-testing",
+    "rest",
+    "vs-code"
+  ],
+  "url": "https://github.com/thunderclient/thunderclient-mcp",
+  "maker": "Thunder Client",
+  "updated": "2026-11-04",
+  "what": "The official MCP server for Thunder Client, the API client extension for VS Code and JetBrains. It lets an AI assistant build Thunder Client collections from your source code or an API spec, create and edit requests (including from a curl command), add tests and scripts, run requests and whole collections, and generate reports. Version 2 (announced 1 November 2026) has 12 tools. According to the docs, the assistant only sees environment variable names, not their values, and saved credentials are masked, but it does see response bodies from requests it runs. MIT licensed.",
+  "who": "Developers who test APIs with Thunder Client and want Claude Code, Codex, Copilot, Cursor or another agent to write and run those requests and tests for them.",
+  "setup": [
+    {
+      "text": "You need Node.js 22 or later, the Thunder Client extension (installed and up to date) and the Thunder Client CLI 2.1.0 or later. Install the CLI and check it:",
+      "code": "npm i -g @thunderclient/cli@latest\ntc --version",
+      "language": "bash"
+    },
+    {
+      "text": "Claude Code or Codex: add the server from your terminal, then restart the tool (run /mcp in Claude Code, or codex mcp list, to check it's connected):",
+      "code": "claude mcp add thunderclient -- npx -y thunderclient-mcp\ncodex mcp add thunderclient -- npx -y thunderclient-mcp",
+      "language": "bash"
+    },
+    {
+      "text": "Cursor: add this to .cursor/mcp.json in your project or ~/.cursor/mcp.json for all projects, then restart Cursor. Copilot Chat uses the same block in ~/.copilot/mcp-config.json:",
+      "code": "{\n  \"mcpServers\": {\n    \"thunderclient\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"thunderclient-mcp\"]\n    }\n  }\n}",
+      "language": "json"
+    },
+    {
+      "text": "Test it by asking: \"Check that Thunder Client is set up for my project.\" The assistant should call the debugInfo tool and tell you whether the CLI and project are found. Some things still need the Thunder Client UI: creating and editing environments, AWS and NTLM auth, deleting collections or folders, and SSE, WebSocket and gRPC requests. When we checked on 4 November 2026, the pricing page listed the MCP server on the Free plan, which caps you at 10 collections and 50 requests per collection."
+    }
+  ],
+  "install": {
+    "name": "thunderclient",
+    "transport": "stdio",
+    "command": "npx",
+    "args": [
+      "-y",
+      "thunderclient-mcp"
+    ],
+    "requires": {
+      "runtime": "Node.js 22 or later, plus the Thunder Client extension and CLI (2.1.0 or later)",
+      "auth": "None"
+    },
+    "notes": [
+      "Install the CLI first with npm i -g @thunderclient/cli@latest, and keep the Thunder Client extension up to date."
+    ],
+    "source": "https://docs.thunderclient.com/mcp/install",
+    "checked": "2026-11-04"
+  },
+  "prompts": [
+    "Create a collection called Orders API from the Express routes in src/routes, with one folder per resource.",
+    "Add tests to every request in the Orders folder: check the status code, a response time under 500 ms, and one key field in the body.",
+    "Run the Orders API collection and give me a report of anything that failed."
+  ]
+}

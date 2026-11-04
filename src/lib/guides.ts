@@ -7,6 +7,7 @@ import { MCP_GUIDES } from './guides-mcp.ts';
 import { CLIENT_GUIDES } from './guides-clients.ts';
 import { freeAiCourses } from './guides-learn.ts';
 import { SERVER_GUIDES } from './guides-servers.ts';
+import { TUTORIAL_GUIDES } from './guides-tutorials.ts';
 
 export type GuideBlock =
   | { h2: string; id?: string }
@@ -14,7 +15,7 @@ export type GuideBlock =
   | { p: string }
   | { ul: string[] }
   | { ol: string[] }
-  | { code: string; lang: 'bash' | 'json' | 'powershell' | 'text'; caption?: string }
+  | { code: string; lang: 'bash' | 'json' | 'powershell' | 'python' | 'text'; caption?: string }
   | { note: string }
   /** Free MCP Starter Checklist signup card (same EmailForm + FREEBIE copy as the homepage and tool pages). */
   | { freebie: true }
@@ -705,6 +706,6 @@ const rules: Guide = {
   ],
 };
 
-export const GUIDES: Guide[] = [cursor, claude, rules, plugins, skills, ...MCP_GUIDES, ...CLIENT_GUIDES, ...SERVER_GUIDES, freeAiCourses];
+export const GUIDES: Guide[] = [cursor, claude, rules, plugins, skills, ...MCP_GUIDES, ...CLIENT_GUIDES, ...SERVER_GUIDES, ...TUTORIAL_GUIDES, freeAiCourses];
 export const guidePath = (slug: string) => `/guides/${slug}/`;
 export const getGuide = (slug: string) => GUIDES.find(g => g.slug === slug);

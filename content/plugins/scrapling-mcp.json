@@ -1,0 +1,60 @@
+{
+  "slug": "scrapling-mcp",
+  "name": "Scrapling MCP Server",
+  "category": "MCP Servers",
+  "tags": [
+    "web-scraping",
+    "browser",
+    "python"
+  ],
+  "url": "https://github.com/D4Vinci/Scrapling",
+  "maker": "Karim Shoair (D4Vinci)",
+  "updated": "2026-11-04",
+  "what": "The MCP server built into Scrapling, an open-source Python web scraping library. It gives an AI agent sixteen tools: one-shot tools that fetch a single URL over HTTP or in a browser, and session tools that keep a browser tab open for clicks, screenshots, CSS-selector extraction and network-request history. Browser tools block known ad and tracker domains, and the server strips hidden page content (hidden elements, zero-width characters, HTML comments) that could carry prompt-injection text. Scrapling also has stealth features meant to get past anti-bot checks; its README says to follow scraping and privacy laws and to respect each site's terms of service and robots.txt. BSD-3-Clause licensed.",
+  "who": "People who want Claude, Cursor or another MCP client to read and extract data from web pages, including JavaScript-heavy ones, running on their own machine instead of a paid scraping API.",
+  "setup": [
+    {
+      "text": "Needs Python 3.10 or newer. Install Scrapling with its AI extras, then install the browsers and system dependencies the browser tools use (plain HTTP requests don't need this step):",
+      "code": "pip install \"scrapling[ai]\"\nscrapling install",
+      "language": "bash"
+    },
+    {
+      "text": "Add it to Claude Desktop, Cursor or another client that uses an mcpServers file. scrapling-mcp was added in v0.4.13; on older versions use \"command\": \"scrapling\" with \"args\": [\"mcp\"]:",
+      "code": "{\n  \"mcpServers\": {\n    \"ScraplingServer\": {\n      \"command\": \"scrapling-mcp\"\n    }\n  }\n}",
+      "language": "json"
+    },
+    {
+      "text": "If you installed it in a virtual environment, the client may not find the command. Use the full path instead: find it with which scrapling-mcp (macOS/Linux) or where scrapling-mcp (Windows). In Claude Code:",
+      "code": "claude mcp add ScraplingServer \"/full/path/to/scrapling-mcp\"",
+      "language": "bash"
+    },
+    {
+      "text": "Or run it from the official Docker image:",
+      "code": "docker run -i --rm pyd4vinci/scrapling mcp",
+      "language": "bash"
+    },
+    {
+      "text": "Quit and restart the client after adding it. Over HTTP (scrapling-mcp --http) the server refuses to start without an auth token, because anyone who can reach the port could use it to fetch any URL from your machine. Set it with the SCRAPLING_MCP_AUTH_TOKEN environment variable rather than on the command line."
+    }
+  ],
+  "install": {
+    "name": "ScraplingServer",
+    "transport": "stdio",
+    "command": "scrapling-mcp",
+    "args": [],
+    "requires": {
+      "runtime": "Python 3.10 or later, with pip install \"scrapling[ai]\" and scrapling install",
+      "auth": "None"
+    },
+    "notes": [
+      "If the client can't find scrapling-mcp, replace it with the full path from which scrapling-mcp (or where scrapling-mcp on Windows)."
+    ],
+    "source": "https://scrapling.readthedocs.io/en/latest/ai/mcp-server.html",
+    "checked": "2026-11-04"
+  },
+  "prompts": [
+    "Use make_request to fetch https://example.com/blog and list every post title with its date.",
+    "Use browser_fetch_once on this product page and extract the name, price and stock status with CSS selectors.",
+    "Open the page in a browser session, click Load more twice, then show me the network requests that returned JSON."
+  ]
+}

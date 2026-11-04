@@ -1,0 +1,49 @@
+{
+  "slug": "t3code",
+  "name": "T3 Code",
+  "category": "Coding Agents",
+  "tags": [
+    "gui",
+    "desktop",
+    "mobile",
+    "agent-manager"
+  ],
+  "url": "https://github.com/pingdotgg/t3code",
+  "maker": "T3 Tools (Ping)",
+  "updated": "2026-11-04",
+  "what": "An open-source app for running and watching the coding agents already installed on your computer, from a desktop app, a web app or iOS and Android apps. It doesn't include its own model: it drives Claude Code, Codex, Cursor CLI, Grok Build, OpenCode, Google Antigravity and fx using the subscriptions you already have. The README says nothing is being sold, and that the project is very early, so expect bugs. MIT licensed.",
+  "who": "People who already use Claude Code, Codex or another CLI agent and want a graphical app to manage sessions, or to check on and steer them from a phone.",
+  "setup": [
+    {
+      "text": "Install and sign in to at least one supported agent first, for example:",
+      "code": "claude auth login   # Claude Code\ncodex login         # Codex CLI\nagent login         # Cursor CLI\nopencode auth login # OpenCode",
+      "language": "bash"
+    },
+    {
+      "text": "Install the command-line version on macOS or Linux, then run t3 to start the server and open the local web app:",
+      "code": "curl -fsSL https://t3.codes/install.sh | sh\nt3",
+      "language": "bash"
+    },
+    {
+      "text": "On Windows, in PowerShell:",
+      "code": "irm https://t3.codes/install.ps1 | iex",
+      "language": "powershell"
+    },
+    {
+      "text": "To try it once without installing anything, run npx t3@latest. t3 service install keeps it running in the background and t3 update moves to a newer release."
+    },
+    {
+      "text": "Or install the desktop app from GitHub Releases or a package manager:",
+      "code": "brew install --cask t3-code     # macOS\nwinget install T3Tools.T3Code   # Windows\nscoop install extras/t3code     # Windows (scoop)",
+      "language": "bash"
+    },
+    {
+      "text": "Remote access from a phone, permission modes and connecting outside agents over MCP are covered in the docs folder of the repo (there is no docs site yet). Install scripts piped to sh run code from the internet, so read them first if that matters to you."
+    }
+  ],
+  "prompts": [
+    "Open this repo in T3 Code with Claude Code and plan the refactor of src/api before changing anything.",
+    "Run Codex on the failing test in a new session while I keep working in the Claude session.",
+    "Summarize what each open agent session changed today."
+  ]
+}

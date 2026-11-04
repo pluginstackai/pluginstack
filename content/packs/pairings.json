@@ -121,6 +121,10 @@
       "pack": "vibe-coder-starter",
       "why": "50 plain-English prompts for planning, building, debugging and shipping with any AI coding agent, plus a debugging checklist."
     },
+    "impeccable": {
+      "pack": null,
+      "reason": "Design skill with its own commands; no pack covers frontend design or UI review."
+    },
     "kilo-code": {
       "pack": "vibe-coder-starter",
       "why": "50 plain-English prompts for planning, building, debugging and shipping with any AI coding agent, plus a debugging checklist."
@@ -177,6 +181,10 @@
       "pack": "agent-builder-pack",
       "why": "Framework-agnostic rules for agent tool design and error handling, plus 12 eval prompt templates to test any agent. Not specific to Pydantic AI."
     },
+    "scrapling-mcp": {
+      "pack": null,
+      "reason": "Uses or connects an existing tool/service; no pack covers it."
+    },
     "sentry-mcp": {
       "pack": null,
       "reason": "Uses or connects an existing tool/service; no pack covers it."
@@ -188,6 +196,10 @@
     "serena": {
       "pack": null,
       "reason": "Uses or connects an existing tool/service; no pack covers it."
+    },
+    "spec-kit": {
+      "pack": null,
+      "reason": "Spec Kit ships its own workflow commands; pairing a prompt pack would overlap and imply it is needed."
     },
     "stripe-mcp": {
       "pack": null,
@@ -201,9 +213,17 @@
       "pack": null,
       "reason": "General coding workflow skills; Agent Builder's skills are only for MCP servers and evals, so not a true pairing."
     },
+    "t3code": {
+      "pack": null,
+      "reason": "A GUI for agents you already have; no pack is built for it."
+    },
     "thinkrail": {
       "pack": null,
       "reason": "Agentic IDE around pi; no pack is built for it."
+    },
+    "thunder-client-mcp": {
+      "pack": null,
+      "reason": "Uses or connects an existing tool/service; no pack covers it."
     },
     "unity-mcp": {
       "pack": null,

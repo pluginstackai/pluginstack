@@ -1,0 +1,41 @@
+{
+  "slug": "spec-kit",
+  "name": "Spec Kit",
+  "category": "Rules & Prompts",
+  "tags": [
+    "spec-driven-development",
+    "planning",
+    "skills",
+    "cli"
+  ],
+  "url": "https://github.com/github/spec-kit",
+  "maker": "GitHub",
+  "updated": "2026-11-04",
+  "what": "GitHub's open-source toolkit for spec-driven development: you write down what to build and why, then have your coding agent turn that spec into a plan, a task list and working code, one reviewed step at a time. The Specify CLI (specify) sets up a project with the commands for your agent, and extensions add other workflows such as bug fixing (assess, fix, test). It works with GitHub Copilot, Claude Code, Cursor, Codex, Gemini CLI, OpenCode, Cline, Kilo Code, Goose and others. MIT licensed.",
+  "who": "Anyone who wants an AI agent to build a feature from a written spec and plan instead of one long prompt, and to review each stage before code gets written.",
+  "setup": [
+    {
+      "text": "You need Python 3.11+, uv and a supported AI coding agent (Linux, macOS or Windows). Install the CLI and create a project. Swap copilot for your agent's integration key, such as claude, cursor-agent, codex, gemini or opencode:",
+      "code": "uv tool install specify-cli\nspecify init my-project --integration copilot\ncd my-project",
+      "language": "bash"
+    },
+    {
+      "text": "Start your coding agent in the project folder and run these in the agent's chat (not your terminal), one at a time, reviewing each result before the next. Create the constitution once per project and repeat the rest for each feature:",
+      "code": "/speckit-constitution Create principles focused on code quality, testing, and maintainability.\n/speckit-specify Build a photo organizer with albums grouped by date.\n/speckit-plan Use Vite with vanilla JavaScript. Store metadata in SQLite.\n/speckit-tasks\n/speckit-implement\n/speckit-converge",
+      "language": "text"
+    },
+    {
+      "text": "The command prefix depends on the agent (Codex, for example, uses $speckit-specify). Repeat implement and converge until converge reports Converged. To fix a bug without the full feature flow, add the bug extension from the project folder:",
+      "code": "specify extension add bug",
+      "language": "bash"
+    },
+    {
+      "text": "Already installed an old version? uv tool install keeps the installed copy, so upgrade with uv tool install --force specify-cli. Very old CLIs fail with \"No such option: --integration\". Check what you have with specify version. Community extensions and presets in Spec Kit's catalogs aren't audited, so read their code before installing."
+    }
+  ],
+  "prompts": [
+    "/speckit-specify Add a CSV export to the reports page so users can download the filtered table.",
+    "/speckit-plan Keep the existing Next.js App Router setup and don't add new dependencies.",
+    "/speckit-bug-assess \"Submitting an empty password crashes the login form.\" slug=login-crash"
+  ]
+}

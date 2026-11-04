@@ -57,5 +57,10 @@
     "Find every markdown file in my notes folder that mentions 'invoice'.",
     "Show me a directory tree of my project folder, excluding node_modules.",
     "Read my README and suggest a clearer intro, then preview the edit before applying it."
+  ],
+  "guides": [
+    "filesystem-mcp-server-setup",
+    "add-mcp-server-to-claude-desktop",
+    "mcp-reference-servers-v2-whats-changed"
   ]
 }
