@@ -9,9 +9,9 @@
     "agent-manager"
   ],
   "url": "https://github.com/pingdotgg/t3code",
-  "maker": "T3 Tools (Ping)",
+  "maker": "T3 Tools Inc.",
   "updated": "2026-11-04",
-  "what": "An open-source app for running and watching the coding agents already installed on your computer, from a desktop app, a web app or iOS and Android apps. It doesn't include its own model: it drives Claude Code, Codex, Cursor CLI, Grok Build, OpenCode, Google Antigravity and fx using the subscriptions you already have. The README says nothing is being sold, and that the project is very early, so expect bugs. MIT licensed.",
+  "what": "An open-source app for running and watching the coding agents already set up on your computer, from a desktop app, a web app or iOS and Android apps. It drives Claude Code, Codex, Cursor CLI, Grok Build, OpenCode, Google Antigravity and fx using the subscriptions you already have. The README says nothing is being sold, and warns: \"We are very very early in this project. Expect bugs.\" MIT licensed.",
   "who": "People who already use Claude Code, Codex or another CLI agent and want a graphical app to manage sessions, or to check on and steer them from a phone.",
   "setup": [
     {

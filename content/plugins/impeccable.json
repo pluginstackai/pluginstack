@@ -11,7 +11,7 @@
   "url": "https://github.com/pbakaus/impeccable",
   "maker": "Paul Bakaus",
   "updated": "2026-11-04",
-  "what": "A design skill for AI coding agents that helps them build and fix interfaces that don't look like generic AI output. You get one /impeccable command with sub-commands such as critique, audit, polish, bolder, quieter, distill and harden, plus a live mode that swaps design variants into your running dev server. It also ships a detector CLI with 62 deterministic rules for common AI-design tells and quality problems (no LLM or API key needed), and an optional design hook that checks each UI file the agent edits. It started from Anthropic's frontend-design skill. Apache-2.0 licensed.",
+  "what": "A design skill for AI coding agents that helps them build and fix interfaces that don't look like generic AI output. You get one /impeccable command with sub-commands such as critique, audit, polish, bolder, quieter, distill and harden, plus a live mode that swaps design variants into your running dev server. It also ships a detector CLI with deterministic rules for common AI-design tells and quality problems (no LLM or API key needed), and an optional design hook that checks each UI file the agent edits. It started from Anthropic's frontend-design skill. Apache-2.0 licensed.",
   "who": "People building websites and app screens with Claude Code, Cursor, Codex, Copilot, Gemini CLI, OpenCode or similar agents who keep getting the same samey layouts, fonts and colors.",
   "setup": [
     {

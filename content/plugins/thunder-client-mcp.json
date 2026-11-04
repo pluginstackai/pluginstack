@@ -10,7 +10,7 @@
   "url": "https://github.com/thunderclient/thunderclient-mcp",
   "maker": "Thunder Client",
   "updated": "2026-11-04",
-  "what": "The official MCP server for Thunder Client, the API client extension for VS Code and JetBrains. It lets an AI assistant build Thunder Client collections from your source code or an API spec, create and edit requests (including from a curl command), add tests and scripts, run requests and whole collections, and generate reports. Version 2 (announced 1 November 2026) has 12 tools. According to the docs, the assistant only sees environment variable names, not their values, and saved credentials are masked, but it does see response bodies from requests it runs. MIT licensed.",
+  "what": "The official MCP server for Thunder Client, the API client for VS Code and JetBrains. It lets an AI assistant build Thunder Client collections from your source code or an API spec, create and edit requests (including from a curl command), add tests and scripts, run requests and whole collections, and generate reports. Version 2 was announced on 1 November 2026. The assistant sees environment variable names but not their values, saved auth values are masked, and it does see the response bodies of requests it runs. MIT licensed.",
   "who": "Developers who test APIs with Thunder Client and want Claude Code, Codex, Copilot, Cursor or another agent to write and run those requests and tests for them.",
   "setup": [
     {
@@ -29,7 +29,7 @@
       "language": "json"
     },
     {
-      "text": "Test it by asking: \"Check that Thunder Client is set up for my project.\" The assistant should call the debugInfo tool and tell you whether the CLI and project are found. Some things still need the Thunder Client UI: creating and editing environments, AWS and NTLM auth, deleting collections or folders, and SSE, WebSocket and gRPC requests. When we checked on 4 November 2026, the pricing page listed the MCP server on the Free plan, which caps you at 10 collections and 50 requests per collection."
+      "text": "Test it by asking: \"Check that Thunder Client is set up for my project.\" The assistant should report the CLI version, the data path, and your collections and environments. Some things still need the Thunder Client UI: creating and editing environments, AWS and NTLM auth, deleting collections or folders, and SSE, WebSocket and gRPC requests. As of 4 November 2026, the pricing page (thunderclient.com/pricing) lists the MCP server on the Free plan, which allows 10 collections and 50 requests per collection."
     }
   ],
   "install": {

@@ -10,7 +10,7 @@
   "url": "https://github.com/D4Vinci/Scrapling",
   "maker": "Karim Shoair (D4Vinci)",
   "updated": "2026-11-04",
-  "what": "The MCP server built into Scrapling, an open-source Python web scraping library. It gives an AI agent sixteen tools: one-shot tools that fetch a single URL over HTTP or in a browser, and session tools that keep a browser tab open for clicks, screenshots, CSS-selector extraction and network-request history. Browser tools block known ad and tracker domains, and the server strips hidden page content (hidden elements, zero-width characters, HTML comments) that could carry prompt-injection text. Scrapling also has stealth features meant to get past anti-bot checks; its README says to follow scraping and privacy laws and to respect each site's terms of service and robots.txt. BSD-3-Clause licensed.",
+  "what": "The MCP server built into Scrapling, an open-source Python web scraping library. It gives an AI agent one-shot tools that fetch a single URL over HTTP or in a browser, and session tools that keep a browser tab open for clicks, screenshots, CSS-selector extraction and network-request history. Browser tools block known ad and tracker domains, and the server strips hidden page content (hidden elements, zero-width characters, HTML comments) that could carry prompt-injection text. Scrapling also has stealth features meant to get past anti-bot checks; its README says to follow scraping and privacy laws and to respect each site's terms of service and robots.txt. BSD-3-Clause licensed.",
   "who": "People who want Claude, Cursor or another MCP client to read and extract data from web pages, including JavaScript-heavy ones, running on their own machine instead of a paid scraping API.",
   "setup": [
     {
@@ -34,7 +34,7 @@
       "language": "bash"
     },
     {
-      "text": "Quit and restart the client after adding it. Over HTTP (scrapling-mcp --http) the server refuses to start without an auth token, because anyone who can reach the port could use it to fetch any URL from your machine. Set it with the SCRAPLING_MCP_AUTH_TOKEN environment variable rather than on the command line."
+      "text": "Quit and restart the client after adding it. Over HTTP (scrapling-mcp --http), the server requires an auth token unless you explicitly pass --no-auth, because anyone who can reach the port could call every tool, including fetching any URL from your machine. Set it with the SCRAPLING_MCP_AUTH_TOKEN environment variable rather than on the command line."
     }
   ],
   "install": {

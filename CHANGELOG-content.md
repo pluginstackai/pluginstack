@@ -4,6 +4,7 @@ Two tutorial/setup guides for query clusters from the Search Console export wher
 - /guides/filesystem-mcp-server-setup/ "Filesystem MCP server setup": allowed folders and Roots, Claude Code / Claude Desktop / Cursor / VS Code / Codex config, Windows, read-only and Docker, the 14 tools, caveats, slow folders, updating to 2.1.0, Inspector test, troubleshooting. Inspector CLI command and the "Access denied" message tested with @modelcontextprotocol/server-filesystem 2.1.0 on Node 24. Targets filesystem mcp server, file system mcp server, server-filesystem mcp and variants (~25 impressions).
 - New listings: impeccable, spec-kit, t3code (Coding Agents), scrapling-mcp, thunder-client-mcp. No star counts, no affiliate links; pairings are null for all five.
 - filesystem-mcp.json and openai-agents-sdk.json gain `guides` pointing at the new guides.
+- Fact-check pass (4 Nov): every claim re-checked against official repos, docs, npm/PyPI and pricing pages; unconfirmed claims removed. Dropped changing counts (Impeccable rule count, Scrapling tool count, Thunder Client tool count), first-hand test anecdotes and unsourced client/OS troubleshooting lines; T3 Code maker set to T3 Tools Inc. (LICENSE) and its "very very early" line quoted verbatim; Thunder Client free-plan limits dated to the 4 Nov pricing page.
 
 # Search guides — 2026-11-02 (branch guides-2026-11-02, not deployed)
 Two setup guides for query clusters from the Search Console export (last 3 months) that no guide covered. Module src/lib/guides-servers.ts (SERVER_GUIDES).
