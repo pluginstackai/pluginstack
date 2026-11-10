@@ -149,7 +149,7 @@ const cloudflare: Guide = {
       '**URL:** `https://mcp.cloudflare.com/mcp`. This server covers the whole Cloudflare API.',
       '**Sign-in:** OAuth. Your client opens Cloudflare in the browser and you choose which permissions to grant. For CI, send a Cloudflare API token as a Bearer header instead.',
       '**Docs only:** `https://docs.mcp.cloudflare.com/mcp` searches Cloudflare\'s documentation and needs no sign-in.',
-      '**Old `/sse` URLs** now return 410 Gone. Replace them with the `/mcp` URL.',
+      '**Old SSE URLs** now return 410 Gone. Replace them with the Streamable HTTP URL (it ends in mcp).',
     ] },
     { freebie: true },
 

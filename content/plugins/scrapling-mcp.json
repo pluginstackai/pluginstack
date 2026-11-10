@@ -25,7 +25,7 @@
     },
     {
       "text": "If you installed it in a virtual environment, the client may not find the command. Use the full path instead: find it with which scrapling-mcp (macOS/Linux) or where scrapling-mcp (Windows). In Claude Code:",
-      "code": "claude mcp add ScraplingServer \"/full/path/to/scrapling-mcp\"",
+      "code": "claude mcp add ScraplingServer \"<absolute-path-to-scrapling-mcp>\"",
       "language": "bash"
     },
     {

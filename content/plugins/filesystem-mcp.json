@@ -17,7 +17,7 @@
     },
     {
       "text": "Add the server to your MCP client config, listing each folder the AI may access as an argument (at least one is required):",
-      "code": "{\n  \"mcpServers\": {\n    \"filesystem\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"@modelcontextprotocol/server-filesystem\",\n        \"/path/to/allowed/folder\"\n      ]\n    }\n  }\n}",
+      "code": "{\n  \"mcpServers\": {\n    \"filesystem\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"@modelcontextprotocol/server-filesystem\",\n        \"<absolute-path-to-folder>\"\n      ]\n    }\n  }\n}",
       "language": "json"
     },
     {
@@ -41,7 +41,7 @@
     "args": [
       "-y",
       "@modelcontextprotocol/server-filesystem",
-      "/path/to/allowed/folder"
+      "<absolute-path-to-folder>"
     ],
     "requires": {
       "runtime": "Node.js 24 or later",

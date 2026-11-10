@@ -162,7 +162,7 @@ const cursor: Guide = {
     { h3: 'Should I use the global or the project mcp.json?' },
     { p: 'Use `~/.cursor/mcp.json` for personal tools you want everywhere, and `.cursor/mcp.json` for tools a project\'s team should share. Keep keys out of the project file with `${env:NAME}`.' },
     { h3: 'Which transports does Cursor support?' },
-    { p: 'stdio (a local command Cursor starts), SSE and Streamable HTTP (both by URL). If a provider offers both a `/sse` and an `/mcp` endpoint, use the one its docs recommend for Cursor.' },
+    { p: 'stdio (a local command Cursor starts), SSE and Streamable HTTP (both by URL). If a provider offers both an SSE endpoint and a Streamable HTTP endpoint, use the one its docs recommend for Cursor.' },
     { h3: 'Can I turn a server off without deleting it?' },
     { p: 'Yes. Use the toggle next to it in **Customize → MCPs**.' },
     { h3: 'Using Claude Code too?' },
@@ -643,7 +643,7 @@ const rules: Guide = {
     { h3: 'Which tools read AGENTS.md' },
     { p: 'The agents.md site lists these among supported tools: Codex, Jules, Factory, Aider, goose, OpenCode, Zed, Warp, VS Code, Devin, Junie, Amp, Cursor, RooCode, Gemini CLI, Kilo Code, Windsurf, Augment Code and GitHub Copilot\'s coding agent. Two are worth knowing about:' },
     { ul: [
-      '**Claude Code** reads `AGENTS.md` too, but only when your project has no `CLAUDE.md` (or `CLAUDE.local.md`) in the working directory or above it, and it needs Claude Code v2.1.277 or later. If you have both, it reads `CLAUDE.md` only, unless you change the **Project instructions** setting in `/config`.',
+      '**Claude Code** reads `AGENTS.md` too, but only when your project has no `CLAUDE.md` (or `CLAUDE.local.md`) in the working directory or above it, and it needs Claude Code v2.1.277 or later. If you have both, it reads `CLAUDE.md` only, unless you change the **Project instructions** setting in the Claude Code configuration screen.',
       '**Aider and Gemini CLI** need a one-line setting pointing at `AGENTS.md`; the agents.md FAQ shows each one.',
     ] },
     { p: 'See [Codex CLI](/plugins/codex-cli/), [OpenCode](/plugins/opencode/) and [Claude Code](/plugins/claude-code/) for those tools.' },

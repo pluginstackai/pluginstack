@@ -17,7 +17,7 @@
     },
     {
       "text": "Add the server (or run the mcp/memory Docker image). Optionally set MEMORY_FILE_PATH to choose where the memory .jsonl file is stored. If you leave it out, the file (memory.jsonl) is created inside the server's own package directory, so an absolute path is easier to find and back up:",
-      "code": "{\n  \"mcpServers\": {\n    \"memory\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"@modelcontextprotocol/server-memory\"\n      ],\n      \"env\": {\n        \"MEMORY_FILE_PATH\": \"/path/to/custom/memory.jsonl\"\n      }\n    }\n  }\n}",
+      "code": "{\n  \"mcpServers\": {\n    \"memory\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"@modelcontextprotocol/server-memory\"\n      ],\n      \"env\": {\n        \"MEMORY_FILE_PATH\": \"<absolute-path-to-memory.jsonl>\"\n      }\n    }\n  }\n}",
       "language": "json"
     },
     {
@@ -41,7 +41,7 @@
       "@modelcontextprotocol/server-memory"
     ],
     "env": {
-      "MEMORY_FILE_PATH": "/path/to/custom/memory.jsonl"
+      "MEMORY_FILE_PATH": "<absolute-path-to-memory.jsonl>"
     },
     "requires": {
       "runtime": "Node.js 24 or later",

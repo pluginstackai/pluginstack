@@ -57,8 +57,8 @@ const referenceV2: Guide = {
     { p: 'If `node --version` prints something below v24, install a current Node (the official download page, or a version manager such as nvm or fnm) and restart your terminal and your AI client. A client launched from a desktop icon uses the Node that was on its PATH when it started, so quit and reopen it fully.' },
     { h3: '2. Get the new server version' },
     { p: 'With `npx -y <package>` in your config there is nothing to install: npx fetches the latest published version when it launches the server. Restart your client after upgrading Node, and the new version starts. If you want to be explicit, or you are jumping from an old date-style version, pin it:' },
-    { code: j('npx -y @modelcontextprotocol/server-filesystem@2.0.1 /Users/you/projects'), lang: 'bash', caption: 'Pin Filesystem to the first security-fixed version (change the folder to yours)' },
-    { p: 'In a client config the same pin goes in the `args` array, for example `"args": ["-y", "@modelcontextprotocol/server-filesystem@2.0.1", "/Users/you/projects"]`. If Cursor keeps launching an old copy, its docs suggest removing the server in Customize, running `npm cache clean --force`, then adding it again.' },
+    { code: j('npx -y @modelcontextprotocol/server-filesystem@2.0.1 $HOME/projects'), lang: 'bash', caption: 'Pin Filesystem to the first security-fixed version (change the folder to yours)' },
+    { p: 'In a client config the same pin goes in the `args` array, for example `"args": ["-y", "@modelcontextprotocol/server-filesystem@2.0.1", "<absolute-path-to-your-projects>"]`. If Cursor keeps launching an old copy, its docs suggest removing the server in Customize, running `npm cache clean --force`, then adding it again.' },
     { p: 'For Fetch, run it through `uvx` (or `pip`), and ask for the latest:' },
     { code: j('uvx mcp-server-fetch@latest', '# or, if you installed it with pip:', 'pip install -U mcp-server-fetch'), lang: 'bash' },
     { h3: '3. Restart your client and check' },
@@ -387,7 +387,7 @@ const codexToml: Guide = {
     { h2: 'Option 1: codex mcp add', id: 'cli' },
     { code: 'codex mcp add <server-name> --env VAR1=VALUE1 --env VAR2=VALUE2 -- <stdio server-command>', lang: 'bash', caption: 'The general form from OpenAI\'s docs' },
     { p: 'Everything after `--` is the command that starts the server. Put `--env` options before it. A few real examples, using servers listed on PluginStack:' },
-    { code: j('# Context7: current library docs (example from the OpenAI docs)', 'codex mcp add context7 -- npx -y @upstash/context7-mcp', '', '# Official Memory server', 'codex mcp add memory -- npx -y @modelcontextprotocol/server-memory', '', '# Official Filesystem server: the last argument is the folder it may access', 'codex mcp add filesystem -- npx -y @modelcontextprotocol/server-filesystem /Users/you/projects'), lang: 'bash' },
+    { code: j('# Context7: current library docs (example from the OpenAI docs)', 'codex mcp add context7 -- npx -y @upstash/context7-mcp', '', '# Official Memory server', 'codex mcp add memory -- npx -y @modelcontextprotocol/server-memory', '', '# Official Filesystem server: the last argument is the folder it may access', 'codex mcp add filesystem -- npx -y @modelcontextprotocol/server-filesystem $HOME/projects'), lang: 'bash' },
     { p: 'See [Context7](/plugins/context7/), [Memory](/plugins/memory-mcp/) and [Filesystem](/plugins/filesystem-mcp/). The official TypeScript servers need Node 24 or newer from v2 onward ([what changed](/guides/mcp-reference-servers-v2-whats-changed/)).' },
     { h3: 'Other commands' },
     { ul: [
@@ -401,7 +401,7 @@ const codexToml: Guide = {
 
     { h2: 'Option 2: edit config.toml', id: 'toml' },
     { p: 'Each server is a `[mcp_servers.<name>]` table. For a local (stdio) server, `command` is required; `args`, `env`, `env_vars` and `cwd` are optional:' },
-    { code: j('[mcp_servers.filesystem]', 'command = "npx"', 'args = ["-y", "@modelcontextprotocol/server-filesystem", "/Users/you/projects"]', '', '[mcp_servers.context7]', 'command = "npx"', 'args = ["-y", "@upstash/context7-mcp"]', 'startup_timeout_sec = 20   # default is 10'), lang: 'text', caption: '~/.codex/config.toml' },
+    { code: j('[mcp_servers.filesystem]', 'command = "npx"', 'args = ["-y", "@modelcontextprotocol/server-filesystem", "<absolute-path-to-your-projects>"]', '', '[mcp_servers.context7]', 'command = "npx"', 'args = ["-y", "@upstash/context7-mcp"]', 'startup_timeout_sec = 20   # default is 10'), lang: 'text', caption: '~/.codex/config.toml' },
     { p: 'The table name (`filesystem`) is the label you choose. Save the file and restart Codex (in the IDE extension, use **Restart extension**).' },
     { h3: 'Environment variables and API keys' },
     { ul: [

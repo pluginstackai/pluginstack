@@ -69,7 +69,7 @@
     {
       "heading": "What the Cloudflare MCP servers are",
       "paragraphs": [
-        "These are remote MCP servers run by Cloudflare. Your MCP client connects to a URL over Streamable HTTP, so you don't run any code on your machine. Per the cloudflare/mcp-server-cloudflare README, each one answers at /mcp, and the old /sse URL now returns 410 Gone.",
+        "These are remote MCP servers run by Cloudflare. Your MCP client connects to a URL over Streamable HTTP, so you don't run any code on your machine. Per the cloudflare/mcp-server-cloudflare README, each one answers at a Streamable HTTP URL ending in mcp, and the old SSE URL now returns 410 Gone.",
         "Cloudflare splits them into two kinds: one general API server for broad access, and domain-specific servers for a single product area."
       ]
     },

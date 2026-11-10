@@ -139,8 +139,8 @@ const filesystem: Guide = {
     { h2: 'Quick answer', id: 'quick-answer' },
     { ul: [
       '**Needs:** Node.js 24 or newer (since v2.0.0).',
-      '**Command:** `npx -y @modelcontextprotocol/server-filesystem /path/to/folder`. Every folder the AI may use goes at the end, as its own argument.',
-      '**Claude Code:** `claude mcp add filesystem -- npx -y @modelcontextprotocol/server-filesystem /path/to/folder`',
+      '**Command:** `npx -y @modelcontextprotocol/server-filesystem <absolute-path-to-folder>`. Every folder the AI may use goes at the end, as its own argument.',
+      '**Claude Code:** `claude mcp add filesystem -- npx -y @modelcontextprotocol/server-filesystem <absolute-path-to-folder>`',
       '**Windows:** launch it through `cmd /c npx ...` in JSON configs, as the README does.',
       '**Read-only:** use the Docker image with `,ro` on the mount, or limit the tools in your client.',
     ] },
@@ -165,7 +165,7 @@ const filesystem: Guide = {
     { p: 'Everything after `--` is the command Claude Code runs. Run `claude mcp list` or `/mcp` to check it connected. More: [the best MCP servers for Claude Code](/guides/best-mcp-servers-for-claude-code/).' },
     { h3: 'Claude Desktop', id: 'claude-desktop' },
     { p: 'Open **Settings → Developer → Edit Config** and add this to `claude_desktop_config.json`, with your own folder paths:' },
-    { code: j('{', '  "mcpServers": {', '    "filesystem": {', '      "command": "npx",', '      "args": [', '        "-y",', '        "@modelcontextprotocol/server-filesystem",', '        "/Users/you/Desktop",', '        "/Users/you/Documents/notes"', '      ]', '    }', '  }', '}'), lang: 'json', caption: 'claude_desktop_config.json (macOS)' },
+    { code: j('{', '  "mcpServers": {', '    "filesystem": {', '      "command": "npx",', '      "args": [', '        "-y",', '        "@modelcontextprotocol/server-filesystem",', '        "<absolute-path-to-Desktop>",', '        "<absolute-path-to-notes>"', '      ]', '    }', '  }', '}'), lang: 'json', caption: 'claude_desktop_config.json (macOS)' },
     { p: 'Quit Claude Desktop fully and reopen it. The full walkthrough, including where the file is on each OS, is in [how to add an MCP server to Claude Desktop](/guides/add-mcp-server-to-claude-desktop/).' },
     { h3: 'Windows', id: 'windows' },
     { p: 'On Windows, the README launches `npx` through `cmd /c`. In JSON, every backslash in a path has to be doubled:' },
@@ -178,13 +178,13 @@ const filesystem: Guide = {
     { code: j('{', '  "servers": {', '    "filesystem": {', '      "command": "npx",', '      "args": [', '        "-y",', '        "@modelcontextprotocol/server-filesystem",', '        "${workspaceFolder}"', '      ]', '    }', '  }', '}'), lang: 'json', caption: '.vscode/mcp.json' },
     { p: 'More: [how to add an MCP server to VS Code](/guides/add-mcp-server-to-vs-code/).' },
     { h3: 'Codex', id: 'codex' },
-    { code: 'codex mcp add filesystem -- npx -y @modelcontextprotocol/server-filesystem /Users/you/projects', lang: 'bash' },
+    { code: 'codex mcp add filesystem -- npx -y @modelcontextprotocol/server-filesystem $HOME/projects', lang: 'bash' },
     { p: 'Or edit `~/.codex/config.toml` directly. Both are covered in [how to add an MCP server to Codex](/guides/add-mcp-server-to-codex-config-toml/).' },
 
     { h2: 'Read-only and Docker setups', id: 'docker' },
     { p: 'If you want the AI to look but not touch, there are two ways.' },
     { p: '**Docker with read-only mounts.** The official image is `mcp/filesystem`. Each folder is mounted under `/projects`, and adding `,ro` to a mount makes that folder read-only for the server:' },
-    { code: j('{', '  "mcpServers": {', '    "filesystem": {', '      "command": "docker",', '      "args": [', '        "run", "-i", "--rm",', '        "--mount", "type=bind,src=/Users/you/projects/my-app,dst=/projects/my-app",', '        "--mount", "type=bind,src=/Users/you/Documents/reference,dst=/projects/reference,ro",', '        "mcp/filesystem",', '        "/projects"', '      ]', '    }', '  }', '}'), lang: 'json', caption: 'my-app is writable, reference is read-only' },
+    { code: j('{', '  "mcpServers": {', '    "filesystem": {', '      "command": "docker",', '      "args": [', '        "run", "-i", "--rm",', '        "--mount", "type=bind,src=<absolute-path-to-my-app>,dst=/projects/my-app",', '        "--mount", "type=bind,src=<absolute-path-to-reference>,dst=/projects/reference,ro",', '        "mcp/filesystem",', '        "/projects"', '      ]', '    }', '  }', '}'), lang: 'json', caption: 'my-app is writable, reference is read-only' },
     { p: 'Inside the container the AI sees paths like `/projects/my-app/README.md`, not your real paths. Docker has to be running before the client starts the server.' },
     { p: '**Only allow the read tools.** If your client lets you switch off individual tools, you can leave only the read tools on. The read-only ones are `read_text_file`, `read_media_file`, `read_multiple_files`, `list_directory`, `list_directory_with_sizes`, `directory_tree`, `search_files`, `get_file_info` and `list_allowed_directories`. Turning off `write_file`, `edit_file`, `move_file` and `create_directory` leaves the AI able to read only. In the OpenAI Agents SDK you can do the same with a tool filter (see [the Agents SDK tutorial](/guides/openai-agents-sdk-python-tutorial/)).' },
 
@@ -220,12 +220,12 @@ const filesystem: Guide = {
 
     { h2: 'Updating from an older version', id: 'updating' },
     { p: 'The server used date-style versions (2025.x, 2026.x) before switching to normal version numbers at 1.0.0 in October 2026. By version number, 2.1.0 is lower than any 2026.x release, so an existing install pinned to a 2026.x range won\'t update to it. To be sure which version you run, pin it:' },
-    { code: 'npx -y @modelcontextprotocol/server-filesystem@2.1.0 /path/to/folder', lang: 'bash' },
+    { code: 'npx -y @modelcontextprotocol/server-filesystem@2.1.0 <absolute-path-to-folder>', lang: 'bash' },
     { p: 'What else changed in v2 across the reference servers: [MCP reference servers v2: what changed](/guides/mcp-reference-servers-v2-whats-changed/).' },
 
     { h2: 'Test it outside your client', id: 'test' },
     { p: 'The [MCP Inspector](/plugins/mcp-inspector/) can start the server and list its tools, which tells you whether a problem is the server or your client config:' },
-    { code: 'npx -y @modelcontextprotocol/inspector --cli npx -y @modelcontextprotocol/server-filesystem@2.1.0 /path/to/folder --method tools/list', lang: 'bash' },
+    { code: 'npx -y @modelcontextprotocol/inspector --cli npx -y @modelcontextprotocol/server-filesystem@2.1.0 <absolute-path-to-folder> --method tools/list', lang: 'bash' },
     { p: 'You should see the tools listed above. If this works but your client doesn\'t, the problem is in the client config, such as a wrong path or a missing `cmd /c` on Windows.' },
 
     { h2: 'Troubleshooting', id: 'troubleshooting' },
