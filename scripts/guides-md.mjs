@@ -2,8 +2,11 @@
 // Needs Node 22.18+ (built-in TypeScript type stripping).
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import { GUIDES } from '../src/lib/guides.ts';
 const site = JSON.parse(fs.readFileSync(new URL('../site.config.json', import.meta.url), 'utf8'));
+const pluginsDir = path.join(path.dirname(fileURLToPath(import.meta.url)), '../content/plugins');
+const plugins = fs.readdirSync(pluginsDir).filter(f => f.endsWith('.json')).map(f => JSON.parse(fs.readFileSync(path.join(pluginsDir, f), 'utf8')));
 const out = process.argv[2] || 'guides-md';
 fs.mkdirSync(out, { recursive: true });
 const abs = t => t.replace(/\]\((\/[^)]*)\)/g, (_, p) => `](${site.url}${p})`);
@@ -17,6 +20,12 @@ for (const g of GUIDES) {
     else if ('ul' in b) md.push(...b.ul.map(t => `- ${abs(t)}`), '');
     else if ('ol' in b) md.push(...b.ol.map((t, i) => `${i + 1}. ${abs(t)}`), '');
     else if ('code' in b) md.push(...(b.caption ? [`_${b.caption}_`, ''] : []), '```' + b.lang, b.code, '```', '');
+    else if ('affiliate' in b) {
+      const plugin = plugins.find(x => x.slug === b.affiliate);
+      if (!plugin?.affiliate) throw new Error(`Guide ${g.slug}: listing ${b.affiliate} has no affiliate link`);
+      const a = plugin.affiliate;
+      md.push(`[${a.cta}](${a.url}) **(affiliate link)**`, '', `If you sign up or buy through this link, we may earn a commission from ${a.program}, at no extra cost to you. It doesn't change what we say about the tool. [Disclosures](${site.url}/disclosures/#affiliate-links)`, '');
+    }
   }
   md.push('## Sources', '', ...g.sources.map(s => `- [${s.label}](${s.url})`), '', ...(g.related.length ? ['## Tools in this guide', '', ...g.related.map(s => `- ${site.url}/plugins/${s}/`), ''] : []));
   fs.writeFileSync(path.join(out, `${g.slug}.md`), md.join('\n'));

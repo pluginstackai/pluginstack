@@ -20,7 +20,9 @@ export type GuideBlock =
   /** Free MCP Starter Checklist signup card (same EmailForm + FREEBIE copy as the homepage and tool pages). */
   | { freebie: true }
   /** "From PluginStack" pack callout (PackPairing, same component as tool pages). `pack` = slug in content/packs/packs.json. */
-  | { pack: string; toolName: string; why: string };
+  | { pack: string; toolName: string; why: string }
+  /** Labeled affiliate signup link (AffiliateLink, same component as the listing). `affiliate` is the listing slug. */
+  | { affiliate: string };
 export type Guide = {
   slug: string; title: string; h1: string; description: string; published: string; updated: string;
   intro: string; blocks: GuideBlock[]; related: string[]; sources: { label: string; url: string }[];
@@ -273,7 +275,7 @@ const claude: Guide = {
 
     { h3: 'Also worth a look' },
     { ul: [
-      'Web search and scraping: [Exa](/plugins/exa-mcp/), [Firecrawl](/plugins/firecrawl-mcp/) and [Brave Search](/plugins/brave-search-mcp/).',
+      'Web search and scraping: [Exa](/plugins/exa-mcp/), [Firecrawl](/plugins/firecrawl-mcp/) ([setup guide](/guides/firecrawl-mcp-server-setup/)), [Apify](/plugins/apify-mcp/) ([setup guide](/guides/apify-mcp-server-setup/)) and [Brave Search](/plugins/brave-search-mcp/).',
       'Payments: [Stripe MCP](/plugins/stripe-mcp/). It can change a real account, so review every action.',
     ] },
 
@@ -398,6 +400,7 @@ const plugins: Guide = {
     { p: "Claude Code prints the marketplace name when it adds it. Two real examples from our directory:" },
     { code: "/plugin marketplace add android/skills\n/plugin install android-skills@android-skills", lang: "text", caption: "Android Skills (Google)" },
     { code: "/plugin marketplace add apify/apify-claude-code-plugin\n/plugin install apify@apify", lang: "text", caption: "Apify MCP Server + skills" },
+    { p: "The full Apify setup, including Cursor, Codex and the hosted server URL, is in [how to set up the Apify MCP server](/guides/apify-mcp-server-setup/)." },
     { p: "Anthropic also runs two other general marketplaces you add yourself: the community marketplace (`/plugin marketplace add anthropics/claude-plugins-community`, install with `@claude-community`) and a small demo marketplace in `anthropics/claude-code` (named `claude-code-plugins`). Older tutorials often add the demo one; most of its plugins, such as `code-review` and `commit-commands`, are also in the official marketplace, so install them from there to avoid duplicates." },
     { p: "`/plugin marketplace add` also accepts a full git URL, a local folder or an `https://` URL to a `marketplace.json`. Recent versions can add and install in one step with `--marketplace`, for example `/plugin install deploy-helper --marketplace your-org/plugins` (Claude Code v2.1.275 or later in a session, v2.1.292 or later for `claude plugin install`)." },
 

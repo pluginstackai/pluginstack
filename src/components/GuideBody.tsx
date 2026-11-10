@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { GuideBlock } from '../lib/guides';
 import { getPlugin, getPacks } from '../lib/data';
+import AffiliateLink from './AffiliateLink';
 import CodeBlock from './CodeBlock';
 import EmailForm from './EmailForm';
 import PackPairing from './PackPairing';
@@ -46,6 +47,11 @@ export default function GuideBody({ blocks }: { blocks: GuideBlock[] }) {
       <p className="text-sm text-slate-600 dark:text-slate-400 mt-1 mb-3">{FREEBIE.homeSubline}</p>
       <EmailForm list="newsletter" cta={FREEBIE.toolCta} microcopy={FREEBIE.toolMicro} /></section>);
     if ('pack' in b) { const pack = getPacks().find(x => x.slug === b.pack); if (!pack) throw new Error(`Guide pack block: unknown pack ${b.pack}`); return <PackPairing key={i} pack={pack} why={b.why} toolName={b.toolName} />; }
+    if ('affiliate' in b) {
+      const plugin = getPlugin(b.affiliate);
+      if (!plugin?.affiliate) throw new Error(`Guide affiliate block: listing ${b.affiliate} has no affiliate link`);
+      return <AffiliateLink key={i} spec={plugin.affiliate} />;
+    }
     return <p key={i} className="card text-sm"><Inline text={b.note} /></p>;
   })}</div>);
 }

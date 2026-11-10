@@ -9,7 +9,7 @@
   ],
   "url": "https://github.com/firecrawl/firecrawl-mcp-server",
   "maker": "Firecrawl",
-  "updated": "2026-10-17",
+  "updated": "2026-11-10",
   "affiliate": {
     "url": "https://firecrawl.link/pluginstackai",
     "cta": "Try Firecrawl",
@@ -63,5 +63,10 @@
     "Scrape https://example.com/pricing and return the plans as a table.",
     "Search the web for 'MCP server security best practices' and summarize the top 3 results.",
     "Map all the URLs on my docs site and list pages that look outdated."
+  ],
+  "guides": [
+    "firecrawl-mcp-server-setup",
+    "add-mcp-server-to-cursor",
+    "best-mcp-servers-for-claude-code"
   ]
 }

@@ -43,6 +43,8 @@ export const GUIDE_TOPICS: Record<string, GuideTopic> = {
   'context7-mcp-setup': { role: 'setup', tags: ['mcp'], relatedGuides: ['add-mcp-server-to-cursor', 'add-mcp-server-to-vs-code', 'add-mcp-server-to-codex-config-toml', 'best-mcp-servers-for-claude-code'] },
   'cloudflare-mcp-server-setup': { role: 'setup', tags: ['mcp'], relatedGuides: ['best-mcp-servers-for-claude-code', 'fix-claude-code-mcp-needs-authentication', 'add-mcp-server-to-cursor', 'context7-mcp-setup'] },
   'filesystem-mcp-server-setup': { role: 'setup', tags: ['mcp'], relatedGuides: ['mcp-reference-servers-v2-whats-changed', 'add-mcp-server-to-claude-desktop', 'fix-mcp-error-32000-connection-closed', 'add-mcp-server-to-cursor'] },
+  'apify-mcp-server-setup': { role: 'setup', tags: ['mcp'], relatedGuides: ['best-mcp-servers-for-claude-code', 'add-mcp-server-to-cursor', 'add-mcp-server-to-codex-config-toml', 'firecrawl-mcp-server-setup'] },
+  'firecrawl-mcp-server-setup': { role: 'setup', tags: ['mcp'], relatedGuides: ['add-mcp-server-to-cursor', 'best-mcp-servers-for-claude-code', 'add-mcp-server-to-codex-config-toml', 'apify-mcp-server-setup'] },
   'openai-agents-sdk-python-tutorial': { role: 'setup', tags: ['mcp'], relatedGuides: ['filesystem-mcp-server-setup', 'best-mcp-servers-for-claude-code', 'how-to-create-agent-skills'] },
   'free-ai-courses': { role: 'learn', tags: ['learn'], relatedGuides: ['best-mcp-servers-for-claude-code', 'add-mcp-server-to-cursor', 'how-to-create-agent-skills'] },
 };
