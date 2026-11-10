@@ -1,3 +1,6 @@
+# Guide newsletter signup — 2026-11-10 (branch signup-2026-11-10, not deployed)
+Add a short newsletter signup box to every /guides/<slug>/ page via the shared guide template (src/app/guides/[slug]/page.tsx): one under the intro, one at the end. Uses the existing EmailForm + /api/subscribe newsletter audience. Wording: "New MCP servers and agent tools, checked by hand. Free, unsubscribe anytime." While emailSendingEnabled is false (no mailing address / CAN-SPAM), the microcopy says the newsletter has not started sending yet and no welcome email is sent. Collection only.
+
 # Search guides — 2026-11-10 (branch guides-2026-11-10, not deployed)
 Two how-to guides aimed at sending search traffic to the Apify and Firecrawl affiliate listings. Added to src/lib/guides-servers.ts (SERVER_GUIDES). Guides index, sitemap and llms.txt pick them up automatically.
 - /guides/apify-mcp-server-setup/ "How to set up the Apify MCP server (Claude Code, Cursor, VS Code, Codex)": official plugin, hosted URL at mcp.apify.com, OAuth or Bearer token, local stdio (@apify/actors-mcp-server, Node 22), tool selection, telemetry opt-out, troubleshooting. Checked 10 November 2026 against Apify MCP docs, plugin guides and npm package 0.21.5.

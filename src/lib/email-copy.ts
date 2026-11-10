@@ -43,3 +43,13 @@ export const NEWSLETTER = NEWSLETTER_LIVE ? {
   inlineTitle: FREEBIE.toolHeadline,
   inlineBlurb: FREEBIE.toolSubline,
 };
+
+/** Short newsletter box on every /guides/<slug>/ page (top under the intro, and again at the end). */
+export const GUIDE_NEWSLETTER = {
+  title: 'Get new guides by email',
+  blurb: 'New MCP servers and agent tools, checked by hand. Free, unsubscribe anytime.',
+  cta: 'Subscribe',
+  micro: NEWSLETTER_LIVE
+    ? 'Weekly email with new AI tools, plus occasional offers on our packs. From PluginStack (pluginstackai@gmail.com).'
+    : "The newsletter hasn't started sending yet. Join the list now and we'll email you when the first issue goes out. From PluginStack (pluginstackai@gmail.com).",
+} as const;
