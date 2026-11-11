@@ -1,0 +1,63 @@
+{
+  "slug": "agent-browser",
+  "name": "agent-browser",
+  "category": "MCP Servers",
+  "tags": [
+    "browser",
+    "automation",
+    "cli",
+    "skills"
+  ],
+  "url": "https://github.com/vercel-labs/agent-browser",
+  "maker": "Vercel Labs",
+  "updated": "2026-11-11",
+  "what": "A browser automation CLI from Vercel Labs, built for AI agents. The agent drives a real browser one short shell command at a time: snapshot returns the page as compact text with a ref such as @e1 for each element, the agent clicks or fills a ref, then takes a new snapshot to check the result. The browser stays open between commands. It uses Chrome for Testing by default and can also attach to a Chrome you already have running. It ships version-matched skills for agents, and agent-browser mcp runs it as an MCP server over stdio. Native binaries for macOS, Linux and Windows. Apache-2.0 licensed.",
+  "who": "People who want Claude Code, Codex, Cursor or another agent to open pages, fill forms, take screenshots and check their own web app, either through shell commands or as an MCP server.",
+  "setup": [
+    {
+      "text": "Install the CLI globally, then download Chrome for Testing (first time only). On Linux, agent-browser install --with-deps also installs the browser's system libraries. Homebrew works too: brew install agent-browser.",
+      "code": "npm install -g agent-browser\nagent-browser install",
+      "language": "bash"
+    },
+    {
+      "text": "Try the basic loop from your terminal. Refs describe the page at the time of the snapshot, so take a new snapshot after the page changes:",
+      "code": "agent-browser open example.com\nagent-browser snapshot -i\nagent-browser click @e1\nagent-browser get url\nagent-browser close",
+      "language": "bash"
+    },
+    {
+      "text": "To let a coding agent use it through the shell, install the discovery skill. It tells the agent to load agent-browser skills get core, so the instructions always match your installed version:",
+      "code": "npx skills add vercel-labs/agent-browser",
+      "language": "bash"
+    },
+    {
+      "text": "Or add it to an MCP client. The default core tool profile keeps the tool list small; agent-browser mcp --tools all exposes every tool, and profiles can be combined, for example --tools core,network:",
+      "code": "{\n  \"mcpServers\": {\n    \"agent-browser\": {\n      \"command\": \"agent-browser\",\n      \"args\": [\"mcp\"]\n    }\n  }\n}",
+      "language": "json"
+    },
+    {
+      "text": "Web pages can contain text written to steer an agent. To limit what it can reach, set AGENT_BROWSER_ALLOWED_DOMAINS (for example \"example.com,*.example.com\"), and set AGENT_BROWSER_CONTENT_BOUNDARIES=1 to wrap page output in markers that separate it from tool output. If something stops working, agent-browser doctor checks the install, and agent-browser upgrade updates it."
+    }
+  ],
+  "install": {
+    "name": "agent-browser",
+    "transport": "stdio",
+    "command": "agent-browser",
+    "args": [
+      "mcp"
+    ],
+    "requires": {
+      "runtime": "The agent-browser CLI installed globally (npm install -g agent-browser), then agent-browser install for Chrome for Testing",
+      "auth": "None"
+    },
+    "notes": [
+      "Add --tools all to the args for the full tool set, or a profile list such as --tools core,network,react."
+    ],
+    "source": "https://agent-browser.dev/commands#mcp-server",
+    "checked": "2026-11-11"
+  },
+  "prompts": [
+    "Use agent-browser to open http://localhost:3000, sign up with a test email, and tell me if the welcome page loads.",
+    "Open our pricing page, take a full-page screenshot, and list any buttons that are covered or don't respond to a click.",
+    "Check the browser console and network errors on the checkout page after adding an item to the cart."
+  ]
+}

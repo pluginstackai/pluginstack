@@ -8,8 +8,8 @@
   ],
   "url": "https://github.com/modelcontextprotocol/servers/tree/main/src/memory",
   "maker": "Model Context Protocol",
-  "updated": "2026-10-27",
-  "what": "Reference MCP server that gives an AI basic persistent memory: a local knowledge graph of entities, relations and observations that survives across chats. Version 2.0.0 (19 Oct 2026) needs Node 24 or later.",
+  "updated": "2026-11-11",
+  "what": "Reference MCP server that gives an AI basic persistent memory: a local knowledge graph of entities, relations and observations that survives across chats. The current version needs Node 24 or later.",
   "who": "People who want their assistant to remember preferences and facts across chats.",
   "setup": [
     {
@@ -57,5 +57,8 @@
     "Remember that my main project uses Next.js and Supabase.",
     "What do you remember about my coding preferences?",
     "Store that my teammate Sam owns the billing code."
+  ],
+  "guides": [
+    "memory-mcp-server-setup"
   ]
 }

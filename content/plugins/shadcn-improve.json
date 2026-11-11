@@ -1,0 +1,43 @@
+{
+  "slug": "shadcn-improve",
+  "name": "improve (shadcn)",
+  "category": "Rules & Prompts",
+  "tags": [
+    "skills",
+    "code-review",
+    "planning"
+  ],
+  "url": "https://github.com/shadcn/improve",
+  "maker": "shadcn",
+  "updated": "2026-11-11",
+  "what": "An agent skill by shadcn that audits a codebase and writes implementation plans for other agents to carry out. The idea is to use your most capable model for understanding the code and deciding what's worth doing, and hand the actual changes to cheaper models. It maps the repo, runs parallel sub-agents across categories such as correctness, security, performance, tests, tech debt and docs, re-checks each cited location to drop false positives, and shows a findings table ranked by impact and effort. You pick which findings become plans: self-contained markdown files in plans/ with exact steps, verification commands and stop conditions. Its README says the skill never edits source code itself. MIT licensed.",
+  "who": "People using Claude Code, Codex, Cursor or another skills-capable agent who want a prioritized list of what to fix in a repo, written up so a cheaper model (or a person) can do the work.",
+  "setup": [
+    {
+      "text": "Install it with the open skills CLI from your project folder:",
+      "code": "npx skills add shadcn/improve",
+      "language": "bash"
+    },
+    {
+      "text": "Open your agent in the repo and run it in the agent's chat. quick is a cheaper pass that only covers hotspots and top findings:",
+      "code": "/improve\n/improve quick",
+      "language": "text"
+    },
+    {
+      "text": "Reply with the findings you want planned (for example \"plan 1, 3 and 5\"). Plans land in plans/ with an index and a recommended order. Other modes:",
+      "code": "/improve security\n/improve branch\n/improve plan <description>\n/improve execute <plan>\n/improve reconcile",
+      "language": "text"
+    },
+    {
+      "text": "execute hands a plan to a cheaper sub-agent in an isolated git worktree, then reviews the diff against the plan; merging stays up to you. reconcile checks which plans landed and refreshes the rest. Adding --issues also publishes plans as GitHub issues. According to the README, the skill itself only writes to plans/ and runs read-only commands in your working tree."
+    }
+  ],
+  "prompts": [
+    "/improve quick",
+    "/improve branch",
+    "/improve plan Add rate limiting to the public API routes"
+  ],
+  "guides": [
+    "how-to-create-agent-skills"
+  ]
+}

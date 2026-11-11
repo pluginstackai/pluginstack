@@ -1,0 +1,44 @@
+{
+  "slug": "codex-security",
+  "name": "Codex Security",
+  "category": "Coding Agents",
+  "tags": [
+    "security",
+    "code-review",
+    "cli",
+    "codex"
+  ],
+  "url": "https://github.com/openai/codex-security",
+  "maker": "OpenAI",
+  "updated": "2026-11-11",
+  "what": "OpenAI's open-source tool for finding and fixing security vulnerabilities with Codex. It scans a repository, selected paths or a diff for vulnerabilities, tries to validate each candidate finding against the source, and can generate a patch and later check whether a fix worked. Each scan saves a Markdown report with source evidence and coverage limits. It also drafts SECURITY.md policies, saves threat models, exports SARIF, JSON and CSV, and can send findings to Linear, Jira or GitHub. You can use it as a plugin inside Codex, as the cs command-line tool, from a TypeScript SDK or in a GitHub Action. Apache-2.0 licensed.",
+  "who": "Developers and small teams who want an AI security review of their code with evidence for each finding, either inside Codex or as a scheduled scan in CI.",
+  "setup": [
+    {
+      "text": "You need Node.js 22.13 or later within 22.x, or Node 24 or 26, plus Python 3.10 or later. Install the CLI and sign in with ChatGPT (cs and codex-security are the same command):",
+      "code": "npm install --global @openai/codex-security\ncs login",
+      "language": "bash"
+    },
+    {
+      "text": "Run a scan from the repository folder, then open the Markdown file shown at the REPORT path. cs scans show finds the latest completed scan again:",
+      "code": "cs scan .",
+      "language": "bash"
+    },
+    {
+      "text": "Narrow or deepen the scan:",
+      "code": "cs scan . --path src --path tests\ncs scan . --diff origin/main\ncs scan . --mode deep",
+      "language": "bash"
+    },
+    {
+      "text": "Inside Codex instead: open your repository, find Codex Security in the desktop plugin browser or type /plugins in the Codex CLI, install and enable it, start a new chat and ask for a scan in plain language. For CI, set OPENAI_API_KEY or CODEX_API_KEY in the scan's environment instead of signing in."
+    },
+    {
+      "text": "Scans run on OpenAI models (Amazon Bedrock and some other providers are also supported). With a ChatGPT sign-in, the scan progress shows how much of your account's allowance has been used; with an API key, the CLI shows a cost estimate at API rates. If the cs name clashes with another command, use codex-security or npx @openai/codex-security. Treat findings and patches as input for your own review."
+    }
+  ],
+  "prompts": [
+    "Run a Codex Security scan on this repository, focusing on authentication and authorization. Return the saved report, source evidence and coverage limits.",
+    "Use $security-diff-scan on the changes in this branch compared with main.",
+    "Use $check-skills on ../downloaded-skills before I install them in Claude Code."
+  ]
+}

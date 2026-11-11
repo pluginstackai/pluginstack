@@ -1,0 +1,44 @@
+{
+  "slug": "google-skills",
+  "name": "Google Agent Skills",
+  "category": "Rules & Prompts",
+  "tags": [
+    "skills",
+    "google-cloud",
+    "plugins",
+    "claude-code"
+  ],
+  "url": "https://github.com/google/skills",
+  "maker": "Google",
+  "updated": "2026-11-11",
+  "what": "Google's official repository of Agent Skills for its products and technologies, mostly Google Cloud. Skills cover topics such as Cloud Run, GKE, BigQuery, Cloud SQL, Spanner, Firebase, Gemini APIs, IAM, Cloud Logging and Monitoring, Google Ads and Google Analytics APIs, plus Well-Architected Framework reviews. A Google Skill Finder skill loads the matching skill from Google's catalog only when a request needs it. The repo also bundles Google product plugins (skills plus MCP servers) for Claude Code and Codex. Skills use the open Agent Skills format. Apache-2.0 licensed.",
+  "who": "Developers who use Claude Code, Codex, Cursor, Gemini CLI or another skills-capable agent to build on Google Cloud or other Google APIs, and want the agent to follow Google's own guidance.",
+  "setup": [
+    {
+      "text": "Install with the open skills CLI (Node.js 22.20 or later). It asks which skills, which agents and whether to install for this project or globally. Add --list to see what's available first:",
+      "code": "npx skills add google/skills",
+      "language": "bash"
+    },
+    {
+      "text": "To install a single skill, name it. For example, the Skill Finder, which fetches Google's skill catalog from GitHub when a request needs it and pulls in the matching skill. Add -g to install it for your user instead of the current project:",
+      "code": "npx skills add google/skills --skill finding-google-skills",
+      "language": "bash"
+    },
+    {
+      "text": "Claude Code plugins (skills plus MCP servers for a product, such as bigquery, cloud-sql-postgresql or google-cloud-developer):",
+      "code": "claude plugin marketplace add google/skills\nclaude plugin install bigquery@google-plugins",
+      "language": "bash"
+    },
+    {
+      "text": "Codex: run codex plugin marketplace add google/skills, then install from the /plugins browser. Update installed skills later with npx skills update. More Google skill sets live in separate repos, such as android/skills, flutter/skills, dart-lang/skills and googlemaps/agent-skills."
+    }
+  ],
+  "prompts": [
+    "Deploy this Node.js API to Cloud Run and set up a basic alert if error rates spike.",
+    "Review my GKE cluster setup against the reliability and security pillars and list the top changes.",
+    "Write a BigQuery query for weekly active users from the events table and suggest how to cut its cost."
+  ],
+  "guides": [
+    "how-to-create-agent-skills"
+  ]
+}

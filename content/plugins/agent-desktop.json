@@ -1,0 +1,60 @@
+{
+  "slug": "agent-desktop",
+  "name": "agent-desktop",
+  "category": "MCP Servers",
+  "tags": [
+    "computer-use",
+    "desktop",
+    "automation",
+    "cli"
+  ],
+  "url": "https://github.com/vercel-labs/agent-desktop",
+  "maker": "Vercel Labs",
+  "updated": "2026-11-11",
+  "what": "Computer use for AI agents from Vercel Labs: it lets an agent see and operate desktop apps on macOS, Windows and Linux through the operating system's accessibility tree instead of screenshots and pixel matching. snapshot returns an app's UI as JSON with a ref for each element, the agent clicks or types on a ref, then takes a new snapshot to check the result. There is no model inside; the loop runs in your agent. It ships as a CLI and a C library, and agent-desktop mcp serves every command as an MCP tool over stdio. Apache-2.0 licensed.",
+  "who": "People who want an agent to work with native apps (Finder, Slack, system settings and so on) and not just the browser, and are comfortable giving it accessibility access to their desktop.",
+  "setup": [
+    {
+      "text": "Install the CLI globally (it needs Node 18 or later; Homebrew also works on macOS and Linux with brew install agent-desktop), then check what your platform supports:",
+      "code": "npm install -g agent-desktop\nagent-desktop status",
+      "language": "bash"
+    },
+    {
+      "text": "macOS: give the app that launches agent-desktop (Terminal, iTerm2, VS Code or your agent's app) Accessibility permission. This command opens System Settings at the missing permission. Screen Recording is only needed for screenshots:",
+      "code": "agent-desktop permissions --guide",
+      "language": "bash"
+    },
+    {
+      "text": "Try the loop. Refs belong to the snapshot they came from, so take a new snapshot after the UI changes:",
+      "code": "agent-desktop snapshot --app Finder -i\nagent-desktop click @s8f3k2p9:e8\nagent-desktop snapshot --app Finder -i",
+      "language": "bash"
+    },
+    {
+      "text": "To use it as an MCP server, add this to your client. Tools are named after the commands, such as desktop_snapshot and desktop_click:",
+      "code": "{\n  \"mcpServers\": {\n    \"agent-desktop\": {\n      \"command\": \"agent-desktop\",\n      \"args\": [\"mcp\"]\n    }\n  }\n}",
+      "language": "json"
+    },
+    {
+      "text": "Or install the skill for a shell-based agent: npx skills add https://github.com/vercel-labs/agent-desktop --skill agent-desktop. Requirements: macOS 13 or later, Windows 10 1809 or later, or Ubuntu 24.04 or later with a running AT-SPI accessibility bus. Ref actions don't move the pointer unless you pass --headed. Snapshots, clipboard reads and screenshots can contain private content from your desktop, so keep them out of public logs."
+    }
+  ],
+  "install": {
+    "name": "agent-desktop",
+    "transport": "stdio",
+    "command": "agent-desktop",
+    "args": [
+      "mcp"
+    ],
+    "requires": {
+      "runtime": "The agent-desktop CLI installed globally (npm install -g agent-desktop, Node 18 or later); macOS needs Accessibility permission for the launching app",
+      "auth": "None"
+    },
+    "source": "https://github.com/vercel-labs/agent-desktop#mcp",
+    "checked": "2026-11-11"
+  },
+  "prompts": [
+    "Use agent-desktop to open System Settings and tell me which display resolution is selected.",
+    "Take a snapshot of the Finder window, open the Downloads folder and list the five newest files.",
+    "Open my app's desktop build, click through the onboarding screens and report any button that doesn't respond."
+  ]
+}

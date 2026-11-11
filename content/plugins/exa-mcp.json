@@ -42,5 +42,8 @@
     "Search for recent blog posts about agent memory and summarize the main ideas.",
     "Fetch the docs page for this library and tell me how to configure retries.",
     "Find 5 open-source alternatives to Lovable and link their GitHub repos."
+  ],
+  "guides": [
+    "exa-mcp-server-setup"
   ]
 }

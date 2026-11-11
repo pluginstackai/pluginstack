@@ -61,6 +61,14 @@ export default {
       ...literal('/config', '/guides/cursor-rules-vs-agents-md/'),
       // Windows MCP configs use "args": ["/c", "npx", ...].
       ...literal('/c', '/guides/fix-spawn-npx-enoent-windows-mcp/'),
+      // Content batch 2026-11-11: official Docker paths in the Memory MCP guide and shadcn's /improve slash command.
+      ...literal('/app/dist', '/guides/memory-mcp-server-setup/'),
+      { source: '/app/dist/:rest*', destination: '/guides/memory-mcp-server-setup/', statusCode: 301 },
+      ...literal('/data/memory.jsonl', '/guides/memory-mcp-server-setup/'),
+      ...literal('/old/memory.jsonl', '/guides/memory-mcp-server-setup/'),
+      ...literal('/volume', '/guides/memory-mcp-server-setup/'),
+      { source: '/volume/:rest*', destination: '/guides/memory-mcp-server-setup/', statusCode: 301 },
+      ...literal('/improve', '/plugins/shadcn-improve/'),
     ];
   },
   async headers() { return [

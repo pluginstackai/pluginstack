@@ -509,4 +509,257 @@ const firecrawl: Guide = {
   ],
 };
 
-export const SERVER_GUIDES: Guide[] = [context7, cloudflare, apify, firecrawl];
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+const memory: Guide = {
+  slug: 'memory-mcp-server-setup',
+  title: 'How to set up the Memory MCP server (local knowledge graph memory)',
+  h1: 'How to set up the Memory MCP server in Claude Code, Claude Desktop, Cursor, VS Code and Codex',
+  description: 'Set up the official Memory MCP server: where to keep memory.jsonl so updates don\'t wipe it, configs for Claude Code, Claude Desktop, Cursor, VS Code, Codex and Docker, the tools, and fixes.',
+  published: '2026-11-11',
+  updated: '2026-11-11',
+  intro: "The Memory MCP server is one of the official reference servers from the Model Context Protocol project. It gives an assistant a simple long-term memory: a knowledge graph of people, projects and facts, saved in a local file and read back in later chats. This guide covers the one setting most setups get wrong (where the memory file lives), the config for each client, Docker, the tools it adds, and fixes for common problems. It's based on the server's README and the `@modelcontextprotocol/server-memory` package on npm, version 2.1.1 (checked 11 November 2026).",
+  blocks: [
+    { h2: 'Quick answer', id: 'quick-answer' },
+    { ol: [
+      'Install Node.js 24 or later. The server needs it when it runs through `npx`.',
+      'Create a folder for the memory file, for example `~/.mcp-memory`. The server creates the file but not the folder.',
+      'Add the server with `npx -y @modelcontextprotocol/server-memory` and set `MEMORY_FILE_PATH` to an absolute path such as `~/.mcp-memory/memory.jsonl`. In Claude Code: `claude mcp add memory --scope user --env MEMORY_FILE_PATH=$HOME/.mcp-memory/memory.jsonl -- npx -y @modelcontextprotocol/server-memory`.',
+      'Tell the assistant when to save and recall memories (a short instruction is enough), then restart the client.',
+    ] },
+    { p: 'Skipping `MEMORY_FILE_PATH` is the classic mistake. The default file sits inside npm\'s package cache, so an update or a cleared npx cache can delete everything the assistant has remembered.' },
+    { freebie: true },
+
+    { h2: 'What the Memory server does', id: 'what-it-is' },
+    { p: 'The server stores a knowledge graph with three kinds of data:' },
+    { ul: [
+      '**Entities:** named things with a type, such as a person, a project or an organization.',
+      '**Relations:** directed links between entities, written in active voice, such as `works_at`.',
+      '**Observations:** short facts attached to an entity, one fact each, such as "Prefers morning meetings".',
+    ] },
+    { p: 'The assistant reads and writes the graph through MCP tools. Nothing is stored in the cloud by the server itself: the graph lives in one local file in JSON Lines format. It is "memory" in a basic sense. The assistant has to decide to save something and to look it up again, which is why the instruction in step 4 matters. For a shorter overview, see the [Memory MCP Server listing](/plugins/memory-mcp/).' },
+
+    { h2: 'Before you start: choose where the memory file lives', id: 'memory-file' },
+    { p: '`MEMORY_FILE_PATH` sets the file. If you leave it out, the server uses `memory.jsonl` in its own package directory. Under `npx` or an npm install, that directory is inside a `node_modules` tree that npm manages, so reinstalling or updating the server, or clearing the npx cache, can delete the file. A relative path has the same problem, because it resolves against that same directory.' },
+    { ul: [
+      'Use an absolute path in a folder you own. A leading `~` expands to your home directory, so `~/.mcp-memory/memory.jsonl` works in the JSON and TOML configs below.',
+      'Create the folder first: `mkdir -p ~/.mcp-memory` on macOS or Linux. The server creates the file, not the folders above it.',
+      'If the server finds its memory file inside `node_modules`, it prints a warning on stderr at startup naming the file. Most clients show this in the server\'s log.',
+      'Already have a graph in the default location? Move the file to the new path when you set the variable, or the server starts with an empty graph.',
+    ] },
+
+    { h2: 'Claude Code', id: 'claude-code' },
+    { code: j('mkdir -p ~/.mcp-memory', 'claude mcp add memory --scope user --env MEMORY_FILE_PATH=$HOME/.mcp-memory/memory.jsonl \\', '  -- npx -y @modelcontextprotocol/server-memory'), lang: 'bash' },
+    { p: '`--scope user` makes the server available in every project. Leave it out to add it to the current project only. Everything after `--` is the command that starts the server. Your shell fills in `$HOME` when you run the command, so the saved config has the full path. Run `claude mcp get memory` to check the command and path, then `/mcp` inside Claude Code to see it connected. More on Claude Code: [the best MCP servers for Claude Code](/guides/best-mcp-servers-for-claude-code/).' },
+
+    { h2: 'Claude Desktop', id: 'claude-desktop' },
+    { p: 'Add this to `claude_desktop_config.json`, then fully quit and reopen Claude Desktop. If you haven\'t edited that file before, see [how to add an MCP server to Claude Desktop](/guides/add-mcp-server-to-claude-desktop/) for where it is.' },
+    { code: j('{', '  "mcpServers": {', '    "memory": {', '      "command": "npx",', '      "args": ["-y", "@modelcontextprotocol/server-memory"],', '      "env": {', '        "MEMORY_FILE_PATH": "~/.mcp-memory/memory.jsonl"', '      }', '    }', '  }', '}'), lang: 'json', caption: 'macOS or Linux' },
+    { p: 'On Windows, the README launches `npx` through `cmd /c`. In JSON, backslashes in the path must be doubled:' },
+    { code: j('{', '  "mcpServers": {', '    "memory": {', '      "command": "cmd",', '      "args": ["/c", "npx", "-y", "@modelcontextprotocol/server-memory"],', '      "env": {', '        "MEMORY_FILE_PATH": "C:\\\\Users\\\\you\\\\.mcp-memory\\\\memory.jsonl"', '      }', '    }', '  }', '}'), lang: 'json', caption: 'Windows' },
+
+    { h2: 'Cursor', id: 'cursor' },
+    { p: 'Cursor uses the same `mcpServers` block. Put it in `~/.cursor/mcp.json` to use memory in all projects, or `.cursor/mcp.json` in one project, then restart Cursor and check the server is switched on under **Customize** > **MCPs**. Details: [how to add an MCP server to Cursor](/guides/add-mcp-server-to-cursor/).' },
+
+    { h2: 'VS Code', id: 'vs-code' },
+    { p: 'The server\'s README gives this block for VS Code\'s own format (top-level `servers`), in your user `mcp.json` (Command Palette > **MCP: Open User Configuration**) or `.vscode/mcp.json` in a workspace:' },
+    { code: j('{', '  "servers": {', '    "memory": {', '      "command": "npx",', '      "args": ["-y", "@modelcontextprotocol/server-memory"],', '      "env": {', '        "MEMORY_FILE_PATH": "~/.mcp-memory/memory.jsonl"', '      }', '    }', '  }', '}'), lang: 'json' },
+    { p: 'VS Code also reads the portable `mcpServers` format, and the two don\'t mix in one file. See [how to add an MCP server to VS Code](/guides/add-mcp-server-to-vs-code/) for which file uses which key.' },
+
+    { h2: 'Codex', id: 'codex' },
+    { code: 'codex mcp add memory --env MEMORY_FILE_PATH=$HOME/.mcp-memory/memory.jsonl -- npx -y @modelcontextprotocol/server-memory', lang: 'bash' },
+    { p: 'Or add it to `~/.codex/config.toml` yourself:' },
+    { code: j('[mcp_servers.memory]', 'command = "npx"', 'args = ["-y", "@modelcontextprotocol/server-memory"]', '', '[mcp_servers.memory.env]', 'MEMORY_FILE_PATH = "~/.mcp-memory/memory.jsonl"'), lang: 'text', caption: '~/.codex/config.toml' },
+    { p: 'More on Codex config: [how to add an MCP server to Codex](/guides/add-mcp-server-to-codex-config-toml/).' },
+
+    { h2: 'Docker', id: 'docker' },
+    { p: 'The README\'s Docker setup mounts a named volume over the image\'s code directory, `/app/dist`, so the graph survives restarts:' },
+    { code: j('{', '  "mcpServers": {', '    "memory": {', '      "command": "docker",', '      "args": ["run", "-i", "-v", "claude-memory:/app/dist", "--rm", "mcp/memory"]', '    }', '  }', '}'), lang: 'json' },
+    { p: 'The catch: that volume also holds the server\'s code, and Docker only copies an image\'s files into a named volume while it is empty. After the first run, pulling a newer image does not update the server in the volume. The README\'s alternative keeps the graph in a volume of its own, so a new image takes effect with no extra step:' },
+    { code: j('{', '  "mcpServers": {', '    "memory": {', '      "command": "docker",', '      "args": ["run", "-i", "-v", "claude-memory-data:/data", "-e", "MEMORY_FILE_PATH=/data/memory.jsonl", "--rm", "mcp/memory"]', '    }', '  }', '}'), lang: 'json' },
+    { p: 'To move an existing graph from the old volume to the new one, quit the clients that start the server, then run:' },
+    { code: j('docker run --rm -v claude-memory:/old -v claude-memory-data:/data \\', '  --entrypoint cp mcp/memory /old/memory.jsonl /data/memory.jsonl'), lang: 'bash' },
+    { p: 'If you stay on the original setup, the README has an upgrade command that replaces the code in the volume and keeps `memory.jsonl` (see Troubleshooting below for the `EACCES` error it also fixes).' },
+
+    { h2: 'Tell the assistant when to use memory', id: 'instructions' },
+    { p: 'The server only provides the tools. How often the assistant saves and recalls things depends on your instructions. The README\'s example is written for chat personalization and goes in a Claude.ai Project\'s custom instructions. For a coding agent, a few lines in the place it reads standing instructions (such as `CLAUDE.md` or `AGENTS.md`) do the same job. A short version:' },
+    { code: j('At the start of a task, search your memory for anything relevant to this project.', 'When I tell you a lasting preference or a fact about this project, save it to memory', 'as an observation on the right entity. Keep each observation to one fact.'), lang: 'text' },
+    { p: 'Not sure which instructions file your tool reads? See [Cursor rules vs AGENTS.md](/guides/cursor-rules-vs-agents-md/).' },
+
+    { h2: 'The tools it adds', id: 'tools' },
+    { ul: [
+      '`create_entities`: add entities. Names that already exist are skipped (their observations are not added), and the result lists what was skipped.',
+      '`create_relations`: link two existing entities. Duplicates are skipped; it fails if either entity doesn\'t exist.',
+      '`add_observations`: add facts to existing entities.',
+      '`delete_entities`: remove entities and every relation that touches them.',
+      '`delete_observations` and `delete_relations`: remove single facts or links. A relation is only deleted when `from`, `to` and `relationType` all match exactly.',
+      '`read_graph`: read the whole graph. `observationLimit: 0` returns names, types and counts only, which is a cheap overview of a large graph. `entityTypes` filters by type.',
+      '`search_nodes`: search names, types and observation text. Optional `limit` and `observationLimit`.',
+      '`open_nodes`: read specific entities by name.',
+    ] },
+    { p: 'The whole graph is also available as an MCP resource, `memory://knowledge-graph`, and the write tools send update notifications for it to clients that subscribe.' },
+
+    { h2: 'Using one memory file from several clients', id: 'sharing' },
+    { p: 'Each client starts its own server process, so Claude Desktop and Claude Code pointed at the same `MEMORY_FILE_PATH` are two processes writing one file. The write tools take a lock file (`<memory file>.lock`) next to the memory file, so writes take turns instead of overwriting each other. Saves are atomic, so a server killed mid-save leaves the previous graph intact.' },
+    { ul: [
+      'The folder holding the memory file must be writable, because the lock file and the temporary save file go there.',
+      'A write that can\'t get the lock within 60 seconds fails with a tool error rather than overwriting the file.',
+      'The lock relies on local-filesystem behavior. Don\'t share one memory file over a network drive.',
+    ] },
+
+    { h2: 'Check that it works', id: 'test' },
+    { ol: [
+      'Restart the client and check the `memory` server is connected (`/mcp` in Claude Code, the MCP list in Cursor or VS Code).',
+      'Ask: "Remember that my main project uses Next.js and Supabase." The assistant should call `create_entities` or `add_observations`.',
+      'Open the file at your `MEMORY_FILE_PATH` and check the new entry is there.',
+      'Start a new chat and ask: "What do you remember about my main project?" It should call `search_nodes` or `open_nodes` and answer from memory.',
+    ] },
+
+    { h2: 'Troubleshooting', id: 'troubleshooting' },
+    { ul: [
+      '**The memory was gone after an update:** the file was in the default location inside `node_modules`. Set `MEMORY_FILE_PATH` to an absolute path outside it. Check the server log for the startup warning that names the file it is using.',
+      '**The server won\'t start:** check `node --version`. The current version needs Node.js 24 or later when it runs through `npx`. Also check that the folder in `MEMORY_FILE_PATH` exists.',
+      '**`spawn npx ENOENT` on Windows:** use the `cmd /c` config above, or see [fix spawn npx ENOENT](/guides/fix-spawn-npx-enoent-windows-mcp/).',
+      '**"Connection closed" (MCP error -32000):** this usually means the server process exited at startup. Run the command from your config in a terminal to see the real error, and see [fix MCP error -32000](/guides/fix-mcp-error-32000-connection-closed/).',
+      '**It exits with an error naming `memory.json` and `memory.jsonl`:** with no `MEMORY_FILE_PATH`, the server renames an old `memory.json` to `memory.jsonl` at startup, and stops if that fails rather than starting on an empty graph. Fix the cause (often permissions) and restart, or set `MEMORY_FILE_PATH`.',
+      '**A write fails after about a minute:** another server process held the lock for 60 seconds. A lock left by a crashed server is removed automatically (at once if its process is known to have exited on the same machine, otherwise after 30 seconds without a refresh). Check that the file isn\'t on a network drive.',
+      '**`delete_relations` deletes nothing:** the `relationType` must match the stored one exactly. Read it with `open_nodes` first.',
+      '**Docker save fails with `EACCES`:** the image runs as the unprivileged `node` user, and a volume created by an older image is owned by root. The README\'s upgrade command fixes ownership and replaces the code: `docker run --rm -v claude-memory:/volume --user root --entrypoint sh mcp/memory -c \'rm -f /volume/*.js && cp /app/dist/*.js /volume/ && chown -R node:node /volume\'`.',
+    ] },
+
+    { h2: 'FAQ', id: 'faq' },
+    { h3: 'Is the Memory MCP server local and free?' },
+    { p: 'Yes. It runs on your machine and stores the graph in a local file, with no account or API key. Anything the assistant reads from memory becomes part of the conversation it sends to your model provider, so keep secrets out of it.' },
+    { h3: 'Where is memory.jsonl stored by default?' },
+    { p: 'In the server\'s own package directory, which under `npx` is inside npm\'s cache. That is why setting `MEMORY_FILE_PATH` is worth the extra line.' },
+    { h3: 'Can I edit or back up the memory file?' },
+    { p: 'It\'s a plain file at the path you chose, so you can copy it like any other file. To change the graph, the safest route is to ask the assistant to use the delete and add tools, which take the write lock.' },
+    { h3: 'Does it work with Claude Desktop and Claude Code at the same time?' },
+    { p: 'Yes, if both point at the same absolute `MEMORY_FILE_PATH`. The lock file keeps their writes from overwriting each other.' },
+  ],
+  related: ['memory-mcp'],
+  sources: [
+    { label: 'Memory server README (modelcontextprotocol/servers)', url: 'https://github.com/modelcontextprotocol/servers/tree/main/src/memory' },
+    { label: '@modelcontextprotocol/server-memory on npm', url: 'https://www.npmjs.com/package/@modelcontextprotocol/server-memory' },
+    { label: 'Claude Code docs: Connect Claude Code to tools via MCP', url: 'https://code.claude.com/docs/en/mcp' },
+    { label: 'OpenAI Codex docs: Model Context Protocol', url: 'https://developers.openai.com/codex/mcp' },
+    { label: 'VS Code docs: MCP configuration reference', url: 'https://code.visualstudio.com/docs/copilot/reference/mcp-configuration' },
+  ],
+};
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+const exa: Guide = {
+  slug: 'exa-mcp-server-setup',
+  title: 'How to set up the Exa MCP server (Claude Code, Cursor, VS Code, Codex)',
+  h1: 'How to set up the Exa MCP server in Claude Code, Cursor, VS Code and Codex',
+  description: 'Set up Exa MCP for web search in your agent: the hosted URL, the Claude and Codex plugins, keyless vs OAuth vs API key, turning on extra tools, running it locally, and fixes for 429 and 403 errors.',
+  published: '2026-11-11',
+  updated: '2026-11-11',
+  intro: "Exa's MCP server gives an AI agent web search and page fetching from Exa, plus Exa Agent for multi-step research. This guide covers the plugin installs for Claude Code and Codex, adding the hosted server by hand in each client, the three ways to authenticate, choosing tools, running the npm package locally, and what to check when it fails. It's based on Exa's MCP docs, the exa-labs/exa-mcp-server README and the `exa-mcp-server` package on npm (checked 11 November 2026).",
+  blocks: [
+    { h2: 'Quick answer', id: 'quick-answer' },
+    { ul: [
+      '**Server URL:** `https://mcp.exa.ai/mcp`. It works without an API key at a free rate limit, for search and fetch.',
+      '**Claude Code:** `claude plugin install exa@claude-plugins-official`. **Codex:** `codex mcp add exa --url https://mcp.exa.ai/mcp`, or the Exa plugin in OpenAI\'s plugin directory.',
+      '**Higher limits and Exa Agent:** sign in with OAuth by connecting to `https://mcp.exa.ai/mcp?login`, or send an API key in an `x-api-key` header.',
+      '**Default tools:** `web_search_exa` and `web_fetch_exa`. Add others with a `tools` parameter on the URL, which replaces the defaults.',
+    ] },
+    { freebie: true },
+
+    { h2: 'What the Exa MCP server gives you', id: 'tools' },
+    { ul: [
+      '`web_search_exa` (on by default): search the web and get back clean, ready-to-use content from the results.',
+      '`web_fetch_exa` (on by default): read the full content of one or more known URLs as clean markdown.',
+      '`web_search_advanced_exa` (opt-in): search with filters such as domains, date ranges, categories, highlights, summaries and subpage crawling. It doesn\'t need authentication.',
+      '`agent_run` (needs OAuth or an API key): run Exa Agent for research that takes more than one search, such as building a list and checking each item, with optional structured JSON output. Once you are authenticated, Exa\'s docs say it is on by default.',
+    ] },
+    { p: 'For a shorter overview, see the [Exa MCP Server listing](/plugins/exa-mcp/).' },
+
+    { h2: 'Keyless, OAuth or API key?', id: 'auth' },
+    { ul: [
+      '**Keyless:** connect to `https://mcp.exa.ai/mcp` with nothing else. Good for trying search and fetch. `agent_run` isn\'t available, and keyless access only works over a direct IPv4 connection.',
+      '**OAuth:** connect to `https://mcp.exa.ai/mcp?login` (or `https://mcp.exa.ai/mcp/oauth`) and sign in to Exa in the browser when your client asks. Usage then counts against your Exa team. Exa\'s docs list this for interactive clients and production use.',
+      '**API key:** create a key in the Exa dashboard (dashboard.exa.ai/api-keys) and send it as an `x-api-key` header, or as `Authorization: Bearer <key>`. Use this for clients without MCP OAuth. Keep the key out of files you commit.',
+    ] },
+    { p: 'The README also allows the key on the URL as `?exaApiKey=...`. A header is the better choice, because URLs end up in logs and config files that are easy to share by accident. New Exa accounts start with free credits; check Exa\'s pricing page for current rates.' },
+
+    { h2: 'Claude Code', id: 'claude-code' },
+    { p: 'The official plugin installs the MCP server together with Exa\'s `search` and `exa-agent` skills:' },
+    { code: 'claude plugin install exa@claude-plugins-official', lang: 'bash' },
+    { p: 'You can also type `/plugin` in Claude Code and search for Exa. Start a new session afterwards. To add only the MCP server by hand:' },
+    { code: j('# keyless', 'claude mcp add --transport http exa https://mcp.exa.ai/mcp', '', '# sign in with OAuth (then run /mcp in Claude Code and choose Authenticate)', 'claude mcp add --transport http exa "https://mcp.exa.ai/mcp?login"', '', '# API key', 'claude mcp add --transport http exa https://mcp.exa.ai/mcp --header "x-api-key: YOUR_EXA_API_KEY"'), lang: 'bash' },
+    { p: 'Pick one of these, not all three: a second `claude mcp add` with the same name at the same scope fails because the server already exists. Quote URLs that contain `?`, so your shell doesn\'t try to expand them. Use the plugin or a manual entry, not both. If Claude Code says the server needs authentication, see [fix Claude Code MCP "needs authentication"](/guides/fix-claude-code-mcp-needs-authentication/).' },
+    { h3: 'Claude Desktop and Claude.ai' },
+    { p: 'Use Exa\'s official connector instead of a config file: select **+** in a new chat, choose **Add connector**, search for Exa and connect it.' },
+
+    { h2: 'Codex', id: 'codex' },
+    { p: 'Exa is in OpenAI\'s plugin directory (the same directory for ChatGPT and Codex), and the plugin includes the MCP server plus Exa\'s skills. To add only the server:' },
+    { code: j('codex mcp add exa --url https://mcp.exa.ai/mcp'), lang: 'bash' },
+    { p: 'If you use the `?login` URL instead, run `codex mcp login exa` to start the sign-in.' },
+    { p: 'To use an API key without writing it into the file, read the header from an environment variable in `~/.codex/config.toml`:' },
+    { code: j('[mcp_servers.exa]', 'url = "https://mcp.exa.ai/mcp"', 'env_http_headers = { "x-api-key" = "EXA_API_KEY" }'), lang: 'text', caption: '~/.codex/config.toml' },
+    { p: 'More on Codex config: [how to add an MCP server to Codex](/guides/add-mcp-server-to-codex-config-toml/).' },
+
+    { h2: 'Cursor', id: 'cursor' },
+    { p: 'Install Exa from the Cursor Marketplace, or add it to `~/.cursor/mcp.json` and restart Cursor:' },
+    { code: j('{', '  "mcpServers": {', '    "exa": {', '      "url": "https://mcp.exa.ai/mcp"', '    }', '  }', '}'), lang: 'json', caption: '~/.cursor/mcp.json' },
+    { p: 'To send an API key, add a `headers` object and read the key from an environment variable, so the file holds no secret:' },
+    { code: j('{', '  "mcpServers": {', '    "exa": {', '      "url": "https://mcp.exa.ai/mcp",', '      "headers": {', '        "x-api-key": "${env:EXA_API_KEY}"', '      }', '    }', '  }', '}'), lang: 'json' },
+    { p: 'Details on `${env:...}` and file locations: [how to add an MCP server to Cursor](/guides/add-mcp-server-to-cursor/).' },
+
+    { h2: 'VS Code', id: 'vs-code' },
+    { p: 'Use the one-click install link in Exa\'s docs, or add this to `.vscode/mcp.json` in your project (Exa\'s example):' },
+    { code: j('{', '  "servers": {', '    "exa": {', '      "type": "http",', '      "url": "https://mcp.exa.ai/mcp"', '    }', '  }', '}'), lang: 'json', caption: '.vscode/mcp.json' },
+    { p: 'For higher limits, switch the URL to `https://mcp.exa.ai/mcp?login` and complete the sign-in when VS Code prompts you. VS Code\'s config formats are changing; see [how to add an MCP server to VS Code](/guides/add-mcp-server-to-vs-code/) for which file uses `servers` and which uses `mcpServers`.' },
+
+    { h2: 'Other clients', id: 'other-clients' },
+    { p: 'Most clients take the standard block with a `url`. Exa\'s docs list the key name each one expects: Windsurf uses `serverUrl` in `~/.codeium/windsurf/mcp_config.json`, Gemini CLI uses `httpUrl` in `~/.gemini/settings.json`, OpenCode uses `opencode.json` under `mcp` with `"type": "remote"`, and Zed uses `context_servers` in its `settings.json`. For a client that only runs local servers, use the `mcp-remote` bridge:' },
+    { code: j('{', '  "mcpServers": {', '    "exa": {', '      "command": "npx",', '      "args": ["-y", "mcp-remote", "https://mcp.exa.ai/mcp"]', '    }', '  }', '}'), lang: 'json' },
+
+    { h2: 'Choose which tools load', id: 'choose-tools' },
+    { p: 'Add a `tools` parameter to the URL. An explicit list replaces the defaults, so include search and fetch if you still want them:' },
+    { code: j('# add advanced search', 'https://mcp.exa.ai/mcp?tools=web_search_exa,web_fetch_exa,web_search_advanced_exa', '', '# everything (agent_run still needs OAuth or an API key)', 'https://mcp.exa.ai/mcp?tools=web_search_exa,web_fetch_exa,web_search_advanced_exa,agent_run'), lang: 'text' },
+    { p: 'For ordinary searches, Exa\'s docs suggest keeping `web_search_exa`, because it gives the model a smaller tool surface. Restart your client after changing the URL so it fetches the tool list again.' },
+
+    { h2: 'Run Exa MCP locally', id: 'local' },
+    { p: 'The hosted server is the simpler option. To run the open-source npm package on your machine instead, you need an Exa API key and Node.js (the package declares Node 20 or later):' },
+    { code: j('{', '  "mcpServers": {', '    "exa": {', '      "command": "npx",', '      "args": ["-y", "exa-mcp-server"],', '      "env": {', '        "EXA_API_KEY": "your_api_key"', '      }', '    }', '  }', '}'), lang: 'json' },
+    { note: 'On Windows, if the client can\'t start `npx`, see [fixing spawn npx ENOENT](/guides/fix-spawn-npx-enoent-windows-mcp/).' },
+
+    { h2: 'Check that it works', id: 'test' },
+    { p: 'Open your client\'s MCP list and confirm `exa` is connected with `web_search_exa` and `web_fetch_exa`. Then try:' },
+    { code: 'Search the web for this week\'s Next.js release notes and summarize the main changes, with links.', lang: 'text' },
+    { p: 'The assistant should call `web_search_exa`. If it answers from its own knowledge instead, mention Exa in the prompt ("use Exa to search...").' },
+
+    { h2: 'Troubleshooting', id: 'troubleshooting' },
+    { ul: [
+      '**Rate limit error (429):** the connection is on Exa\'s free keyless limits. Sign in with OAuth or add an API key, then reconnect.',
+      '**Forbidden (403) without an API key:** keyless access needs a direct IPv4 connection to `https://mcp.exa.ai/mcp`. From IPv6 or through a proxy, sign in with OAuth or add an API key.',
+      '**`agent_run` is missing or asks for authentication:** it can\'t use the free limits, so it only appears once you connect with `?login` or an API key. If you set a `tools` list, include `agent_run` in it.',
+      '**Tools not appearing:** a `tools` parameter replaces the default list. Check that every tool you want is in the URL, then restart the client.',
+      '**The OAuth sign-in doesn\'t open:** confirm the client supports MCP OAuth and that the URL ends in `?login`. Restart the client after changing the URL. If the client can\'t do MCP OAuth, use an API key.',
+      '**Claude Desktop won\'t connect with a config entry:** use the built-in Exa connector instead.',
+    ] },
+
+    { h2: 'FAQ', id: 'faq' },
+    { h3: 'Is Exa MCP free?' },
+    { p: 'You can try search and fetch without an account, at a free rate limit. Signing in or using an API key moves usage to your Exa team\'s plan; new accounts start with free credits. Exa Agent runs are usage-based. See Exa\'s pricing page for current rates.' },
+    { h3: 'Do I need an API key?' },
+    { p: 'Not to try it. You need OAuth or a key for higher limits and for `agent_run`. OAuth avoids storing a key at all.' },
+    { h3: 'Should I use the hosted server or the npm package?' },
+    { p: 'The hosted server: there\'s nothing to install, and it supports keyless use and OAuth. Use the npm package only if your setup needs a local process, and give it your API key through `EXA_API_KEY`.' },
+    { h3: 'Exa or another search MCP server?' },
+    { p: 'For other options on PluginStack, see the [Brave Search MCP server](/plugins/brave-search-mcp/) and [how to set up the Firecrawl MCP server](/guides/firecrawl-mcp-server-setup/), which also turns pages into clean markdown.' },
+  ],
+  related: ['exa-mcp'],
+  sources: [
+    { label: 'Exa docs: Exa MCP', url: 'https://exa.ai/docs/get-started/exa-mcp' },
+    { label: 'exa-labs/exa-mcp-server on GitHub', url: 'https://github.com/exa-labs/exa-mcp-server' },
+    { label: 'exa-mcp-server on npm', url: 'https://www.npmjs.com/package/exa-mcp-server' },
+    { label: 'Claude Code docs: Connect Claude Code to tools via MCP', url: 'https://code.claude.com/docs/en/mcp' },
+    { label: 'OpenAI Codex docs: Model Context Protocol', url: 'https://developers.openai.com/codex/mcp' },
+  ],
+};
+
+export const SERVER_GUIDES: Guide[] = [context7, cloudflare, apify, firecrawl, memory, exa];

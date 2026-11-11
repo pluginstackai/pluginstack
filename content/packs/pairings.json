@@ -1,6 +1,14 @@
 {
   "_about": "One 'Pairs well with' pack per listing page, or none. pack = slug in content/packs/packs.json, or null. why = shown on the card (keep it true to what the pack contains). reason = internal note for null entries, not shown. Every listing must have an entry (checked at build).",
   "pairings": {
+    "agent-browser": {
+      "pack": null,
+      "reason": "Browser automation CLI and MCP server; no pack covers browser automation."
+    },
+    "agent-desktop": {
+      "pack": null,
+      "reason": "Desktop computer-use CLI and MCP server; no pack covers it."
+    },
     "agent-skills": {
       "pack": null,
       "reason": "Agent Builder has 2 Claude Code skills, but only for MCP servers and evals; not a general skills pack."
@@ -61,6 +69,10 @@
       "pack": "vibe-coder-starter",
       "why": "50 plain-English prompts for planning, building, debugging and shipping with any AI coding agent, plus a debugging checklist."
     },
+    "codex-security": {
+      "pack": null,
+      "reason": "Security scanner with its own workflows; no pack covers security review."
+    },
     "context7": {
       "pack": null,
       "reason": "Uses or connects an existing tool/service; no pack covers it."
@@ -116,6 +128,10 @@
     "godot-ai": {
       "pack": null,
       "reason": "Indie Game Dev pack covers browser games in Phaser 3 and Three.js, not Godot."
+    },
+    "google-skills": {
+      "pack": null,
+      "reason": "Google product skills; no pack covers Google Cloud."
     },
     "goose": {
       "pack": "vibe-coder-starter",
@@ -196,6 +212,10 @@
     "serena": {
       "pack": null,
       "reason": "Uses or connects an existing tool/service; no pack covers it."
+    },
+    "shadcn-improve": {
+      "pack": null,
+      "reason": "Ships its own audit and planning workflow; pairing a prompt pack would overlap and imply it is needed."
     },
     "spec-kit": {
       "pack": null,
