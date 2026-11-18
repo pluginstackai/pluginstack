@@ -1,0 +1,44 @@
+{
+  "slug": "mattpocock-skills",
+  "name": "Skills For Real Engineers (Matt Pocock)",
+  "category": "Rules & Prompts",
+  "tags": [
+    "skills",
+    "plugins",
+    "workflow",
+    "claude-code"
+  ],
+  "url": "https://github.com/mattpocock/skills",
+  "maker": "Matt Pocock",
+  "updated": "2026-11-18",
+  "what": "A set of small, composable agent skills for everyday engineering work with Claude Code, Codex and other agents, from Matt Pocock. They target common failure modes: grill-me and grill-with-docs have the agent ask you detailed questions before it starts (the docs version also builds a shared glossary for your project and records decisions), tdd pushes a write-a-failing-test-first loop, diagnosing-bugs runs a step-by-step debugging process, to-spec turns a discussion into a spec, and improve-codebase-architecture surveys a codebase for structural improvements. The skills are meant to be adapted and work with any model. MIT licensed.",
+  "who": "Developers who already use a coding agent on real projects and want lightweight, editable workflows for planning, testing and debugging rather than a framework that takes over the whole process.",
+  "setup": [
+    {
+      "text": "Claude Code:",
+      "code": "claude plugin install mattpocock-skills@claude-plugins-official",
+      "language": "bash"
+    },
+    {
+      "text": "Codex:",
+      "code": "codex plugin marketplace add mattpocock/skills\ncodex plugin add mattpocock-skills@mattpocock",
+      "language": "bash"
+    },
+    {
+      "text": "Cursor, OpenCode, Windsurf and other agents (copies editable skill files into your project; update later with npx skills@latest update):",
+      "code": "npx skills@latest add mattpocock/skills",
+      "language": "bash"
+    },
+    {
+      "text": "Pick one install method per agent; installing both the plugin and the copied files gives you every skill twice. Then run the setup-matt-pocock-skills skill once in each repo: it asks which issue tracker you use, which triage labels you apply and where to save docs."
+    }
+  ],
+  "prompts": [
+    "Grill me about this feature before you write any code.",
+    "Use the tdd skill to add input validation to the signup form.",
+    "Use diagnosing-bugs to find out why the checkout total is off by one cent."
+  ],
+  "guides": [
+    "how-to-create-agent-skills"
+  ]
+}

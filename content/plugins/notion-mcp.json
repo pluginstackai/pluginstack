@@ -44,5 +44,8 @@
     "Find my product spec page and turn it into a task list.",
     "Create a Notion page summarizing today's changes.",
     "Search my workspace for notes about pricing."
+  ],
+  "guides": [
+    "notion-mcp-server-setup"
   ]
 }

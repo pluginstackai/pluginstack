@@ -69,6 +69,8 @@ export default {
       ...literal('/volume', '/guides/memory-mcp-server-setup/'),
       { source: '/volume/:rest*', destination: '/guides/memory-mcp-server-setup/', statusCode: 301 },
       ...literal('/improve', '/plugins/shadcn-improve/'),
+      // Content batch 2026-11-18: the Stitch Skills example prompt quotes the /src folder.
+      ...literal('/src', '/plugins/stitch-skills/'),
     ];
   },
   async headers() { return [

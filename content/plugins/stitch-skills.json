@@ -1,0 +1,47 @@
+{
+  "slug": "stitch-skills",
+  "name": "Stitch Skills",
+  "category": "Rules & Prompts",
+  "tags": [
+    "skills",
+    "design",
+    "ui",
+    "plugins"
+  ],
+  "url": "https://github.com/google-labs-code/stitch-skills",
+  "maker": "Google Labs",
+  "updated": "2026-11-18",
+  "what": "A collection of agent skills and plugins for Google Stitch, Google's AI design tool, published by Google Labs. They work through the Stitch MCP server and come in three plugins: stitch-design (generate and edit screens from text or images, turn existing frontend code into a Stitch design, extract or apply a DESIGN.md design system), stitch-build (turn Stitch screens into React or React Native components, build walkthrough videos with Remotion, shadcn/ui guidance) and stitch-utilities (improve rough UI prompts, write DESIGN.md and SITE.md files, build multi-page sites in a loop). Skills follow the open Agent Skills format. The README notes it is not an officially supported Google product. Apache-2.0 licensed.",
+  "who": "People who design app screens in Stitch and want their coding agent to create designs there or turn them into working React code.",
+  "setup": [
+    {
+      "text": "First set up the Stitch MCP server in your agent by following Google's Stitch MCP setup instructions (stitch.withgoogle.com/docs/mcp/setup). The skills need it to work."
+    },
+    {
+      "text": "Claude Code (installs into the current project):",
+      "code": "npx plugins add google-labs-code/stitch-skills --scope project --target claude-code",
+      "language": "bash"
+    },
+    {
+      "text": "Cursor (installs into the current workspace):",
+      "code": "npx plugins add google-labs-code/stitch-skills --scope workspace --target cursor",
+      "language": "bash"
+    },
+    {
+      "text": "Codex: add the marketplace, then install stitch-design, stitch-build or stitch-utilities:",
+      "code": "codex plugin marketplace add google-labs-code/stitch-skills --ref main",
+      "language": "bash"
+    },
+    {
+      "text": "To pick individual skills instead, run npx skills add google-labs-code/stitch-skills. Some skills depend on others, so include their dependencies. OpenCode needs a manual copy of the skill folders; the README explains how."
+    }
+  ],
+  "prompts": [
+    "Generate a mobile settings screen in Stitch with a dark mode toggle and notification preferences.",
+    "Scan /src and extract our design system into .stitch/DESIGN.md.",
+    "Convert the screens in my Stitch project into React components that use our design tokens."
+  ],
+  "guides": [
+    "how-to-create-agent-skills"
+  ]
+}

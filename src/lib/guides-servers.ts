@@ -762,4 +762,272 @@ const exa: Guide = {
   ],
 };
 
-export const SERVER_GUIDES: Guide[] = [context7, cloudflare, apify, firecrawl, memory, exa];
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+const notion: Guide = {
+  slug: 'notion-mcp-server-setup',
+  title: 'How to set up the Notion MCP server (Claude Code, Cursor, VS Code, Codex)',
+  h1: 'How to set up the Notion MCP server in Claude Code, Cursor, VS Code and Codex',
+  description: 'Connect Notion MCP to your AI assistant: the hosted URL, Claude Code, Codex, Cursor and VS Code setup, the Claude Code plugin, moving off the old /sse endpoint, MCP tokens, and fixes for sign-in, guest and rate-limit errors.',
+  published: '2026-11-18',
+  updated: '2026-11-18',
+  intro: "Notion MCP lets an AI assistant search your Notion workspace, read pages and databases, and create or update content you have access to. Notion hosts the server, so there is nothing to install: you add one URL and sign in with Notion. This guide covers each major client, the official Claude Code plugin, the endpoint change coming in 2027, sign-in without a browser, and what to check when it fails. It's based on Notion's developer docs for MCP and the official Claude Code plugin (checked 18 November 2026).",
+  blocks: [
+    { h2: 'Quick answer', id: 'quick-answer' },
+    { ul: [
+      '**Server URL:** `https://mcp.notion.com/mcp` (Streamable HTTP). You sign in with Notion (OAuth) the first time you connect. No API key.',
+      '**Claude Code:** `claude mcp add --transport http notion https://mcp.notion.com/mcp`, then run `/mcp` in Claude Code and authenticate.',
+      '**Codex:** add `[mcp_servers.notion]` with that `url` to `~/.codex/config.toml`, then run `codex mcp login notion`.',
+      '**Cursor and VS Code:** add the URL to `mcp.json` and complete the sign-in when the editor asks.',
+      '**Easiest of all:** if your assistant has a connector or plugin library (Claude, ChatGPT and others), search it for Notion and connect from there.',
+    ] },
+    { freebie: true },
+
+    { h2: 'Before you start', id: 'before-you-start' },
+    { ul: [
+      '**You need to be a workspace member.** Guests can\'t connect: Notion refuses the authorization.',
+      '**Any Notion plan works.** Some features depend on the plan: MCP tokens (sign-in without a browser) and some search filters need Business or Enterprise, while connected-source search and unlimited SQL queries on databases need Business or Enterprise with Notion AI. Request limits are also higher on Business and Enterprise.',
+      '**The assistant gets your access.** A connected client can read and change anything you can access in the workspace you pick, so only connect clients you trust.',
+    ] },
+    { p: 'For a shorter overview, see the [Notion MCP listing](/plugins/notion-mcp/).' },
+
+    { h2: 'What Notion MCP can do', id: 'tools' },
+    { p: 'Notion\'s docs list the full tool set. The ones you will use most:' },
+    { ul: [
+      '`notion-search`: find pages and databases by topic or title. `notion-fetch` opens a page, database or connected-source result.',
+      '`notion-create-pages` and `notion-update-page`: draft documents, apply database templates, and update content and properties.',
+      '`notion-create-database` and `notion-query-data-sources`: create databases with properties and views, and read a saved view or find matching entries.',
+      '`notion-create-comment` and `notion-get-comments`: comment on pages and read discussions.',
+      '`notion-create-file-upload`: upload images and other files up to 20 MiB.',
+    ] },
+    { p: 'In OpenAI clients such as ChatGPT, `notion-search` and `notion-fetch` show up as `search` and `fetch`.' },
+
+    { h2: 'Claude Code', id: 'claude-code' },
+    { p: 'Add the server from your terminal:' },
+    { code: 'claude mcp add --transport http notion https://mcp.notion.com/mcp', lang: 'bash' },
+    { p: 'Then start Claude Code, run `/mcp`, pick notion and follow the sign-in flow in your browser. The default scope is `local` (only you, in this project). Add `--scope user` to use it in every project, or `--scope project` to share it with your team through a `.mcp.json` file in the repo; each teammate still signs in with their own Notion account.' },
+    { h3: 'The official Notion plugin' },
+    { p: 'Notion also publishes a Claude Code plugin that bundles the same MCP server with Notion skills (meeting prep, specs to tasks, project setup and more) and slash commands for search, pages, databases and tasks:' },
+    { code: j('claude plugin marketplace add makenotion/claude-code-notion-plugin', 'claude plugin install notion-workspace-plugin@notion-plugin-marketplace'), lang: 'bash' },
+    { p: 'Restart Claude Code afterwards so the server starts. Use the plugin or the manual `claude mcp add` entry, not both. More on plugins: [how to install Claude Code plugins](/guides/install-claude-code-plugins/). If Claude Code keeps saying the server needs authentication, see [fix Claude Code MCP "needs authentication"](/guides/fix-claude-code-mcp-needs-authentication/).' },
+
+    { h2: 'Claude Desktop, Claude.ai and ChatGPT', id: 'claude-desktop' },
+    { p: 'Use the built-in connector instead of a config file: open your assistant\'s connector library, search for Notion, select it and approve access to your workspace. You can also start from Notion: open **Settings** → **Notion MCP**, browse the directory, pick your assistant and follow its instructions.' },
+
+    { h2: 'Codex', id: 'codex' },
+    { p: 'Add the server to `~/.codex/config.toml`:' },
+    { code: j('[mcp_servers.notion]', 'url = "https://mcp.notion.com/mcp"'), lang: 'text', caption: '~/.codex/config.toml' },
+    { p: 'Then sign in:' },
+    { code: 'codex mcp login notion', lang: 'bash' },
+    { p: 'To share the setup with your team, put the same block in `.codex/config.toml` at the root of your project. More on Codex config: [how to add an MCP server to Codex](/guides/add-mcp-server-to-codex-config-toml/).' },
+
+    { h2: 'Cursor', id: 'cursor' },
+    { p: 'Create `.cursor/mcp.json` in your project (or use `~/.cursor/mcp.json` to make it available in every project):' },
+    { code: j('{', '  "mcpServers": {', '    "notion": {', '      "url": "https://mcp.notion.com/mcp"', '    }', '  }', '}'), lang: 'json', caption: '.cursor/mcp.json' },
+    { p: 'Then open **Customize** in Cursor\'s sidebar, enable Notion and complete the sign-in. Details on file locations: [how to add an MCP server to Cursor](/guides/add-mcp-server-to-cursor/).' },
+
+    { h2: 'VS Code (GitHub Copilot)', id: 'vs-code' },
+    { p: 'Create `.vscode/mcp.json` in your workspace:' },
+    { code: j('{', '  "servers": {', '    "notion": {', '      "type": "http",', '      "url": "https://mcp.notion.com/mcp"', '    }', '  }', '}'), lang: 'json', caption: '.vscode/mcp.json' },
+    { p: 'Open the Command Palette, run **MCP: List Servers**, start the Notion server and complete the sign-in. For every workspace, run **MCP: Open User Configuration** and add the same entry there. VS Code uses `servers`, not `mcpServers`; see [how to add an MCP server to VS Code](/guides/add-mcp-server-to-vs-code/).' },
+
+    { h2: 'Other clients', id: 'other-clients' },
+    { p: 'Add Notion as a remote server with the Streamable HTTP transport and the URL `https://mcp.notion.com/mcp`. For clients that take a JSON config, the standard block works:' },
+    { code: j('{', '  "mcpServers": {', '    "notion": {', '      "url": "https://mcp.notion.com/mcp"', '    }', '  }', '}'), lang: 'json' },
+    { p: 'Antigravity uses `serverUrl` instead of `url` in its `mcp_config.json`. Notion recommends adding it there as a custom server rather than using the pre-made Notion entry in Antigravity\'s MCP gallery, which runs the old, deprecated package. If a client can only run local servers, use the `mcp-remote` bridge:' },
+    { code: j('{', '  "mcpServers": {', '    "notion": {', '      "command": "npx",', '      "args": ["-y", "mcp-remote", "https://mcp.notion.com/mcp"]', '    }', '  }', '}'), lang: 'json' },
+    { note: 'On Windows, if the client can\'t start `npx`, see [fixing spawn npx ENOENT](/guides/fix-spawn-npx-enoent-windows-mcp/).' },
+
+    { h2: 'Moving off the old SSE endpoint', id: 'sse' },
+    { p: 'Notion will retire its legacy endpoint, `https://mcp.notion.com/sse`, on **23 February 2027**. If an older setup still uses it, open the client\'s Notion server settings, change the transport from SSE to Streamable HTTP, replace the URL with `https://mcp.notion.com/mcp`, save, sign in again if asked and check that the Notion tools appear. If the client only offers SSE, update it to a version that supports Streamable HTTP.' },
+
+    { h2: 'Connecting without a browser sign-in', id: 'mcp-tokens' },
+    { p: 'On Business and Enterprise plans, a workspace owner can create an MCP token with **New MCP token** in Notion\'s Developer portal. The client then sends that token as a bearer token (an `Authorization: Bearer` header) to `https://mcp.notion.com/mcp`, with no browser sign-in. Treat it like a password and keep it out of files you commit. Enterprise workspaces with SAML SSO can also use enterprise-managed authorization through their identity provider.' },
+
+    { h2: 'Check that it works', id: 'test' },
+    { p: 'Open your client\'s MCP list and confirm notion is connected. Then try:' },
+    { code: 'Search my Notion workspace for pages about pricing and summarize what they say, with links.', lang: 'text' },
+    { p: 'The assistant should call `notion-search` (or `search` in OpenAI clients). If it answers from memory instead, mention Notion in the prompt.' },
+
+    { h2: 'Use it safely', id: 'safety' },
+    { ul: [
+      '**Watch for prompt injection.** A page, comment or connected-source result could contain instructions aimed at the assistant. Treat what the tools return as untrusted, and review proposed actions before you approve them.',
+      '**Keep confirmations on.** Turn on your client\'s confirmation step for actions that change content, so you see each edit before it runs.',
+      '**Data can leave Notion.** The client may send what it reads to other services. That can include items from connected sources such as Slack threads, Google Drive files and emails, when the assistant opens them from a search result.',
+      '**Workspace owners** can manage connected clients under **Settings** → **Notion MCP** → **Manage workspace clients**. Limiting which clients members can connect needs the Enterprise plan.',
+    ] },
+
+    { h2: 'Troubleshooting', id: 'troubleshooting' },
+    { ul: [
+      '**"Guests can\'t connect":** only workspace members can use Notion MCP. Ask a workspace owner to make you a member, or connect a workspace where you are one.',
+      '**Sign-in fails or keeps asking again:** complete the sign-in flow when prompted, then disconnect and reconnect the client (look for **Clear authentication** or **Disconnect** in its MCP settings). Check that you have access to the workspace you picked.',
+      '**An enterprise policy blocks the connection:** an admin may restrict which MCP servers you can add. Ask whether Notion MCP is allowed in your assistant. Notion workspace owners also have admin controls for MCP.',
+      '**Rate limit errors:** Notion MCP uses the standard Notion API request limits, and every tool call counts. Ask the assistant to do fewer things in parallel, or try again later. The server retries once by itself only when the wait is 2 seconds or less.',
+      '**The client only supports local servers:** use the `mcp-remote` config above.',
+      '**Tools stopped working on an old setup:** check whether it still points at the `/sse` endpoint, and switch it to `https://mcp.notion.com/mcp`.',
+    ] },
+
+    { h2: 'FAQ', id: 'faq' },
+    { h3: 'Is Notion MCP free?' },
+    { p: 'Notion MCP works on every Notion plan. MCP tokens, some search filters, connected-source search and unlimited SQL database queries need Business or Enterprise (the last two also need Notion AI), as listed above.' },
+    { h3: 'Should I use the hosted server or the open-source notion-mcp-server?' },
+    { p: 'The hosted server at `https://mcp.notion.com/mcp`. Notion says the open-source `notion-mcp-server` package is no longer actively maintained; it uses an integration token and you have to run it yourself. Notion lists it only as a last resort.' },
+    { h3: 'Can I share the setup with my team?' },
+    { p: 'Yes. Commit the server entry (a project `.mcp.json` for Claude Code, `.codex/config.toml` for Codex, `.cursor/mcp.json` for Cursor or `.vscode/mcp.json` for VS Code). The file holds no secret, and each person signs in with their own Notion account.' },
+    { h3: 'What other MCP servers work well alongside Notion?' },
+    { p: 'For tasks and issues, see the [Linear MCP server](/plugins/linear-mcp/). For a wider list, see [the best MCP servers for Claude Code](/guides/best-mcp-servers-for-claude-code/).' },
+  ],
+  related: ['notion-mcp'],
+  sources: [
+    { label: 'Notion docs: Connect to Notion MCP', url: 'https://developers.notion.com/guides/mcp/get-started-with-mcp' },
+    { label: 'Notion docs: Notion MCP overview', url: 'https://developers.notion.com/guides/mcp/overview' },
+    { label: 'Notion docs: Notion MCP tool FAQs (full tool list)', url: 'https://developers.notion.com/guides/mcp/tools-faqs' },
+    { label: 'Notion docs: Notion MCP rate limits', url: 'https://developers.notion.com/guides/mcp/rate-limits' },
+    { label: 'Notion docs: Security best practices', url: 'https://developers.notion.com/guides/mcp/mcp-security-best-practices' },
+    { label: 'makenotion/claude-code-notion-plugin on GitHub', url: 'https://github.com/makenotion/claude-code-notion-plugin' },
+    { label: 'Claude Code docs: Connect Claude Code to tools via MCP', url: 'https://code.claude.com/docs/en/mcp' },
+  ],
+};
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+const supabase: Guide = {
+  slug: 'supabase-mcp-server-setup',
+  title: 'How to set up the Supabase MCP server safely (Claude Code, Cursor, Codex, VS Code)',
+  h1: 'How to set up the Supabase MCP server in Claude Code, Cursor, Codex and VS Code',
+  description: 'Connect Supabase MCP to your AI agent: the hosted URL, read-only and single-project settings, Claude Code, Codex, Cursor and VS Code setup, local and CI use, the tool groups, and fixes for common errors.',
+  published: '2026-11-18',
+  updated: '2026-11-18',
+  intro: "The Supabase MCP server lets an AI agent work with your Supabase projects: list and change tables, run SQL, apply migrations, read logs, deploy Edge Functions and search the Supabase docs. Supabase hosts it, and you sign in with your Supabase account, so there is no key to copy. Because it touches a real database, this guide starts with the settings that keep it safe, then covers each client, local development, CI and troubleshooting. It's based on Supabase's MCP docs and the supabase-community/supabase-mcp README (checked 18 November 2026).",
+  blocks: [
+    { h2: 'Quick answer', id: 'quick-answer' },
+    { ul: [
+      '**Server URL:** `https://mcp.supabase.com/mcp`. Your client opens a browser sign-in to Supabase; pick the organization that has your project. No personal access token needed.',
+      '**Safer URL for everyday use:** `https://mcp.supabase.com/mcp?project_ref=<project-ref>&read_only=true` limits the agent to one project and read-only queries.',
+      '**Claude Code:** `claude mcp add --scope project --transport http supabase "https://mcp.supabase.com/mcp"`, then authenticate from `/mcp`.',
+      '**Local development:** with the Supabase CLI running, use `http://localhost:54321/mcp` (fewer tools, no sign-in).',
+    ] },
+    { freebie: true },
+
+    { h2: 'Read this first: the risks', id: 'security' },
+    { p: 'Supabase\'s docs are direct about it: connecting an AI model to your database carries real risk. The main one is prompt injection. Their example: a customer writes a support ticket containing instructions to select data from a sensitive table and post it as a reply. When a developer asks their agent to read that ticket through Supabase MCP, the agent may try to follow those instructions with the developer\'s permissions.' },
+    { p: 'What Supabase recommends:' },
+    { ul: [
+      '**Don\'t connect to production** unless the task really needs production data. Use a development project, or a development branch with Supabase branching.',
+      '**Scope to one project** with `project_ref`, so the agent can\'t reach other projects in your account.',
+      '**Use read-only mode** (`read_only=true`), which runs every query as a read-only Postgres user.',
+      '**Enable only the tool groups you need** with the `features` option.',
+      '**Keep manual approval on** in your client, and review each tool call before it runs.',
+      '**Don\'t give it to your customers.** The server runs with your developer permissions; it\'s a tool for building and testing, not for end users.',
+    ] },
+    { p: 'For a shorter overview, see the [Supabase MCP listing](/plugins/supabase-mcp/).' },
+
+    { h2: 'Build your server URL', id: 'url-options' },
+    { p: 'Every option is a query parameter on the URL. You can combine them:' },
+    { ul: [
+      '`project_ref=<id>`: limit the server to one project. This also turns off account-level tools such as listing and creating projects.',
+      '`read_only=true`: run all queries as a read-only Postgres user.',
+      '`features=database,docs`: enable only the listed tool groups (comma-separated).',
+      '`skip_elicitations=<tools>`: skip specific confirmation forms. Leave this out unless you have a reason; it removes a safety prompt.',
+    ] },
+    { code: 'https://mcp.supabase.com/mcp?project_ref=<project-ref>&read_only=true&features=database,docs', lang: 'text' },
+    { p: 'You can also generate the URL for your project in the MCP tab of the Connect panel in the Supabase dashboard. Quote the URL in terminal commands, because `?` and `&` mean something to your shell.' },
+
+    { h2: 'Claude Code', id: 'claude-code' },
+    { p: 'Add the server to your project config:' },
+    { code: 'claude mcp add --scope project --transport http supabase "https://mcp.supabase.com/mcp"', lang: 'bash' },
+    { p: 'That writes a `.mcp.json` file in the project, which you can also create by hand:' },
+    { code: j('{', '  "mcpServers": {', '    "supabase": {', '      "type": "http",', '      "url": "https://mcp.supabase.com/mcp"', '    }', '  }', '}'), lang: 'json', caption: '.mcp.json' },
+    { p: 'Then authenticate. Supabase says to do this in a regular terminal, not the IDE extension: start Claude Code, run `/mcp`, select supabase, then **Authenticate**. If Claude Code keeps reporting that the server needs authentication, see [fix Claude Code MCP "needs authentication"](/guides/fix-claude-code-mcp-needs-authentication/).' },
+    { h3: 'The Supabase plugin (MCP server plus skills)' },
+    { p: 'Supabase also offers a plugin that installs the MCP server together with its agent skills (Supabase guidance and Postgres best practices). It detects your installed coding agents and installs into each:' },
+    { code: 'npx plugins add supabase-community/supabase-plugin', lang: 'bash' },
+
+    { h2: 'Codex', id: 'codex' },
+    { code: j('codex mcp add supabase --url "https://mcp.supabase.com/mcp"', 'codex mcp login supabase'), lang: 'bash' },
+    { p: 'Or add the server to `~/.codex/config.toml` yourself, then run the login command:' },
+    { code: j('[mcp_servers.supabase]', 'url = "https://mcp.supabase.com/mcp"'), lang: 'text', caption: '~/.codex/config.toml' },
+    { p: 'Run `/mcp` inside Codex to confirm you are signed in. More on Codex config: [how to add an MCP server to Codex](/guides/add-mcp-server-to-codex-config-toml/).' },
+
+    { h2: 'Cursor', id: 'cursor' },
+    { p: 'Add this to `.cursor/mcp.json` in your project, or to `~/.cursor/mcp.json` to use it in every project:' },
+    { code: j('{', '  "mcpServers": {', '    "supabase": {', '      "url": "https://mcp.supabase.com/mcp"', '    }', '  }', '}'), lang: 'json', caption: '.cursor/mcp.json' },
+    { p: 'After you sign in, check the connection under **Settings** → **Cursor Settings** → **Tools & MCP**. The Cursor CLI uses the same config; there you approve and sign in with:' },
+    { code: j('agent mcp enable supabase', 'agent mcp login supabase', 'agent mcp list'), lang: 'bash' },
+    { p: 'Details on file locations: [how to add an MCP server to Cursor](/guides/add-mcp-server-to-cursor/).' },
+
+    { h2: 'VS Code', id: 'vs-code' },
+    { p: 'Add this to `.vscode/mcp.json` in your project:' },
+    { code: j('{', '  "servers": {', '    "supabase": {', '      "type": "http",', '      "url": "https://mcp.supabase.com/mcp"', '    }', '  }', '}'), lang: 'json', caption: '.vscode/mcp.json' },
+    { p: 'VS Code uses `servers`, not `mcpServers`; see [how to add an MCP server to VS Code](/guides/add-mcp-server-to-vs-code/).' },
+
+    { h2: 'Claude.ai, ChatGPT and other clients', id: 'other-clients' },
+    { ul: [
+      '**Claude.ai and ChatGPT:** Supabase is available as a connector in each app\'s directory; install it from there.',
+      '**Gemini CLI** (version 0.20.2 or later): `gemini mcp add -t http supabase "https://mcp.supabase.com/mcp"`, then run `/mcp auth supabase` inside Gemini CLI. Supabase also has a Gemini CLI extension that bundles the server and skills.',
+      '**Antigravity:** add the URL under `serverUrl` in `~/.gemini/antigravity/mcp_config.json`, restart, and complete the sign-in.',
+      '**Anything else:** copy the standard block (`"type": "http"` and the URL) into the format your client expects.',
+    ] },
+
+    { h2: 'What the tools can do', id: 'tools' },
+    { p: 'Tools come in feature groups. All groups your connection supports are on by default, except Storage:' },
+    { ul: [
+      '**Database:** list tables, extensions and migrations; apply migrations; run SQL (`execute_sql`).',
+      '**Debugging:** query project logs with read-only SQL; get security and performance advisors.',
+      '**Development:** get the project API URL and publishable keys; generate TypeScript types from your schema.',
+      '**Edge Functions:** list, read and deploy functions.',
+      '**Account management:** list, create, pause and restore projects; organizations; cost checks. Turned off when you use `project_ref`.',
+      '**Docs:** search the Supabase documentation.',
+      '**Branching** (experimental, needs a paid plan): create, merge, reset and delete development branches.',
+      '**Storage** (off by default): list buckets and read or change storage settings.',
+      '**Notebooks** (hosted connections only): list, create and run project notebooks.',
+    ] },
+
+    { h2: 'Confirmations before risky actions', id: 'confirmations' },
+    { p: 'If your client supports MCP form prompts (called elicitation), the server pauses and asks you before some actions: it shows the cost before creating a project or branch, and asks before `execute_sql` or `apply_migration` runs SQL it detects as destructive. Supabase calls these a guardrail, not a guarantee: they may not catch every destructive statement, and some clients answer them automatically. Without form support, SQL runs without the extra prompt, so keep your client\'s own approval step on.' },
+
+    { h2: 'Local development and self-hosting', id: 'local' },
+    { p: 'With the Supabase CLI running a local stack, the server is at `http://localhost:54321/mcp`. It offers fewer tools than the hosted server and has no OAuth sign-in. If you turned on the experimental multi-project setting, local projects use other ports, so read the MCP URL from `supabase status`. Self-hosted Supabase also has an MCP server with a limited tool set; Supabase\'s self-hosting docs explain how to enable it.' },
+
+    { h2: 'CI and other places without a browser', id: 'ci' },
+    { p: 'In CI, the browser sign-in isn\'t possible. Create a personal access token in your Supabase account, scoped to the one project and only the permissions your tools need, and pass it in an `Authorization` header. Supabase\'s example for Claude Code reads both values from environment variables:' },
+    { code: j('{', '  "mcpServers": {', '    "supabase": {', '      "type": "http",', '      "url": "https://mcp.supabase.com/mcp?project_ref=${SUPABASE_PROJECT_REF}",', '      "headers": {', '        "Authorization": "Bearer ${SUPABASE_ACCESS_TOKEN}"', '      }', '    }', '  }', '}'), lang: 'json' },
+    { p: 'Not every client supports custom headers, so check yours. For unattended jobs, Supabase advises approving only the project-scoped, read-only tools the job needs.' },
+
+    { h2: 'Check that it works', id: 'test' },
+    { p: 'After signing in, restart the client if the tools don\'t appear, then ask (this is Supabase\'s own test prompt):' },
+    { code: 'What tables are there in the database? Use MCP tools.', lang: 'text' },
+    { p: 'The agent should call a Supabase tool such as `list_tables`. If it answers without calling a tool, check that the server shows as connected in your client\'s MCP list.' },
+
+    { h2: 'Troubleshooting', id: 'troubleshooting' },
+    { ul: [
+      '**The project you want isn\'t there:** you probably picked a different organization during sign-in. Clear the server\'s authentication in your client and sign in again, choosing the organization that owns the project.',
+      '**Tools don\'t appear after signing in:** restart the client. Some clients only load the tool list after authorization.',
+      '**Writes or migrations fail:** check for `read_only=true` in the URL. That\'s expected in read-only mode.',
+      '**Project tools like list_projects are missing:** `project_ref` turns off account-level tools by design.',
+      '**Storage or branching tools are missing:** Storage is off by default (turn it on in the configuration panel), and branching needs a paid plan.',
+      '**Fewer tools than expected locally:** the Supabase CLI server only has a subset of tools.',
+      '**No confirmation dialog appears:** your client may not support MCP form prompts. Supabase has troubleshooting articles for missing SQL and cost confirmations.',
+    ] },
+
+    { h2: 'FAQ', id: 'faq' },
+    { h3: 'Do I need a Supabase access token?' },
+    { p: 'No, not for normal use. The hosted server signs you in through the browser. You only need a personal access token for CI or other places where a browser sign-in isn\'t possible.' },
+    { h3: 'Is it safe to use on my production database?' },
+    { p: 'Supabase recommends against it unless the task really needs production data. If you must, scope the URL to that project, use read-only mode, limit the feature groups and keep manual approval on.' },
+    { h3: 'Can my app\'s users use this MCP server?' },
+    { p: 'No. It runs with your developer permissions. To give your own users an MCP server, Supabase has a separate guide on building and deploying your own.' },
+    { h3: 'What other database MCP servers are on PluginStack?' },
+    { p: 'See the [Neon MCP server](/plugins/neon-mcp/) for Neon Postgres, or the [best MCP servers for Claude Code](/guides/best-mcp-servers-for-claude-code/) for a wider list.' },
+  ],
+  related: ['supabase-mcp'],
+  sources: [
+    { label: 'Supabase docs: Supabase MCP Server (setup, tools, options, security)', url: 'https://supabase.com/docs/guides/getting-started/mcp' },
+    { label: 'Supabase docs: Supabase Plugin for AI Coding Agents', url: 'https://supabase.com/docs/guides/ai-tools/plugins' },
+    { label: 'supabase-community/supabase-mcp on GitHub', url: 'https://github.com/supabase-community/supabase-mcp' },
+    { label: 'Claude Code docs: Connect Claude Code to tools via MCP', url: 'https://code.claude.com/docs/en/mcp' },
+    { label: 'OpenAI Codex docs: Model Context Protocol', url: 'https://developers.openai.com/codex/mcp' },
+  ],
+};
+
+export const SERVER_GUIDES: Guide[] = [context7, cloudflare, apify, firecrawl, memory, exa, notion, supabase];

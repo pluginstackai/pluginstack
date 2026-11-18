@@ -47,6 +47,8 @@ export const GUIDE_TOPICS: Record<string, GuideTopic> = {
   'firecrawl-mcp-server-setup': { role: 'setup', tags: ['mcp'], relatedGuides: ['add-mcp-server-to-cursor', 'best-mcp-servers-for-claude-code', 'add-mcp-server-to-codex-config-toml', 'apify-mcp-server-setup'] },
   'memory-mcp-server-setup': { role: 'setup', tags: ['mcp'], relatedGuides: ['add-mcp-server-to-claude-desktop', 'best-mcp-servers-for-claude-code', 'fix-spawn-npx-enoent-windows-mcp', 'add-mcp-server-to-cursor'] },
   'exa-mcp-server-setup': { role: 'setup', tags: ['mcp'], relatedGuides: ['best-mcp-servers-for-claude-code', 'add-mcp-server-to-cursor', 'add-mcp-server-to-codex-config-toml', 'firecrawl-mcp-server-setup'] },
+  'notion-mcp-server-setup': { role: 'setup', tags: ['mcp'], relatedGuides: ['best-mcp-servers-for-claude-code', 'add-mcp-server-to-cursor', 'fix-claude-code-mcp-needs-authentication', 'add-mcp-server-to-codex-config-toml'] },
+  'supabase-mcp-server-setup': { role: 'setup', tags: ['mcp'], relatedGuides: ['best-mcp-servers-for-claude-code', 'add-mcp-server-to-cursor', 'fix-claude-code-mcp-needs-authentication', 'add-mcp-server-to-vs-code'] },
   'openai-agents-sdk-python-tutorial': { role: 'setup', tags: ['mcp'], relatedGuides: ['filesystem-mcp-server-setup', 'best-mcp-servers-for-claude-code', 'how-to-create-agent-skills'] },
   'free-ai-courses': { role: 'learn', tags: ['learn'], relatedGuides: ['best-mcp-servers-for-claude-code', 'add-mcp-server-to-cursor', 'how-to-create-agent-skills'] },
 };

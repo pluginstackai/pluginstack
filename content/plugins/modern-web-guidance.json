@@ -1,0 +1,52 @@
+{
+  "slug": "modern-web-guidance",
+  "name": "Modern Web Guidance",
+  "category": "Rules & Prompts",
+  "tags": [
+    "skills",
+    "web",
+    "css",
+    "plugins"
+  ],
+  "url": "https://github.com/GoogleChrome/modern-web-guidance",
+  "maker": "Google Chrome",
+  "updated": "2026-11-18",
+  "what": "A set of agent skills from the Chrome team that gives coding agents current guidance on the modern web platform: CSS layout (container queries, subgrid), view transitions and animations, popovers, dialogs and anchor positioning, form validation, performance, accessibility and the browser's built-in AI APIs, together with browser compatibility data. The goal is to steer agents away from legacy patterns and heavy polyfills toward native browser features. When a task needs it, the agent searches the guides with a small CLI and pulls only the matching guide into its context. The search runs locally, with no API key. A second skill pack covers Chrome extensions (Manifest V3, extension APIs, Chrome Web Store publishing). The project is stewarded by the Google Chrome, Microsoft Edge, Mozilla Firefox and MDN teams. Code is Apache-2.0; guide content is CC BY 4.0.",
+  "who": "Developers who build websites or web apps with Claude Code, Codex, Copilot, Cursor or another skills-capable agent and want front-end code that uses current browser features instead of older workarounds.",
+  "setup": [
+    {
+      "text": "Run the interactive installer (the npm package needs Node.js 22 or later). Add --choose to pick which skill packs to install:",
+      "code": "npx modern-web-guidance@latest install",
+      "language": "bash"
+    },
+    {
+      "text": "Or try it without installing: search the guides, fetch one by ID, or scan a project for legacy patterns:",
+      "code": "npx modern-web-guidance@latest search \"animate a dialog modal backdrop\"\nnpx modern-web-guidance@latest retrieve \"animate-to-from-top-layer\"\nnpx modern-web-guidance@latest legacy-scan .",
+      "language": "bash"
+    },
+    {
+      "text": "Claude Code plugin (from the googlechrome marketplace):",
+      "code": "claude plugin marketplace add GoogleChrome/modern-web-guidance\nclaude plugin install modern-web-guidance@googlechrome",
+      "language": "bash"
+    },
+    {
+      "text": "Codex plugin:",
+      "code": "codex plugin marketplace add GoogleChrome/modern-web-guidance\ncodex plugin add modern-web-guidance@googlechrome",
+      "language": "bash"
+    },
+    {
+      "text": "Other agents: npx skills add GoogleChrome/modern-web-guidance or gh skill install GoogleChrome/modern-web-guidance. If you used the installer, update later with npx modern-web-guidance@latest update."
+    },
+    {
+      "text": "Google collects anonymous usage data (install counts, the calling agent's name, guide IDs and the search queries the agent sends; not your raw prompts). To opt out, set DISABLE_TELEMETRY=1 in your shell profile."
+    }
+  ],
+  "prompts": [
+    "Add a slide-in navigation drawer to this page using modern browser features, with a sensible fallback.",
+    "Scan this project for legacy CSS and JavaScript patterns and suggest native replacements.",
+    "Make the images on this page load faster without adding a new library."
+  ],
+  "guides": [
+    "how-to-create-agent-skills"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "slug": "open-code-review",
+  "name": "Open Code Review",
+  "category": "Coding Agents",
+  "tags": [
+    "code-review",
+    "cli",
+    "skills",
+    "plugins"
+  ],
+  "url": "https://github.com/alibaba/open-code-review",
+  "maker": "Alibaba",
+  "updated": "2026-11-18",
+  "what": "An AI code review command-line tool (ocr) that started as Alibaba's internal review assistant and is now open source. It reads your Git changes, decides which files need review, groups related files, matches review rules to each file and sends them to a language model with tools to read files and search the codebase. The result is review comments tied to exact lines. Besides reviewing changes, ocr scan reviews whole files or folders, which helps when auditing unfamiliar code. You can bring your own model provider, or use delegation mode, where your coding agent does the review with its own model while ocr handles file selection and rules. It ships skills and plugins for Claude Code, Codex, Cursor, Copilot CLI and other agents, plus CI options for GitHub Actions and GitLab CI. Apache-2.0 licensed.",
+  "who": "Developers and small teams who want an automated review of their changes before they merge, either from the terminal, inside their coding agent or in CI.",
+  "setup": [
+    {
+      "text": "You need Git 2.41 or later. Install the CLI:",
+      "code": "npm install -g @alibaba-group/open-code-review",
+      "language": "bash"
+    },
+    {
+      "text": "Pick a model provider and model, then test the connection (skip this if you only plan to use delegation mode):",
+      "code": "ocr config provider\nocr config model\nocr llm test",
+      "language": "bash"
+    },
+    {
+      "text": "Review your uncommitted changes, the current branch against main, or whole files:",
+      "code": "ocr review\nocr review --from main\nocr scan --path src",
+      "language": "bash"
+    },
+    {
+      "text": "Claude Code plugin. It adds two commands, open-code-review:review (uses ocr's own model settings) and open-code-review:delegate-review (Claude does the review with its own model):",
+      "code": "claude plugin marketplace add alibaba/open-code-review\nclaude plugin install open-code-review@open-code-review",
+      "language": "bash"
+    },
+    {
+      "text": "Codex: run codex plugin marketplace add alibaba/open-code-review, then install and enable Open Code Review from the plugins browser. For other skills-capable agents: npx skills add alibaba/open-code-review. Treat review comments as input for your own judgment."
+    }
+  ],
+  "prompts": [
+    "Review my current changes with Open Code Review and fix only the high-confidence issues.",
+    "Use the Open Code Review delegate review on this branch compared with main.",
+    "Run an Open Code Review scan on the src/auth folder and summarize the findings by severity."
+  ]
+}

@@ -50,5 +50,8 @@
     "Create a 'profiles' table linked to auth users with a username column.",
     "List the tables in my project and describe how they relate.",
     "Write and run a query that counts signups per day this week."
+  ],
+  "guides": [
+    "supabase-mcp-server-setup"
   ]
 }

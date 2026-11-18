@@ -1,6 +1,10 @@
 {
   "_about": "One 'Pairs well with' pack per listing page, or none. pack = slug in content/packs/packs.json, or null. why = shown on the card (keep it true to what the pack contains). reason = internal note for null entries, not shown. Every listing must have an entry (checked at build).",
   "pairings": {
+    "ag-ui": {
+      "pack": null,
+      "reason": "Agent-to-UI protocol and SDKs; the Agent Builder pack covers MCP servers and agent rules, not frontend streaming."
+    },
     "agent-browser": {
       "pack": null,
       "reason": "Browser automation CLI and MCP server; no pack covers browser automation."
@@ -161,6 +165,10 @@
       "pack": "agent-builder-pack",
       "why": "Framework-agnostic rules for agent tool design and error handling, plus 12 eval prompt templates to test any agent. Not specific to Mastra."
     },
+    "mattpocock-skills": {
+      "pack": null,
+      "reason": "Ships its own planning, testing and debugging workflows; pairing a prompt pack would overlap and imply it is needed."
+    },
     "mcp-inspector": {
       "pack": "agent-builder-pack",
       "why": "Rules, skills and prompts for building MCP servers in TypeScript or Python, with MCP Inspector checks built into every step."
@@ -169,6 +177,10 @@
       "pack": null,
       "reason": "Uses or connects an existing tool/service; no pack covers it."
     },
+    "modern-web-guidance": {
+      "pack": null,
+      "reason": "Web platform guidance skills; the Next.js rules pack covers a different scope, and pairing it would imply it is needed."
+    },
     "neon-mcp": {
       "pack": null,
       "reason": "Uses or connects an existing tool/service; no pack covers it."
@@ -176,6 +188,10 @@
     "notion-mcp": {
       "pack": null,
       "reason": "Uses or connects an existing tool/service; no pack covers it."
+    },
+    "open-code-review": {
+      "pack": null,
+      "reason": "Code review tool with its own pipeline; no pack covers code review."
     },
     "openai-agents-sdk": {
       "pack": "agent-builder-pack",
@@ -220,6 +236,10 @@
     "spec-kit": {
       "pack": null,
       "reason": "Spec Kit ships its own workflow commands; pairing a prompt pack would overlap and imply it is needed."
+    },
+    "stitch-skills": {
+      "pack": null,
+      "reason": "Design skills for Google Stitch; no pack covers Stitch or design workflows."
     },
     "stripe-mcp": {
       "pack": null,

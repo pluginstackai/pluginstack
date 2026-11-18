@@ -1,0 +1,42 @@
+{
+  "slug": "ag-ui",
+  "name": "AG-UI (Agent-User Interaction Protocol)",
+  "category": "Agent Frameworks",
+  "tags": [
+    "protocol",
+    "agents",
+    "frontend",
+    "typescript",
+    "python"
+  ],
+  "url": "https://github.com/ag-ui-protocol/ag-ui",
+  "maker": "AG-UI open-source project",
+  "updated": "2026-11-18",
+  "what": "An open, event-based protocol for connecting AI agents to the apps people use. Instead of custom wiring for every framework, the agent streams typed events (text as it is written, tool calls, shared state updates, pauses for a human) over one stream, and any AG-UI client can show them. It sits next to MCP (which gives agents tools) and A2A (agent to agent): AG-UI is the agent-to-user part. Version 1.0 has a stable specification, with TypeScript, Python and .NET SDKs, and integrations for frameworks such as LangChain, CrewAI, Mastra, Pydantic AI, Google ADK and the Claude Agent SDK. CopilotKit is one of the frontend clients. MIT licensed.",
+  "who": "Developers building their own AI agent who want to put it in a web app, mobile app or chat tool without writing a custom streaming layer for each one.",
+  "setup": [
+    {
+      "text": "Start a new app: the CLI scaffolds a frontend (CopilotKit on Next.js, or a terminal client) wired to the agent framework you choose. The generated templates call OpenAI, so set OPENAI_API_KEY before running npm run dev:",
+      "code": "npx create-ag-ui-app@latest",
+      "language": "bash"
+    },
+    {
+      "text": "Or speak the protocol directly. The agent side is any HTTP endpoint that accepts a run request and streams events back. Python SDK (Python 3.9 or later):",
+      "code": "pip install ag-ui-protocol",
+      "language": "bash"
+    },
+    {
+      "text": "TypeScript client (Node.js 20 or later):",
+      "code": "npm install @ag-ui/client",
+      "language": "bash"
+    },
+    {
+      "text": "The README has a short working server and client example, and the Dojo (dojo.ag-ui.com) has live demos for each supported framework."
+    }
+  ],
+  "prompts": [
+    "Add an AG-UI endpoint to my FastAPI agent so it streams text and tool calls to the frontend.",
+    "Connect this Next.js app to my LangGraph agent through AG-UI and show tool calls as they happen.",
+    "Explain which AG-UI events I need to support a human approval step before the agent sends an email."
+  ]
+}
