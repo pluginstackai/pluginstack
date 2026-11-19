@@ -165,10 +165,6 @@
       "pack": "agent-builder-pack",
       "why": "Framework-agnostic rules for agent tool design and error handling, plus 12 eval prompt templates to test any agent. Not specific to Mastra."
     },
-    "mattpocock-skills": {
-      "pack": null,
-      "reason": "Ships its own planning, testing and debugging workflows; pairing a prompt pack would overlap and imply it is needed."
-    },
     "mcp-inspector": {
       "pack": "agent-builder-pack",
       "why": "Rules, skills and prompts for building MCP servers in TypeScript or Python, with MCP Inspector checks built into every step."
