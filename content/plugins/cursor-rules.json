@@ -13,7 +13,7 @@
   "who": "Cursor users who are tired of repeating the same instructions every chat.",
   "setup": [
     {
-      "text": "Type /create-rule in Cursor's Agent chat and describe the rule, or add one from Customize → Rules → Add Rule."
+      "text": "Type the create-rule command (with a leading slash) in Cursor's Agent chat and describe the rule, or add one from Customize → Rules → Add Rule."
     },
     {
       "text": "Rules are saved as .mdc files in .cursor/rules (plain .md files there are ignored). Commit them to git. Example rule:",

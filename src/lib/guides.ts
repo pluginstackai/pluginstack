@@ -357,7 +357,7 @@ const plugins: Guide = {
       "Open a terminal in your project and start Claude Code with `claude`.",
       "Run `/plugin` to browse the **Discover** tab, or open one plugin's details directly with `/plugin install <name>@claude-plugins-official`.",
       "Read what the plugin will install, then choose a scope: you (every project), everyone on this repository, or you in this repository only.",
-      "Type `/` and look for the plugin's skills, which appear as `/plugin-name:skill-name`.",
+      "Type `/` and look for the plugin's skills, which appear as a command like `plugin-name:skill-name`.",
     ] },
     { p: "`/plugin` only works inside a Claude Code terminal session. To install from a script or a plain shell, use `claude plugin install` instead (see below)." },
 

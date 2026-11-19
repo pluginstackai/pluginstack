@@ -71,6 +71,27 @@ export default {
       ...literal('/improve', '/plugins/shadcn-improve/'),
       // Content batch 2026-11-18: the Stitch Skills example prompt quotes the /src folder.
       ...literal('/src', '/plugins/stitch-skills/'),
+      // Search Console 2026-11-19: snippet paths that still 404'd on the live site.
+      // Firecrawl API endpoint names in the Firecrawl setup guide (same sentence also names crawl/agent/interact).
+      ...literal('/scrape', '/guides/firecrawl-mcp-server-setup/'),
+      ...literal('/map', '/guides/firecrawl-mcp-server-setup/'),
+      ...literal('/search', '/guides/firecrawl-mcp-server-setup/'),
+      ...literal('/crawl', '/guides/firecrawl-mcp-server-setup/'),
+      ...literal('/agent', '/guides/firecrawl-mcp-server-setup/'),
+      ...literal('/interact', '/guides/firecrawl-mcp-server-setup/'),
+      // Firecrawl 401 troubleshooting quotes these URL path suffixes.
+      ...literal('/v2/mcp-oauth', '/guides/firecrawl-mcp-server-setup/'),
+      ...literal('/v2/mcp', '/guides/firecrawl-mcp-server-setup/'),
+      // Cursor slash command in the rules guide and cursor-rules listing.
+      ...literal('/create-rule', '/guides/cursor-rules-vs-agents-md/'),
+      // Context7 OAuth path suffix and library ID examples in the Context7 setup guide.
+      ...literal('/mcp/oauth', '/guides/context7-mcp-setup/'),
+      ...literal('/owner/repo', '/guides/context7-mcp-setup/'),
+      ...literal('/vercel/next.js', '/guides/context7-mcp-setup/'),
+      ...literal('/vercel/next.js/v16.2.9', '/guides/context7-mcp-setup/'),
+      { source: '/vercel/:rest*', destination: '/guides/context7-mcp-setup/', statusCode: 301 },
+      // Example skill-command pattern in the Claude Code plugins guide.
+      ...literal('/plugin-name:skill-name', '/guides/install-claude-code-plugins/'),
     ];
   },
   async headers() { return [

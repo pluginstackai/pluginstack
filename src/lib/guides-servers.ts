@@ -33,14 +33,14 @@ const context7: Guide = {
     { h2: 'What Context7 MCP is', id: 'what-is-context7' },
     { p: 'Context7 is a documentation service from Upstash. Its MCP server gives your agent two tools:' },
     { ul: [
-      '`resolve-library-id` turns a library name such as "next.js" into a Context7 ID such as `/vercel/next.js`.',
+      '`resolve-library-id` turns a library name such as "next.js" into a Context7 ID such as `vercel/next.js` (with a leading slash).',
       '`query-docs` fetches documentation and code examples for that ID, matched to your question.',
     ] },
-    { p: 'IDs can include a version, such as `/vercel/next.js/v16.2.9`. Context7 can also run without MCP, as a CLI plus an agent skill. `ctx7 setup` offers both modes. This guide covers MCP mode, because that is what most clients and the searches for "context7 mcp" are about.' },
+    { p: 'IDs can include a version, such as `vercel/next.js/v16.2.9` (with a leading slash). Context7 can also run without MCP, as a CLI plus an agent skill. `ctx7 setup` offers both modes. This guide covers MCP mode, because that is what most clients and the searches for "context7 mcp" are about.' },
 
     { h2: 'Get an API key (optional)', id: 'api-key' },
     { p: 'The hosted server answers without a key, at low rate limits. For regular use, create a free key at context7.com/dashboard. Keys start with `ctx7sk`. Keep the key out of files you commit: the examples below use a placeholder or read it from an environment variable.' },
-    { p: 'If your client supports OAuth for remote servers, you can sign in instead of using a key. Point it at `https://mcp.context7.com/mcp/oauth` rather than `/mcp`. OAuth works only with the remote server.' },
+    { p: 'If your client supports OAuth for remote servers, you can sign in instead of using a key. Point it at `https://mcp.context7.com/mcp/oauth` rather than the regular `https://mcp.context7.com/mcp` URL. OAuth works only with the remote server.' },
 
     { h2: 'Option 1: npx ctx7 setup', id: 'ctx7-setup' },
     { p: 'The `ctx7` CLI signs you in through your browser, generates an API key and writes the config for the agent you choose:' },
@@ -106,7 +106,7 @@ const context7: Guide = {
     { ul: [
       '**Rate limit errors:** add an API key. Anonymous use has low limits.',
       '**401 Unauthorized:** check that the key starts with `ctx7sk` and that the header is exactly `Authorization: Bearer <key>`. A missing "Bearer " is the usual mistake. A client can show the server as connected even with a wrong key (Claude Code did with a placeholder key when we checked), so test with a real prompt.',
-      '**"Library not found":** use the ID from `resolve-library-id`, in the form `/owner/repo`, or ask with the library\'s common name.',
+      '**"Library not found":** use the ID from `resolve-library-id`, in the form `owner/repo` with a leading slash, or ask with the library\'s common name.',
       '**`ERR_MODULE_NOT_FOUND` with the local server:** Context7\'s troubleshooting docs suggest running it with `bunx` instead of `npx`.',
       '**Timeouts starting the local server:** in Codex, raise `startup_timeout_sec` to 40. Behind a corporate proxy, set `HTTPS_PROXY` in the server\'s `env`. If it keeps closing, see [MCP error -32000: connection closed](/guides/fix-mcp-error-32000-connection-closed/).',
       '**No tools after editing a config:** restart Cursor or VS Code. In Claude Code, run `claude mcp list`; if it still fails, remove the server with `claude mcp remove context7` and add it again.',
@@ -116,7 +116,7 @@ const context7: Guide = {
     { h3: 'Is Context7 free?' },
     { p: 'You can use it without a key, and there is a free API key with higher limits. Context7 also sells paid plans with higher limits. Check context7.com for current limits, which change.' },
     { h3: 'Do I need an API key?' },
-    { p: 'No, but you\'ll hit rate limits sooner without one. OAuth through `/mcp/oauth` is an alternative in clients that support it.' },
+    { p: 'No, but you\'ll hit rate limits sooner without one. OAuth through `https://mcp.context7.com/mcp/oauth` is an alternative in clients that support it.' },
     { h3: 'Should I use the remote or local server?' },
     { p: 'Remote is simpler: there\'s nothing to install and no Node.js version to manage. Use local if your client only supports stdio. Both need an internet connection.' },
     { h3: 'MCP or CLI + Skills?' },
@@ -385,7 +385,7 @@ const firecrawl: Guide = {
     { ul: [
       '**Try it:** add `https://mcp.firecrawl.dev/v2/mcp` with no key. You get Search, Scrape and Parse, capped per IP address per day.',
       '**Sign in:** point your client at `https://mcp.firecrawl.dev/v2/mcp-oauth`. The client opens a browser so you can sign in and approve a team. Don\'t open that URL yourself. This unlocks the full tool set, subject to your plan.',
-      '**API key:** keep the `/v2/mcp` URL and send `Authorization: Bearer <FIRECRAWL_API_KEY>`. Never put the key in the server URL or in a chat.',
+      '**API key:** keep the `https://mcp.firecrawl.dev/v2/mcp` URL and send `Authorization: Bearer <FIRECRAWL_API_KEY>`. Never put the key in the server URL or in a chat.',
       '**Locally:** run `npx -y firecrawl-mcp` with `FIRECRAWL_API_KEY`. That needs Node.js 22 or newer.',
       '**Then:** "Search the web for the latest Firecrawl release notes and summarize the sources."',
     ] },
@@ -433,7 +433,7 @@ const firecrawl: Guide = {
     { p: 'ChatGPT and Claude.ai have a native Firecrawl connector. Use that instead of adding the URL by hand.' },
 
     { h2: 'Option 3: use an API key on the hosted server', id: 'hosted-key' },
-    { p: 'This is the unattended path: no browser sign-in. Use the same `/v2/mcp` URL as the keyless server, and send the key as a Bearer token. Never put an API key in the server URL.' },
+    { p: 'This is the unattended path: no browser sign-in. Use the same `https://mcp.firecrawl.dev/v2/mcp` URL as the keyless server, and send the key as a Bearer token. Never put an API key in the server URL.' },
     { code: j('{', '  "mcpServers": {', '    "firecrawl": {', '      "type": "http",', '      "url": "https://mcp.firecrawl.dev/v2/mcp",', '      "headers": {', '        "Authorization": "Bearer <FIRECRAWL_API_KEY>"', '      }', '    }', '  }', '}'), lang: 'json' },
     { p: 'In Cursor, the `${env:FIRECRAWL_API_KEY}` syntax reads the key from an environment variable, so the file holds no secret. See [how to add an MCP server to Cursor](/guides/add-mcp-server-to-cursor/) for that form.' },
 
@@ -443,7 +443,7 @@ const firecrawl: Guide = {
     { p: 'Configure the client to run `npx -y firecrawl-mcp` and provide `FIRECRAWL_API_KEY` through the client\'s protected environment or secret mechanism:' },
     { code: j('{', '  "mcpServers": {', '    "firecrawl": {', '      "command": "npx",', '      "args": ["-y", "firecrawl-mcp"],', '      "env": {', '        "FIRECRAWL_API_KEY": "YOUR-API-KEY"', '      }', '    }', '  }', '}'), lang: 'json' },
     { p: 'Set `FIRECRAWL_API_URL` to send requests to a self-hosted Firecrawl API instead of the cloud API. `FIRECRAWL_API_KEY` is optional only when that instance does not require authentication. Direct local-file parsing with `firecrawl_parse` requires `FIRECRAWL_API_URL` pointing at a self-hosted API; a local server connected only to the cloud API cannot upload a local file through that tool.' },
-    { p: 'To serve Streamable HTTP locally (for a client such as n8n that connects to an already-running server), set `HTTP_STREAMABLE_SERVER=true` and connect to `http://localhost:3000/mcp`. Confirm it is ready with `curl http://localhost:3000/health`, which returns `ok`. The local route is `/mcp`; `/v2/mcp` belongs to the hosted service.' },
+    { p: 'To serve Streamable HTTP locally (for a client such as n8n that connects to an already-running server), set `HTTP_STREAMABLE_SERVER=true` and connect to `http://localhost:3000/mcp`. Confirm it is ready with `curl http://localhost:3000/health`, which returns `ok`. The local route ends in `mcp`; the hosted service uses `https://mcp.firecrawl.dev/v2/mcp`.' },
     { note: 'On Windows, if the client can\'t start `npx`, see [fixing spawn npx ENOENT](/guides/fix-spawn-npx-enoent-windows-mcp/). Firecrawl\'s local-server docs also suggest running `where npx` in Command Prompt and pointing the client at the returned `npx.cmd` path.' },
 
     { h2: 'Which tools you get', id: 'tools' },
@@ -474,12 +474,12 @@ const firecrawl: Guide = {
     { h2: 'Troubleshooting', id: 'troubleshooting' },
     { ul: [
       '**A tool is missing:** confirm the connection mode (keyless vs signed in vs API key vs local), reconnect or restart the client, and check whether team policy disables optional tools.',
-      '**The client returns 401:** check the configured server URL first. If it is `/v2/mcp-oauth`, sign in again through the client. If it is `/v2/mcp`, either replace the API key on that server or change the URL to `/v2/mcp-oauth` and complete sign-in. Start a new client session after either change. In Claude Code, do not paste an API key into the conversation or the OAuth URL.',
-      '**The client is rate-limited:** wait for the retry interval, or move from keyless to an API key or a signed-in connection. Rate limits are enforced by the connected Firecrawl API. The free plan allows 10 requests per minute on `/scrape`, `/map` and `/search`, and 2 requests per minute on `/crawl`, `/agent` and `/interact`.',
+      '**The client returns 401:** check the configured server URL first. If the path ends with `v2/mcp-oauth`, sign in again through the client. If it ends with `v2/mcp`, either replace the API key on that server or change the URL to one ending in `v2/mcp-oauth` and complete sign-in. Start a new client session after either change. In Claude Code, do not paste an API key into the conversation or the OAuth URL.',
+      '**The client is rate-limited:** wait for the retry interval, or move from keyless to an API key or a signed-in connection. Rate limits are enforced by the connected Firecrawl API. The free plan allows 10 requests per minute on the scrape, map and search endpoints, and 2 requests per minute on the crawl, agent and interact endpoints.',
       '**A Firecrawl server already exists in Claude Code:** run `claude mcp remove firecrawl`, add the intended connection once, then start a new session.',
       '**The browser does not open:** enter `/mcp`, select `firecrawl`, and start authentication from the client.',
       '**`spawn npx ENOENT`:** install Node.js 22 or newer, confirm that `npx` is on the client\'s PATH, and fully restart the client. On Windows, see [fix spawn npx ENOENT](/guides/fix-spawn-npx-enoent-windows-mcp/).',
-      '**A local HTTP client cannot connect:** confirm that `HTTP_STREAMABLE_SERVER=true`, then call `http://localhost:3000/health`. Use `http://localhost:3000/mcp` as the client endpoint, not the hosted `/v2/mcp` path.',
+      '**A local HTTP client cannot connect:** confirm that `HTTP_STREAMABLE_SERVER=true`, then call `http://localhost:3000/health`. Use `http://localhost:3000/mcp` as the client endpoint, not the hosted `https://mcp.firecrawl.dev/v2/mcp` URL.',
     ] },
 
     { h2: 'FAQ', id: 'faq' },
